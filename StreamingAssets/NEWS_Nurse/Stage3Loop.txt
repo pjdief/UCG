@@ -6,6 +6,14 @@ $Vitalsmonitor outline.on
 #Prompt 'Playerstart = ' + PlayerStart
 Wait .51
 
+$PlayerStart = Bed + '/Medium'
+
+If
+	$Patient isCurrent
+Then
+	$CartObj align $CartPos 0
+Endif
+
 wait .5
 
 WipeCanvas off
@@ -72,6 +80,24 @@ Label 'LoopN1'
 		Do 'NEWS_Nurse/ChangeStage.txt'
 	Endif
 
+	#If
+	#	$TimeManager checktimer 0
+	#Then
+	#	If
+	#		$UsingTool = 'False'
+	#	Then
+	#		wait 1    #wait for all GMs to finish up
+	#		$CheckCanvas off
+	#		If
+	#			$InterventionsCanvas isOn
+	#		Then
+	#			$UIMan closetoolinventory
+	#		Endif
+	#		PatInfoCanvas off
+	#		Do 'NEWS_Nurse/ChangeStage.txt'
+	#	Endif
+	#Endif
+
 	If
 		$EndGame isOnAndPressed
 	Then
@@ -95,26 +121,18 @@ Label 'LoopN1'
 	Endif
 
 	If
-		$PatientButton pressed
+		$Patient isCurrent
 	Then
-		$PatientButton reset
-		Player align $PlayerStart 1
-	Endif
 
-	If
-		$CartButton pressed
-	Then
-		$CartButton reset
-		Player align $CartLook 1
+		If
+			$EWSCheck pressed
+		Then
+			$EWSCheck reset
+			$GlobalVar setglobal 'UsingTool' true
+			Do 'EWSCheck.txt'
+			$GlobalVar setglobal 'UsingTool' false
+		Endif
 	Endif
-
-	If
-		$ProcedureButton pressed
-	Then
-		$ProcedureButton reset
-		Player align $UrinaryProcPos 1
-	Endif
-
 
 	If
 		$CartObj pressed
@@ -124,10 +142,132 @@ Label 'LoopN1'
 		$BackECG = 'ECGCheckCanvas/Choices/Exit'
 		$ECGCan on
 		Player align $CartLook .5
+		turnOff JoystickCanvas
 		turnOff $SumButton
 		$CartObj clickable false
 
-		Do 'NEWS_Nurse/Stage1/UCGCart.txt'
+		$HandScrub clickable true
+
+		label 'CartLoop'
+		#Move to another script for each of the items used
+
+		If
+			$HandScrub pressed
+		Then
+			$HandScrub reset
+			Prompt 'Hand scrub'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$IncontinenceSheetObj pressed
+		Then
+			$IncontinenceSheetObj reset
+			Prompt 'Incontinence Sheet'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$InjectionWaterObj pressed
+		Then
+			$InjectionWaterObj reset
+			Prompt 'Injection Water'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$AntisepticObj pressed
+		Then
+			$AntisepticObj reset
+			Prompt 'Antiseptic'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$LubricantObj pressed
+		Then
+			$LubricantObj reset
+			Prompt 'Lubricant'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$CatheterObj pressed
+		Then
+			$CatheterObj reset
+			Prompt 'Catheter'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$UrineBagObj pressed
+		Then
+			$UrineBagObj reset
+			Prompt 'Urine Bag'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$GlovesObj pressed
+		Then
+			$GlovesObj reset
+			Prompt 'Gloves'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$SyringeObj pressed
+		Then
+			$SyringeObj reset
+			Prompt 'Syringe'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$TapeObj pressed
+		Then
+			$TapeObj reset
+			Prompt 'Tape'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$CottonBallsObj pressed
+		Then
+			$CottonBallsObj reset
+			Prompt 'Cotton Balls'
+			wait 1
+			Prompt ''
+		Endif
+
+		If
+			$BackECG pressed
+		Then
+			$BackECG reset
+			Player align $PlayerStart 1
+			$ECGCan off
+			Wait 1
+			$GlobalVar setglobal 'UsingTool' false
+			turnOn JoystickCanvas
+			turnOn $SumButton
+			$CartObj clickable true
+
+			$HandScrub clickable false
+
+			Goto 'LoopN1'
+		Endif
+
+		Goto 'CartLoop'
 	Endif
 
 
@@ -139,6 +279,22 @@ Label 'LoopN1'
 		turnOn $CurtainClosed
 	Endif
 
+#	If
+#		$UseToolButton pressed
+#	Then
+#		$UseToolButton reset
+#		$CheckCanvas off
+#		PatInfoCanvas off
+#		$UIMan opentoolinventory
+#	Endif
+#
+#	If
+#		$CloseTools isOnAndPressed
+#	Then
+#		$CloseTools reset
+#		$UIMan closetoolinventory
+#		$Patient reset
+#	Endif
 
 	If
 		$PatientSign pressed
@@ -238,6 +394,25 @@ Label 'LoopN1'
 	#Endif
 
 	If
+		$PC_Info pressed
+	Then
+		$PC_Info reset
+		If
+			PatInfoCanvas isoff
+		Then
+			PatInfoCanvas on
+			$Pat_Name write $PatientName
+			$Pat_IC write $PatientIC
+			$Pat_Diagnosis write $PatientDiag
+			$Pat_Profile write $PatientProf
+			$Pat_Sum write $PatientSummary
+			Do 'InterventionWrite.txt'
+		Else
+			PatInfoCanvas off
+		Endif
+	Endif
+
+	If
 		$Pat_Back pressed
 	Then
 		$Pat_Back reset
@@ -265,6 +440,19 @@ Label 'LoopN1'
 		#ScoreTracker rangecomplete 0-14
 		Do 'EndCheck.txt'
 	Endif
+
+#	If
+#		$ChecklistButton pressed
+#	Then
+#		$ChecklistButton reset
+#		If
+#			$CheckCanvas isoff
+#		Then
+#			Do 'Checklist.txt'
+#		Else
+#			$CheckCanvas off
+#		Endif
+#	Endif
 
 	If
 		$Check_End pressed

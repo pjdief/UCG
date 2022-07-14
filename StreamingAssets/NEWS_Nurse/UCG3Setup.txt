@@ -9,8 +9,7 @@ $GlobalVar setglobal 'Stage' $Stage
 $StageFolderPrefix = 'NEWS_Nurse/Stage' + Stage + '/'
 
 $DefaultBedNumber = '4'
-$PlayerStart = Bed + '/MediumLeft'
-$UrinaryProcPos = Bed + '/UrinaryProcPos'
+
 #Move camera to DefaultBedNumber, which then sets it as the current patient
 If 
     $BedNumber = DefaultBedNumber
@@ -35,10 +34,6 @@ $Curtain = 'CurtainMain'
 $Curtain clickable true
 $CurtainClosed = 'CurtainClosed'
 turnOff $CurtainClosed
-
-$PatientButton = 'ProcedureCanvas/Choices/PatientButton'
-$CartButton = 'ProcedureCanvas/Choices/CartButton'
-$ProcedureButton = 'ProcedureCanvas/Choices/ProcedureButton'
 
 ###########################################
 # Setup Scoring

@@ -7,7 +7,7 @@ Wait 1
 If
     ZoomSpot menu.result $Yes
 Then
-    SceneManager switchtoscene Scenes/Scene03_4
+    SceneManager switchtoscene Scenes/Scene03
 Else
     /JoystickCanvas on
 Endif

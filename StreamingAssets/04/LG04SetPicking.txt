@@ -1,5 +1,5 @@
 Debug 'LG04SetPicking'
-BackButtonCanvas off
+
 Label 'Scene04_SetLoop'
 	#Prompt 'Checking Infusion Set ' + InfusionSet
 	Wait 1

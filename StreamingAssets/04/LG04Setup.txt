@@ -9,7 +9,6 @@ Do 'Setup.txt'
 #Debug.on
 Debug 'LG04Setup.txt'
 End off
-BackButtonCanvas off
 
 $Shelf1 = 'Cabinet2/Shelf4'
 $Shelf2 = 'Cabinet2/Shelf5'
@@ -86,5 +85,4 @@ ScoreTracker numtasks 3
 ScoreTracker setdependency 2  0 
 
 #Do 'SummaryCheckNoPatient.txt'
-
 Do $SceneStart

@@ -35,10 +35,6 @@ Then
 	$CartPos = Bed + '/COWPos'
 	Create $CartObj $Cart
 	$CartObj align $CartPos 0
-	wait .1
-	$CartObj localrotatey -90 0
-
-	wait .3
 
 	$CartLook = $CartObj + '/close'
 
@@ -55,7 +51,7 @@ Then
 	$HandScrubObj = 'handScrub'
 	$HandScrub = 'HandScrub'
 
-	$IncontinenceSheetObj = 'UCGAssets/Sachet_CatheterizationSet'
+	$IncontinenceSheetObj = 'handScrub'
 	$IncontinenceSheet = 'IncontinenceSheet'
 
 	$InjectionWaterObj = 'handScrub'
