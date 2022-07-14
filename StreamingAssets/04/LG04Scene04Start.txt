@@ -3,9 +3,19 @@ $Player align PlayerOrig
 Debug 'LG04Scene04Start.txt'
 #Wait 3
 $Shelf outline.on
-$COW = 'COW1(Clone)'
-$COWShelfPos1 = 'Positions/ShelfCOWPos1'
-$COWShelfPos2 = 'Positions/ShelfCOWPos2'
+$Cart = 'COW1(Clone)'
+$CartShelfPos1 = 'Positions/ShelfCOWPos1'
+$CartShelfPos2 = 'Positions/ShelfCOWPos2'
+
+$CartPos1 = $Cart + '/Pos01'
+$CartPos2 = $Cart + '/Pos02'
+$CartPos3 = $Cart + '/Pos03'
+$CartPos4 = $Cart + '/Pos04'
+$CartPos5 = $Cart + '/Pos05'
+$CartPos6 = $Cart + '/Pos06'
+$CartPos7 = $Cart + '/Pos07'
+$CartPos8 = $Cart + '/Pos08'
+$CartPos9 = $Cart + '/Pos09'
 
 Do 'SummaryCheckNoPatient.txt'
 
@@ -14,6 +24,8 @@ $UC14 correctset
 $Chlorhexidine correctset
 $Saline correctset
 $WaterAmpoule correctset
+
+$DoorSingle outline.on
 
 Label 'Scene4_StartLoop'
 
@@ -53,10 +65,11 @@ Label 'Scene4_MainLoop'
 
 		turnOff JoystickCanvas
 
-		$COW align $COWShelfPos1 1
+		$Cart align $CartShelfPos1 1
 		$SalineAmpoule clickable true
 		$WaterAmpoule clickable true
 		$Player align $SetLook
+		BackButtonCanvas on
 		Wait .51
 		Goto 'Scene4_Shelf1Loop'
 	Endif
@@ -79,11 +92,12 @@ Label 'Scene4_MainLoop'
 
 		turnOff JoystickCanvas
 
-		$COW align $COWShelfPos1 1
+		$Cart align $CartShelfPos1 1
 		$Chlorhexidine clickable true
 		$Saline clickable true
 		$Iodine clickable true
 		$Player align $SetLook1
+		BackButtonCanvas on
 		Wait .51
 		Goto 'Scene4_Shelf2Loop'
 	Endif
@@ -106,11 +120,12 @@ Label 'Scene4_MainLoop'
 
 		turnOff JoystickCanvas
 
-		$COW align $COWShelfPos2 1
+		$Cart align $CartShelfPos2 1
 		$UC12 clickable true
 		$UC14 clickable true
 		$UC16 clickable true
 		$Player align $SetLook2
+		BackButtonCanvas on
 		Wait .51
 		Goto 'Scene4_Shelf3Loop'
 	Endif
@@ -140,13 +155,16 @@ Label 'Scene4_Shelf1Loop'
 		$SalineAmpoule pressed
 	Then
 		$SalineAmpoule reset
+		Prompt 'Saline Ampoule'
+		wait 1
+		Prompt ''
 		$Ampoule = 'UCGAssets/Ampoule'
 		$AmpouleName = 'SalineAmpoule'
 		Create $Ampoule $AmpouleName
 		$AmpouleName moveto $SalineAmpoule 0
 		$InfusionSet = $AmpouleName
 		$SetOrig = $SetOrig01
-		$SetCOWPosition = 'Cart1/Misc2'
+		$SetCOWPosition = $CartPos1
 		Do '04/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -155,14 +173,26 @@ Label 'Scene4_Shelf1Loop'
 		$WaterAmpoule pressed
 	Then
 		$WaterAmpoule reset
+		Prompt 'Water Ampoule'
+		wait 1
+		Prompt ''
 		$Ampoule = 'UCGAssets/Ampoule'
 		$AmpouleName = 'WaterAmpoule'
 		Create $Ampoule $AmpouleName
 		$AmpouleName moveto $WaterAmpoule 0
-		$InfusionSet = $WaterAmpoule
+		$InfusionSet = $AmpouleName
 		$SetOrig = $SetOrig02
-		$SetCOWPosition = 'Cart1/Misc2'
+		$SetCOWPosition = $CartPos2
 		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	If
+		BackButtonCanvas/BackButton pressed
+	Then
+		BackButtonCanvas/BackButton reset
+		BackButtonCanvas off
+		$Player align $PlayerCOWLook
 		Goto 'Scene4_StartLoop'
 	Endif
 
@@ -178,13 +208,16 @@ Label 'Scene4_Shelf2Loop'
 		$Chlorhexidine pressed
 	Then
 		$Chlorhexidine reset
+		Prompt 'Chlorhexidine gluconate sachet'
+		wait 1
+		Prompt ''
 		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
 		$ChlorSachetName = 'ChlorSachet'
 		Create $ChlorSachet $ChlorSachetName
 		$ChlorSachetName moveto $Chlorhexidine 0
 		$InfusionSet = $ChlorSachetName
 		$SetOrig = $SetOrig04
-		$SetCOWPosition = 'Cart1/Misc4'
+		$SetCOWPosition = $CartPos3
 		Do '04/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -196,12 +229,12 @@ Label 'Scene4_Shelf2Loop'
 		Prompt 'Saline'
 		wait 1
 		Prompt ''
-		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
-		$ChlorSachetName = 'NormalSaline'
-		Create $ChlorSachet $ChlorSachetName
-		$ChlorSachetName moveto $Chlorhexidine 0
-		$InfusionSet = $ChlorSachetName
-		$SetCOWPosition = 'Cart1/Misc4'
+		$SalineBottle = 'SalineBottle'
+		$SalineBottleName = 'NormalSaline'
+		Create $SalineBottle $SalineBottleName
+		$SalineBottleName moveto $Saline 0
+		$InfusionSet = $SalineBottleName
+		$SetCOWPosition = $CartPos4
 		$SetOrig = $SetOrig05
 		Do '04/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
@@ -220,8 +253,17 @@ Label 'Scene4_Shelf2Loop'
 		$IodineBottleName moveto $Iodine 0
 		$InfusionSet = $IodineBottleName
 		$SetOrig = $SetOrig06
-		$SetCOWPosition = 'Cart1/Misc5'
+		$SetCOWPosition = $CartPos9
 		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	If
+		BackButtonCanvas/BackButton pressed
+	Then
+		BackButtonCanvas/BackButton reset
+		BackButtonCanvas off
+		$Player align $PlayerCOWLook
 		Goto 'Scene4_StartLoop'
 	Endif
 
@@ -237,13 +279,16 @@ Label 'Scene4_Shelf3Loop'
 		$UC12 pressed
 	Then
 		$UC12 reset
-		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
-		$ChlorSachetName = 'UC12'
-		Create $ChlorSachet $ChlorSachetName
-		$ChlorSachetName moveto $Chlorhexidine 0
-		$InfusionSet = $ChlorSachetName
+		Prompt 'Urinary Catheter size 12'
+		wait 1
+		Prompt ''
+		$UC12Obj = 'UCGAssets/Sachet_CatheterizationSet'
+		$UC12Name = 'UC12'
+		Create $UC12Obj $UC12Name
+		$UC12Name moveto $UC12 0
+		$InfusionSet = $UC12Name
 		$SetOrig = $SetOrig07
-		$SetCOWPosition = 'Cart1/Misc6'
+		$SetCOWPosition = $CartPos6
 		Do '04/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -252,13 +297,16 @@ Label 'Scene4_Shelf3Loop'
 		$UC14 pressed
 	Then
 		$UC14 reset
-		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
-		$ChlorSachetName = 'UC14'
-		Create $ChlorSachet $ChlorSachetName
-		$ChlorSachetName moveto $Chlorhexidine 0
-		$InfusionSet = $ChlorSachetName
+		Prompt 'Urinary Catheter size 14'
+		wait 1
+		Prompt ''
+		$UC14Obj = 'UCGAssets/Sachet_CatheterizationSet'
+		$UC14Name = 'UC14'
+		Create $UC14Obj $UC14Name
+		$UC14Name moveto $UC14 0
+		$InfusionSet = $UC14Name
 		$SetOrig = $SetOrig08
-		$SetCOWPosition = 'Cart1/Misc6'
+		$SetCOWPosition = $CartPos7
 		Do '04/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -267,14 +315,26 @@ Label 'Scene4_Shelf3Loop'
 		$UC16 pressed
 	Then
 		$UC16 reset
-		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
-		$ChlorSachetName = 'UC16 '
-		Create $ChlorSachet $ChlorSachetName
-		$ChlorSachetName moveto $Chlorhexidine 0
-		$InfusionSet = $ChlorSachetName
+		Prompt 'Urinary Catheter size 16'
+		wait 1
+		Prompt ''
+		$UC16Obj = 'UCGAssets/Sachet_CatheterizationSet'
+		$UC16Name = 'UC16'
+		Create $UC16Obj $UC16Name
+		$UC16Name moveto $UC16 0
+		$InfusionSet = $UC16Name
 		$SetOrig = $SetOrig09
-		$SetCOWPosition = 'Cart1/Misc6'
+		$SetCOWPosition = $CartPos8
 		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	If
+		BackButtonCanvas/BackButton pressed
+	Then
+		BackButtonCanvas/BackButton reset
+		BackButtonCanvas off
+		$Player align $PlayerCOWLook
 		Goto 'Scene4_StartLoop'
 	Endif
 

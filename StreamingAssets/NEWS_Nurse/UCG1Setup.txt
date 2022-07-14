@@ -27,6 +27,9 @@ Then
     Endif
     Create $BathroomSign $BathroomSignName
     $BathroomSignName align $BathroomSignLoc 0
+
+    $CurtainClosed = 'CurtainClosed'
+    turnOff $CurtainClosed
 Endif
 
 

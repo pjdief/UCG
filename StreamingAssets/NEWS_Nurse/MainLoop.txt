@@ -9,6 +9,7 @@ Wait .51
 #Do 'Smile'
 Prompt 'Smile 5'
 Do 'Smile' 20
+Prompt ''
 
 
 $PlayerStart = Bed + '/Medium'
