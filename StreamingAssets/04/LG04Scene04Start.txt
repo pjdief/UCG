@@ -1,0 +1,283 @@
+$Player align PlayerOrig
+#$Player lookat PlayerLook
+Debug 'LG04Scene04Start.txt'
+#Wait 3
+$Shelf outline.on
+$COW = 'COW1(Clone)'
+$COWShelfPos1 = 'Positions/ShelfCOWPos1'
+$COWShelfPos2 = 'Positions/ShelfCOWPos2'
+
+Do 'SummaryCheckNoPatient.txt'
+
+$UC12 correctset
+$UC14 correctset
+$Chlorhexidine correctset
+$Saline correctset
+$WaterAmpoule correctset
+
+Label 'Scene4_StartLoop'
+
+	$Shelf1 outline.on
+	$Shelf2 outline.on
+	$Shelf3 outline.on
+
+	$UC12 clickable false
+	$UC14 clickable false
+	$UC16 clickable false
+
+	$SalineAmpoule clickable false
+	$WaterAmpoule clickable false
+	$Chlorhexidine clickable false
+	$Saline clickable false
+	$Iodine clickable false
+	turnOn JoystickCanvas
+
+
+Label 'Scene4_MainLoop'
+
+	If
+		$Shelf1 pressed
+	Then
+		$Shelf1 outline.off
+		$Shelf2 outline.off
+		$Shelf3 outline.off
+		$UC12 outline.off
+		$UC14 outline.off
+		$UC16 outline.off
+		$SalineAmpoule outline.on
+		$WaterAmpoule outline.on
+		$Chlorhexidine outline.off
+		$Saline outline.off
+		$Iodine outline.off
+		$Shelf1 reset
+
+		turnOff JoystickCanvas
+
+		$COW align $COWShelfPos1 1
+		$SalineAmpoule clickable true
+		$WaterAmpoule clickable true
+		$Player align $SetLook
+		Wait .51
+		Goto 'Scene4_Shelf1Loop'
+	Endif
+
+	If
+		$Shelf2 pressed
+	Then
+		$Shelf1 outline.off
+		$Shelf2 outline.off
+		$Shelf3 outline.off
+		$UC12 outline.off
+		$UC14 outline.off
+		$UC16 outline.off
+		$SalineAmpoule outline.off
+		$WaterAmpoule outline.off
+		$Chlorhexidine outline.on
+		$Saline outline.on
+		$Iodine outline.on
+		$Shelf2 reset
+
+		turnOff JoystickCanvas
+
+		$COW align $COWShelfPos1 1
+		$Chlorhexidine clickable true
+		$Saline clickable true
+		$Iodine clickable true
+		$Player align $SetLook1
+		Wait .51
+		Goto 'Scene4_Shelf2Loop'
+	Endif
+
+	If
+		$Shelf3 pressed
+	Then
+		$Shelf1 outline.off
+		$Shelf2 outline.off
+		$Shelf3 outline.off
+		$UC12 outline.on
+		$UC14 outline.on
+		$UC16 outline.on
+		$SalineAmpoule outline.off
+		$WaterAmpoule outline.off
+		$Chlorhexidine outline.off
+		$Saline outline.off
+		$Iodine outline.off
+		$Shelf3 reset
+
+		turnOff JoystickCanvas
+
+		$COW align $COWShelfPos2 1
+		$UC12 clickable true
+		$UC14 clickable true
+		$UC16 clickable true
+		$Player align $SetLook2
+		Wait .51
+		Goto 'Scene4_Shelf3Loop'
+	Endif
+
+	If
+		$DoorSingle pressed
+	Then
+		$DoorSingle reset
+		Do '04/Door.txt'
+	Endif
+
+	If
+		$Scene_Exit pressed
+	Then 
+		$Scene_Exit resetPressed
+		ScoreTracker rangecomplete 0-1
+		Do 'EndCheck.txt'
+	Endif
+
+Goto 'Scene4_MainLoop'
+
+###########   Shelf 1   ############
+
+Label 'Scene4_Shelf1Loop'
+	
+	If
+		$SalineAmpoule pressed
+	Then
+		$SalineAmpoule reset
+		$Ampoule = 'UCGAssets/Ampoule'
+		$AmpouleName = 'SalineAmpoule'
+		Create $Ampoule $AmpouleName
+		$AmpouleName moveto $SalineAmpoule 0
+		$InfusionSet = $AmpouleName
+		$SetOrig = $SetOrig01
+		$SetCOWPosition = 'Cart1/Misc2'
+		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	If
+		$WaterAmpoule pressed
+	Then
+		$WaterAmpoule reset
+		$Ampoule = 'UCGAssets/Ampoule'
+		$AmpouleName = 'WaterAmpoule'
+		Create $Ampoule $AmpouleName
+		$AmpouleName moveto $WaterAmpoule 0
+		$InfusionSet = $WaterAmpoule
+		$SetOrig = $SetOrig02
+		$SetCOWPosition = 'Cart1/Misc2'
+		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	Wait .1
+
+Goto 'Scene4_Shelf1Loop'
+
+###########   Shelf 2   ############
+
+Label 'Scene4_Shelf2Loop'
+
+	If
+		$Chlorhexidine pressed
+	Then
+		$Chlorhexidine reset
+		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
+		$ChlorSachetName = 'ChlorSachet'
+		Create $ChlorSachet $ChlorSachetName
+		$ChlorSachetName moveto $Chlorhexidine 0
+		$InfusionSet = $ChlorSachetName
+		$SetOrig = $SetOrig04
+		$SetCOWPosition = 'Cart1/Misc4'
+		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	If
+		$Saline pressed
+	Then
+		$Saline reset
+		Prompt 'Saline'
+		wait 1
+		Prompt ''
+		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
+		$ChlorSachetName = 'NormalSaline'
+		Create $ChlorSachet $ChlorSachetName
+		$ChlorSachetName moveto $Chlorhexidine 0
+		$InfusionSet = $ChlorSachetName
+		$SetCOWPosition = 'Cart1/Misc4'
+		$SetOrig = $SetOrig05
+		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	If
+		$Iodine pressed
+	Then
+		$Iodine reset
+		Prompt 'Iodine'
+		wait 1
+		Prompt ''
+		$IodineBottle = 'IodineBottle'
+		$IodineBottleName = 'Iodine'
+		Create $IodineBottle $IodineBottleName
+		$IodineBottleName moveto $Iodine 0
+		$InfusionSet = $IodineBottleName
+		$SetOrig = $SetOrig06
+		$SetCOWPosition = 'Cart1/Misc5'
+		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	Wait .1
+
+Goto 'Scene4_Shelf2Loop'
+
+###########   Shelf 3   ############
+
+Label 'Scene4_Shelf3Loop'
+
+	If
+		$UC12 pressed
+	Then
+		$UC12 reset
+		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
+		$ChlorSachetName = 'UC12'
+		Create $ChlorSachet $ChlorSachetName
+		$ChlorSachetName moveto $Chlorhexidine 0
+		$InfusionSet = $ChlorSachetName
+		$SetOrig = $SetOrig07
+		$SetCOWPosition = 'Cart1/Misc6'
+		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	If
+		$UC14 pressed
+	Then
+		$UC14 reset
+		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
+		$ChlorSachetName = 'UC14'
+		Create $ChlorSachet $ChlorSachetName
+		$ChlorSachetName moveto $Chlorhexidine 0
+		$InfusionSet = $ChlorSachetName
+		$SetOrig = $SetOrig08
+		$SetCOWPosition = 'Cart1/Misc6'
+		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	If
+		$UC16 pressed
+	Then
+		$UC16 reset
+		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
+		$ChlorSachetName = 'UC16 '
+		Create $ChlorSachet $ChlorSachetName
+		$ChlorSachetName moveto $Chlorhexidine 0
+		$InfusionSet = $ChlorSachetName
+		$SetOrig = $SetOrig09
+		$SetCOWPosition = 'Cart1/Misc6'
+		Do '04/LG04SetPicking.txt'
+		Goto 'Scene4_StartLoop'
+	Endif
+
+	Wait .1
+
+Goto 'Scene4_Shelf3Loop'
