@@ -1,0 +1,122 @@
+#########################################
+#  UCG Cart
+#########################################
+
+label 'CartLoop'
+
+	If
+		$HandScrub pressed
+	Then
+		$HandScrub reset
+		Prompt 'Hand scrub'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$IncontinenceSheetObj pressed
+	Then
+		$IncontinenceSheetObj reset
+		Prompt 'Incontinence Sheet'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$InjectionWaterObj pressed
+	Then
+		$InjectionWaterObj reset
+		Prompt 'Injection Water'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$AntisepticObj pressed
+	Then
+		$AntisepticObj reset
+		Prompt 'Antiseptic'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$LubricantObj pressed
+	Then
+		$LubricantObj reset
+		Prompt 'Lubricant'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$CatheterObj pressed
+	Then
+		$CatheterObj reset
+		Prompt 'Catheter'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$UrineBagObj pressed
+	Then
+		$UrineBagObj reset
+		Prompt 'Urine Bag'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$GlovesObj pressed
+	Then
+		$GlovesObj reset
+		Prompt 'Gloves'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$SyringeObj pressed
+	Then
+		$SyringeObj reset
+		Prompt 'Syringe'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$TapeObj pressed
+	Then
+		$TapeObj reset
+		Prompt 'Tape'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$CottonBallsObj pressed
+	Then
+		$CottonBallsObj reset
+		Prompt 'Cotton Balls'
+		wait 1
+		Prompt ''
+	Endif
+
+	If
+		$BackECG pressed
+	Then
+		$BackECG reset
+		Player align $PlayerStart .5
+		$ECGCan off
+		Wait 1
+		$GlobalVar setglobal 'UsingTool' false
+		turnOn $SumButton
+		$CartObj clickable true
+		$HandScrub clickable false
+
+		Return
+	Endif
+
+	wait .2
+Goto 'CartLoop'
