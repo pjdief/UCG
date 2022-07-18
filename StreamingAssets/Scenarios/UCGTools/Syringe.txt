@@ -1,0 +1,3 @@
+Prompt 'Syringe'
+wait 1
+Prompt ''

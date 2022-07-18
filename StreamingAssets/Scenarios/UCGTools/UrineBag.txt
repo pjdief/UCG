@@ -1,0 +1,3 @@
+Prompt 'Urine Bag'
+wait 1
+Prompt ''
