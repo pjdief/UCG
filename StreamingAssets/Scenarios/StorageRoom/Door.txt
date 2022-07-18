@@ -1,0 +1,13 @@
+/JoystickCanvas off
+ZoomSpot Menu.Question 'Return to ward with materials?'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+    ZoomSpot Menu.Done
+Wait 1
+If
+    ZoomSpot menu.result $Yes
+Then
+    SceneManager switchtoscene Scenes/Scene03_4
+Else
+    /JoystickCanvas on
+Endif

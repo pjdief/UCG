@@ -1,0 +1,44 @@
+Player align $PlayerStart .5
+$ECGCan off
+Wait .1
+$GlobalVar setglobal 'UsingTool' false
+turnOn $SumButton
+
+
+$Cart clickable true
+$Cart outline.on
+
+$Patient clickable true
+$Patient outline.on
+
+
+$HandScrub outline.off
+$IncontinenceSheet outline.off
+$InjectionWater outline.off
+$Antiseptic outline.off
+$Lubricant outline.off
+$Catheter outline.off
+$UrineBag outline.off
+$Gloves outline.off
+$Syringe outline.off
+$Tape outline.off
+$CottonBalls outline.off
+
+$HandScrub clickable false
+$IncontinenceSheet clickable false
+$InjectionWater clickable false
+$Antiseptic clickable false
+$Lubricant clickable false
+$Catheter clickable false
+$UrineBag clickable false
+$Gloves clickable false
+$Syringe clickable false
+$Tape clickable false
+$CottonBalls clickable false
+
+
+$HandScrub clickable false
+
+$CartButton on
+$PatientButton on
+$ProcedureButton on

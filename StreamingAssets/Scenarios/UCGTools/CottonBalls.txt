@@ -1,0 +1,3 @@
+Prompt 'Cotton Balls'
+wait 1
+Prompt ''

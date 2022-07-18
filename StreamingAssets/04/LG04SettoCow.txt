@@ -1,4 +1,0 @@
-$InfusionSet align $SetCOWPosition
-$InfusionSet parentto $SetCOWPosition
-$Player align $PlayerCOWLook
-#Do '04/LG04PlayertoCOW.txt'
