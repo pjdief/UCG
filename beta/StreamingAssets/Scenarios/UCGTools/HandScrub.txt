@@ -1,0 +1,36 @@
+$ECGCan off
+
+Prompt 'Hand scrub'
+wait 1
+Prompt ''
+
+ZoomSpot Menu.Question 'Perform hand hygiene?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result $Yes
+Then
+
+	ZoomSpot Menu.Question 'Which hand hygiene should you perform?'
+	ZoomSpot Menu.Choices '5 steps','7 steps surgical'
+	ZoomSpot Menu.on ZoomSpot
+	WaitFor
+		ZoomSpot Menu.Done
+	Wait .1
+	If
+		ZoomSpot menu.result '5 steps'
+	Then
+		Prompt 'Performing 5 steps hand hygiene'
+		wait 2
+		Prompt ''
+	Else
+		Prompt 'Performing 7 steps surgical hand hygiene'
+		wait 2
+		Prompt ''
+	Endif
+Endif
+
+$ECGCan on
