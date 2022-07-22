@@ -1,3 +1,0 @@
-Prompt 'Antiseptic'
-wait 1
-Prompt ''

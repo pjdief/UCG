@@ -1,3 +1,0 @@
-Prompt 'Catheter'
-wait 1
-Prompt ''

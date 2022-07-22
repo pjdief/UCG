@@ -1,3 +1,0 @@
-Prompt 'Injection Water'
-wait 1
-Prompt ''

@@ -1,3 +1,0 @@
-Prompt 'Gloves'
-wait 1
-Prompt ''

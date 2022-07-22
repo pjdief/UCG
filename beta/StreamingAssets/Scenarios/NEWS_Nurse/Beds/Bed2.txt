@@ -1,8 +1,0 @@
-Do 'Setup.txt'
-$BedNumber = '2'
-$Bed = 'Bed'+ BedNumber
-$Patient = Bed + '/Placeholder(Clone)'
-
-$BedOxyTarget = Bed + '/Oxygen'
-#Prompt.Offset 0.4
-Wait 1

@@ -1,4 +1,0 @@
-$SelectedItem align $SetCOWPosition
-$SelectedItem parentto $SetCOWPosition
-$Player align $PlayerCOWLook
-#Do 'StorageRoom/LG04PlayertoCOW.txt'
