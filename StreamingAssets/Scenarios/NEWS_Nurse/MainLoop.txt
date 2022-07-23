@@ -171,7 +171,7 @@ Label 'LoopN1'
 			Player align $PlayerStart 1
 			turnOff $COWMonitorExit
 			Wait 1
-			$UseToolButton reset
+			$COWMonitor reset
 			$GlobalVar setglobal 'UsingTool' false
 			turnOn JoystickCanvas
 			turnOn $SumButton
@@ -198,6 +198,7 @@ Label 'LoopN1'
 				$PatientName = 'Annie Lim'
 			Then
 				Prompt 'This is the correct patient.'
+				$ConfirmPatient reset
 				wait 2
 				Prompt ''
 				Player align $PlayerStart 0.5
@@ -219,6 +220,7 @@ Label 'LoopN1'
 				Return
 			Else
 				Prompt 'This is not the correct patient. Please find the correct patient.'
+				$ConfirmPatient reset
 				wait 3
 				Prompt ''
 			Endif
@@ -248,6 +250,7 @@ Label 'LoopN1'
 			Wait .5
 			turnOn $ConfirmPatient
 			$GlobalVar setglobal 'UsingTool' false
+			$PatientSign reset
 			Goto 'LoopN1'
 		Endif
 		Goto 'signLoop'
@@ -264,7 +267,6 @@ Label 'LoopN1'
 		$Patient outline.off
 		turnOff $ConfirmPatient
 		Do 'NEWS_Nurse/EngagePatient.txt'
-		$UseToolButton reset
 		$Patient outline.on
 		JoystickCanvas on
 		turnOn $ConfirmPatient
