@@ -22,6 +22,7 @@ $PatientInPosition = 'false'
 
 $GlobalVar setglobal 'UsingTool' false
 
+
 Label 'LoopN1'
 
 	$UsingTool =
@@ -101,7 +102,26 @@ Label 'LoopN1'
 		$ProcedureButton pressed
 	Then
 		$ProcedureButton reset
+		Wait 0
 		Player align $UrinaryProcPos 1
+		Wait 1
+#		Prompt 'lookAt'
+		Player lookAt $PatientGenitals -0.05 0.2 .05 1
+		Wait 1
+#		Prompt ''
+#		Player localMoveX 0.3
+#		Wait 2
+		Do 'NEWS_Nurse/GrabForceps'
+	Endif
+
+	If
+		$Stage4Button pressed
+	Then
+		$Stage4Button reset
+		$Stage = 4
+		$GlobalVar setglobal 'Stage' $Stage
+		turnOff $Stage4Button
+		Do 'NEWS_Nurse/Stage4Loop.txt'
 	Endif
 
 

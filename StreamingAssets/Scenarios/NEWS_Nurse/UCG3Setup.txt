@@ -40,6 +40,7 @@ turnOff $CurtainClosed
 $PatientButton = 'ProcedureCanvas/Choices/PatientButton'
 $CartButton = 'ProcedureCanvas/Choices/CartButton'
 $ProcedureButton = 'ProcedureCanvas/Choices/ProcedureButton'
+$Stage4Button = 'ProcedureCanvas/Choices/Stage4Button'
 
 ###########################################
 # Setup Scoring
@@ -191,4 +192,6 @@ $Patient speaker.color .5 .5 1
 $Patient outline.on
 
 $SceneStart = 'NEWS_Nurse/Stage3Loop.txt'
+
+
 Do $SceneStart

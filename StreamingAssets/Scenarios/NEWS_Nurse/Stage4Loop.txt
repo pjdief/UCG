@@ -1,0 +1,226 @@
+#/PatientCanvas off
+JoystickCanvas on
+$Patient outline.on
+$Cart outline.on
+$Vitalsmonitor outline.on
+#Prompt 'Playerstart = ' + PlayerStart
+$PatientLocator = $Patient + '/Locator'
+Wait .51
+
+Do 'SummaryCheck.txt'
+
+$PatientInPosition = 'false'
+
+$GlobalVar setglobal 'UsingTool' false
+
+Label 'LoopN1'
+
+	$UsingTool =
+	  $GlobalVar getGlobal 'UsingTool'
+
+	If
+		$SumButton pressed
+	Then
+		$SumButton reset
+		$GlobalVar setglobal 'UsingTool' true
+		$CheckCanvas off
+		PatInfoCanvas off
+		If
+			$InterventionsCanvas isOn
+		Then
+			$UIMan closetoolinventory
+		Endif
+		Do 'SummaryCheck.txt'
+		$GlobalVar setglobal 'UsingTool' false
+	Endif
+
+
+	If
+		$EndGame isOnAndPressed
+	Then
+		#Do 'EndCheck.txt'
+		If
+			$BedNumber = 1
+		Then
+			ScoreTracker EndStage
+		Endif
+
+		Wait 1
+
+		If
+            $BedNumber = 1
+        Then		
+            ScoreTracker CloseStage
+        Endif
+        
+        Wait 1  #needed for scorm
+        SceneManager switchtoscene Scenes/MainMenu
+	Endif
+
+	If
+		$PatientButton pressed
+	Then
+		$PatientButton reset
+		Player align $PlayerStart 1
+	Endif
+
+	If
+		$CartButton pressed
+	Then
+		$CartButton reset
+		Player align $CartLook 1
+		$CartObj outline.off
+		$GlobalVar setglobal 'UsingTool' true
+		$ECGCan on
+		Player align $CartLook .5
+		turnOff $SumButton
+		$CartObj clickable false
+		$CartButton off
+		$PatientButton off
+		$ProcedureButton off
+
+		Do 'NEWS_Nurse/Stage1/UCGCart.txt'
+	Endif
+
+	If
+		$ProcedureButton pressed
+	Then
+		$ProcedureButton reset
+		Player align $UrinaryProcPos 1
+	Endif
+
+
+	If
+		$CartObj pressed
+	Then
+		$CartObj reset
+		$CartObj outline.off
+		$GlobalVar setglobal 'UsingTool' true
+		$ECGCan on
+		Player align $CartLook .5
+		turnOff $SumButton
+		$CartObj clickable false
+
+		Do 'NEWS_Nurse/Stage1/UCGCart.txt'
+	Endif
+
+
+	If
+		$PatientSign pressed
+	Then
+		$PatientSign reset
+		$GlobalVar setglobal 'UsingTool' true
+		If
+			$InterventionsCanvas isOn
+		Then
+			$UIMan closetoolinventory
+		Endif
+		Player align $LookAtPatientSign 1
+		$ECGCan on
+		label 'signLoop'
+		If
+			$BackECG pressed
+		Then
+			$BackECG reset
+			$ECGCan off
+			Player align $PlayerStart 1
+			Wait .5
+			$UseToolButton reset
+			$GlobalVar setglobal 'UsingTool' false
+			Goto 'LoopN1'
+		Endif
+		Goto 'signLoop'
+	Endif
+
+
+	If
+		$Patient pressed
+	Then
+		$Patient reset
+		ZoomSpot Menu.Question 'Player hand reach'
+		ZoomSpot Menu.Choices 'grip','extension','pinch','ring','thumb','tripod','tweeze'
+		ZoomSpot Menu.on ZoomSpot
+		WaitFor
+			ZoomSpot Menu.Done
+		Wait .1
+		If
+			ZoomSpot menu.result 'grip'
+		Then
+			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_grip'
+			Wait 5
+			$PlayerNurse release 1 'R_grip'
+		Endif
+
+		If
+			ZoomSpot menu.result 'extension'
+		Then
+			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_extension'
+			Wait 3
+			$PlayerNurse release 1 'R_extension'
+		Endif
+
+		If
+			ZoomSpot menu.result 'pinch'
+		Then
+			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_pinch'
+			Wait 3
+			$PlayerNurse release 1 'R_pinch'
+		Endif
+
+		If
+			ZoomSpot menu.result 'ring'
+		Then
+			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_ring'
+			Wait 3
+			$PlayerNurse release 1 'R_ring'
+		Endif
+
+		If
+			ZoomSpot menu.result 'thumb'
+		Then
+			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_thumb'
+			Wait 3
+			$PlayerNurse release 1 'R_thumb'
+		Endif
+
+		If
+			ZoomSpot menu.result 'tripod'
+		Then
+			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_tripod'
+			Wait 3
+			$PlayerNurse release 1 'R_tripod'
+		Endif
+
+		If
+			ZoomSpot menu.result 'tweeze'
+		Then
+			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_tweeze'
+			Wait 3
+			$PlayerNurse release 1 'R_tweeze'
+		Endif
+	Endif
+
+	If
+		$Vitalsmonitor pressed
+	Then
+		$Vitalsmonitor reset
+		Do 'ToolTxt/AssessECG.txt'
+	Endif
+
+	If
+		$Scene_Exit pressed
+	Then 
+		$Scene_Exit reset
+		#ScoreTracker rangecomplete 0-14
+		Do 'EndCheck.txt'
+	Endif
+
+	If
+		$Check_End pressed
+	Then
+		$Check_End reset
+		$CheckCanvas off
+	Endif
+
+	Wait .2
+Goto 'LoopN1'

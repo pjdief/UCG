@@ -1,3 +1,24 @@
 Prompt 'Gloves'
 wait 1
 Prompt ''
+
+ZoomSpot Menu.Question 'Put on gloves?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result 'Yes'
+Then
+	Prompt 'Putting on gloves'
+	wait 1
+	Prompt ''
+		ZoomSpot Menu.Question 'Which part of the gloves do you grab?'
+		ZoomSpot Menu.Choices 'Inside','Outside'
+		ZoomSpot Menu.on ZoomSpot
+		WaitFor
+			ZoomSpot Menu.Done
+	Destroy $Gloves
+
+Endif

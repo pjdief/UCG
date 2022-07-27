@@ -74,6 +74,19 @@ label 'CartLoop'
 	Endif
 
 	If
+		$CatheterBalloon pressed
+	Then
+		$CatheterBalloon reset
+		$CatheterBalloon moveto ZoomSpot 1
+		wait 2
+		$CatheterBalloon play Grow true
+		wait 2
+		$CatheterBalloon play Grow false
+		wait 2
+		$CatheterBalloon moveto $CartPos6 1
+	Endif
+
+	If
 		$UrineBag pressed
 	Then
 		$UrineBag reset
@@ -107,6 +120,9 @@ label 'CartLoop'
 	Then
 		$CottonBalls reset
 		Do 'UCGTools/CottonBalls.txt'
+		#Do 'NEWS_Nurse/GrabForceps'
+		#Wait 2
+		
 	Endif
 
 	If

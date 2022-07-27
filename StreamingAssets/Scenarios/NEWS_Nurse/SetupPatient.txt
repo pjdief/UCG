@@ -154,7 +154,8 @@ $PatientHand =
 $PatientHand = Patient +  '/' + PatientHand
 
 #$PatientMouth  = PatientFace    #should be overridden per patient
-
+$PatientGenitals = Patient + '/Genitals'
+#Prompt 'Genitals = ' + PatientGenitals
 
 $WristbandObj = 'PatientIDBand'
 $Wristband = 'IDBand' + BedNumber

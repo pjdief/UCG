@@ -1,3 +1,22 @@
 Prompt 'Catheter'
 wait 1
 Prompt ''
+
+ZoomSpot Menu.Question 'Open catheter?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result 'Yes'
+Then
+	
+	$CatheterBalloonObj = 'CatheterBalloon'
+	$CatheterBalloon = 'CatheterBalloon'
+	
+	Create $CatheterBalloonObj $CatheterBalloon
+	wait .1
+	$CatheterBalloon moveto $CartPos6 0
+	Destroy $Catheter
+Endif
