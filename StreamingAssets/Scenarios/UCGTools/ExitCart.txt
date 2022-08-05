@@ -23,6 +23,7 @@ $Gloves outline.off
 $Syringe outline.off
 $Tape outline.off
 $CottonBalls outline.off
+$DrapePackage outline.off
 
 $HandScrub clickable false
 $IncontinenceSheet clickable false
@@ -35,6 +36,7 @@ $Gloves clickable false
 $Syringe clickable false
 $Tape clickable false
 $CottonBalls clickable false
+$DrapePackage clickable false
 
 
 $HandScrub clickable false

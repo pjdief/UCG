@@ -5,6 +5,7 @@ $Cart outline.on
 $Vitalsmonitor outline.on
 #Prompt 'Playerstart = ' + PlayerStart
 $PatientLocator = $Patient + '/Locator'
+Do 'NEWS_Nurse/Stage1/COWSetup.txt'
 Wait .51
 
 Do 'SummaryCheck.txt'
@@ -25,11 +26,6 @@ Label 'LoopN1'
 		$GlobalVar setglobal 'UsingTool' true
 		$CheckCanvas off
 		PatInfoCanvas off
-		If
-			$InterventionsCanvas isOn
-		Then
-			$UIMan closetoolinventory
-		Endif
 		Do 'SummaryCheck.txt'
 		$GlobalVar setglobal 'UsingTool' false
 	Endif
@@ -79,7 +75,7 @@ Label 'LoopN1'
 		$PatientButton off
 		$ProcedureButton off
 
-		Do 'NEWS_Nurse/Stage1/UCGCart.txt'
+		Do 'NEWS_Nurse/Stage1/UCGCartStage4.txt'
 	Endif
 
 	If
@@ -101,7 +97,7 @@ Label 'LoopN1'
 		turnOff $SumButton
 		$CartObj clickable false
 
-		Do 'NEWS_Nurse/Stage1/UCGCart.txt'
+		Do 'NEWS_Nurse/Stage1/UCGCartStage4.txt'
 	Endif
 
 
@@ -110,11 +106,6 @@ Label 'LoopN1'
 	Then
 		$PatientSign reset
 		$GlobalVar setglobal 'UsingTool' true
-		If
-			$InterventionsCanvas isOn
-		Then
-			$UIMan closetoolinventory
-		Endif
 		Player align $LookAtPatientSign 1
 		$ECGCan on
 		label 'signLoop'

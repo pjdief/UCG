@@ -1,3 +1,27 @@
 Prompt 'Injection Water'
 wait 1
 Prompt ''
+
+ZoomSpot Menu.Question 'Pour Injection Water?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result 'Yes'
+Then
+
+$InjectionWater localmovey .15 1
+wait .5
+$InjectionWater localmovex -.1 1
+wait .5
+$InjectionWater localrotatez 135 1
+wait 1.5
+turnOn $WaterSol
+wait .3
+$InjectionWater localrotatez -135 .5
+wait .7
+Destroy $InjectionWater
+
+Endif

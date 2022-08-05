@@ -1,3 +1,30 @@
 Prompt 'Antiseptic'
 wait 1
 Prompt ''
+
+
+ZoomSpot Menu.Question 'Pour Antiseptic solution?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result 'Yes'
+Then
+
+$Antiseptic localmovex .1 1
+wait .5
+$Antiseptic localmovey -.15 1
+wait .5
+$Antiseptic localrotatex 90 1
+wait .5
+$Antiseptic localrotatey 45 1
+wait 1.5
+turnOn $AntisepticSol
+wait .3
+$Antiseptic localrotatey -45 .5
+wait .7
+Destroy $Antiseptic
+
+Endif

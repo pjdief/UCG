@@ -13,6 +13,9 @@ WipeCanvas off
 /IVCanvas off
 /DripCanvas off
 
+$RightRail = $Bed + '/RightRail'
+$RightRail outline.on
+
 $Vitalsmonitor on
 #$Vitalsmonitor outline.off
 
@@ -81,6 +84,17 @@ Label 'LoopN1'
 	Endif
 
 	If
+		$RightRail pressed
+	Then
+		$RightRail reset
+		$RightRail clickable false
+		$RightRail localmovey -.4 .5
+		wait .3
+		$RightRail localrotatex 180 0
+		$RightRail outline.off
+	Endif
+
+	If
 		$CartButton pressed
 	Then
 		$CartButton reset
@@ -88,14 +102,13 @@ Label 'LoopN1'
 		$CartObj outline.off
 		$GlobalVar setglobal 'UsingTool' true
 		$ECGCan on
-		Player align $CartLook .5
 		turnOff $SumButton
 		$CartObj clickable false
 		$CartButton off
 		$PatientButton off
 		$ProcedureButton off
 
-		Do 'NEWS_Nurse/Stage1/UCGCart.txt'
+		Do 'NEWS_Nurse/Stage1/UCGCartStage3.txt'
 	Endif
 
 	If
@@ -136,7 +149,7 @@ Label 'LoopN1'
 		turnOff $SumButton
 		$CartObj clickable false
 
-		Do 'NEWS_Nurse/Stage1/UCGCart.txt'
+		Do 'NEWS_Nurse/Stage1/UCGCartStage3.txt'
 	Endif
 
 

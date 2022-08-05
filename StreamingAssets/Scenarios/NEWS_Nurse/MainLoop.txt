@@ -51,7 +51,6 @@ $Vitalsmonitor on
 
 $Wipe1 outline.on
 $Wipe1 reset
-$Syringe outline.on
 $Phone outline.on
 $Phone clickable true
 

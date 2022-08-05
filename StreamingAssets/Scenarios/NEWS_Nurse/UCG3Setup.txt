@@ -179,6 +179,10 @@ Wait .1
 $PlayerSpeechBubble close
 $PatientSpeechBubble close
 
+$SyringeFull = false
+$AntisepticCotton = false
+
+
 $CannulaIV = 'CannulaIV'
 $CannulaIVEnd = $CannulaIV + '/CannulaEnd'
 $PlayerNurse = 'Player/NursePlayer'

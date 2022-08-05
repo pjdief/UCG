@@ -1,3 +1,21 @@
 Prompt 'Urine Bag'
 wait 1
 Prompt ''
+
+ZoomSpot Menu.Question 'Attach urine bag?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result 'Yes'
+Then
+
+$UrineBagPos = $Bed + '/UrinaryPos'
+
+$UrineBag align $UrineBagPos 1
+$UrineBag clickable false
+$UrineBag outline.off
+
+Endif

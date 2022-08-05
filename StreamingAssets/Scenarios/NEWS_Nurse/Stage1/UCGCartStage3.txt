@@ -1,0 +1,172 @@
+#########################################
+#  UCG Cart - Stage 3
+#########################################
+
+$HandScrub outline.on
+$IncontinenceSheet outline.on
+$InjectionWater outline.on
+$Antiseptic outline.on
+$Lubricant outline.on
+$Catheter outline.on
+$UrineBag outline.on
+$Gloves outline.on
+$Syringe outline.on
+$Tape outline.on
+$CottonBalls outline.on
+
+$HandScrub clickable true
+$IncontinenceSheet clickable true
+$InjectionWater clickable true
+$Antiseptic clickable true
+$Lubricant clickable true
+$Catheter clickable true
+$UrineBag clickable true
+$Gloves clickable true
+$Syringe clickable true
+$Tape clickable true
+$CottonBalls clickable true
+
+$Patient clickable false
+$Patient outline.off
+
+label 'CartLoop'
+
+	If
+		$HandScrub pressed
+	Then
+		$HandScrub reset
+		Do 'UCGTools/HandScrub.txt'
+	Endif
+
+	If
+		$IncontinenceSheet pressed
+	Then
+		$IncontinenceSheet reset
+		Do 'UCGTools/IncontinenceSheet.txt'
+	Endif
+
+	If
+		$InjectionWater pressed
+	Then
+		$InjectionWater reset
+		Do 'UCGTools/InjectionWater.txt'
+	Endif
+
+	If
+		$Antiseptic pressed
+	Then
+		$Antiseptic reset
+		Do 'UCGTools/Antiseptic.txt'
+	Endif
+
+	If
+		$Lubricant pressed
+	Then
+		$Lubricant reset
+		Do 'UCGTools/Lubricant.txt'
+	Endif
+
+	If
+		$Catheter pressed
+	Then
+		$Catheter reset
+		Do 'UCGTools/Catheter.txt'
+	Endif
+
+	If
+		$CatheterBalloon pressed
+	Then
+		$CatheterBalloon reset
+
+		$CatheterPort = $CatheterBalloon + '/Handle/Port'
+		If
+			$SyringeFull = true
+		Then
+
+			ZoomSpot Menu.Question 'Test Catheter balloon for leaks?'
+			ZoomSpot Menu.Choices 'Yes','No'
+			ZoomSpot Menu.on ZoomSpot
+			WaitFor
+				ZoomSpot Menu.Done
+			Wait .1
+			If
+				ZoomSpot menu.result 'Yes'
+			Then
+
+				$CatheterBalloon localmovey .2 1
+				wait 1
+				$CatheterBalloon localmovez -.1 1
+				wait 1
+				$Syringe moveto $CatheterPort 1
+				wait 1
+				$Syringe localmovex .12 .1
+				wait .2
+				$Syringe localrotatez -90 .1
+				wait .2
+				$Plunger localmovey -.06 2
+				$CatheterBalloon play Grow true
+				wait 4
+				$Plunger localmovey .06 2
+				$CatheterBalloon play Grow false
+				wait 2
+				$CatheterBalloon moveto $CartPos6 1
+				wait .5
+				Destroy $Syringe
+				$CatheterBalloon clickable false
+
+				Prompt 'No leaks found'
+				wait 2
+				Prompt ''
+			Endif
+		Endif
+	Endif
+
+	If
+		$UrineBag pressed
+	Then
+		$UrineBag reset
+		Do 'UCGTools/UrineBag.txt'
+	Endif
+
+	If
+		$Gloves pressed
+	Then
+		$Gloves reset
+		Do 'UCGTools/Gloves.txt'
+	Endif
+
+	If
+		$Syringe pressed
+	Then
+		$Syringe reset
+		Prompt 'Clicked Syringe'
+		Do 'UCGTools/Syringe.txt'
+	Endif
+
+	If
+		$Tape pressed
+	Then
+		$Tape reset
+		Do 'UCGTools/Tape.txt'
+	Endif
+
+	If
+		$CottonBalls pressed
+	Then
+		$CottonBalls reset
+		Do 'UCGTools/CottonBalls.txt'
+		#Do 'NEWS_Nurse/GrabForceps'
+		#Wait 2
+		
+	Endif
+
+	If
+		$BackECG pressed
+	Then
+		$BackECG reset
+		Do 'UCGTools/ExitCart.txt'
+		Return
+	Endif
+
+	wait .2
+Goto 'CartLoop'

@@ -1,3 +1,60 @@
 Prompt 'Syringe'
 wait 1
 Prompt ''
+
+If
+	$SyringeFull = true
+Then
+	Return
+Endif
+
+$Plunger = $Syringe + '/Plunger'
+
+ZoomSpot Menu.Question 'Fill Syringe with water?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result 'Yes'
+Then
+	If
+		$WaterSol isOn
+	Then
+		ZoomSpot Menu.Question 'How many mls would you like to draw?'
+		ZoomSpot Menu.Choices '5ml','10ml','20ml'
+		ZoomSpot Menu.on ZoomSpot
+		WaitFor
+			ZoomSpot Menu.Done
+		Wait .1
+			$Syringe localmovez .06 .5
+			wait .5
+			$Syringe localmovey .05 .5
+			wait .5
+			$Syringe localmovex -.05 .5
+			wait .5
+			$Syringe localrotatez -35 .5
+			wait .5
+			$Syringe localrotatex 35 .5
+			wait .5
+			$Plunger localmovey .06 2.5
+			wait 3
+			turnOff $WaterSol
+			$Syringe localrotatex -35 .3
+			wait .4
+			$Syringe localrotatez 35 .3
+			wait .4
+			$Syringe localmovex .05 .3
+			wait .4
+			$Syringe localmovey -.05 .3
+			wait .4
+			$Syringe localmovez -.06 .3
+			wait .4
+			$SyringeFull = true
+	Else
+		Prompt 'Needs injection water'
+		wait 2
+		Prompt ''
+	Endif
+Endif

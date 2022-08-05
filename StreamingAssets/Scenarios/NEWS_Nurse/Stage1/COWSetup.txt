@@ -85,6 +85,20 @@ Then
 	$CottonBallsObj = 'UCGAssets/Swab_Ball_Group'
 	$CottonBalls = 'CottonBalls'
 
+	$UCHolderObj = 'UCHolder'
+	$UCHolder = 'UCSet'
+
+	Create $UCHolderObj $UCHolder
+	wait .1
+	$UCHolder align $CartPos2 0
+	wait .1
+	$UCHolder localrotatey 90 0
+
+	$AntisepticSol = $UCHolder + '/AntisepticSolution'
+	$WaterSol = $UCHolder + '/InjectionWaterSolution'
+
+	turnOff $AntisepticSol
+	turnOff $WaterSol
 
 	Create $HandScrubObj $HandScrub
 	wait .1
@@ -133,14 +147,26 @@ Then
 	$Syringe localmovey .01 0
 	wait .1
 	$Syringe localrotatey 90 0
+	wait .1
+	$Syringe localrotatez -90 0
+	wait .05
+	$Syringe localmovez .02 0
+	wait .05
 
 	Create $TapeObj $Tape
 	wait .1
 	$Tape align $CartPos7 0
+	wait .1
+	$Tape localmovex .05 0
+	wait .1
+	$Tape localmovez .2 0
+	wait .1
 
 	Create $CottonBallsObj $CottonBalls
 	wait .1
-	$CottonBalls align $CartPos2 0
+	$CottonBalls align $CartPos3 0
+	wait .1
+	$CottonBalls localmovex -.05 0
 
 $HandScrub clickable false
 $IncontinenceSheet clickable false
@@ -154,4 +180,15 @@ $Syringe clickable false
 $Tape clickable false
 $CottonBalls clickable false
 
+Endif
+
+If
+	$Stage = 4
+Then
+	$DrapePackageObj = 'UCGAssets/Sachet_CatheterizationSet'
+	$DrapePackage = 'DrapePackage'
+
+	Create $DrapePackageObj $DrapePackage
+	wait .1
+	$DrapePackage align $CartPos1 0
 Endif
