@@ -167,6 +167,8 @@ $Wristband localrotatez -90
 $Wristband parentto $PatientLeftHand
 wait .1
 $Wristband localmovex 0.016
+wait .1
+$Wristband localmovey 0.009
 
 $BandNameText = $Wristband + '/Canvas/PatientName'
 $BandICText = $Wristband + '/Canvas/PatientNumber'
