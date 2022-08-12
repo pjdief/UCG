@@ -89,10 +89,10 @@ label 'CartLoop'
 #		Prompt 'lookAt'
 		Player lookAt $PatientGenitals -0.05 0.2 .05 1
 		Wait 1
-#		Prompt ''
-#		Player localMoveX 0.3
-#		Wait 2
-		Do 'NEWS_Nurse/CleanGenitalia'
+
+		#$whichHand = 'right' 
+		Do 'NEWS_Nurse/CleanGenitalia' 'right'
+
 		Player align $CartLook 1
 	Endif
 

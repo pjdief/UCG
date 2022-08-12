@@ -2,8 +2,7 @@
 #  UCG Cart - Stage 3
 #########################################
 
-$HandScrub outline.on
-$IncontinenceSheet outline.on
+$ContinenceSheet outline.on
 $InjectionWater outline.on
 $Antiseptic outline.on
 $Lubricant outline.on
@@ -14,8 +13,7 @@ $Syringe outline.on
 $Tape outline.on
 $CottonBalls outline.on
 
-$HandScrub clickable true
-$IncontinenceSheet clickable true
+$ContinenceSheet clickable true
 $InjectionWater clickable true
 $Antiseptic clickable true
 $Lubricant clickable true
@@ -39,10 +37,10 @@ label 'CartLoop'
 	Endif
 
 	If
-		$IncontinenceSheet pressed
+		$ContinenceSheet pressed
 	Then
-		$IncontinenceSheet reset
-		Do 'UCGTools/IncontinenceSheet.txt'
+		$ContinenceSheet reset
+		Do 'UCGTools/ContinenceSheet.txt'
 	Endif
 
 	If
@@ -78,7 +76,7 @@ label 'CartLoop'
 	Then
 		$CatheterBalloon reset
 
-		$CatheterPort = $CatheterBalloon + '/Handle/Port'
+		$CatheterPort = $TempCatheter + '/Handle/Port'
 		If
 			$SyringeFull = true
 		Then
@@ -92,10 +90,17 @@ label 'CartLoop'
 			If
 				ZoomSpot menu.result 'Yes'
 			Then
+				$TempCatheter = 'CatheterBalloon'
 
-				$CatheterBalloon localmovey .2 1
+				Create $TempCatheter $TempCatheter
+				$TempCatheter align $CatheterBalloon 0
+
+				turnOff $CatheterBalloon
 				wait 1
-				$CatheterBalloon localmovez -.1 1
+
+				$TempCatheter localmovey .2 1
+				wait 1
+				$TempCatheter localmovez -.1 1
 				wait 1
 				$Syringe moveto $CatheterPort 1
 				wait 1
@@ -104,14 +109,16 @@ label 'CartLoop'
 				$Syringe localrotatez -90 .1
 				wait .2
 				$Plunger localmovey -.06 2
-				$CatheterBalloon play Grow true
+				$TempCatheter play Grow true
 				wait 4
 				$Plunger localmovey .06 2
-				$CatheterBalloon play Grow false
+				$TempCatheter play Grow false
 				wait 2
-				$CatheterBalloon moveto $CartPos6 1
+				$TempCatheter moveto $CatheterPos 1
 				wait .5
 				Destroy $Syringe
+				turnOn $CatheterBalloon
+				Destroy $TempCatheter
 				$CatheterBalloon clickable false
 
 				Prompt 'No leaks found'

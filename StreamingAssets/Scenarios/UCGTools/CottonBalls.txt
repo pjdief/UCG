@@ -34,7 +34,7 @@ Then
 	$CottonBalls attachto $Forceps
 	$Forceps localmovey .05 .4
 	wait .5
-	$Forceps localmovex .14 .4
+	$Forceps localmovex .12 .4
 	wait .5
 	$Forceps localrotatex 35 1
 	wait 1
@@ -55,8 +55,10 @@ Then
 	wait .5
 	$Forceps localrotatex -35 .4
 	wait .5
-	$Forceps localmovex -.1 .4
+	$Forceps localmovex .09 .4
 	wait .5
+	$Forceps localmovez -.01 .1
+	wait .2
 	$Forceps localmovey -.05 .4
 	wait .5
 	$CottonBalls detach

@@ -1,0 +1,27 @@
+Prompt 'Continence Sheet'
+wait 1
+Prompt ''
+
+ZoomSpot Menu.Question 'Open Continence Sheet?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result 'Yes'
+Then
+	
+	$SheetObj = 'ContinenceSheet'
+	$Sheet = 'ContinenceSheetObj'
+	
+	Create $SheetObj $Sheet
+	wait .1
+	$SheetPos = $Bed + '/Patient02'
+	wait .5
+	$Sheet moveto $SheetPos 0
+	wait .1
+	$Sheet localmovex -.3 0
+	wait .1
+	Destroy $ContinenceSheet
+Endif

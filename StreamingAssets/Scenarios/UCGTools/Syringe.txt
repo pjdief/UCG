@@ -32,7 +32,7 @@ Then
 			wait .5
 			$Syringe localmovey .05 .5
 			wait .5
-			$Syringe localmovex -.05 .5
+			$Syringe localmovex -.04 .5
 			wait .5
 			$Syringe localrotatez -35 .5
 			wait .5
@@ -45,7 +45,7 @@ Then
 			wait .4
 			$Syringe localrotatez 35 .3
 			wait .4
-			$Syringe localmovex .05 .3
+			$Syringe localmovex .04 .3
 			wait .4
 			$Syringe localmovey -.05 .3
 			wait .4

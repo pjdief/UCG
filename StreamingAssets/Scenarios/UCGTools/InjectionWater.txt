@@ -17,11 +17,25 @@ wait .5
 $InjectionWater localmovex -.1 1
 wait .5
 $InjectionWater localrotatez 135 1
-wait 1.5
+Wait 1
+
+$PouringLiquid = 'LiquidParticles'
+Create $PouringLiquid $PouringLiquid
+Wait 0
+$InjectionWaterOpening = InjectionWater + '/Opening'
+$PouringLiquid align $InjectionWaterOpening 0
+
+
+wait .5
 turnOn $WaterSol
-wait .3
+Wait 0
+$WaterSol moveY 0.03 3
+Wait 3
+
+#stop pour
 $InjectionWater localrotatez -135 .5
-wait .7
+Destroy $PouringLiquid
+wait 2
 Destroy $InjectionWater
 
 Endif

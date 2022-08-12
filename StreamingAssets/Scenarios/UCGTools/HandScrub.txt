@@ -26,10 +26,12 @@ Then
 		Prompt 'Performing 5 steps hand hygiene'
 		wait 2
 		Prompt ''
+		Do 'HandWash/5Steps.txt'
 	Else
 		Prompt 'Performing 7 steps surgical hand hygiene'
 		wait 2
 		Prompt ''
+		Do 'HandWash/7Steps.txt'
 	Endif
 Endif
 

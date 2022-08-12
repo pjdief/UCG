@@ -1,0 +1,65 @@
+
+$LeftHandSpot = 'LeftHandSpot'
+$RightHandSpot = 'RightHandSpot'
+
+$NurseLeftHand = 
+    $PlayerNurse getbone 'LeftHand'
+$NurseLeftHand =  PlayerNurse +  '/' + NurseLeftHand
+
+$LeftHandDorsal = 'LeftHandDorsal'
+Create Locator $LeftHandDorsal
+$LeftHandDorsal align $NurseLeftHand 0
+Wait 0
+$LeftHandDorsal localRotateX -90 0
+Wait 0
+$LeftHandDorsal localRotateZ -90 0
+Wait 0
+$LeftHandDorsal attachTo $NurseLeftHand
+Wait 0
+$LeftHandDorsal localMoveY 0.03 0
+Wait 0
+$LeftHandDorsal localMoveZ 0.08 0
+Wait 0
+
+$LeftHandPalm = 'LeftHandPalm'
+Create Locator $LeftHandPalm
+Wait 0
+$LeftHandPalm align $LeftHandDorsal 0
+Wait 0
+$LeftHandPalm localRotateZ 180 0
+Wait 0
+$LeftHandPalm moveUp 0.05 0
+Wait 0
+$LeftHandPalm attachTo $NurseLeftHand
+
+
+$NurseRightHand = 
+    $PlayerNurse getbone 'RightHand'
+$NurseRightHand =  PlayerNurse +  '/' + NurseRightHand
+
+$RightHandDorsal = 'RightHandDorsal'
+Create Locator $RightHandDorsal
+Wait 0
+$RightHandDorsal align $NurseRightHand 0
+Wait 0
+$RightHandDorsal localRotateX -90 0
+Wait 0
+$RightHandDorsal localRotateZ 90 0
+Wait 0
+$RightHandDorsal attachTo $NurseRightHand
+Wait 0
+$RightHandDorsal localMoveY 0.03 0
+Wait 0
+$RightHandDorsal localMoveZ 0.08 0
+Wait 0
+
+$RightHandPalm = 'RightHandPalm'
+Create Locator $RightHandPalm
+Wait 0
+$RightHandPalm align $RightHandDorsal 0
+Wait 0
+$RightHandPalm localRotateZ 180 0
+Wait 0
+$RightHandPalm moveUp 0.05 0
+Wait 0
+$RightHandPalm attachTo $NurseRightHand

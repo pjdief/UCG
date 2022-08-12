@@ -12,11 +12,11 @@ If
 	ZoomSpot menu.result 'Yes'
 Then
 	
-	$CatheterBalloonObj = 'CatheterBalloon'
-	$CatheterBalloon = 'CatheterBalloon'
+	$CatheterBalloonObj = 'CatheterBalloonCurled'
+	$CatheterBalloon = 'CatheterBalloonCurled'
 	
 	Create $CatheterBalloonObj $CatheterBalloon
 	wait .1
-	$CatheterBalloon moveto $CartPos6 0
+	$CatheterBalloon align $CatheterPos 0
 	Destroy $Catheter
 Endif

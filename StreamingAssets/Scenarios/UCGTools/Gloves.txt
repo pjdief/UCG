@@ -4,7 +4,7 @@ Prompt ''
 
 $NurseLeftHand = 
     $PlayerNurse getbone 'LeftHand'
-$NurseLeftHand = $PlayerNurse +  '/' + NurseLeftHand
+$NurseLeftHand = PlayerNurse +  '/' + NurseLeftHand
 
 
 ZoomSpot Menu.Question 'Put on gloves?'
@@ -33,12 +33,14 @@ Then
 	Wait 1
 #    $PlayerNurse grabLeft $Gloves
 	$Gloves attachTo $NurseLeftHand
-	Wait 1.5
+	Wait 1
 #	Prompt 'gloves 1'
     $PlayerNurse release
+	wait 1
 #	Prompt 'gloves 2'
     Wait 1
 	Destroy $Gloves
+	wait .1
     turnOn $NurseBodyGloves 
 #	Prompt 'gloves 3'
     turnOff $NurseBodyNoGloves 
@@ -50,8 +52,6 @@ Then
     $PlayerNurse grabRight RightHandSpot
 	Wait 2.5
     $PlayerNurse release
-
-
 
 
 #	Destroy $Gloves

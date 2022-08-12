@@ -12,8 +12,7 @@ $Patient clickable true
 $Patient outline.on
 
 
-$HandScrub outline.off
-$IncontinenceSheet outline.off
+$ContinenceSheet outline.off
 $InjectionWater outline.off
 $Antiseptic outline.off
 $Lubricant outline.off
@@ -25,8 +24,7 @@ $Tape outline.off
 $CottonBalls outline.off
 $DrapePackage outline.off
 
-$HandScrub clickable false
-$IncontinenceSheet clickable false
+$ContinenceSheet clickable false
 $InjectionWater clickable false
 $Antiseptic clickable false
 $Lubricant clickable false
@@ -38,8 +36,6 @@ $Tape clickable false
 $CottonBalls clickable false
 $DrapePackage clickable false
 
-
-$HandScrub clickable false
 
 $CartButton on
 $PatientButton on

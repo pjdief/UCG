@@ -1,0 +1,7 @@
+#S3RubPalmDorsumFingersInterlaced - rub palm of chosen hand on dorsal of other hand
+#Do 'S3RubPalmDorsumFingersInterlaced' ['right'|'left']
+#Param[1] : $WhichHand
+#Requires:
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $LeftHandDorsal, $RightHandDorsal
+
+Do 'HandWash/RubPalmDorsum' $param[1]

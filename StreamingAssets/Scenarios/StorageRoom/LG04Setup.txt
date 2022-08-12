@@ -1,9 +1,10 @@
+#wait 100
+
 Do 'Setup.txt'
 # SCENARIO GOALS
 # 0 = RightSet
 # 1 = DishAdded
 # 2 = Door
-
 # OLD VARIABLE DECLARATIONS
 #$KidneyDish = 'KidneyDish'
 #Debug.on
@@ -73,9 +74,7 @@ $Summary = 'SummaryCanvas/Background/Text'
 $SummaryText = SumCanvas + '/TopSummary'
 $SummaryExit = SumCanvas + '/OKButton'
 $SummaryBlack = SumCanvas + '/Black'
-#$SummaryInfo = SumCanvas + '/InfoButton'
-#$SummaryInfo off
-#$SumButton = SummaryInfo + '/Information' #'JoystickCanvas/Summary'
+
 $SceneStart = 'StorageRoom/LG04Scene04Start.txt'
 
 $Shelf1 outline.on

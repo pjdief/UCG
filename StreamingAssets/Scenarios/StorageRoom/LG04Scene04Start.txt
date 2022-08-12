@@ -4,6 +4,8 @@ Debug 'LG04Scene04Start.txt'
 #Wait 3
 $Shelf outline.on
 $Cart = 'COW1(Clone)'
+$Cart outline.on
+$CartLook = $Cart + '/close'
 $CartShelfPos1 = 'Positions/ShelfCOWPos1'
 $CartShelfPos2 = 'Positions/ShelfCOWPos2'
 
@@ -46,6 +48,16 @@ Label 'Scene4_StartLoop'
 
 
 Label 'Scene4_MainLoop'
+
+	If
+		$Cart pressed
+	Then
+		$Cart reset
+		$Cart outline.off
+		Player align $CartLook 1
+		BackButtonCanvas on
+		Do 'NEWS_Nurse/Stage1/UCGCartStage2.txt'
+	Endif
 
 	If
 		$Shelf1 pressed
@@ -159,10 +171,10 @@ Label 'Scene4_Shelf1Loop'
 		wait 1
 		Prompt ''
 		$Ampoule = 'UCGAssets/Ampoule'
-		$AmpouleName = 'SalineAmpoule'
-		Create $Ampoule $AmpouleName
-		$AmpouleName moveto $SalineAmpoule 0
-		$SelectedItem = $AmpouleName
+		$SalineAmpouleName = 'SalineAmpoule'
+		Create $Ampoule $SalineAmpouleName
+		$SalineAmpouleName moveto $SalineAmpoule 0
+		$SelectedItem = $SalineAmpouleName
 		$SetOrig = $SetOrig01
 		$SetCOWPosition = $CartPos1
 		Do 'StorageRoom/LG04SetPicking.txt'
@@ -178,10 +190,10 @@ Label 'Scene4_Shelf1Loop'
 		wait 1
 		Prompt ''
 		$Ampoule = 'UCGAssets/Ampoule'
-		$AmpouleName = 'WaterAmpoule'
-		Create $Ampoule $AmpouleName
-		$AmpouleName moveto $WaterAmpoule 0
-		$SelectedItem = $AmpouleName
+		$WaterAmpouleName = 'WaterAmpoule'
+		Create $Ampoule $WaterAmpouleName
+		$WaterAmpouleName moveto $WaterAmpoule 0
+		$SelectedItem = $WaterAmpouleName
 		$SetOrig = $SetOrig02
 		$SetCOWPosition = $CartPos2
 		Do 'StorageRoom/LG04SetPicking.txt'

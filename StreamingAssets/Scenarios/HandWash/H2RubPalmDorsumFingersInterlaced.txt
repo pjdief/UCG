@@ -1,0 +1,7 @@
+#H2RubPalmDorsumFingersInterlaced - rub palm of chosen hand on dorsal of other hand
+#Do 'HandWash/H2RubPalmDorsumFingersInterlaced' 
+#Requires:
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $LeftHandDorsal, $RightHandDorsal
+
+Do 'HandWash/RubPalmDorsum' 'right'
+Do 'HandWash/RubPalmDorsum' 'left'

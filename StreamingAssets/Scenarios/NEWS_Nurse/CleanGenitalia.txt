@@ -1,51 +1,77 @@
 #GrabForceps.txt
+#Do 'GrapForceps' ['right'|'left']
+
+If
+    $param[1] != ' '
+Then
+    $whichHand = param[1]
+    Prompt 'Has Param:' + param[1]
+Else
+    Prompt 'No param:' + param[1]
+Endif 
 
 $Forceps = 'Forceps_Straight_IK'
 $ForcepsHandle = $Forceps + '/IKGrab'
 
 Create $Forceps $Forceps
 
-$Forceps align ZoomSpot 0
-Wait 1
-$Forceps localMoveZ -0.3 0
-Wait 2
-#$Forceps localRotateZ 170 0
-Wait 0
-$Forceps localRotateY -30 0
-Wait 0
-$Forceps localRotateX -40 0
-Wait 0
-
 $SingleCottonBall = 'Swab_Ball_Pinched'
 Create $SingleCottonBall $SingleCottonBall
 $SingleCottonBall setMaterial AntisepticBallMat
-wait .1
+wait 0 #.1
 $SingleCottonBall align $Forceps 0
-wait .1
+wait 0 #.1
 $SingleCottonBall attachto $Forceps
 
-$PlayerNurse grabRight.elbowin $ForcepsHandle 1 'horizontal' 'R_grip'
-Wait 1
+
+If
+    $whichHand == 'right'
+Then
+    $PlayerNurse grabRight.elbowin $ForcepsHandle .1 'horizontal' 'R_grip'
+Else
+    $PlayerNurse grabLeft.elbowin $ForcepsHandle .1 'horizontal' 'L_grip'
+Endif
+Wait .1
+
 #$PatientGenitals = Patient + '/Genitals'
 $Forceps align $PatientGenitals 0
 
-$PatientGenitalsLeftHand = 'LabiaHandPosition'
-Create Locator $PatientGenitalsLeftHand
-$PatientGenitalsLeftHand align $PatientGenitals 0
+$PatientGenitalsOtherHand = 'LabiaHandPosition'
+Create Locator $PatientGenitalsOtherHand
+$PatientGenitalsOtherHand align $PatientGenitals 0
 Wait 0
-$PlayerNurse grabLeft.elbowout $PatientGenitalsLeftHand 1 'horizontal' 'L_tweeze'
-Wait 1
-$PatientGenitalsLeftHand localMoveY .07 1
-Wait 1
-$PatientGenitalsLeftHand localRotateY 80 1
-Wait 1
-$PatientGenitalsLeftHand localRotateZ 50 1
-Wait 1
-$PatientGenitalsLeftHand localMoveZ .07 1
-Wait 1
-$PatientGenitalsLeftHand localMoveX -.05 1
 
-wait .1
+#Start hand above patient
+If
+    $whichHand == 'right'
+Then
+    $PatientGenitalsOtherHand localposition  -1.33,0.9,7.7 
+    Wait 0
+    $PlayerNurse grabLeft.elbowout $PatientGenitalsOtherHand .1 'horizontal' 'L_tweeze'
+    Wait .1
+
+    #Orient the hand
+    $PatientGenitalsOtherHand localrotation  -50,129.4,41.5 0
+    Wait 0
+
+Else
+    $PatientGenitalsOtherHand localposition  1.38,0.87,7.48 
+    Wait 0
+    $PlayerNurse grabRight.elbowout $PatientGenitalsOtherHand .1 'horizontal' 'R_tweeze'
+    Wait .1
+
+    #Orient the hand
+    $PatientGenitalsOtherHand localrotation  -17.4,32.5,-24.5 0
+    Wait 0
+
+Endif
+
+#Move hand down to genitals
+$PatientGenitalsOtherHand localposition  -1.43,0.87,7.5 1
+Wait 1
+
+#Clean the genitals
+wait 1
 $Forceps localrotatey 25 1
 wait 1
 $Forceps localrotatex 10 1
@@ -58,5 +84,14 @@ wait 1
 Prompt ''
 wait 3
 Destroy $Forceps
+
+
+#right hand
 $PlayerNurse release 1 'R_grip'
 $PlayerNurse release 1 'L_tweeze'
+#left hand
+$PlayerNurse release 1 'L_grip'
+$PlayerNurse release 1 'R_tweeze'
+
+
+

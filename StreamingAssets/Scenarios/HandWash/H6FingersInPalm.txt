@@ -1,0 +1,9 @@
+
+#H6FingersInPalm - rub fingers of both hands on palm of other hand
+#Do 'HandWash/H6FingersInPalm' 
+#Param[1] : $WhichHand
+#Requires:
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $LeftHandDorsal, $RightHandDorsal
+
+Do 'HandWash/FingerDip' 'left'
+Do 'HandWash/FingerDip' 'right'

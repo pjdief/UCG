@@ -5,30 +5,15 @@ Prompt 'Grab item by ' + PlayerNurse
 Wait 1
 Prompt ''
 
-$PlayerNurse grabLeft $SelectedItem 1 'vertical' 'L_grip'
+Create Locator $ToolLocation
+wait .1
+$ToolLocation moveto $SelectedItem 0
+wait .1
+$ToolLocation localmovez .04 0
+wait .1
+
+$PlayerNurse grabLeft $ToolLocation 1 'vertical' 'L_grip'
 Wait 5
 $PlayerNurse release 1 'L_grip'
 
-ZoomSpot Menu.Question 'Flip the Item?'
-ZoomSpot Menu.on ZoomSpot 600.0 200.0
-WaitFor
-    ZoomSpot Menu.Done
-#Wait .1
-If
-    ZoomSpot menu.result $Yes
-Then
-    $SelectedItem reset
-    $SelectedItem localrotatey 180 0.5
-    Do 'StorageRoom/LG04SetChosen.txt'
-    /JoystickCanvas on
-Else
-    Do 'StorageRoom/LG04SetChosen.txt'
-    /JoystickCanvas on
-    Return
-    $SelectedItem reset
-    $SelectedItem moveto $SetOrig 
-    $SelectedItem matchrotation $SetOrig
-    $SelectedItem playerreplace
-#    Do 'StorageRoom/LG04SetPicking.txt'
-Endif
-Wait .3
+Do 'StorageRoom/LG04SetChosen.txt'

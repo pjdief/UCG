@@ -1,0 +1,105 @@
+#MoveHands - UNFINISHED Generic rub one or both hands
+#Do 'MoveHands' 1['right'|'left'|'both'] 2[$MainHandTarget] 3[$MainHandShape] 4[$MainHandPlane] 4[$OtherHandShape] 6[$OtherHandPlane]
+#Param[1] : $WhichHand
+#Requires:
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $LeftHandDorsal, $RightHandDorsal
+
+$MainGrabType = 'grabRight.elbowout'
+$MainHandTarget = LeftHandPalm
+$MainHandPlane = 'horizontal'
+$MainHandShape = ' ' #'R_grip'
+
+$OtherGrabType = 'grabRight.elbowout'
+$OtherHandTarget = RightHandPalm
+$OtherHandPlane = 'horizontal'
+$OtherHandShape = ' ' #'R_grip'
+
+
+############# Get parameters
+
+#TODO: extend so $param[0] contains number of parameters.
+If
+    $param[1] != ' '
+Then
+    $whichHand =            param[1]
+    $MainHandTarget =       param[2]
+    $MainHandShape =        param[3]
+    $MainHandPlane =        param[4]
+    $MainHandMotionType =   param[5]
+    $MainHandMotionAmount = param[6]
+
+    $OtherHandTarget =       param[2]
+    $OtherHandShape =        param[3]
+    $OtherHandPlane =        param[4]
+    $OtherHandMotionType =   param[5]
+    $OtherHandMotionAmount = param[6]
+
+Endif 
+
+Prompt 'RubPalmDorsum: ' + whichHand
+Wait 2
+Prompt ''
+
+############# Create spot for hand to follow
+$MainTarget = 'MainTarget'
+Create PalmLocator $MainTarget
+$OtherTarget = 'OtherTarget'
+Create Locator $OtherTarget
+
+
+############# Set hand-specific variables and reach out OTHER hand
+
+$GrabType = $MainGrabType #'grabRight.elbowin'
+$OtherTarget align $OtherHandTarget 0
+Wait 0
+$PlayerNurse $OtherGrabType $OtherTarget .1 $OtherHandPlane #'L_grip'
+Wait .5
+$MainTarget align $MainHandTarget 0
+Wait 0
+
+
+############# Move MAIN hand to spot to follow
+$PlayerNurse $MainGrabType $MainTarget .1 $MainHandPlane $MainHandShape
+Wait .5
+
+############# Do cleaning motion
+#Repeat 5 times
+
+$scrubDuration = 0.5
+
+$MainTarget moveForward .10 $scrubDuration
+Wait $scrubDuration
+$MainTarget moveForward -.10 $scrubDuration
+Wait $scrubDuration
+
+$MainTarget moveForward .10 $scrubDuration
+Wait $scrubDuration
+$MainTarget moveForward -.10 $scrubDuration
+Wait $scrubDuration
+
+$MainTarget moveForward .10 $scrubDuration
+Wait $scrubDuration
+$MainTarget moveForward -.10 $scrubDuration
+Wait $scrubDuration
+
+$MainTarget moveForward .10 $scrubDuration
+Wait $scrubDuration
+$MainTarget moveForward -.10 $scrubDuration
+Wait $scrubDuration
+
+$MainTarget moveForward .10 $scrubDuration
+Wait $scrubDuration
+$MainTarget moveForward -.10 $scrubDuration
+Wait $scrubDuration
+
+############# Destroy temporary spot to follow and put down hands
+Destroy $MainTarget
+Destroy $OtherTarget
+
+#right hand
+$PlayerNurse releaseLeft 1 $HandShape
+#left hand
+$PlayerNurse releaseRight 1 $HandShape
+
+
+

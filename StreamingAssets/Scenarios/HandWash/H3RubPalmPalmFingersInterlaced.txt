@@ -1,0 +1,7 @@
+#H1RubPalms - rub palm of chosen hand on dorsal of other hand
+#Do 'H1RubPalms' ['right'|'left']
+#Param[1] : $WhichHand
+#Requires:
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $LeftHandDorsal, $RightHandDorsal
+
+Do 'HandWash/RubPalmToPalm' $param[1]

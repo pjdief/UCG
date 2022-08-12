@@ -1,0 +1,21 @@
+#7Steps.txt - 7 steps of hand hygiene
+Prompt '5 Steps'
+Do 'Setup/NursePlayer'
+
+Do 'HandWash/S2RubPalms.txt'
+Do 'HandWash/S3RubPalmDorsumFingersInterlaced.txt'
+
+Do 'HandWash/H1RubPalms.txt' 'left'
+Do 'HandWash/H2RubPalmDorsumFingersInterlaced' 
+Do 'HandWash/H3RubPalmPalmFingersInterlaced'
+Do 'HandWash/H6FingersInPalm' 
+Return
+Do 'HandWash/S1_4_SquirtHandrubInPalm.txt'
+Do 'HandWash/S5DipFingernails.txt'
+Do 'HandWash/S6DivideForearm.txt'
+Do 'HandWash/S7ForearmRub.txt'
+Do 'HandWash/H0SquirtHandrubInPalm.txt'
+Do 'HandWash/H4RubBackOfFingers.txt'
+Do 'HandWash/H5RubThumb.txt'
+Do 'HandWash/H6FingersInPalm.txt'
+Do 'HandWash/H7WrapedHandForearmRub.txt'

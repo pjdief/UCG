@@ -16,6 +16,9 @@ WipeCanvas off
 $RightRail = $Bed + '/RightRail'
 $RightRail outline.on
 
+$HandScrub outline.on
+$HandScrub clickable true
+
 $Vitalsmonitor on
 #$Vitalsmonitor outline.off
 
@@ -25,11 +28,22 @@ $PatientInPosition = 'false'
 
 $GlobalVar setglobal 'UsingTool' false
 
+Do 'Setup/NursePlayer'
+
+#Do 'HandWash/7Steps.txt'
+
 
 Label 'LoopN1'
 
 	$UsingTool =
 	  $GlobalVar getGlobal 'UsingTool'
+
+	If
+		$HandScrub pressed
+	Then
+		$HandScrub reset
+		Do 'UCGTools/HandScrub.txt'
+	Endif
 
 	If
 		$SumButton pressed

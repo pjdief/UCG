@@ -18,22 +18,14 @@ If
 	ZoomSpot menu.result 'Yes'
 Then
 
-	$CatheterBalloon localmovey .2 1
-	wait 1
-	$CatheterBalloon localmovez -.1 1
-	wait 1
 	$Lubricant moveto $CatheterPort 1
 	wait 1
 	$Lubricant localmovey .08 .2
-	wait .3
-	$Lubricant localmovex -.4 .2
 	wait .3
 	$Lubricant localrotatez -145 1
 	wait 2.5
 	$Lubricant localrotatez 145 1
 	wait 1
-	$CatheterBalloon moveto $CartPos6 1
-	wait .5
 	Destroy $Lubricant
 Endif
 
