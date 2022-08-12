@@ -86,7 +86,7 @@ Then
 	Goto 'COWStartLoop'
 Endif
 
-Do 'HandWash/7Steps.txt'
+#Do 'HandWash/7Steps.txt'
 
 $GlobalVar setglobal 'UsingTool' false
 
