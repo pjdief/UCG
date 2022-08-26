@@ -68,7 +68,7 @@ label 'CartLoop'
 		$Catheter pressed
 	Then
 		$Catheter reset
-		Do 'UCGTools/Catheter.txt'
+		Do 'UCGTools/OpenCatheter.txt'
 	Endif
 
 	If

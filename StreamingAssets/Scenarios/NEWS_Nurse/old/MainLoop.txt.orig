@@ -121,6 +121,9 @@ Label 'LoopN1'
 	If
 		$TimeManager checktimer 0
 	Then
+
+
+So, I found out the client won't let us present at the conference until they formally accept the development, so we will have to wait until a later conference to present at.  Sorry.
 		If
 			$UsingTool = 'False'
 		Then

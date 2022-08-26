@@ -180,6 +180,7 @@ Label 'LoopN1'
 				ZoomSpot Menu.Done
 			Wait .1
 
+			Do 'UCGTools/SpreadLabia'
 			$TempCatheter = 'CatheterBalloon'
 			$UCLocator = $Patient + '/UCLocator'
 			$CatheterPort = $TempCatheter + '/Handle/Port'
@@ -193,7 +194,12 @@ Label 'LoopN1'
 			wait 1
 
 			$TempCatheter align $UCLocator 1
-			wait 1
+			wait 2
+			$PlayerNurse release 1 'R_grip'
+			$PlayerNurse release 1 'L_tweeze'
+			wait 2
+			Player align $UrinaryProcPos 0.5
+			wait 0.5
 
 				ZoomSpot Menu.Question 'What should you do next?'
 				ZoomSpot Menu.Choices 'Inflate the balloon with 10 CC water for injection','Insert another 2.5cm and inflate the balloon with 10cc water for injection.'
