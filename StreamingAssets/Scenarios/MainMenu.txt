@@ -7,7 +7,7 @@ Label 'GameLoop'
         Stages/Buttons/Scene01 isOnAndPressed
     Then
         Stages/Buttons/Scene01 reset
-        SceneManager switchtoscene Scenes/Scene01
+        SceneManager switchtoscene Scenes/UCG/Scene01
     Endif
     Wait .1
 goto 'GameLoop'
