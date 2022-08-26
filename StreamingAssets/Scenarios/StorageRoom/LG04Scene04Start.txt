@@ -56,7 +56,7 @@ Label 'Scene4_MainLoop'
 		$Cart outline.off
 		Player align $CartLook 1
 		BackButtonCanvas on
-		Do 'NEWS_Nurse/Stage1/UCGCartStage2.txt'
+		Do 'UCG/UCGCartStage2.txt'
 	Endif
 
 	If

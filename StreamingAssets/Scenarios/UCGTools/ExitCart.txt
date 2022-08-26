@@ -7,9 +7,12 @@ turnOn $SumButton
 
 $Cart clickable true
 $Cart outline.on
-
-$Patient clickable true
-$Patient outline.on
+If
+	$PatientInPosition = 'false'
+Then
+	$Patient clickable true
+	$Patient outline.on
+Endif
 
 
 $ContinenceSheet outline.off
@@ -17,7 +20,7 @@ $InjectionWater outline.off
 $Antiseptic outline.off
 $Lubricant outline.off
 $Catheter outline.off
-$UrineBag outline.off
+#$UrineBag outline.off
 $Gloves outline.off
 $Syringe outline.off
 $Tape outline.off
@@ -29,7 +32,7 @@ $InjectionWater clickable false
 $Antiseptic clickable false
 $Lubricant clickable false
 $Catheter clickable false
-$UrineBag clickable false
+#$UrineBag clickable false
 $Gloves clickable false
 $Syringe clickable false
 $Tape clickable false

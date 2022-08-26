@@ -1,0 +1,46 @@
+
+#H6RubFingersInPalm - rub fingers of both hands on palm of other hand
+#Do 'H6RubFingersInPalm' ['left'|'right']
+#Param[1] : $WhichHand
+#Requires:
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $MiddleHandSpot, $NurseLeftHandPalm, $NurseRightHandPalm
+
+
+############# Get parameters
+If
+    $param[1] != ' '
+Then
+    $whichHand = param[1]
+    $numberOfSquirts = param[2]
+Else
+    $whichHand = 'right'
+    $numberOfSquirts = 3
+Endif 
+
+#Player lookat $handScrub 0 .25 0.25
+
+$HandSanitizerPos = HandScrub + '/HandPos'
+$HandSanitizerPumpPos = HandScrub + '/PumpHandPos'
+$HandSanitizerEyePos = HandScrub + '/EyePos'
+$HandSanitizerNursePos = HandScrub + '/NursePos'
+
+NursePlayer align $HandSanitizerNursePos
+Wait 1
+
+############# Set hand-specific variables and reach out other hand
+If
+    $whichHand == 'right'
+Then
+    $HandPos = 'MiddleHandSpotElbow'
+Else
+    $HandPos = 'MiddleHandSpotElbow'
+Endif
+
+$motionType = 'movey'
+
+#pumping with Other hand
+Do 'HandWash/RubHands' $whichHand $HandSanitizerPos 'palm' 'palmup' $motionType 0 $HandSanitizerPumpPos 'fingertips' 'default' $motionType 0.1 $numberOfSquirts 1 70
+
+#Move nurse back
+NursePlayer align NursePlayerPos 0.5
+Wait 0.5

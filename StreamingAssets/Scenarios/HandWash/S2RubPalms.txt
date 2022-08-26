@@ -2,8 +2,9 @@
 #Do 'S2RubPalms' ['right'|'left']
 #Param[1] : $WhichHand
 #Requires:
-# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $LeftHandDorsal, $RightHandDorsal
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $NurseLeftHandDorsum, $NurseRightHandDorsum
 
-#Prompt 'do rub'
-Do 'HandWash/RubPalmToPalm' $param[1]
-#Prompt 'done rub'
+Prompt 'S2RubPalms'
+#Wait 1
+Do 'HandWash/RubPalmToPalm' 'right' 'palm'
+Prompt ''

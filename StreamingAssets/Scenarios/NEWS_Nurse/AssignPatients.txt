@@ -45,4 +45,4 @@ Then
 #        SceneManager addscene Scenes/Scene02
 Endif
 
-Do 'NEWS_Nurse/UCG1Setup.txt'
+Do 'UCG/UCG1Setup.txt'

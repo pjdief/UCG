@@ -1,0 +1,130 @@
+#########################################
+#  UCG Cart - Stage 4
+#########################################
+
+$HandScrub outline.on
+$Catheter outline.on
+$UrineBag outline.on
+$Tape outline.on
+$CottonBalls outline.on
+$DrapePackage outline.on
+
+$HandScrub clickable true
+$UrineBag clickable true
+$Tape clickable true
+$CottonBalls clickable true
+$DrapePackage clickable true
+
+$Patient clickable false
+$Patient outline.off
+
+label 'CartLoop'
+
+	If
+		$HandScrub pressed
+	Then
+		$HandScrub reset
+		Do 'UCGTools/HandScrub.txt'
+	Endif
+
+	If
+		$DrapePackage pressed
+	Then
+		$DrapePackage reset
+		Do 'UCGTools/Drape.txt'
+	Endif
+
+	If
+		$UCGKidneyDish pressed
+	Then
+		$UCGKidneyDish reset
+		Prompt 'Kidney Dish'
+		wait .3
+		Prompt ''
+
+		$KidneyDishPos = $Bed + '/KidneyDishPos'
+
+		$UCGKidneyDish align $KidneyDishPos .5
+
+
+		wait 1
+		$UCGKidneyDish clickable false
+		wait .1
+
+		$CatheterBalloon detach
+		$Syringe detach
+
+		$CatheterBalloon clickable true
+	Endif
+
+
+	If
+		$UrineBag pressed
+	Then
+		$UrineBag reset
+		Do 'UCGTools/UrineBag.txt'
+	Endif
+
+	If
+		$Tape pressed
+	Then
+		$Tape reset
+		Do 'UCGTools/Tape.txt'
+	Endif
+
+	If
+		$CottonBalls pressed
+	Then
+		$CottonBalls reset
+
+		ZoomSpot Menu.Question 'Which part of the genitalia to clean?'
+		ZoomSpot Menu.Choices 'Labia Majora','Labia Minora','Exit'
+		ZoomSpot Menu.on ZoomSpot
+		WaitFor
+			ZoomSpot Menu.Done
+		Wait .1
+		If
+			ZoomSpot menu.result 'Labia Majora'
+		Then
+			Player align $UrinaryProcPos 1
+			Wait 1
+#			Prompt 'lookAt'
+			Player lookAt $PatientGenitals -0.05 0.2 .05 1
+			Wait 1
+
+			#$whichHand = 'right' 
+			Do 'UCGTools/CleanGenitalia' 'right'
+
+			Player align $CartLook 1
+		Endif
+		If
+			ZoomSpot menu.result 'Labia Minora'
+		Then
+			Player align $UrinaryProcPos 1
+			Wait 1
+#			Prompt 'lookAt'
+			Player lookAt $PatientGenitals -0.05 0.2 .05 1
+			Wait 1
+
+			#$whichHand = 'right' 
+			Do 'UCGTools/CleanGenitalia' 'right'
+
+			Player align $CartLook 1
+		Endif
+		If
+			ZoomSpot menu.result 'Exit'
+		Then
+			Player align $CartLook 1
+		Endif
+	Endif
+
+	If
+		$BackECG pressed
+	Then
+		$BackECG reset
+		Do 'UCGTools/ExitCart.txt'
+		Return
+	Endif
+
+	wait .2
+Goto 'CartLoop'

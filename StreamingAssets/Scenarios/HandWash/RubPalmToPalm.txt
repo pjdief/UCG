@@ -2,7 +2,7 @@
 #Do 'H1RubPalms' ['right'|'left']
 #Param[1] : $WhichHand
 #Requires:
-# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $LeftHandDorsal, $RightHandDorsal
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $NurseLeftHandDorsum, $NurseRightHandDorsum
 
 #Do 'RubPalmToPalm' $param[1]
 
@@ -13,119 +13,35 @@ If
     $param[1] != ' '
 Then
     $whichHand = param[1]
+    $handShape = param[2]
+Else
+    $whichHand = 'right'
+    $handShape = 'palm'
 Endif 
 
 #$whichHand = 'right'
 
-Prompt 'RubPalms: ' + whichHand
-Wait 1
-Prompt ''
-############# Create spot for hand to follow
-$MainHandTarget = 'MainHandTarget'
-Create PalmLocator $MainHandTarget
+#Prompt 'RubPalms: ' + whichHand
+#Wait 2
+#Prompt ''
 
-$OtherHandTarget = 'OtherHandTarget'
-Create Locator $OtherHandTarget
+$motionType = 'moveForward'
 
 ############# Set hand-specific variables and reach out other hand
 If
     $whichHand == 'right'
 Then
-    $GrabType = 'grabRight.elbowin'
-    $OtherHandTarget align $LeftHandSpot 0
-    Wait 0
-    $PlayerNurse grabLeft.elbowin $OtherHandTarget .1 'vertical' 
-    Wait .5
-    Prompt 'Aligning'
-    $MainHandTarget align $LeftHandPalm 0    #can't attach because of Unity IK loop problem
-    Prompt 'Aligned'
-    Wait 0
+    $HandPalm = NurseLeftHandPalm
 Else
-    $GrabType = 'grabLeft.elbowin'
-    $OtherHandTarget align $RightHandSpot 0
-    Wait 0
-    $PlayerNurse grabRight.elbowin $OtherHandTarget .1 'vertical' 
-    Wait .5
-    $MainHandTarget align $RightHandPalm 0   #can't attach because of Unity IK loop problem
-    Wait 0
+    $HandPalm = NurseRightHandPalm
 Endif
 
+#Prompt 'Calling RubHands handpalm ' + HandPalm + 'whichhand ' +  whichHand
+#Wait 2
 
-############# Move chosen hand to spot to follow
-$HandPlane = 'vertical'
-$HandShape = ' ' #'R_grip'
-$PlayerNurse $GrabType $MainHandTarget .8 $HandPlane $HandShape
-#Wait 0
+$RubDur = 0.5
 
-#If
-#    $whichHand == 'right'
-#Then
-#    $MainHandTarget localRotateZ 180 0  #flip to point in right direction
-#Endif
-
-Wait .5
-
-############# Do cleaning motion
-#Repeat 5 times
-
-Prompt 'Begin Scrubbing'
-Wait 1
-
-$scrubDuration = 0.5
-
-$MainHandTarget moveForward .10 $scrubDuration
-$OtherHandTarget moveForward -.10 $scrubDuration
-Wait $scrubDuration
-$MainHandTarget moveForward -.10 $scrubDuration
-$OtherHandTarget moveForward .10 $scrubDuration
-Wait $scrubDuration
-
-$MainHandTarget moveForward .10 $scrubDuration
-#$OtherHandTarget moveForward -.10 $scrubDuration
-Wait $scrubDuration
-$MainHandTarget moveForward -.10 $scrubDuration
-#$OtherHandTarget moveForward .10 $scrubDuration
-Wait $scrubDuration
-
-$MainHandTarget moveForward .10 $scrubDuration
-$OtherHandTarget moveForward -.10 $scrubDuration
-Wait $scrubDuration
-$MainHandTarget moveForward -.10 $scrubDuration
-$OtherHandTarget moveForward .10 $scrubDuration
-Wait $scrubDuration
-
-$MainHandTarget moveForward .10 $scrubDuration
-$OtherHandTarget moveForward -.10 $scrubDuration
-Wait $scrubDuration
-$MainHandTarget moveForward -.10 $scrubDuration
-$OtherHandTarget moveForward .10 $scrubDuration
-Wait $scrubDuration
-
-$MainHandTarget moveForward .10 $scrubDuration
-$OtherHandTarget moveForward -.10 $scrubDuration
-Wait $scrubDuration
-$MainHandTarget moveForward -.10 $scrubDuration
-$OtherHandTarget moveForward .10 $scrubDuration
-Wait $scrubDuration
-
-#Prompt 'Done Scrubbing'
-#Wait 1
-
-############# Destroy temporary spot to follow and put down hands
-
-#right hand
-$PlayerNurse releaseLeft 1 $HandShape
-#left hand
-$PlayerNurse releaseRight 1 $HandShape
-
-
-#Prompt 'Put down hands'
-Wait 1  #wait for hands to come down
-
-Destroy $MainHandTarget
-Destroy $OtherHandTarget
-
-
-
+#Do 'HandWash/RubHands.txt' $whichHand $HandPalm 'palm' 'default' $motionType 0.05 $MiddleHandSpot 'palm' 'rotateup' $motionType 0.05 5 2 20
+Do 'HandWash/RubHands.txt' $whichHand $HandPalm $handShape 'default' $motionType 0.05 $MiddleHandSpot $handShape 'vertical' $motionType 0.05 5 $RubDur 20 false
 
 

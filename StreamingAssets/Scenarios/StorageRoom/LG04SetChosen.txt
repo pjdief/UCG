@@ -1,5 +1,5 @@
-/JoystickCanvas off
-Wait .5
+#/JoystickCanvas off
+#Wait .5
 ZoomSpot Menu.Question 'Add item to cart?'
 ZoomSpot Menu.on ZoomSpot 600.0 200.0
 WaitFor

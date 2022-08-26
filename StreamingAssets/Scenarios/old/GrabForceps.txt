@@ -1,0 +1,56 @@
+#GrabForceps.txt
+
+$Forceps = 'Forceps_Straight_IK'
+$ForcepsHandle = $Forceps + '/IKGrab'
+
+#Move player closer to reach
+#$Player localMoveZ 0.2 1
+#Wait 1
+
+Prompt 'Create forceps'
+Create $Forceps $Forceps
+
+Prompt 'Align forceps'
+$Forceps align ZoomSpot 0
+Wait 1
+#Prompt 'Move closer'
+#Wait 1
+$Forceps localMoveZ -0.3 0
+Wait 2
+#Prompt ''
+#Prompt 'Rotate'
+#$Forceps localRotateZ 170 0
+Wait 0
+$Forceps localRotateY -30 0
+Wait 0
+$Forceps localRotateX -40 0
+Wait 0
+
+Prompt 'Grab forceps'
+$PlayerNurse grabRight.elbowin $ForcepsHandle 1 'horizontal' 'R_grip'
+Wait 1
+#$PatientGenitals = Patient + '/Genitals'
+$Forceps align $PatientGenitals 0
+
+$PatientGenitalsLeftHand = 'LabiaHandPosition'
+Create Locator $PatientGenitalsLeftHand
+$PatientGenitalsLeftHand align $PatientGenitals 0
+Wait 0
+$PlayerNurse grabLeft.elbowout $PatientGenitalsLeftHand 1 'horizontal' 'L_tweeze'
+Wait 1
+$PatientGenitalsLeftHand localMoveY .07 1
+Wait 1
+$PatientGenitalsLeftHand localRotateY 80 1
+Wait 1
+$PatientGenitalsLeftHand localRotateZ 50 1
+Wait 1
+$PatientGenitalsLeftHand localMoveZ .07 1
+Wait 1
+$PatientGenitalsLeftHand localMoveX -.05 1
+
+
+Prompt ''
+wait 3
+Destroy $Forceps
+$PlayerNurse release 1 'R_grip'
+$PlayerNurse release 1 'L_tweeze'

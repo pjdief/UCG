@@ -1,65 +1,216 @@
 
 $LeftHandSpot = 'LeftHandSpot'
 $RightHandSpot = 'RightHandSpot'
+$MiddleHandSpot = 'MiddleHandSpot'
+$MiddleHandSpotHigh = 'MiddleHandSpotHigh'
+$MiddleHandSpotLow = 'MiddleHandSpotLow'
 
 $NurseLeftHand = 
     $PlayerNurse getbone 'LeftHand'
 $NurseLeftHand =  PlayerNurse +  '/' + NurseLeftHand
 
-$LeftHandDorsal = 'LeftHandDorsal'
-Create Locator $LeftHandDorsal
-$LeftHandDorsal align $NurseLeftHand 0
+$NurseLeftForearm = 
+    $PlayerNurse getbone 'LeftLowerArm'
+$NurseLeftForearm =  PlayerNurse +  '/' + NurseLeftForearm
+
+$NurseLeftThumb = 
+    $PlayerNurse getbone 'Left Thumb Intermediate'
+$NurseLeftThumb =  PlayerNurse +  '/' + NurseLeftThumb
+
+$NurseLeftThumbPos = 'NurseLeftThumbPos'
+Create Locator $NurseLeftThumbPos
 Wait 0
-$LeftHandDorsal localRotateX -90 0
+$NurseLeftThumbPos align $NurseLeftThumb 0
 Wait 0
-$LeftHandDorsal localRotateZ -90 0
+$NurseLeftThumbPos localRotateX -90 0
 Wait 0
-$LeftHandDorsal attachTo $NurseLeftHand
+$NurseLeftThumbPos localRotateY 180 0
 Wait 0
-$LeftHandDorsal localMoveY 0.03 0
+$NurseLeftThumbPos attachTo $NurseLeftThumb
+
+$NurseLeftHandDorsum = 'NurseLeftHandDorsum'
+Create Locator $NurseLeftHandDorsum
+$NurseLeftHandDorsum align $NurseLeftHand 0
 Wait 0
-$LeftHandDorsal localMoveZ 0.08 0
+$NurseLeftHandDorsum localRotateX -90 0
+Wait 0
+$NurseLeftHandDorsum localRotateZ -90 0
+Wait 0
+$NurseLeftHandDorsum attachTo $NurseLeftHand
+Wait 0
+$NurseLeftHandDorsum localMoveY 0.03 0
+Wait 0
+$NurseLeftHandDorsum localMoveZ 0.08 0
 Wait 0
 
-$LeftHandPalm = 'LeftHandPalm'
-Create Locator $LeftHandPalm
+$NurseNurseLeftHandPalm = 'NurseLeftHandPalm'
+Create Locator $NurseLeftHandPalm
 Wait 0
-$LeftHandPalm align $LeftHandDorsal 0
+$NurseLeftHandPalm align $NurseLeftHandDorsum 0
 Wait 0
-$LeftHandPalm localRotateZ 180 0
+$NurseLeftHandPalm localRotateZ 180 0
 Wait 0
-$LeftHandPalm moveUp 0.05 0
+$NurseLeftHandPalm moveUp 0.05 0
 Wait 0
-$LeftHandPalm attachTo $NurseLeftHand
+$NurseLeftHandPalm attachTo $NurseLeftHand
+
+
+$NurseLeftForearmP1 = 'NurseLeftForearmP1'
+Create Locator $NurseLeftForearmP1
+Wait 0
+$NurseLeftForearmP1 align NurseLeftHandDorsum 0
+Wait 0
+$NurseLeftForearmP1 moveforward -0.1 0
+Wait 0
+$NurseLeftForearmP1 localRotateZ 180 0
+Wait 0
+$NurseLeftForearmP1 moveup 0.06 0
+Wait 0
+$NurseLeftForearmP1 attachTo $NurseLeftForearm
+
+$NurseLeftForearmP2 = 'NurseLeftForearmP2'
+Create Locator $NurseLeftForearmP2
+Wait 0
+$NurseLeftForearmP2 align NurseLeftHandDorsum 0
+Wait 0
+$NurseLeftForearmP2 moveForward -0.1 0
+Wait 0
+$NurseLeftForearmP2 localRotateZ -90 0
+Wait 0
+$NurseLeftForearmP2 moveup 0.03 0
+Wait 0
+$NurseLeftForearmP2 moveright 0.03 0
+Wait 0
+$NurseLeftForearmP2 attachTo $NurseLeftForearm
+
+$NurseLeftForearmP3 = 'NurseLeftForearmP3'
+Create Locator $NurseLeftForearmP3
+Wait 0
+$NurseLeftForearmP3 align $NurseLeftHandDorsum 0
+Wait 0
+$NurseLeftForearmP3 moveForward -0.1 0
+Wait 0
+$NurseLeftForearmP3 attachTo $NurseLeftForearm
+
+$NurseLeftForearmP4 = 'NurseLeftForearmP4'
+Create Locator $NurseLeftForearmP4
+Wait 0
+$NurseLeftForearmP4 align $NurseLeftHandDorsum 0
+Wait 0
+$NurseLeftForearmP4 moveForward -0.1 0
+Wait 0
+$NurseLeftForearmP4 localRotateZ 90 0
+Wait 0
+$NurseLeftForearmP4 moveup 0.03 0
+Wait 0
+$NurseLeftForearmP4 moveright -0.04 0
+Wait 0
+$NurseLeftForearmP4 attachTo $NurseLeftForearm
 
 
 $NurseRightHand = 
     $PlayerNurse getbone 'RightHand'
 $NurseRightHand =  PlayerNurse +  '/' + NurseRightHand
 
-$RightHandDorsal = 'RightHandDorsal'
-Create Locator $RightHandDorsal
+$NurseRightForearm = 
+    $PlayerNurse getbone 'RightLowerArm'
+$NurseRightForearm =  PlayerNurse +  '/' + NurseRightForearm
+
+$NurseRightThumb = 
+    $PlayerNurse getbone 'Right Thumb Intermediate'
+$NurseRightThumb =  PlayerNurse +  '/' + NurseRightThumb
+
+$NurseRightThumbPos = 'NurseRightThumbPos'
+Create Locator $NurseRightThumbPos
 Wait 0
-$RightHandDorsal align $NurseRightHand 0
+$NurseRightThumbPos align $NurseRightThumb 0
 Wait 0
-$RightHandDorsal localRotateX -90 0
+$NurseRightThumbPos localRotateX -90 0
 Wait 0
-$RightHandDorsal localRotateZ 90 0
+$NurseLeftThumbPos localRotateY 180 0
 Wait 0
-$RightHandDorsal attachTo $NurseRightHand
+$NurseRightThumbPos attachTo $NurseRightThumb
+
+
+$NurseRightHandDorsum = 'NurseRightHandDorsum'
+Create Locator $NurseRightHandDorsum
 Wait 0
-$RightHandDorsal localMoveY 0.03 0
+$NurseRightHandDorsum align $NurseRightHand 0
 Wait 0
-$RightHandDorsal localMoveZ 0.08 0
+$NurseRightHandDorsum localRotateX -90 0
+Wait 0
+$NurseRightHandDorsum localRotateZ 90 0
+Wait 0
+$NurseRightHandDorsum attachTo $NurseRightHand
+Wait 0
+$NurseRightHandDorsum localMoveY 0.03 0
+Wait 0
+$NurseRightHandDorsum localMoveZ 0.08 0
 Wait 0
 
-$RightHandPalm = 'RightHandPalm'
-Create Locator $RightHandPalm
+$NurseRightHandPalm = 'NurseRightHandPalm'
+Create Locator $NurseRightHandPalm
 Wait 0
-$RightHandPalm align $RightHandDorsal 0
+$NurseRightHandPalm align $NurseRightHandDorsum 0
 Wait 0
-$RightHandPalm localRotateZ 180 0
+$NurseRightHandPalm localRotateZ 180 0
 Wait 0
-$RightHandPalm moveUp 0.05 0
+$NurseRightHandPalm moveUp 0.05 0
 Wait 0
-$RightHandPalm attachTo $NurseRightHand
+$NurseRightHandPalm attachTo $NurseRightHand
+
+
+$NurseRightForearmP1 = 'NurseRightForearmP1'
+Create Locator $NurseRightForearmP1
+Wait 0
+$NurseRightForearmP1 align NurseRightHandDorsum 0
+Wait 0
+$NurseRightForearmP1 moveforward -0.1 0
+Wait 0
+$NurseRightForearmP1 localRotateZ 180 0
+Wait 0
+$NurseRightForearmP1 moveup 0.06 0  #other side of arm
+Wait 0
+$NurseRightForearmP1 attachTo $NurseRightForearm
+
+$NurseRightForearmP2 = 'NurseRightForearmP2'
+Create Locator $NurseRightForearmP2
+Wait 0
+$NurseRightForearmP2 align $NurseRightHandDorsum 0
+Wait 0
+$NurseRightForearmP2 moveForward -0.1 0
+Wait 0
+$NurseRightForearmP2 localRotateZ 90 0
+Wait 0
+$NurseRightForearmP2 moveup 0.03 0
+Wait 0
+$NurseRightForearmP2 moveright -0.03 0
+Wait 0
+$NurseRightForearmP2 attachTo $NurseRightForearm
+
+$NurseRightForearmP3 = 'NurseRightForearmP3'
+Create Locator $NurseRightForearmP3
+Wait 0
+$NurseRightForearmP3 align $NurseRightHandDorsum 0
+Wait 0
+$NurseRightForearmP3 moveForward -0.1 0
+Wait 0
+$NurseRightForearmP3 attachTo $NurseRightForearm
+
+
+$NurseRightForearmP4 = 'NurseRightForearmP4'
+Create Locator $NurseRightForearmP4
+Wait 0
+$NurseRightForearmP4 align NurseRightHandDorsum 0
+Wait 0
+$NurseRightForearmP4 moveForward -0.1 0
+Wait 0
+$NurseRightForearmP4 localRotateZ -90 0
+Wait 0
+$NurseRightForearmP4 moveup 0.03 0
+Wait 0
+$NurseRightForearmP4 moveright 0.04 0
+Wait 0
+$NurseRightForearmP4 attachTo $NurseRightForearm
+
+

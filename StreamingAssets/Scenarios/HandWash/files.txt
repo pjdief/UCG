@@ -7,8 +7,8 @@ H2RubPalmDorsumFingersInterlaced 1.txt
 H3RubFingersInterlaced.txt
 H4RubBackOfFingers.txt
 H5RubThumb.txt
-H6FingersInPalm.txt
-H7WrapedHandForearmRub.txt
+H6RubFingersInPalm.txt
+H7RubWrappedHandOnForearm.txt
 S1_4_SquirtHandrubInPalm.txt
 S2RubPalms.txt
 S3RubPalmDorsumFingersInterlaced.txt

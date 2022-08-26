@@ -1,19 +1,34 @@
-#MoveHands - UNFINISHED Generic rub one or both hands
-#Do 'MoveHands' 1['right'|'left'|'both'] 2[$MainHandTarget] 3[$MainHandShape] 4[$MainHandPlane] 4[$OtherHandShape] 6[$OtherHandPlane]
-#Param[1] : $WhichHand
+#RubHands - UNFINISHED Generic rub one or both hands
+#Do 'HandWash/RubHands' 1['right'|'left'|'both'] 2[$MainHandTarget] 3[$MainHandShape] 4[$MainHandPlane] 4[$OtherHandShape] 6[$OtherHandPlane]
+#Params: see below in If statement
 #Requires:
-# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $LeftHandDorsal, $RightHandDorsal
+# $PlayerNurse
+# $SkipRubHandsDefault - whether to skip default values if no params
 
-$MainGrabType = 'grabRight.elbowout'
-$MainHandTarget = LeftHandPalm
-$MainHandPlane = 'horizontal'
-$MainHandShape = ' ' #'R_grip'
+##### Defaults if no params
 
-$OtherGrabType = 'grabRight.elbowout'
-$OtherHandTarget = RightHandPalm
-$OtherHandPlane = 'horizontal'
-$OtherHandShape = ' ' #'R_grip'
+If
+    $SkipRubHandsDefault == true
+Then
+Else
+    $whichHand == 'right'
 
+    $MainGrabType = 'grabRight.elbowout'
+    $MainHandTarget = NurseLeftHandPalm
+    $MainHandPlane = 'horizontal'
+    $MainHandShape = ' ' #'R_grip'
+
+    $OtherGrabType = 'grabLeft.elbowout'
+    $OtherHandTarget = NurseRightHandPalm
+    $OtherHandPlane = 'horizontal'
+    $OtherHandShape = ' ' #'R_grip'
+
+    $ScrubDuration = 0.5
+    $RepeatAmount = 5
+    $RotateAmount = 0       #hand rotation amount to make more natural
+    $SecondaryMove = 0    #1-time secondary main movement (if using rotation) 
+    $StartAtTop = false
+Endif
 
 ############# Get parameters
 
@@ -21,85 +36,186 @@ $OtherHandShape = ' ' #'R_grip'
 If
     $param[1] != ' '
 Then
-    $whichHand =            param[1]
+    $whichHand =            param[1]    #'right','left'
+
     $MainHandTarget =       param[2]
-    $MainHandShape =        param[3]
-    $MainHandPlane =        param[4]
-    $MainHandMotionType =   param[5]
+    $MainHandShape =        param[3]    #'grip','extension','pinch','ring','thumb','tripod','tweeze'
+    $MainHandPlane =        param[4]    #'default','flipped','rotateDown','rotateUp','horizontal','palmUp','vertical','palmin'
+    $MainHandMotionType =   param[5]    #'localMoveZ','moveUp','rotateY', etc.
     $MainHandMotionAmount = param[6]
 
-    $OtherHandTarget =       param[2]
-    $OtherHandShape =        param[3]
-    $OtherHandPlane =        param[4]
-    $OtherHandMotionType =   param[5]
-    $OtherHandMotionAmount = param[6]
+    $OtherHandTarget =       param[7]   #'grip','extension','pinch','ring','thumb','tripod','tweeze'
+    $OtherHandShape =        param[8]   #'default','flipped','rotateDown','rotateUp','horizontal','palmUp','vertical','palmin'
+    $OtherHandPlane =        param[9]   #'localMoveZ','moveUp','rotateY', etc.
+    $OtherHandMotionType =   param[10]
+    $OtherHandMotionAmount = param[11]
 
+    $RepeatAmount = param[12]           # number of times to repeat
+    $ScrubDuration = param[13]          # duration of each scrub
+    $RotateAmount = param[14]           # hand rotation around Y to move elbows
+    $SecondaryMove =  param[15]         # 1 additional move for MainTarget over entire duration of loop (scrubDuration * repeatAmount)
+    $StartAtTop = param[16]             # whether to start motion at top instead of middle
+Else
+    Prompt 'RubHands: Missing params!'
+    Wait 2
 Endif 
 
-Prompt 'RubPalmDorsum: ' + whichHand
-Wait 2
-Prompt ''
+$MainLocator = MainHandShape + 'Locator'
+$OtherLocator = OtherHandShape + 'Locator'
+
+If
+    $whichHand == 'right'
+Then
+    $MainGrabType = 'grabRight.elbowout'
+    $OtherGrabType = 'grabLeft.elbowin'
+    $MainHandShape = 'R_' + MainHandShape
+    $OtherHandShape = 'L_' + OtherHandShape
+    $MainReleaseHand = 'releaseRight'    
+    $OtherReleaseHand = 'releaseLeft'
+    $RotateAmount = -RotateAmount
+Else
+    $MainGrabType = 'grabLeft.elbowout'
+    $OtherGrabType = 'grabRight.elbowin'
+    $MainHandShape = 'L_' + MainHandShape
+    $OtherHandShape = 'R_' + OtherHandShape
+    $MainReleaseHand = 'releaseLeft'
+    $OtherReleaseHand = 'releaseRight'
+Endif
+
+
+
+##$MainLocator = 'PalmLocator'
+#$MainLocator = 'FingersTweezeLocator'
+#$OtherLocator = 'FingerTipsLocator'
+#$GrabType = $MainGrabType      #'grabRight.elbowin'
 
 ############# Create spot for hand to follow
 $MainTarget = 'MainTarget'
-Create PalmLocator $MainTarget
+Create $MainLocator $MainTarget
+Wait 0
 $OtherTarget = 'OtherTarget'
-Create Locator $OtherTarget
-
+Create $OtherLocator $OtherTarget
+Wait 0
 
 ############# Set hand-specific variables and reach out OTHER hand
 
-$GrabType = $MainGrabType #'grabRight.elbowin'
 $OtherTarget align $OtherHandTarget 0
 Wait 0
-$PlayerNurse $OtherGrabType $OtherTarget .1 $OtherHandPlane #'L_grip'
-Wait .5
-$MainTarget align $MainHandTarget 0
-Wait 0
+#$OtherTarget attachto $OtherHandTarget
+#Wait 0
 
+#Prompt 'Created and aligned OtherTarget'
+#Wait 5
+#Prompt 'Grabbing OtherTarget'
+$PlayerNurse $OtherGrabType $OtherTarget .1 $OtherHandPlane $OtherHandShape
+Wait 0.5
+
+#Prompt 'RubPalm: ' + whichHand + ' ' +MainHandTarget + ' ' + MainHandShape + ' ' +  MainHandPlane    + ' ' + OtherHandTarget   + ' ' + OtherHandShape
+#Wait 10
+#Prompt ''
 
 ############# Move MAIN hand to spot to follow
-$PlayerNurse $MainGrabType $MainTarget .1 $MainHandPlane $MainHandShape
-Wait .5
 
-############# Do cleaning motion
+$MainTarget align $MainHandTarget 0
+Wait 0
+#$MainTarget attachto $MainHandTarget
+#Wait 0
+
+$MainTarget localRotateY $RotateAmount 0  #rotate arm so elbows are out
+Wait 0.5
+
+
+$LoopCount = 0
+$scrubDurationFrac = scrubDuration/4
+$scrubDurationFrac2 = scrubDuration/2
+$MainHandMotionAmountFrac = MainHandMotionAmount/2
+$OtherHandMotionAmountFrac = OtherHandMotionAmount/2
+
+
+If
+    $StartAtTop == true
+Then
+    #Move one way and back to center
+    $MainTarget $MainHandMotionType $MainHandMotionAmountFrac $scrubDurationFrac
+    $OtherTarget $OtherHandMotionType $-OtherHandMotionAmountFrac $scrubDurationFrac
+    Wait $scrubDurationFrac
+Endif
+
+
+$PlayerNurse $MainGrabType $MainTarget .1 $MainHandPlane $MainHandShape
+Wait 0.1
+#$MainTarget localRotateY $RotateAmount 0  #rotate arm so elbows are out
+#Wait 0.5
+
+############# Do hand motion
 #Repeat 5 times
 
-$scrubDuration = 0.5
 
-$MainTarget moveForward .10 $scrubDuration
-Wait $scrubDuration
-$MainTarget moveForward -.10 $scrubDuration
-Wait $scrubDuration
 
-$MainTarget moveForward .10 $scrubDuration
-Wait $scrubDuration
-$MainTarget moveForward -.10 $scrubDuration
-Wait $scrubDuration
 
-$MainTarget moveForward .10 $scrubDuration
-Wait $scrubDuration
-$MainTarget moveForward -.10 $scrubDuration
-Wait $scrubDuration
 
-$MainTarget moveForward .10 $scrubDuration
-Wait $scrubDuration
-$MainTarget moveForward -.10 $scrubDuration
-Wait $scrubDuration
+If
+    $RepeatAmount == 0
+Then
+    Goto 'RubCleanup'
+Endif
 
-$MainTarget moveForward .10 $scrubDuration
-Wait $scrubDuration
-$MainTarget moveForward -.10 $scrubDuration
-Wait $scrubDuration
+If
+    $SecondaryMove != 0
+Then
+    $SecDur = RepeatAmount * scrubDuration
+    $MainTarget 'localMoveZ' $SecondaryMove $SecDur   #going on during other moves
+Endif
+
+If
+    $StartAtTop == false
+Then
+    #Move one way and back to center
+    $MainTarget $MainHandMotionType $MainHandMotionAmountFrac $scrubDurationFrac
+    $OtherTarget $OtherHandMotionType $-OtherHandMotionAmountFrac $scrubDurationFrac
+    Wait $scrubDurationFrac
+    $LoopCount = LoopCount + 1
+Endif
+
+Label 'RubLoop'
+
+    $LoopCount = LoopCount + 1
+#    Prompt 'LoopCount = ' + LoopCount
+#    Wait 1
+    If
+        $LoopCount > RepeatAmount
+    Then
+        Goto 'AfterRubLoop'
+    Endif
+
+    #Move other way and back 
+    $MainTarget $MainHandMotionType $-MainHandMotionAmount $scrubDurationFrac2
+    $OtherTarget $OtherHandMotionType $OtherHandMotionAmount $scrubDurationFrac2
+    Wait $scrubDurationFrac2
+    $MainTarget $MainHandMotionType $MainHandMotionAmount $scrubDurationFrac2
+    $OtherTarget $OtherHandMotionType $-OtherHandMotionAmount $scrubDurationFrac2
+    Wait $scrubDurationFrac2
+
+Goto 'RubLoop'
+
+Label 'AfterRubLoop'
+
+
+    #Move other way and back to center
+    $MainTarget $MainHandMotionType $-MainHandMotionAmountFrac $scrubDurationFrac
+    $OtherTarget $OtherHandMotionType $OtherHandMotionAmountFrac $scrubDurationFrac
+    Wait $scrubDurationFrac
+
 
 ############# Destroy temporary spot to follow and put down hands
-Destroy $MainTarget
-Destroy $OtherTarget
+Label 'RubCleanup'
 
 #right hand
-$PlayerNurse releaseLeft 1 $HandShape
+$PlayerNurse $MainReleaseHand 0.5 $MainHandShape
 #left hand
-$PlayerNurse releaseRight 1 $HandShape
-
+$PlayerNurse $OtherReleaseHand 0.5 $OtherHandShape
+Wait 0.5
+Destroy $MainTarget
+Destroy $OtherTarget
 
 

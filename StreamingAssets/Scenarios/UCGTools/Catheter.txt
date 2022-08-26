@@ -18,5 +18,6 @@ Then
 	Create $CatheterBalloonObj $CatheterBalloon
 	wait .1
 	$CatheterBalloon align $CatheterPos 0
+	$CatheterBalloon outline.on
 	Destroy $Catheter
 Endif

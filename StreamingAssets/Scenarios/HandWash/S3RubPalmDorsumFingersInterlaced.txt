@@ -2,6 +2,10 @@
 #Do 'S3RubPalmDorsumFingersInterlaced' ['right'|'left']
 #Param[1] : $WhichHand
 #Requires:
-# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $LeftHandDorsal, $RightHandDorsal
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $NurseLeftHandDorsum, $NurseRightHandDorsum
 
-Do 'HandWash/RubPalmDorsum' $param[1]
+Prompt 'S3RubPalmDorsumFingersInterlaced'
+
+Do 'HandWash/RubPalmDorsum' 'right'   #$param[1]
+Do 'HandWash/RubPalmDorsum' 'left'   #$param[1]
+Prompt ''

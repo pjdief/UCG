@@ -1,0 +1,107 @@
+
+#H6RubFingersInPalm - rub fingers of both hands on palm of other hand
+#Do 'H6RubFingersInPalm' ['left'|'right']
+#Param[1] : $WhichHand
+#Requires:
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $NurseLeftHandPalm, $NurseRightHandPalm
+
+
+############# Get parameters
+If
+    $param[1] != ' '
+Then
+    $whichHand = param[1]
+Endif 
+
+#Prompt 'FingerDip: ' + whichHand
+#Wait 1
+#Prompt ''
+
+############# Create spot for hand to follow
+$MainHandTarget = 'MainHandTarget'
+Create FingersTweezeLocator $MainHandTarget
+$OtherHandTarget = 'OtherHandTarget'
+Create Locator $OtherHandTarget
+
+
+############# Set hand-specific variables and reach out other hand
+If
+    $whichHand == 'right'
+Then
+    $HandShape = 'R_tweeze'
+#    $GrabType = 'grabRight.elbowin'
+    $GrabType = 'grabRight.elbowout'
+    $OtherHandTarget align $LeftHandSpot 0
+    Wait 0
+    #Prompt     PlayerNurse + 'grabLeft.elbowin' + OtherHandTarget +  '.1' + 'palmup' #'L_grip'
+    $PlayerNurse grabLeft.elbowin $OtherHandTarget .1 'palmup' #'L_grip'
+    Wait .5
+    $MainHandTarget align $NurseLeftHandPalm 0
+    Wait 0
+    $RotAmount = -65
+Else
+    $HandShape = 'L_tweeze'
+    $GrabType = 'grabLeft.elbowout'
+    $OtherHandTarget align $RightHandSpot 0
+    Wait 0
+    $PlayerNurse grabRight.elbowin $OtherHandTarget .1 'palmup' #'R_grip'
+    Wait .5
+    $MainHandTarget align $NurseRightHandPalm 0
+    Wait 0
+    $RotAmount = 65
+Endif
+
+############# Move chosen hand to spot to follow
+$HandPlane = 'horizontal'
+#$HandShape = ' ' #'R_grip'
+$PlayerNurse $GrabType $MainHandTarget .1 $HandPlane $HandShape
+Wait 0
+$MainHandTarget localRotateY $RotAmount 0  #rotate arm so elbows are out
+Wait 0
+
+
+
+############# Do cleaning motion
+#Repeat 5 times
+
+$scrubDuration = 0.5
+$moveRadius = 0.03
+$moveRadiusNeg = 0 - moveRadius
+
+$MainHandTarget moveForward $moveRadius $scrubDuration
+Wait $scrubDuration
+$MainHandTarget moveForward $moveRadiusNeg $scrubDuration
+Wait $scrubDuration
+
+$MainHandTarget moveForward $moveRadius $scrubDuration
+Wait $scrubDuration
+$MainHandTarget moveForward $moveRadiusNeg $scrubDuration
+Wait $scrubDuration
+
+$MainHandTarget moveForward $moveRadius $scrubDuration
+Wait $scrubDuration
+$MainHandTarget moveForward $moveRadiusNeg $scrubDuration
+Wait $scrubDuration
+
+$MainHandTarget moveForward $moveRadius $scrubDuration
+Wait $scrubDuration
+$MainHandTarget moveForward $moveRadiusNeg $scrubDuration
+Wait $scrubDuration
+
+$MainHandTarget moveForward $moveRadius $scrubDuration
+Wait $scrubDuration
+$MainHandTarget moveForward $moveRadiusNeg $scrubDuration
+Wait $scrubDuration
+
+############# Destroy temporary spot to follow and put down hands
+
+Label 'Skip'
+
+#right hand
+$PlayerNurse releaseLeft 1 $HandShape
+#left hand
+$PlayerNurse releaseRight 1 $HandShape
+Wait 1  #wait for hand IK release
+Destroy $MainHandTarget
+Destroy $OtherHandTarget
+

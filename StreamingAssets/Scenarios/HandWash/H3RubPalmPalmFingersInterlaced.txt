@@ -1,7 +1,9 @@
-#H1RubPalms - rub palm of chosen hand on dorsal of other hand
-#Do 'H1RubPalms' ['right'|'left']
+#H3RubPalmPalmFingersInterlaced - rub palm of chosen hand on dorsal of other hand
+#Do 'H3RubPalmPalmFingersInterlaced' ['right'|'left']
 #Param[1] : $WhichHand
 #Requires:
-# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $LeftHandDorsal, $RightHandDorsal
+# $PlayerNurse, $LeftHandSpot, $RightHandSpot, $NurseLeftHandDorsum, $NurseRightHandDorsum
 
-Do 'HandWash/RubPalmToPalm' $param[1]
+Prompt 'H3RubPalmPalmFingersInterlaced'
+Do 'HandWash/RubPalmToPalm' 'right' 'spread'
+Prompt ''

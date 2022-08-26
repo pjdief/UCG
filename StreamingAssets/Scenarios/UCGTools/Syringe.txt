@@ -41,16 +41,13 @@ Then
 			$Plunger localmovey .06 2.5
 			wait 3
 			turnOff $WaterSol
+
 			$Syringe localrotatex -35 .3
 			wait .4
-			$Syringe localrotatez 35 .3
+			$Syringe localrotatez 125 .3
 			wait .4
-			$Syringe localmovex .04 .3
-			wait .4
-			$Syringe localmovey -.05 .3
-			wait .4
-			$Syringe localmovez -.06 .3
-			wait .4
+			$Syringe moveto $CatheterPos 1
+			wait 1
 			$SyringeFull = true
 	Else
 		Prompt 'Needs injection water'

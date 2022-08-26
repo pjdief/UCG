@@ -17,6 +17,9 @@ Then
 	$Patient play ExamPos true
 	Prompt ''
 	$PatientInPosition = 'true'
+	wait .1
+	$Patient clickable false
+	wait .1
 Else
 	If
 		ZoomSpot menu.result 'Back'
