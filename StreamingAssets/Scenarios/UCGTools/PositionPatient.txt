@@ -14,6 +14,11 @@ Then
 	wait 1
 	$Pillow = $Bed + '/pillow sofa'
 	turnOff $Pillow
+	If
+		$PatientGender = 'Male'
+	Then
+		Do 'UCGTools/RemovePants'
+	Endif
 	$Patient play ExamPos true
 	Prompt ''
 	$PatientInPosition = 'true'

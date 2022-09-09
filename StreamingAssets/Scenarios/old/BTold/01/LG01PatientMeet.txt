@@ -42,7 +42,7 @@ Label 'MeetLoop'
 		TurnOff /CheckCanvas/Choices/Blood
 		$TaskBlood = 1
 		/CheckCanvas off
-		$BloodAnimation play TakeBlood
+		$BloodAnimation play LeanIn
 		Wait 1
 		$TestTubeBlood fillAmount 0.4
 		Wait 1

@@ -248,7 +248,7 @@ $WristTag = 'Bed4/Patient1/WristTag'
 
 $SceneStart = '07/07Start.txt'
 
-$BloodAnimation = 'Nurse_TakeBlood'
+$BloodAnimation = 'Nurse_LeanIn'
 
 #$SumCanvasPatientInfo = SumCanvas + '/SummaryPatientInfo'
 $PatientInfo = ' Patient Name: ' + PatientName + '                        IC Number: ' + PatientIC + '\n DOB: ' + Birthdate + '        Blood Type: ' +  PatientBloodType +'        Address: ' + PatientAddress

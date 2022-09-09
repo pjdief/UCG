@@ -2,6 +2,7 @@
 Prompt 'StandardHandHygiene'
 Do 'Setup/NursePlayer'
 
+
 Do 'HandWash/H0SquirtHandrubInPalm.txt'
 Do 'HandWash/H1RubPalms.txt' 'left'
 Do 'HandWash/H2RubPalmDorsumFingersInterlaced' 

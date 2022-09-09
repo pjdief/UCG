@@ -40,6 +40,7 @@
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="DitzelGames.FastIK.FastIKFabric" preserve="all" />
     <type fullname="ObjectMessageHandler" preserve="all" />
+    <type fullname="LocatorVisibility" preserve="all" />
     <type fullname="MakeMany" preserve="all" />
     <type fullname="PageTurner" preserve="all" />
     <type fullname="VitalsMH" preserve="all" />

@@ -1,0 +1,64 @@
+#GrabPenis.txt
+#Do 'GrabPenis' ['right'|'left']
+
+Player align $UrinaryProcPos 0.5
+Wait 0.5
+#Player lookAt $PatientGenitals -0.05 0.2 .05 0.5
+Wait 0.5
+
+If
+    $param[1] != ' '
+Then
+    $whichHand_GP = param[1]
+    #Prompt 'Has Param:' + param[1]
+Else
+    #Prompt 'No param:' + param[1]
+Endif
+
+Prompt 'GrabPenis with ' + whichHand_GP
+Wait 1
+
+/*
+$PatientGenitalsGrabHand = 'PenisHandPosition'
+Create GripLocator $PatientGenitalsGrabHand
+Wait 0
+$PatientGenitalsGrabHand align $PatientGenitals 0
+Wait 0
+*/
+#Start hand above patient
+If
+    $whichHand_GP == 'left'
+Then
+    $PlayerNurse grabLeft.elbowout $PatientGenitals .1  'L_grip' 'default'
+    Wait .1
+
+    Prompt 'Grab Genitals = ' + PatientGenitals + ' with left'
+    Wait 3
+Else
+    $PlayerNurse grabRight.elbowout $PatientGenitals .1  'R_grip' 'default'
+    Wait .1
+
+    Prompt 'Grab Genitals = ' + PatientGenitals + ' with right'
+    Wait 3
+Endif
+
+#Raise penis
+$PatientGenitals localRotateX -85 1
+Wait .1
+$Patient setbodyblendshape 0 20.0
+Wait .2
+$Patient setbodyblendshape 0 40.0
+Wait .2
+$Patient setbodyblendshape 0 60.0
+Wait .2
+$Patient setbodyblendshape 0 80.0
+Wait .2
+$Patient setbodyblendshape 0 100.0
+#Wait 1
+
+#right hand
+#$PlayerNurse release 1 'R_grip'
+#$PlayerNurse release 1 'L_tweeze'
+#left hand
+#$PlayerNurse release 1 'L_grip'
+#$PlayerNurse release 1 'R_tweeze'

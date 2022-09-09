@@ -135,7 +135,7 @@ $IDPaste = $IDCanvas + '/Paste'
 $IDLeave = $IDCanvas + '/Leave'
 $StandingZoom = 'Player/ItemSpot'
 $Dispatch = 'JoystickCanvas/Dispatch'
-$BloodAnimation = 'Nurse_TakeBlood'
+$BloodAnimation = 'Nurse_LeanIn'
 
 Do 'Setup/PatientCanvas.txt'
 

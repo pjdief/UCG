@@ -1,4 +1,4 @@
-Prompt 'Antiseptic'
+Prompt 'Antiseptic grab' + ActiveHand
 wait 1
 Prompt ''
 
@@ -10,22 +10,34 @@ WaitFor
 	ZoomSpot Menu.Done
 Wait .1
 If
-	ZoomSpot menu.result 'Yes'
+	ZoomSpot menu.result 'No'
 Then
+	Return
+Endif
 
-$Antiseptic localmovex .1 1
-wait .5
-$Antiseptic localmovey -.12 1
-wait .5
-$Antiseptic localrotatex 90 1
-wait .5
-$Antiseptic localrotatey 45 1
-wait 0.5
-turnOn $AntisepticSol
-$AntisepticSol moveY 0.03 1
-wait 1.3
-$Antiseptic localrotatey -45 .5
-wait .7
+	$Item = $Antiseptic
+	$Grab = 'grab' + ActiveHand
+	$PlayerNurse $Grab $Item 1 'tweeze' 'default' 
+	Wait 1
+
+	$Antiseptic localmovex .1 1
+	wait .5
+	$Antiseptic localmovey -.12 1
+	wait .5
+	$Antiseptic localrotatex 90 1
+	wait .5
+	$Antiseptic localrotatey 45 1
+	wait 0.5
+	turnOn $AntisepticSol
+	$AntisepticSol moveY 0.03 1
+	wait 1.3
+	$Antiseptic localrotatey -45 .5
+	wait .7
+
+	$Release = 'release' + ActiveHand
+	$PlayerNurse $Release 1 'tweeze'
+	Wait 1
+
 Destroy $Antiseptic
 
-Endif
+#Endif

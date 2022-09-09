@@ -9,5 +9,13 @@ Label 'GameLoop'
         Stages/Buttons/Scene01 reset
         SceneManager switchtoscene Scenes/UCG/Scene01
     Endif
+
+    If
+        Stages/Buttons/Scene02 isOnAndPressed
+    Then
+        Stages/Buttons/Scene02 reset
+        SceneManager switchtoscene Scenes/UCG/Scene01_Male
+    Endif
+
     Wait .1
 goto 'GameLoop'

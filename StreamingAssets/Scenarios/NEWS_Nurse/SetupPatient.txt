@@ -59,7 +59,7 @@ If
 Then
     $AnimController = 'AnimatorControllers/uAvatarFemale_controller' + BedNumber
 Else
-    $AnimController = 'AnimatorControllers/uAvatar_controller' + BedNumber
+    $AnimController = 'AnimatorControllers/uAvatarMale_controller' + BedNumber
 Endif
 $Patient setanimcontroller $AnimController
 
@@ -156,6 +156,7 @@ $PatientHand = Patient +  '/' + PatientHand
 #$PatientMouth  = PatientFace    #should be overridden per patient
 $PatientGenitals = Patient + '/Genitals'
 #Prompt 'Genitals = ' + PatientGenitals
+#Wait 1
 
 $WristbandObj = 'PatientIDBand'
 $Wristband = 'IDBand' + BedNumber
@@ -168,7 +169,13 @@ $Wristband parentto $PatientLeftHand
 wait .1
 $Wristband localmovex 0.016
 wait .1
-$Wristband localmovey 0.009
+If
+    $PatientGender = 'Female'
+Then
+    $Wristband localmovey 0.009
+Else
+    $Wristband localmovey 0.012
+Endif
 
 $BandNameText = $Wristband + '/Canvas/PatientName'
 $BandICText = $Wristband + '/Canvas/PatientNumber'

@@ -105,7 +105,7 @@ Label 'LoopN1'
 	Then
 		wait 1    #wait for all GMs to finish up
 		$Stage = Stage + 1
-		$StageFolderPrefix = 'NEWS_Nurse/Stage' + Stage + '/'
+		$StageFolderPrefix = 'UCG/Stage' + Stage + '/'
 		$ConfigurePatientStage = StageFolderPrefix + 'Patient' + PatientType + '.txt'
 		Do $ConfigurePatientStage
 		If
@@ -136,7 +136,7 @@ So, I found out the client won't let us present at the conference until they for
 			Endif
 			PatInfoCanvas off
 			$Stage = Stage + 1
-			$FolderPrefix = 'NEWS_Nurse/Stage' + Stage + '/'
+			$FolderPrefix = 'UCG/Stage' + Stage + '/'
 <<<<<<< HEAD
 			$ConfigurePatientStage = FolderPrefix + 'Patient' + PatientType + '.txt'
 =======

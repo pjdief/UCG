@@ -32,13 +32,13 @@ $StartAtTop = false
 $RubDur = 0.5
 
 $MainHandTarget = HandDorsum+'P1'
-Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'palm' 'default' $motionType 0.1 'MiddleHandSpotHigh' 'palm' 'flipped' $motionType 0.0 5 $RubDur 90
+Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'palm' 'default' $motionType 0.1 $HandPalm 'MiddleHandSpotHigh' 'palm' 'flipped' $motionType 0.0 $HandPalm 5 $RubDur 90 0 0
 
 $MainHandTarget = HandDorsum+'P2'
-Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'palm' 'default' $motionType 0.1 'MiddleHandSpotHigh' 'palm' 'vertical' $motionType 0.0 5 $RubDur 90
+Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'palm' 'default' $motionType 0.1 $HandPalm 'MiddleHandSpotHigh' 'palm' 'vertical' $motionType 0.0 $HandPalm 5 $RubDur 90 0 0
 
 $MainHandTarget = HandDorsum+'P3'
-Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'palm' 'default' $motionType 0.1 'MiddleHandSpotHigh' 'palm' 'default' $motionType 0.0 5 $RubDur 90
+Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'palm' 'default' $motionType 0.1 $HandPalm 'MiddleHandSpotHigh' 'palm' 'default' $motionType 0.0 $HandPalm 5 $RubDur 90 0 0
 
 $MainHandTarget = HandDorsum+'P4'
-Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'palm' 'default' $motionType 0.1 'MiddleHandSpotHigh' 'palm' 'default' $motionType 0.0 5 $RubDur -90
+Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'palm' 'default' $motionType 0.1 $HandPalm 'MiddleHandSpotHigh' 'palm' 'default' $motionType 0.0 $HandPalm 5 $RubDur -90 0 0

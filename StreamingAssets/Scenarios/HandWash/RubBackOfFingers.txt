@@ -23,11 +23,10 @@ If
     $whichHand == 'right'
 Then
     $MainHandTarget = NurseLeftHandDorsum
-    $MainHandAlignment = 'rotateleft'
 Else
     $MainHandTarget = NurseRightHandDorsum
-    $MainHandAlignment = 'rotateright'
 Endif
 
+$MainHandAlignment = 'default' #'rotateleft'
 $StartAtTop = true
-Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'tripod' $MainHandAlignment $mainmotionType 50.09 'MiddleHandSpot' 'grip' 'backward' $othermotionType 0.001 5 .5 60 0
+Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'pond' $MainHandAlignment $mainmotionType 50.09 $HandPalm 'MiddleHandSpot' 'grip' 'default' $othermotionType 0.001 $HandPalm  5 .5 60 0 0

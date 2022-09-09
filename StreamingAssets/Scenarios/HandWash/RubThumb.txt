@@ -31,5 +31,5 @@ Endif
 $StartAtTop = true
 $RubDur = 0.5
 
-Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'grip' 'backward' $mainmotionType 50.09 'MiddleHandSpot' 'perpendicular' 'default' $othermotionType 0.001 5 $RubDur 0 0 true
+Do 'HandWash/RubHands.txt' $whichHand $MainHandTarget 'grip' 'backward' $mainmotionType 50.09 $HandGrip 'MiddleHandSpot' 'perpendicular' 'default' $othermotionType 0.001 $HandPalm 5 $RubDur 0 0 true
 #$StartAtTop = false

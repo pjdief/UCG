@@ -4,7 +4,11 @@
 # $PlayerNurse, $LeftHandSpot, $RightHandSpot, $NurseLeftHandDorsum, $NurseRightHandDorsum
 
 Prompt 'H2RubPalmDorsumFingersInterlaced'
+$PlayerNurse play 'GripSize_R' true 1
+$PlayerNurse play 'GripSize_L' true 1
 
 Do 'HandWash/RubPalmDorsum' 'right'
 Do 'HandWash/RubPalmDorsum' 'left'
+$PlayerNurse play 'GripSize_R' true 0.5
+$PlayerNurse play 'GripSize_L' true 0.5
 Prompt ''

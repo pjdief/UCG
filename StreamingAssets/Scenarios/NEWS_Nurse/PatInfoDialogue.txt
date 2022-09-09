@@ -1,5 +1,4 @@
 $PatientDialogueChoices on
-$Patient headturn Player
 
 Label 'DialogueLoop'
 

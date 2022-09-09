@@ -38,6 +38,7 @@ Label 'PCLoop_Stage01'
 	Then
 		$Pre_End resetPressed
 		/PatientPreCanvas off
+		$Patient release
 		$Patient reset
 		Return
 	Endif

@@ -140,7 +140,8 @@ Label 'LoopN1'
 	Endif
 
 	If
-		$Stage4Button pressed
+		1
+#		$Stage4Button pressed
 	Then
 		$Stage4Button reset
 		$Stage = 4

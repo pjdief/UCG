@@ -33,6 +33,9 @@ Then
 	wait .1
 
 	#$PlayerNurse grabRight.elbowin $ForcepsHandle 0 'horizontal' 'R_grip'
+	$Grab = 'grab' + ActiveHand
+	$PlayerNurse $Grab $ForcepsHandle 1 'tweeze' 'default'
+	Wait 1
 
 
 	$CottonBalls attachto $Forceps
@@ -69,6 +72,9 @@ Then
 	wait .1
 	Destroy $Forceps
 	$AntisepticCotton = true
+	$Release = 'release' + ActiveHand
+	$PlayerNurse $Release 1 'tweeze' 
+	Wait 1
 Else
 	Prompt 'Needs Antiseptic Solution'
 	wait 2

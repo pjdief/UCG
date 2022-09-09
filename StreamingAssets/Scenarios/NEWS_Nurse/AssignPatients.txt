@@ -28,15 +28,15 @@ $Patient = Bed + '/Placeholder(Clone)'
 
 DoChoice $whichPatient
 [
-    Do 'NEWS_Nurse/Stage1/PatientNon1.txt'
-    Do 'NEWS_Nurse/Stage1/PatientNon2.txt'
-    Do 'NEWS_Nurse/Stage1/PatientNon3.txt'
-    Do 'NEWS_Nurse/Stage1/PatientNon4.txt'
-    Do 'NEWS_Nurse/Stage1/PatientNon5.txt'
-    Do 'NEWS_Nurse/Stage1/PatientNews1.txt'
-    Do 'NEWS_Nurse/Stage1/PatientNews2.txt'
-    Do 'NEWS_Nurse/Stage1/PatientNews3.txt'
-    Do 'NEWS_Nurse/Stage1/PatientNews4.txt'
+    Do 'UCG/Stage1/PatientNon1.txt'
+    Do 'UCG/Stage1/PatientNon2.txt'
+    Do 'UCG/Stage1/PatientNon3.txt'
+    Do 'UCG/Stage1/PatientNon4.txt'
+    Do 'UCG/Stage1/PatientNon5.txt'
+    Do 'UCG/Stage1/PatientNews1.txt'
+    Do 'UCG/Stage1/PatientNews2.txt'
+    Do 'UCG/Stage1/PatientNews3.txt'
+    Do 'UCG/Stage1/PatientNews4.txt'
 ]
 
 If 

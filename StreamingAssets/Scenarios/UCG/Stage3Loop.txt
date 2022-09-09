@@ -107,6 +107,26 @@ Label 'LoopN1'
 	Endif
 
 	If
+		$LeftHandButton pressed
+	Then
+		Prompt 'Left Hand is Active'
+		Wait 1
+		Prompt ''
+		$LeftHandButton reset
+		$ActiveHand = 'Left'
+	Endif
+
+	If
+		$RightHandButton pressed
+	Then
+		Prompt 'Right Hand is Active'
+		Wait 1
+		Prompt ''
+		$RightHandButton reset
+		$ActiveHand = 'Right'
+	Endif
+
+	If
 		$CartButton pressed
 	Then
 		$CartButton reset

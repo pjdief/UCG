@@ -1,14 +1,23 @@
 #CleanGenitalia.txt
-#Do 'GrapForceps' ['right'|'left']
+#Do 'CleanGenitalia' ['right'|'left']
+
+Prompt 'CleanGenitalia'
+Wait 2
 
 If
     $param[1] != ' '
 Then
     $whichHand = param[1]
-    Prompt 'Has Param:' + param[1]
+    $SideDistance = param[2]
+    $numberOfWipes = param[3]
 Else
-    Prompt 'No param:' + param[1]
+    Prompt 'CleanGenitalia: No params:' + param[1]
 Endif 
+
+
+####################
+# Create Forcepts and cottonball
+####################
 
 $Forceps = 'Forceps_Straight_IK'
 $ForcepsHandle = $Forceps + '/IKGrab'
@@ -26,80 +35,61 @@ wait 0
 $SingleCottonBall localmovex .02 0
 $SingleCottonBall attachto $Forceps
 
+####################
+# Grab forceps
+####################
 
+#Prompt 'Grab forceps with ' + whichHand
+#Wait 1
 If
-    $whichHand == 'right'
+    $ ( whichHand == 'right' )
 Then
-    $PlayerNurse grabRight.elbowin $ForcepsHandle .1 'horizontal' 'R_grip'
+    $PlayerNurse grabRight.elbowout $ForcepsHandle .1 'R_grip' 'horizontal' 
+    $otherHand = 'left'
 Else
-    $PlayerNurse grabLeft.elbowin $ForcepsHandle .1 'horizontal' 'L_grip'
+    $PlayerNurse grabLeft.elbowout $ForcepsHandle .1  'L_grip' 'horizontal'
+    $otherHand = 'right'
 Endif
 Wait .1
 
+####################
+# Align forceps
+####################
+
 #$PatientGenitals = Patient + '/Genitals'
-$Forceps align $PatientGenitals 0
-Prompt 'Rotate forceps'
-Wait 1
-$Forceps localRotateX 70 0.1
-Wait 0.1
-$Forceps localRotateY 20 0.1
-Wait 0.1
-Wait 3
 
-$PatientGenitalsOtherHand = 'LabiaHandPosition'
-Create Locator $PatientGenitalsOtherHand
-$PatientGenitalsOtherHand align $PatientGenitals 0
-Wait 0
 
-#Start hand above patient
+
+#######################
+# Spread Labia or Grab Penis
+#######################
+
 If
-    $whichHand == 'right'
+    $PatientGender = 'Female'
 Then
-    $PatientGenitalsOtherHand localposition  -1.33,0.9,7.7 
-    Wait 0
-    $PlayerNurse grabLeft.elbowout $PatientGenitalsOtherHand .1 'horizontal' 'L_tweeze'
-    Wait .1
-
-    #Orient the hand
-    $PatientGenitalsOtherHand localrotation  -50,129.4,41.5 0
-    Wait 0
-
+    Do 'UCGTools/SpreadLabia' $otherHand
+    $CleanGenitals = 'UCGTools/CleanLabia'
 Else
-    $PatientGenitalsOtherHand localposition  1.38,0.87,7.48 
-    Wait 0
-    $PlayerNurse grabRight.elbowout $PatientGenitalsOtherHand .1 'horizontal' 'R_tweeze'
-    Wait .1
-
-    #Orient the hand
-    $PatientGenitalsOtherHand localrotation  -17.4,32.5,-24.5 0
-    Wait 0
-
+    Do 'UCGTools/GrabPenis' $otherHand
+    $CleanGenitals = 'UCGTools/CleanPenis'
 Endif
 
-#Move hand down to genitals
-$PatientGenitalsOtherHand localposition  -1.43,0.87,7.5 1
-Wait 1
 
-#Clean the genitals
-wait 1
-$Forceps localmovez -.06 .1
-wait .1
-$Forceps localmovey -.03 1
-wait 1
-$Forceps localmovey .03 1
-wait 1
-$Forceps localmovex .02 1
-wait 1
-$Forceps localmovey -.03 1
-wait 1
-$Forceps localmovey .03 1
-wait 1
+$count= 0
+label 'wipesloop'
+    Do $CleanGenitals $SideDistance
 
+    $count = count + 1
+    If  
+        $count < numberOfWipes
+    Then
+        Goto 'wipesloop'
+    Endif
+#endlabel
 
-
-Prompt ''
-wait 2
-Destroy $Forceps
+#######################
+# Release hands and destroy forceps
+#######################
 
 
 #right hand
@@ -108,3 +98,7 @@ $PlayerNurse release 1 'L_tweeze'
 #left hand
 $PlayerNurse release 1 'L_grip'
 $PlayerNurse release 1 'R_tweeze'
+
+Prompt ''
+wait 2
+Destroy $Forceps

@@ -9,8 +9,17 @@ WaitFor
 	ZoomSpot Menu.Done
 Wait .1
 If
-	ZoomSpot menu.result 'Yes'
+	ZoomSpot menu.result 'No'
 Then
+	Return
+Endif
+
+$Item = $InjectionWater
+$Grab = 'grab' + ActiveHand
+$PlayerNurse $Grab $Item 1 'tweeze' 'default' 
+Wait 1
+
+
 
 $InjectionWater localmovey .15 1
 wait .5
@@ -35,7 +44,12 @@ Wait 3
 #stop pour
 $InjectionWater localrotatez -135 .5
 Destroy $PouringLiquid
+
+
+$Release = 'release' + ActiveHand
+$PlayerNurse $Release 1 'tweeze'
 wait 2
+
 Destroy $InjectionWater
 
-Endif
+#Endif

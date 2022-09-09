@@ -84,4 +84,11 @@ $FreqFifteenResponse = 'Parameter monitoring frequency changed to 15 mins.'
 $FreqHourlyResponse = 'Parameter monitoring frequency changed to hourly.'
 $FreqShiftResponse = 'Parameter monitoring frequency changed to once a shift.'
 
+#HandLocator variables
+$CreateHandLocator = 'Items/CreateHandLocator'
+$HandPalm = 'Palm'
+$HandGrip = 'Grip'
+$HandFingertip = 'Fingertip'
+$HandFingerpad = 'Fingermiddle'
+
 #Return

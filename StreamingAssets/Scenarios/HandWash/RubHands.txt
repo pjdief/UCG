@@ -17,24 +17,30 @@ Else
     $MainHandTarget = NurseLeftHandPalm
     $MainHandPlane = 'horizontal'
     $MainHandShape = ' ' #'R_grip'
+    $MainGrabPoint = 'Palm' #$MainGrabPoint = 'Fingertip'
 
     $OtherGrabType = 'grabLeft.elbowout'
     $OtherHandTarget = NurseRightHandPalm
     $OtherHandPlane = 'horizontal'
     $OtherHandShape = ' ' #'R_grip'
+    $OtherGrabPoint = 'Palm' #$MainGrabPoint = 'Fingertip'
 
     $ScrubDuration = 0.5
     $RepeatAmount = 5
     $RotateAmount = 0       #hand rotation amount to make more natural
     $SecondaryMove = 0    #1-time secondary main movement (if using rotation) 
     $StartAtTop = false
+
 Endif
 
 ############# Get parameters
 
+
+ # $param[1] != ' '
+
 #TODO: extend so $param[0] contains number of parameters.
 If
-    $param[1] != ' '
+    $ (param[0] == 18)   
 Then
     $whichHand =            param[1]    #'right','left'
 
@@ -42,42 +48,52 @@ Then
     $MainHandShape =        param[3]    #'grip','extension','pinch','ring','thumb','tripod','tweeze'
     $MainHandPlane =        param[4]    #'default','flipped','rotateDown','rotateUp','horizontal','palmUp','vertical','palmin'
     $MainHandMotionType =   param[5]    #'localMoveZ','moveUp','rotateY', etc.
-    $MainHandMotionAmount = param[6]
+    $MainHandMotionAmount = param[6]    #in meters
+    $MainGrabPoint =        param[7]    #'palm','fingertip','fingermiddle'
 
-    $OtherHandTarget =       param[7]   #'grip','extension','pinch','ring','thumb','tripod','tweeze'
-    $OtherHandShape =        param[8]   #'default','flipped','rotateDown','rotateUp','horizontal','palmUp','vertical','palmin'
-    $OtherHandPlane =        param[9]   #'localMoveZ','moveUp','rotateY', etc.
-    $OtherHandMotionType =   param[10]
-    $OtherHandMotionAmount = param[11]
+    $OtherHandTarget =       param[8]  
+    $OtherHandShape =        param[9]   #'grip','extension','pinch','ring','thumb','tripod','tweeze'
+    $OtherHandPlane =        param[10]  #'default','flipped','rotateDown','rotateUp','horizontal','palmUp','vertical','palmin'
+    $OtherHandMotionType =   param[11]  #'localMoveZ','moveUp','rotateY', etc.
+    $OtherHandMotionAmount = param[12]
+    $OtherGrabPoint =        param[13]
 
-    $RepeatAmount = param[12]           # number of times to repeat
-    $ScrubDuration = param[13]          # duration of each scrub
-    $RotateAmount = param[14]           # hand rotation around Y to move elbows
-    $SecondaryMove =  param[15]         # 1 additional move for MainTarget over entire duration of loop (scrubDuration * repeatAmount)
-    $StartAtTop = param[16]             # whether to start motion at top instead of middle
+    $RepeatAmount =         param[14]   # number of times to repeat
+    $ScrubDuration =        param[15]   # duration of each scrub
+    $RotateAmount =         param[16]   # hand rotation around Y to move elbows
+    $SecondaryMove =        param[17]   # 1 additional move (or 0 for none) for MainTarget over entire duration of loop (scrubDuration * repeatAmount)
+    $StartAtTop =           param[18]   # whether to start motion at top instead of middle
+
+#    $MainGrabPoint = 'Palm'
 Else
-    Prompt 'RubHands: Missing params!'
+    Prompt 'RubHands: wrong number of params!  Has ' + param[0]
     Wait 2
 Endif 
 
-$MainLocator = MainHandShape + 'Locator'
-$OtherLocator = OtherHandShape + 'Locator'
+#$MainLocator = MainHandShape + 'Locator'
+#$OtherLocator = OtherHandShape + 'Locator'
+$MainLocator = 'HandLocator'   #NEW
+$OtherLocator = 'HandLocator'   #NEW
 
 If
     $whichHand == 'right'
 Then
     $MainGrabType = 'grabRight.elbowout'
     $OtherGrabType = 'grabLeft.elbowin'
-    $MainHandShape = 'R_' + MainHandShape
-    $OtherHandShape = 'L_' + OtherHandShape
+#    $MainHandShape = 'R_' + MainHandShape
+#    $OtherHandShape = 'L_' + OtherHandShape
+    $MainGrabPoint = 'Right' + MainGrabPoint
+    $OtherGrabPoint = 'Left' + OtherGrabPoint
     $MainReleaseHand = 'releaseRight'    
     $OtherReleaseHand = 'releaseLeft'
     $RotateAmount = -RotateAmount
 Else
     $MainGrabType = 'grabLeft.elbowout'
     $OtherGrabType = 'grabRight.elbowin'
-    $MainHandShape = 'L_' + MainHandShape
-    $OtherHandShape = 'R_' + OtherHandShape
+#    $MainHandShape = 'L_' + MainHandShape
+#    $OtherHandShape = 'R_' + OtherHandShape
+    $MainGrabPoint = 'Left' + MainGrabPoint
+    $OtherGrabPoint = 'Right' + OtherGrabPoint
     $MainReleaseHand = 'releaseLeft'
     $OtherReleaseHand = 'releaseRight'
 Endif
@@ -90,12 +106,12 @@ Endif
 #$GrabType = $MainGrabType      #'grabRight.elbowin'
 
 ############# Create spot for hand to follow
+
 $MainTarget = 'MainTarget'
-Create $MainLocator $MainTarget
-Wait 0
+Do $CreateHandLocator $MainTarget $MainHandShape $MainGrabPoint
+
 $OtherTarget = 'OtherTarget'
-Create $OtherLocator $OtherTarget
-Wait 0
+Do $CreateHandLocator $OtherTarget $OtherHandShape $OtherGrabPoint
 
 ############# Set hand-specific variables and reach out OTHER hand
 
@@ -107,23 +123,25 @@ Wait 0
 #Prompt 'Created and aligned OtherTarget'
 #Wait 5
 #Prompt 'Grabbing OtherTarget'
-$PlayerNurse $OtherGrabType $OtherTarget .1 $OtherHandPlane $OtherHandShape
+$PlayerNurse $OtherGrabType $OtherTarget .1 $OtherHandShape $OtherHandPlane 
 Wait 0.5
 
-#Prompt 'RubPalm: ' + whichHand + ' ' +MainHandTarget + ' ' + MainHandShape + ' ' +  MainHandPlane    + ' ' + OtherHandTarget   + ' ' + OtherHandShape
+#Prompt 'RubHands: ' + whichHand + ' ' +MainHandTarget + ' ' + MainHandShape + ' ' +  MainHandPlane    + ' ' + OtherHandTarget   + ' ' + OtherHandShape
 #Wait 10
 #Prompt ''
 
 ############# Move MAIN hand to spot to follow
 
-$MainTarget align $MainHandTarget 0
+
+
+#Prompt 'Align ' + MainTarget + ' to target ' + MainHandTarget
+$MainTarget align $MainHandTarget 0  #ORIG
 Wait 0
 #$MainTarget attachto $MainHandTarget
 #Wait 0
 
 $MainTarget localRotateY $RotateAmount 0  #rotate arm so elbows are out
-Wait 0.5
-
+Wait 0   #.5
 
 $LoopCount = 0
 $scrubDurationFrac = scrubDuration/4
@@ -141,8 +159,11 @@ Then
     Wait $scrubDurationFrac
 Endif
 
-
-$PlayerNurse $MainGrabType $MainTarget .1 $MainHandPlane $MainHandShape
+#####Main Grab
+#Prompt 'About to main grab'
+#Wait 3
+$PlayerNurse $MainGrabType $MainTarget .1 $MainHandShape $MainHandPlane 
+#Prompt 'main grabbed'
 Wait 0.1
 #$MainTarget localRotateY $RotateAmount 0  #rotate arm so elbows are out
 #Wait 0.5

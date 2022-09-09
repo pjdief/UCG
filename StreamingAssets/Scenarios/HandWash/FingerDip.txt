@@ -29,15 +29,16 @@ $OtherMoveAmount = -0.5 * moveAmount
 If
     $whichHand == 'right'
 Then
-    $HandPalm = NurseLeftHandPalm
+    $HandTarget = NurseLeftHandPalm
 Else
-    $HandPalm = NurseRightHandPalm
+    $HandTarget = NurseRightHandPalm
 Endif
 
 $MainMotionType = 'moveForward'
 $OtherMotionType = 'moveRight'
 
-#Prompt 'FingerDip ' + whichHand + ' handpalm=' + HandPalm
+#Prompt 'FingerDip ' + whichHand + ' HandTarget=' + HandTarget
 #Wait 5
 
-Do 'HandWash/RubHands' $whichHand $HandPalm 'dip' 'palmdown' $MainMotionType $moveAmount $LeftHandSpot 'pond' 'palmup' $OtherMotionType $OtherMoveAmount 5 1 65
+#$MainGrabPoint = 'Fingertip'
+Do 'HandWash/RubHands' $whichHand $HandTarget 'dip' 'palmdown' $MainMotionType $moveAmount $HandFingertip $LeftHandSpot 'pond' 'palmup' $OtherMotionType $OtherMoveAmount $HandPalm 5 1 65 0 0  

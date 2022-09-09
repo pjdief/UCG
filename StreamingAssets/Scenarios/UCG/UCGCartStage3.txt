@@ -30,6 +30,26 @@ $Patient outline.off
 label 'CartLoop'
 
 	If
+		$LeftHandButton pressed
+	Then
+		Prompt 'Left Hand is Active'
+		Wait 1
+		Prompt ''
+		$LeftHandButton reset
+		$ActiveHand = 'Left'
+	Endif
+
+	If
+		$RightHandButton pressed
+	Then
+		Prompt 'Right Hand is Active'
+		Wait 1
+		Prompt ''
+		$RightHandButton reset
+		$ActiveHand = 'Right'
+	Endif
+
+	If
 		$HandScrub pressed
 	Then
 		$HandScrub reset
@@ -135,7 +155,7 @@ label 'CartLoop'
 		$UrineBag pressed
 	Then
 		$UrineBag reset
-		Do 'UCGTools/UrineBag.txt'
+		Do 'UCGTools/AttachUrineBagBed.txt'
 	Endif
 
 	If

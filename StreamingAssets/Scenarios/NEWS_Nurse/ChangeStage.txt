@@ -1,7 +1,7 @@
 #ChangeStage.txt - change stage 
 
 $Stage = Stage + 1
-$StageFolderPrefix = 'NEWS_Nurse/Stage' + Stage + '/'
+$StageFolderPrefix = 'UCG/Stage' + Stage + '/'
 $ConfigurePatientStage = StageFolderPrefix + 'Patient' + PatientType + '.txt'
 Do $ConfigurePatientStage
 $TimeManager settimer $Timer

@@ -21,7 +21,7 @@ Then
 	$TakenAction = true
 	$IVCannulaCan off
 	$IVCannulaName = $IVCannulaNameBase + 'Antecubital'
-	$PlayerNurse play TakeBlood
+	$PlayerNurse play LeanIn
 	$IVSet = true
 	Wait 1.5
 	If
@@ -57,7 +57,7 @@ Then
 	$TakenAction = true
 	$IVCannulaCan off
 	$IVCannulaName = $IVCannulaNameBase + 'Dorsum'
-	$PlayerNurse play TakeBlood
+	$PlayerNurse play LeanIn
 	$IVSet = true
 	Wait .5
 	If

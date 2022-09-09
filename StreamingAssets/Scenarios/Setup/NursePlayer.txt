@@ -1,4 +1,5 @@
 
+
 $LeftHandSpot = 'LeftHandSpot'
 $RightHandSpot = 'RightHandSpot'
 $MiddleHandSpot = 'MiddleHandSpot'
@@ -43,7 +44,7 @@ Wait 0
 $NurseLeftHandDorsum localMoveZ 0.08 0
 Wait 0
 
-$NurseNurseLeftHandPalm = 'NurseLeftHandPalm'
+$NurseLeftHandPalm = 'NurseLeftHandPalm'
 Create Locator $NurseLeftHandPalm
 Wait 0
 $NurseLeftHandPalm align $NurseLeftHandDorsum 0

@@ -17,15 +17,20 @@ Else
     $numberOfSquirts = 3
 Endif 
 
-#Player lookat $handScrub 0 .25 0.25
+Player lookat $handScrub #0 .25 0.25
 
 $HandSanitizerPos = HandScrub + '/HandPos'
 $HandSanitizerPumpPos = HandScrub + '/PumpHandPos'
 $HandSanitizerEyePos = HandScrub + '/EyePos'
 $HandSanitizerNursePos = HandScrub + '/NursePos'
 
+
+NursePlayer localMoveX 1 0.5
+Wait 0.5
 NursePlayer align $HandSanitizerNursePos
-Wait 1
+
+#Prompt 'AlignChild nurse'
+#Wait 2
 
 ############# Set hand-specific variables and reach out other hand
 If
@@ -39,8 +44,14 @@ Endif
 $motionType = 'movey'
 
 #pumping with Other hand
-Do 'HandWash/RubHands' $whichHand $HandSanitizerPos 'palm' 'palmup' $motionType 0 $HandSanitizerPumpPos 'fingertips' 'default' $motionType 0.1 $numberOfSquirts 1 70
+Do 'HandWash/RubHands' $whichHand $HandSanitizerPos 'palm' 'palmup' $motionType 0 $HandPalm $HandSanitizerPumpPos 'fingertips' 'default' $motionType 0.1 $HandPalm $numberOfSquirts 1 70 0 0
+
 
 #Move nurse back
+NursePlayer localMoveX -1 0.3
+Wait 0.5
 NursePlayer align NursePlayerPos 0.5
 Wait 0.5
+
+Player align $CartLook 1
+Wait 1

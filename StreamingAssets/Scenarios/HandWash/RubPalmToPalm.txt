@@ -21,8 +21,8 @@ Endif
 
 #$whichHand = 'right'
 
-#Prompt 'RubPalms: ' + whichHand
-#Wait 2
+Prompt 'RubPalms: ' + whichHand
+Wait 2
 #Prompt ''
 
 $motionType = 'moveForward'
@@ -31,17 +31,19 @@ $motionType = 'moveForward'
 If
     $whichHand == 'right'
 Then
-    $HandPalm = NurseLeftHandPalm
+    $HandTarget = NurseLeftHandPalm
 Else
-    $HandPalm = NurseRightHandPalm
+    $HandTarget = NurseRightHandPalm
 Endif
 
-#Prompt 'Calling RubHands handpalm ' + HandPalm + 'whichhand ' +  whichHand
+#Prompt 'Calling RubHands HandTarget ' + HandTarget + 'whichhand ' +  whichHand
 #Wait 2
 
 $RubDur = 0.5
-
-#Do 'HandWash/RubHands.txt' $whichHand $HandPalm 'palm' 'default' $motionType 0.05 $MiddleHandSpot 'palm' 'rotateup' $motionType 0.05 5 2 20
-Do 'HandWash/RubHands.txt' $whichHand $HandPalm $handShape 'default' $motionType 0.05 $MiddleHandSpot $handShape 'vertical' $motionType 0.05 5 $RubDur 20 false
+#$HandTarget = 'Palm'
+#Do 'HandWash/RubHands.txt' $whichHand $HandTarget 'palm' 'default' $motionType 0.05 $MiddleHandSpot 'palm' 'rotateup' $motionType 0.05 5 2 20
+#Prompt 'HandWash/RubHands.txt ' + whichHand  + ' target = ' + HandTarget #+ ', shape =' + MainGrabPoint
+#Wait 5
+Do 'HandWash/RubHands.txt' $whichHand $HandTarget $handShape 'default' $motionType 0.05 $HandPalm $MiddleHandSpot $handShape 'vertical' $motionType 0.05 $HandPalm 5 $RubDur 20 0 false 
 
 

@@ -6,7 +6,7 @@
 
 $Stage = '3'
 $GlobalVar setglobal 'Stage' $Stage
-$StageFolderPrefix = 'NEWS_Nurse/Stage' + Stage + '/'
+$StageFolderPrefix = 'UCG/Stage' + Stage + '/'
 
 $DefaultBedNumber = '4'
 $PlayerStart = Bed + '/MediumLeft'
@@ -15,7 +15,7 @@ $UrinaryProcPos = Bed + '/UrinaryProcPos'
 If 
     $BedNumber = DefaultBedNumber
 Then
-    Do 'NEWS_Nurse/Stage1/COWSetup.txt'
+    Do 'UCG/COWSetup.txt'
     #Prompt 'Default Patient is ' + BedNumber
 	Player align $PlayerStart .05
     $BathroomSignName = 'BathroomSign' + PatientGender
@@ -37,13 +37,18 @@ $Curtain outline.on
 $CurtainClosed = 'CurtainClosed'
 turnOff $CurtainClosed
 
+$ActiveHand = 'Right'
+
 $PatientButton = 'ProcedureCanvas/Choices/PatientButton'
 $CartButton = 'ProcedureCanvas/Choices/CartButton'
+$LeftHandButton = 'ProcedureCanvas/Choices/LeftHandButton'
+$RightHandButton = 'ProcedureCanvas/Choices/RightHandButton'
 $ProcedureButton = 'ProcedureCanvas/Choices/ProcedureButton'
 $Stage4Button = 'ProcedureCanvas/Choices/Stage4Button'
 $EndGameButton = 'ProcedureCanvas/Choices/EndGame'
 turnOff $EndGameButton
-turnoff $Stage4Button
+#turnoff $Stage4Button
+
 
 ###########################################
 # Setup Scoring

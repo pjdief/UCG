@@ -27,7 +27,7 @@ $Forceps localRotateX -40 0
 Wait 0
 
 Prompt 'Grab forceps'
-$PlayerNurse grabRight.elbowin $ForcepsHandle 1 'horizontal' 'R_grip'
+$PlayerNurse grabRight.elbowin $ForcepsHandle 1 'horizontal' 'grip'
 Wait 1
 #$PatientGenitals = Patient + '/Genitals'
 $Forceps align $PatientGenitals 0

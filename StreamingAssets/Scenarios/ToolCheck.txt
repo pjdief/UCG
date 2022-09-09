@@ -306,7 +306,7 @@
 		$BloodGlucose reset
 		$GlobalVar setglobal 'UsingTool' true
 		$UIMan closetoolinventory
-		$PlayerNurse play TakeBlood
+		$PlayerNurse play LeanIn
 		Wait 3
 		$ToolPrompt = $BloodGlucoseLevel + 'mmol/L'
 		Do 'ToolPrompt.txt'
@@ -383,7 +383,7 @@
 					Then
 						$UIMan closetoolinventory
 						Do 'InterventionReduce.txt'
-						$PlayerNurse play TakeBlood
+						$PlayerNurse play LeanIn
 						Prompt 'Bleeding site is cleaned and gauze is applied.'
 						wait 2
 						Prompt ''

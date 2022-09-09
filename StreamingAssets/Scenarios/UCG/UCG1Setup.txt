@@ -6,7 +6,7 @@
 
 $Stage = '1'
 $GlobalVar setglobal 'Stage' $Stage
-$StageFolderPrefix = 'NEWS_Nurse/Stage' + Stage + '/'
+$StageFolderPrefix = 'UCG/Stage' + Stage + '/'
 
 $DefaultBedNumber = '5'
 
@@ -37,7 +37,7 @@ Endif
 If 
     $BedNumber != DefaultBedNumber
 Then
-    Do 'NEWS_Nurse/Stage1/COWSetup.txt'
+    Do 'UCG/COWSetup.txt'
 Endif
 
 
@@ -56,7 +56,7 @@ Then
 Else
     $ScoringSetup = StageFolderPrefix + 'ScoringNon.txt'
 Endif
-Do $ScoringSetup                 
+#Do $ScoringSetup                 
 
 $ScoreTracker = 'ScoreTracker'
 #A bit of a hack to make sure stage start message only sent once

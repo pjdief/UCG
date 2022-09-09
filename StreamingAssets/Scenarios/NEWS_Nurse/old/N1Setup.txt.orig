@@ -7,7 +7,7 @@
 
 $Stage = '1'
 $GlobalVar setglobal 'Stage' $Stage
-$StageFolderPrefix = 'NEWS_Nurse/Stage' + Stage + '/'
+$StageFolderPrefix = 'UCG/Stage' + Stage + '/'
 
 ###########################################
 # Setup Scoring

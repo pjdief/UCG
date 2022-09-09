@@ -9,7 +9,7 @@ Wait 0.5
 If
     $param[1] != ' '
 Then
-    $whichHand = param[1]
+    $whichHand_SL = param[1]
     #Prompt 'Has Param:' + param[1]
 Else
     #Prompt 'No param:' + param[1]
@@ -19,16 +19,22 @@ Endif
 
 $PatientGenitalsOtherHand = 'LabiaHandPosition'
 Create Locator $PatientGenitalsOtherHand
-$PatientGenitalsOtherHand align $PatientGenitals 0
 Wait 0
+
+#Prompt 'Align hand with ' + PatientGenitals
+#Wait 2
+
+$PatientGenitalsOtherHand align $PatientGenitals .2
+Wait .2
+
+#Prompt 'Aligned hand with ' + PatientGenitals
+#Wait 2
 
 #Start hand above patient
 If
-    $whichHand == 'right'
+    $whichHand_SL == 'left'
 Then
-    $PatientGenitalsOtherHand localposition  -1.33,0.9,7.7 
-    Wait 0
-    $PlayerNurse grabLeft.elbowout $PatientGenitalsOtherHand .1 'horizontal' 'L_tweeze'
+    $PlayerNurse grabLeft.elbowout $PatientGenitalsOtherHand .1  'L_tweeze' 'horizontal'
     Wait .1
 
     #Orient the hand
@@ -36,9 +42,7 @@ Then
     Wait 0
 
 Else
-    $PatientGenitalsOtherHand localposition  1.38,0.87,7.48 
-    Wait 0
-    $PlayerNurse grabRight.elbowout $PatientGenitalsOtherHand .1 'horizontal' 'R_tweeze'
+    $PlayerNurse grabRight.elbowout $PatientGenitalsOtherHand .1  'R_tweeze' 'horizontal'
     Wait .1
 
     #Orient the hand
@@ -47,13 +51,5 @@ Else
 
 Endif
 
-#Move hand down to genitals
-$PatientGenitalsOtherHand localposition  -1.43,0.87,7.5 1
-Wait 1
 
-#right hand
-#$PlayerNurse release 1 'R_grip'
-#$PlayerNurse release 1 'L_tweeze'
-#left hand
-#$PlayerNurse release 1 'L_grip'
-#$PlayerNurse release 1 'R_tweeze'
+

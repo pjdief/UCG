@@ -21,6 +21,34 @@ $Patient outline.off
 label 'CartLoop'
 
 	If
+		$LeftHandButton pressed
+	Then
+		Prompt 'Left Hand is Active'
+		Wait 1
+		Prompt ''
+		$LeftHandButton reset
+		$ActiveHand = 'Left'
+	Endif
+
+	If
+		$RightHandButton pressed
+	Then
+		Prompt 'Right Hand is Active'
+		Wait 1
+		Prompt ''
+		$RightHandButton reset
+		$ActiveHand = 'Right'
+	Endif
+
+	If
+		$ActiveHand == 'Right'
+	Then
+		$whichHand = 'right'
+	Else
+		$whichHand = 'left'
+	Endif
+
+	If
 		$HandScrub pressed
 	Then
 		$HandScrub reset
@@ -62,7 +90,7 @@ label 'CartLoop'
 		$UrineBag pressed
 	Then
 		$UrineBag reset
-		Do 'UCGTools/UrineBag.txt'
+		Do 'UCGTools/AttachUrineBagBed.txt'
 	Endif
 
 	If
@@ -77,6 +105,9 @@ label 'CartLoop'
 	Then
 		$CottonBalls reset
 
+If
+    $PatientGender = 'Female'
+Then
 		ZoomSpot Menu.Question 'Which part of the genitalia to clean?'
 		ZoomSpot Menu.Choices 'Labia Majora','Labia Minora','Exit'
 		ZoomSpot Menu.on ZoomSpot
@@ -89,33 +120,48 @@ label 'CartLoop'
 			Player align $UrinaryProcPos 1
 			Wait 1
 #			Prompt 'lookAt'
-			Player lookAt $PatientGenitals -0.05 0.2 .05 1
-			Wait 1
+#			Player lookAt $PatientGenitals -0.05 0.2 .05 1
+#			Wait 1
 
-			#$whichHand = 'right' 
-			Do 'UCGTools/CleanGenitalia' 'right'
+
+			Do 'UCGTools/CleanGenitalia' $whichHand 0.03 1
 
 			Player align $CartLook 1
 		Endif
+
 		If
 			ZoomSpot menu.result 'Labia Minora'
 		Then
 			Player align $UrinaryProcPos 1
 			Wait 1
 #			Prompt 'lookAt'
-			Player lookAt $PatientGenitals -0.05 0.2 .05 1
-			Wait 1
+#			Player lookAt $PatientGenitals -0.05 0.2 .05 1
+#			Wait 1
 
 			#$whichHand = 'right' 
-			Do 'UCGTools/CleanGenitalia' 'right'
+			Do 'UCGTools/CleanGenitalia' $whichHand 0.01 3
 
 			Player align $CartLook 1
 		Endif
+
 		If
 			ZoomSpot menu.result 'Exit'
 		Then
 			Player align $CartLook 1
 		Endif
+
+	
+Else
+	Player align $UrinaryProcPos 1
+	Wait 1
+#	Player lookAt $PatientGenitals -0.05 0.2 .05 1
+#	Wait 1
+
+	Do 'UCGTools/CleanGenitalia' $whichHand 0.05 3
+Endif
+
+
+
 	Endif
 
 	If

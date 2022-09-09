@@ -28,5 +28,13 @@ Else
 Endif
 
 $RubDur = 0.5
-
-Do 'HandWash/RubHands.txt' $whichHand $HandDorsum 'palm' 'palmdown' $motionType 0.05 $MiddleHandSpot 'palm' 'palmdown' $motionType 0.02 5 $RubDur 20 false
+$HandDorsumRotated = 'HandDorsumRotated'
+Create SpreadLocator $HandDorsumRotated
+Wait 0
+$HandDorsumRotated align $HandDorsum
+Wait 0
+$HandDorsumRotated attachTo $HandDorsum
+Wait 0
+$HandDorsumRotated localRotateX 20
+Wait 0
+Do 'HandWash/RubHands.txt' $whichHand $HandDorsumRotated 'spread' 'palmdown' $motionType 0.05 $HandPalm $MiddleHandSpot 'spread' 'palmdown' $motionType 0.02 $HandPalm 5 $RubDur 20 0 0

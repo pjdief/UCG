@@ -5,7 +5,7 @@ $Cart outline.on
 $Vitalsmonitor outline.on
 #Prompt 'Playerstart = ' + PlayerStart
 $PatientLocator = $Patient + '/Locator'
-Do 'NEWS_Nurse/Stage1/COWSetup.txt'
+Do 'UCG/COWSetup.txt'
 Wait .51
 
 If
@@ -15,6 +15,12 @@ Then
 Endif
 $CatheterInserted = 'false'
 Do 'SummaryCheck.txt'
+
+If
+	$PatientInPosition = 'false'
+Then
+	Do 'UCGTools/PositionPatient.txt'
+Endif
 
 $GlobalVar setglobal 'UsingTool' false
 
@@ -34,6 +40,25 @@ Label 'LoopN1'
 		$GlobalVar setglobal 'UsingTool' false
 	Endif
 
+	If
+		$LeftHandButton pressed
+	Then
+		Prompt 'Left Hand is Active'
+		Wait 1
+		Prompt ''
+		$LeftHandButton reset
+		$ActiveHand = 'Left'
+	Endif
+
+	If
+		$RightHandButton pressed
+	Then
+		Prompt 'Right Hand is Active'
+		Wait 1
+		Prompt ''
+		$RightHandButton reset
+		$ActiveHand = 'Right'
+	Endif
 
 	If
 		$EndGame isOnAndPressed
@@ -128,16 +153,10 @@ Label 'LoopN1'
 	Endif
 
 
-
 	If
 		$Patient pressed
 	Then
 		$Patient reset
-		If
-			$PatientInPosition = 'false'
-		Then
-			Do 'UCGTools/PositionPatient.txt'
-		Endif
 		If
 			$CatheterInserted = 'true'
 		Then
@@ -161,92 +180,12 @@ Label 'LoopN1'
 		$CatheterBalloon pressed
 	Then
 		$CatheterBalloon reset
-		
-
-		ZoomSpot Menu.Question 'Insert Catheter?'
-		ZoomSpot Menu.Choices 'Yes','No'
-		ZoomSpot Menu.on ZoomSpot
-		WaitFor
-		ZoomSpot Menu.Done
-		Wait .1
-
 		If
-			ZoomSpot menu.result 'Yes'
+			$PatientGender = 'Male'
 		Then
-			ZoomSpot Menu.Question 'Where to insert?'
-			ZoomSpot Menu.Choices 'Urethra','Vagina'
-			ZoomSpot Menu.on ZoomSpot
-			WaitFor
-				ZoomSpot Menu.Done
-			Wait .1
-
-			Do 'UCGTools/SpreadLabia'
-			$TempCatheter = 'CatheterBalloon'
-			$UCLocator = $Patient + '/UCLocator'
-			$CatheterPort = $TempCatheter + '/Handle/Port'
-
-			Create $TempCatheter $TempCatheter
-			$TempCatheter align $CatheterBalloon 0
-
-			turnOff $CatheterBalloon
-			wait .1
-			$TempCatheter localmovey .01 0
-			wait 1
-
-			$TempCatheter align $UCLocator 1
-			wait 2
-			$PlayerNurse release 1 'R_grip'
-			$PlayerNurse release 1 'L_tweeze'
-			wait 2
-			Player align $UrinaryProcPos 0.5
-			wait 0.5
-
-				ZoomSpot Menu.Question 'What should you do next?'
-				ZoomSpot Menu.Choices 'Inflate the balloon with 10 CC water for injection','Insert another 2.5cm and inflate the balloon with 10cc water for injection.'
-				ZoomSpot Menu.on ZoomSpot
-				WaitFor
-					ZoomSpot Menu.Done
-				Wait .1
-				If
-					ZoomSpot menu.result 'Inflate the balloon with 10 CC water for injection'
-				Then
-					$Syringe align $CatheterPort 1
-					wait 1
-					$Plunger localmovey -.06 2
-					wait 2
-				Else
-					$TempCatheter localmovez .02 1
-					wait 1
-					$Syringe align $CatheterPort 1
-					wait 1
-					$Syringe localrotatex -90 .1
-					wait .2
-					$Syringe localmovey .12 .1
-					wait .2
-					$Plunger localmovey -.06 2
-					wait 2
-				Endif
-
-				$Syringe moveto $CatheterPos .2
-				wait .3
-				$Syringe attachto $UCGKidneyDish
-
-				$PouringLiquid = 'UrineParticles'
-				Create $PouringLiquid $PouringLiquid
-				Wait 0
-				$PouringLiquid align $CatheterPort 0
-				Wait 0
-				$PouringLiquid localmovex .02 0
-				Wait 0
-				$PouringLiquid localrotatey 180 0
-				wait 0
-
-				$TempCatheter localmovez -.01 .1
-				wait .2
-				$TempCatheter localmovez .01 .1
-				wait .2
-				
-				$CatheterInserted = 'true'
+			Do 'UCGTools/InsertMaleCatheter.txt'
+		Else
+			Do 'UCGTools/InsertFemaleCatheter.txt'
 		Endif
 	Endif
 
@@ -254,38 +193,7 @@ Label 'LoopN1'
 		$UrineBag pressed
 	Then
 		$UrineBag reset
-		Prompt 'Urine Bag'
-		wait .5
-		Prompt ''
-		If
-			$CatheterInserted = 'true'
-		Then
-			ZoomSpot Menu.Question 'Connect Catheter to Urine Bag?'
-			ZoomSpot Menu.Choices 'Yes','No'
-			ZoomSpot Menu.on ZoomSpot
-			WaitFor
-				ZoomSpot Menu.Done
-			Wait .1
-			If
-				ZoomSpot menu.result 'Yes'
-			Then
-				$UrineBag clickable false
-				$UrineBag outline.off
-
-				$UCGKidneyDish align $CartPos6 1
-				wait 1
-
-				$IVLine = 'UCIVLine'
-				Create $IVLine $IVLine
-				$IVLine moveto $UrineBagPos 0
-				wait 0
-				Destroy $PouringLiquid
-
-				turnOn $EndGameButton
-				$Patient clickable true
-				$Patient outline.on
-			Endif
-		Endif
+		Do 'UCGTools/AttachUrineBagCatheter.txt'
 	Endif
 
 	If
@@ -314,7 +222,7 @@ Label 'LoopN1'
 #		If
 #			ZoomSpot menu.result 'grip'
 #		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_grip'
+#			$PlayerNurse grabRight $PatientLocator 1  'R_grip' 'vertical'
 #			Wait 5
 #			$PlayerNurse release 1 'R_grip'
 #		Endif
@@ -322,7 +230,7 @@ Label 'LoopN1'
 #		If
 #			ZoomSpot menu.result 'extension'
 #		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_extension'
+#			$PlayerNurse grabRight $PatientLocator 1 'R_extension' 'vertical' 
 #			Wait 3
 #			$PlayerNurse release 1 'R_extension'
 #		Endif
@@ -330,7 +238,7 @@ Label 'LoopN1'
 #		If
 #			ZoomSpot menu.result 'pinch'
 #		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_pinch'
+#			$PlayerNurse grabRight $PatientLocator 1 'R_pinch' 'vertical' 
 #			Wait 3
 #			$PlayerNurse release 1 'R_pinch'
 #		Endif
@@ -338,7 +246,7 @@ Label 'LoopN1'
 #		If
 #			ZoomSpot menu.result 'ring'
 #		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_ring'
+#			$PlayerNurse grabRight $PatientLocator 1 'R_ring' 'vertical' 
 #			Wait 3
 #			$PlayerNurse release 1 'R_ring'
 #		Endif
@@ -346,7 +254,7 @@ Label 'LoopN1'
 #		If
 #			ZoomSpot menu.result 'thumb'
 #		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_thumb'
+#			$PlayerNurse grabRight $PatientLocator 1 'R_thumb' 'vertical' 
 #			Wait 3
 #			$PlayerNurse release 1 'R_thumb'
 #		Endif
@@ -354,7 +262,7 @@ Label 'LoopN1'
 #		If
 #			ZoomSpot menu.result 'tripod'
 #		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_tripod'
+#			$PlayerNurse grabRight $PatientLocator 1 'R_tripod' 'vertical' 
 #			Wait 3
 #			$PlayerNurse release 1 'R_tripod'
 #		Endif
@@ -362,7 +270,7 @@ Label 'LoopN1'
 #		If
 #			ZoomSpot menu.result 'tweeze'
 #		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'vertical' 'R_tweeze'
+#			$PlayerNurse grabRight $PatientLocator 1 'R_tweeze' 'vertical' 
 #			Wait 3
 #			$PlayerNurse release 1 'R_tweeze'
 #		Endif

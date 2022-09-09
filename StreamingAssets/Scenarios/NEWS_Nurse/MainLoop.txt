@@ -144,7 +144,24 @@ Label 'LoopN1'
 	If
 		$Patient isCurrent
 	Then
-		#Break
+		If
+			$Patient pressed
+		Then
+			$GlobalVar setglobal 'UsingTool' true
+	#		Speaker2 'N1: Patient = ' + PatientName
+			Player align $PlayerStart 0.5
+			Wait .5
+			$Patient reset
+			$Patient outline.off
+			turnOff $ConfirmPatient
+			$Patient headturn Player
+			Do 'NEWS_Nurse/EngagePatient.txt'
+			$Patient outline.on
+			JoystickCanvas on
+			turnOn $ConfirmPatient
+			$GlobalVar setglobal 'UsingTool' false
+			#Player align PlayerStart
+		Endif
 	Else
 
 		If
@@ -214,7 +231,7 @@ Label 'LoopN1'
 		Then
 		######Eventually change so that it can be any patient and/or found by a tag not by name
 			If
-				$PatientName = 'Annie Lim'
+				$NeedsPerformed = 'true'
 			Then
 				Prompt 'This is the correct patient.'
 				$ConfirmPatient reset
@@ -234,7 +251,13 @@ Label 'LoopN1'
 				$GenericPatientLine = 'Thank you.'
 				Do 'GenericChat.txt'
 				wait .5
-				SceneManager switchtoscene Scenes/UCG/Scene02
+				If
+					$PatientGender = 'Female'
+				Then
+					SceneManager switchtoscene Scenes/UCG/Scene02
+				Else
+					SceneManager switchtoscene Scenes/UCG/Scene02_Male
+				Endif
 				wait 3
 				Return
 			Else
@@ -275,23 +298,7 @@ Label 'LoopN1'
 		Goto 'signLoop'
 	Endif
 
-	If
-		$Patient pressed
-	Then
-		$GlobalVar setglobal 'UsingTool' true
-#		Speaker2 'N1: Patient = ' + PatientName
-		Player align $PlayerStart 0.5
-		Wait .5
-		$Patient reset
-		$Patient outline.off
-		turnOff $ConfirmPatient
-		Do 'NEWS_Nurse/EngagePatient.txt'
-		$Patient outline.on
-		JoystickCanvas on
-		turnOn $ConfirmPatient
-		$GlobalVar setglobal 'UsingTool' false
-		#Player align PlayerStart
-	Endif
+	
 
 	If
 		$Wristband pressed

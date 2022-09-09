@@ -62,7 +62,7 @@ Goto 'OGLoop'
 Label 'TakeDrink'
 
 	#nurse leans in to give cup
-	$PlayerNurse play TakeBlood
+	$PlayerNurse play LeanIn
 	Wait 2
 	Prompt ''
 
@@ -108,7 +108,7 @@ Label 'TakeDrink'
 	#bring drink back down, and have nurse take away cup
 	$Patient release
 	Wait 1
-	$PlayerNurse play TakeBlood
+	$PlayerNurse play LeanIn
 	Wait 2
 	Destroy $GlucoseDrink
 
