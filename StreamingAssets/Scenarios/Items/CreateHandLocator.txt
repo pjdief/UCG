@@ -3,7 +3,7 @@
 
 ############# Get parameters
 If
-    $param[1] != ' '
+    $param[0] > 0
 Then
     $TempTarget = param[1]		#target to grab
     $TempHandShape = param[2]	#hand shape to grab with: #'grip','extension','pinch','ring','thumb','tripod','tweeze'

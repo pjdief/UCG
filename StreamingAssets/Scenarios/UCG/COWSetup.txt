@@ -75,6 +75,7 @@ Then
 
 	$CatheterObj = 'UCGAssets/Sachet_CatheterizationSet'
 	$Catheter = 'Catheter'
+	$CatheterBalloon = 'CatheterBalloonCurled'
 
 	$UrineBagObj = 'EmptyUrinaryBag'
 	$UrineBag = 'UrineBag'

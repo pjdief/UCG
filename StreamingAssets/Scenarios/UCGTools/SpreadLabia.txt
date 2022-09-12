@@ -7,7 +7,7 @@ Player lookAt $PatientGenitals -0.05 0.2 .05 0.5
 Wait 0.5
 
 If
-    $param[1] != ' '
+    $param[0] > 0
 Then
     $whichHand_SL = param[1]
     #Prompt 'Has Param:' + param[1]

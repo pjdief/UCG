@@ -3,7 +3,7 @@
 
 
 If
-    $param[1] != ' '
+    $param[0] > 0
 Then
     $SideDistance = param[1]        #Distance from center (inner vs. outer)
     Prompt 'Has Param:' + param[1]

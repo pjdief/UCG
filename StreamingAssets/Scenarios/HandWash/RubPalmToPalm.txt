@@ -10,7 +10,7 @@
 
 ############# Get parameters
 If
-    $param[1] != ' '
+    $param[0] > 0
 Then
     $whichHand = param[1]
     $handShape = param[2]

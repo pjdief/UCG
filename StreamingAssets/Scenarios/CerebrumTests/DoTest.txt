@@ -2,10 +2,19 @@
 
 $p1 = 'hello'
 $p2 = 'there'
+
+$value = 3 + 1
+Prompt 'Value 4 = ' + value
+Wait 1
+$value = 3 - 1
+Prompt 'Value 2 = ' + value
+Wait 1
+
+
 Prompt 'Assigning params p1 ' + p1
 Wait 1
 $retval = 
-    Do 'DoReturnTest' $p1 $p2 'one'
+    Do 'CerebrumTests/DoReturnTest' $p1 $p2 'one'
 Prompt 'Returned from DoReturnTest.txt with retval = ' + retval
  
 $retval = 

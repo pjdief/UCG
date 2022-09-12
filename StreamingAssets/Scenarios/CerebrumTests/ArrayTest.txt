@@ -3,8 +3,17 @@
 $one = 1
 $two = 2
 $three = 3
-$four = 'four'
-$five = 'bar'
+$four = 'fOUr'
+$five = bar
+Prompt '$five = ' + five + 'done'
+Wait 5
+$six = five + bar + four  #EP can't eval undefined bar!
+$bar = 'bAr'
+$seven = five + bar + four
+Prompt 'EP can't eval bar for $six = ' + six
+Wait 5
+Prompt '$seven = ' + seven
+Wait 5
 
 $foo[1] = 'one'
 $foo[two] = 'two'

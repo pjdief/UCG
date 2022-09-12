@@ -7,7 +7,7 @@ Wait 0.5
 Wait 0.5
 
 If
-    $param[1] != ' '
+    $param[0] > 0
 Then
     $whichHand_GP = param[1]
     #Prompt 'Has Param:' + param[1]

@@ -5,7 +5,7 @@ Prompt 'CleanGenitalia'
 Wait 2
 
 If
-    $param[1] != ' '
+    $param[0] > 0
 Then
     $whichHand = param[1]
     $SideDistance = param[2]

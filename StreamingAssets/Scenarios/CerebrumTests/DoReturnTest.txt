@@ -8,7 +8,7 @@ Wait 2
 Prompt 'ReturnTest param assignments are ' + drp1 + ',' + drp2 + ',' + param[3]
 Wait 2 
 $doretval = 
-    Do 'ReturnTest'
+    Do 'CerebrumTests/ReturnTest'
 
 Prompt 'Returned from ReturnTest.txt with doretval = ' + doretval
 Wait 1
