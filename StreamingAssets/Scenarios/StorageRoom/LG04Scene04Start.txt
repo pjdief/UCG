@@ -143,6 +143,13 @@ Label 'Scene4_MainLoop'
 	Endif
 
 	If
+		$DoorButton pressed
+	Then
+		$DoorButton reset
+		$Player lookat $DoorView
+	Endif
+
+	If
 		$DoorSingle pressed
 	Then
 		$DoorSingle reset

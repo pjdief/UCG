@@ -67,6 +67,7 @@ $PlayerCOWLook = 'PlayerCOWLook'
 $KidneyDish = 'Cabinet4/Misc2'
 $KidDishOrig = 'Cart1/Misc2'
 $DoorSingle = 'DoorEntry'
+$DoorView = $DoorSingle + '/DoorView'
 $SumCanvas = 'SummaryCanvas/Background'
 $Summary = 'SummaryCanvas/Background/Text'
 $SummaryExit = 'SummaryCanvas/Background/OKButton'
@@ -74,6 +75,8 @@ $Summary = 'SummaryCanvas/Background/Text'
 $SummaryText = SumCanvas + '/TopSummary'
 $SummaryExit = SumCanvas + '/OKButton'
 $SummaryBlack = SumCanvas + '/Black'
+
+$DoorButton = 'DoorCanvas/DoorButton'
 
 $SceneStart = 'StorageRoom/LG04Scene04Start_Male.txt'
 

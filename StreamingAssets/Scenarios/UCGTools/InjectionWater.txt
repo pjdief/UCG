@@ -19,8 +19,6 @@ $Grab = 'grab' + ActiveHand
 $PlayerNurse $Grab $Item 1 'tweeze' 'default' 
 Wait 1
 
-
-
 $InjectionWater localmovey .15 1
 wait .5
 $InjectionWater localmovex -.1 1
@@ -38,7 +36,6 @@ $PouringLiquid align $InjectionWaterOpening 0
 
 
 wait .5
-#turnOn 
 turnOn $WaterSol
 Wait 0
 $WaterSol moveY 0.03 3
