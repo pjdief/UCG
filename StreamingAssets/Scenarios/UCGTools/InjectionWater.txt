@@ -39,7 +39,7 @@ $PouringLiquid align $InjectionWaterOpening 0
 
 wait .5
 #turnOn 
-$WaterSol on
+turnOn $WaterSol
 Wait 0
 $WaterSol moveY 0.03 3
 Wait 3
@@ -51,7 +51,7 @@ Destroy $PouringLiquid
 
 $Release = 'release' + ActiveHand
 $PlayerNurse $Release 1 'tweeze'
-wait 2
+wait 1
 
 Destroy $InjectionWater
 
