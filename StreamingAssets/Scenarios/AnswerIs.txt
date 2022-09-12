@@ -1,0 +1,17 @@
+#AnswerIsNo $Question
+$Question = param[1]
+$Result = param[2]
+
+ZoomSpot Menu.Question $Question
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result $Result
+Then
+	Return true
+Else
+	Return false
+Endif

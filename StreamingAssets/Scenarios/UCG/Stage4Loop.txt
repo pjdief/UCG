@@ -29,6 +29,14 @@ Label 'LoopN1'
 	$UsingTool =
 	  $GlobalVar getGlobal 'UsingTool'
 
+
+	If
+		$HandScrub pressed
+	Then
+		$HandScrub reset
+		Do 'UCGTools/HandScrub.txt'
+	Endif
+
 	If
 		$SumButton pressed
 	Then
@@ -96,13 +104,9 @@ Label 'LoopN1'
 		Player align $CartLook 1
 		$CartObj outline.off
 		$GlobalVar setglobal 'UsingTool' true
-		$ECGCan on
 		Player align $CartLook .5
 		turnOff $SumButton
 		$CartObj clickable false
-		$CartButton off
-		$PatientButton off
-		$ProcedureButton off
 
 		Do 'UCG/UCGCartStage4.txt'
 	Endif
@@ -113,7 +117,25 @@ Label 'LoopN1'
 		$ProcedureButton reset
 		Player align $UrinaryProcPos 1
 	Endif
+	
+	If
+		$RightRail pressed
+	Then
+		$RightRail reset
+		$RightRail clickable false
+		$RightRail localmovey -.4 .5
+		wait .3
+		$RightRail localrotatex 180 0
+		$RightRail outline.off
+	Endif
 
+	If
+		$Curtain pressed
+	Then
+		$Curtain reset
+		turnOff $Curtain
+		turnOn $CurtainClosed
+	Endif
 
 	If
 		$CartObj pressed
@@ -121,7 +143,6 @@ Label 'LoopN1'
 		$CartObj reset
 		$CartObj outline.off
 		$GlobalVar setglobal 'UsingTool' true
-		$ECGCan on
 		Player align $CartLook .5
 		turnOff $SumButton
 		$CartObj clickable false
@@ -209,72 +230,6 @@ Label 'LoopN1'
 		Do 'EndCheck.txt'
 	Endif
 
-#	If
-#		$Patient pressed
-#	Then
-#		$Patient reset
-#		ZoomSpot Menu.Question 'Player hand reach'
-#		ZoomSpot Menu.Choices 'grip','extension','pinch','ring','thumb','tripod','tweeze'
-#		ZoomSpot Menu.on ZoomSpot
-#		WaitFor
-#			ZoomSpot Menu.Done
-#		Wait .1
-#		If
-#			ZoomSpot menu.result 'grip'
-#		Then
-#			$PlayerNurse grabRight $PatientLocator 1  'R_grip' 'vertical'
-#			Wait 5
-#			$PlayerNurse release 1 'R_grip'
-#		Endif
-#
-#		If
-#			ZoomSpot menu.result 'extension'
-#		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'R_extension' 'vertical' 
-#			Wait 3
-#			$PlayerNurse release 1 'R_extension'
-#		Endif
-#
-#		If
-#			ZoomSpot menu.result 'pinch'
-#		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'R_pinch' 'vertical' 
-#			Wait 3
-#			$PlayerNurse release 1 'R_pinch'
-#		Endif
-#
-#		If
-#			ZoomSpot menu.result 'ring'
-#		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'R_ring' 'vertical' 
-#			Wait 3
-#			$PlayerNurse release 1 'R_ring'
-#		Endif
-#
-#		If
-#			ZoomSpot menu.result 'thumb'
-#		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'R_thumb' 'vertical' 
-#			Wait 3
-#			$PlayerNurse release 1 'R_thumb'
-#		Endif
-#
-#		If
-#			ZoomSpot menu.result 'tripod'
-#		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'R_tripod' 'vertical' 
-#			Wait 3
-#			$PlayerNurse release 1 'R_tripod'
-#		Endif
-#
-#		If
-#			ZoomSpot menu.result 'tweeze'
-#		Then
-#			$PlayerNurse grabRight $PatientLocator 1 'R_tweeze' 'vertical' 
-#			Wait 3
-#			$PlayerNurse release 1 'R_tweeze'
-#		Endif
-#	Endif
 
 	If
 		$Vitalsmonitor pressed

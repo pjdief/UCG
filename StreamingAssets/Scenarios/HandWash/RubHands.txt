@@ -80,8 +80,8 @@ If
 Then
     $MainGrabType = 'grabRight.elbowout'
     $OtherGrabType = 'grabLeft.elbowin'
-#    $MainHandShape = 'R_' + MainHandShape
-#    $OtherHandShape = 'L_' + OtherHandShape
+    $MainHandShape = 'R_' + MainHandShape
+    $OtherHandShape = 'L_' + OtherHandShape
     $MainGrabPoint = 'Right' + MainGrabPoint
     $OtherGrabPoint = 'Left' + OtherGrabPoint
     $MainReleaseHand = 'releaseRight'    
@@ -90,8 +90,8 @@ Then
 Else
     $MainGrabType = 'grabLeft.elbowout'
     $OtherGrabType = 'grabRight.elbowin'
-#    $MainHandShape = 'L_' + MainHandShape
-#    $OtherHandShape = 'R_' + OtherHandShape
+    $MainHandShape = 'L_' + MainHandShape
+    $OtherHandShape = 'R_' + OtherHandShape
     $MainGrabPoint = 'Left' + MainGrabPoint
     $OtherGrabPoint = 'Right' + OtherGrabPoint
     $MainReleaseHand = 'releaseLeft'

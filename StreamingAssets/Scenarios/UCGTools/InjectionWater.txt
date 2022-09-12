@@ -25,6 +25,8 @@ $InjectionWater localmovey .15 1
 wait .5
 $InjectionWater localmovex -.1 1
 wait .5
+$InjectionWater localmovez .05 .2
+wait .2
 $InjectionWater localrotatez 135 1
 Wait 1
 
@@ -36,7 +38,8 @@ $PouringLiquid align $InjectionWaterOpening 0
 
 
 wait .5
-turnOn $WaterSol
+#turnOn 
+$WaterSol on
 Wait 0
 $WaterSol moveY 0.03 3
 Wait 3

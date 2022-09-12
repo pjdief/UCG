@@ -1,43 +1,79 @@
 Prompt 'Antiseptic grab' + ActiveHand
-wait 1
+wait .51
 Prompt ''
 
 
-ZoomSpot Menu.Question 'Pour Antiseptic solution?'
-ZoomSpot Menu.Choices 'Yes','No'
-ZoomSpot Menu.on ZoomSpot
-WaitFor
-	ZoomSpot Menu.Done
-Wait .1
 If
-	ZoomSpot menu.result 'No'
+	Do 'AnswerIs'  'Pour Antiseptic solution?' 'No'
 Then
 	Return
 Endif
 
-	$Item = $Antiseptic
-	$Grab = 'grab' + ActiveHand
-	$PlayerNurse $Grab $Item 1 'tweeze' 'default' 
-	Wait 1
 
-	$Antiseptic localmovex .1 1
-	wait .5
-	$Antiseptic localmovey -.12 1
-	wait .5
-	$Antiseptic localrotatex 90 1
-	wait .5
-	$Antiseptic localrotatey 45 1
-	wait 0.5
-	turnOn $AntisepticSol
-	$AntisepticSol moveY 0.03 1
-	wait 1.3
-	$Antiseptic localrotatey -45 .5
-	wait .7
+$Item = $Antiseptic
+$ItemTearSpot = Antiseptic + '/' + OtherHand + 'Rotator'
 
-	$Release = 'release' + ActiveHand
-	$PlayerNurse $Release 1 'tweeze'
-	Wait 1
+$ItemTearSpot localRotateY -120 0
+Wait 0
 
-Destroy $Antiseptic
+#Grab item
+$Grab = 'grab' + ActiveHand + '.elbowout'
+$PlayerNurse $Grab $Item .71 'dip' 'default' 
+Wait 1
+
+#Move closer
+$Item moveto ZoomSpot 1
+Wait 1
+$Item localrotatex 90 0.5
+wait .3
+
+#Grab with other hand
+$Grab = 'grab' + OtherHand + '.elbowout'
+
+#	Prompt 'grab otherhand ' + ItemTearSpot
+$PlayerNurse $Grab $ItemTearSpot .5 'dip' 'default' 
+Wait 1.5
+
+#Tear open
+$ItemTearSpot localRotateY 90 0.3
+Wait .4
+$Release = 'release' + OtherHand
+$PlayerNurse $Release 1 'dip'
+Prompt 'Release other ' + Release
+Wait 1
+
+#Move over container
+$Item moveTo $AntisepticSol 1
+Wait .6
+$Item localrotatey 180 0
+Wait 0
+$Item localmovey 0.05 0
+wait 0
+Prompt 'moved over container' + AntisepticSol
+Wait 1
+
+#Pour
+$Item localrotatez 45 1
+wait 0.5
+#turnOn 
+$AntisepticSol on
+$AntisepticSol localrotatez 1 1
+Wait 0
+
+#Fill up
+$AntisepticSol moveY 0.03 1
+wait 1.3
+
+#Stop pour
+$Item localrotatez -45 .5
+wait .7
+
+#Take item away
+$AntiseItemptic localmovez .2 .5
+Wait 0.5
+$Release = 'release' + ActiveHand
+$PlayerNurse $Release 1 'dip'
+Wait 1
+Destroy $Item
 
 #Endif

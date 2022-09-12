@@ -48,8 +48,13 @@ Then
 		Then
 			$Syringe align $CatheterPort 1
 			wait 1
+			$Syringe localrotatex -90 .1
+			wait .2
+			$Syringe localmovey .06 .1
+			wait .2
 			$Plunger localmovey -.06 2
 			wait 2
+			turnOff $SyringeWater
 		Else
 			$TempCatheter localmovez .02 1
 			wait 1
@@ -57,10 +62,11 @@ Then
 			wait 1
 			$Syringe localrotatex -90 .1
 			wait .2
-			$Syringe localmovey .12 .1
+			$Syringe localmovey .06 .1
 			wait .2
 			$Plunger localmovey -.06 2
 			wait 2
+			turnOff $SyringeWater
 		Endif
 
 		$Syringe moveto $CatheterPos .2

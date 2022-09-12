@@ -8,8 +8,6 @@ Then
 	Return
 Endif
 
-$Plunger = $Syringe + '/Plunger'
-
 ZoomSpot Menu.Question 'Fill Syringe with water?'
 ZoomSpot Menu.Choices 'Yes','No'
 ZoomSpot Menu.on ZoomSpot
@@ -28,9 +26,9 @@ Then
 		WaitFor
 			ZoomSpot Menu.Done
 		Wait .1
-			$Syringe localmovez .06 .5
+			$Syringe localmovez .03 .5
 			wait .5
-			$Syringe localmovey .05 .5
+			$Syringe localmovey .01 .5
 			wait .5
 			$Syringe localmovex -.04 .5
 			wait .5
@@ -40,6 +38,7 @@ Then
 			wait .5
 			$Plunger localmovey .06 2.5
 			wait 3
+			turnOn $SyringeWater
 			turnOff $WaterSol
 
 			$Syringe localrotatex -35 .3

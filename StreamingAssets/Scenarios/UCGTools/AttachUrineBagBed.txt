@@ -25,6 +25,8 @@ Wait 2
 $Player localMoveZ -0.3
 Wait 0.5
 
+Prompt ''
+
 $UrineBag align $UrineBagPos 1
 
 ZoomSpot Menu.Question 'What should you take note of when hanging the urinary bag?'

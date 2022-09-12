@@ -38,6 +38,7 @@ $CurtainClosed = 'CurtainClosed'
 turnOff $CurtainClosed
 
 $ActiveHand = 'Right'
+$OtherHand = 'Left'
 
 $PatientButton = 'ProcedureCanvas/Choices/PatientButton'
 $CartButton = 'ProcedureCanvas/Choices/CartButton'
@@ -47,6 +48,8 @@ $ProcedureButton = 'ProcedureCanvas/Choices/ProcedureButton'
 $Stage4Button = 'ProcedureCanvas/Choices/Stage4Button'
 $EndGameButton = 'ProcedureCanvas/Choices/EndGame'
 turnOff $EndGameButton
+
+#Turn on when not testing
 #turnoff $Stage4Button
 
 

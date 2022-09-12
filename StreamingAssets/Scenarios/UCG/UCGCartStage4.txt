@@ -2,6 +2,12 @@
 #  UCG Cart - Stage 4
 #########################################
 
+$CartButton off
+$PatientButton off
+$ProcedureButton off
+
+$ECGCan on
+
 $HandScrub outline.on
 $Catheter outline.on
 $UrineBag outline.on

@@ -6,6 +6,11 @@
 
 Prompt 'S3RubPalmDorsumFingersInterlaced'
 
+$PlayerNurse play 'GripSize_R' true 1
+$PlayerNurse play 'GripSize_L' true 1
 Do 'HandWash/RubPalmDorsum' 'right'   #$param[1]
 Do 'HandWash/RubPalmDorsum' 'left'   #$param[1]
+$PlayerNurse play 'GripSize_R' true 0.5
+$PlayerNurse play 'GripSize_L' true 0.5
+
 Prompt ''

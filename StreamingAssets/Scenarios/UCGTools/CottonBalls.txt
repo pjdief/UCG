@@ -56,7 +56,8 @@ Then
 	$CottonBall2 setMaterial AntisepticBallMat
 	$CottonBall3 setMaterial AntisepticBallMat
 
-	turnOff $AntisepticSol
+#	turnOff $AntisepticSol
+	$AntisepticSol off
 
 	$Forceps localmovey .04 .4
 	wait .5

@@ -1,0 +1,226 @@
+#########################################
+#  COW Setup INIT
+#########################################
+
+
+If
+	$Stage = 1
+Then
+	$COWObj = 'COW0'
+	$COW = 'COW'
+	#$COWInitPos = 'Positions/COWDefPos'
+	$COWPos = Bed + '/COWPos'
+	Create $COWObj $COW
+	$COW align $COWPos 0
+	$MonitorPos = $COW + '/Computer01'
+	$COWMonitor = 'COWComputer'
+	Create $COWMonitor $COWMonitor
+	Wait 0
+	$COWMonitor align $MonitorPos 0
+	$COWMonitor parentto $MonitorPos
+	
+	Do 'UCG/COWVariables.txt'
+	
+	$COWMonitorLook = $COWMonitor + '/MonitorLook'
+	$COWMonitorExit = $COWMonitor + '/Canvas/Exit'
+	turnOff $COWMonitorExit
+Endif
+
+
+If
+	$Stage = 3
+Then
+	$CartObj = 'Cart'
+	$Cart = 'Cart'
+	$CartPos = Bed + '/COWPos'
+	Create $CartObj $Cart
+	$Cart align $CartPos 0
+	Wait 0
+	$Cart localrotatey -90 0
+
+	wait .3
+
+	$CartLook = $Cart + '/close'
+	$ClothPos = $Cart + '/ClothPos'
+
+	$CartCloth = 'cart_cloth'
+
+
+	$CartPos1 = $Cart + '/Pos01'
+	$CartPos2 = $Cart + '/Pos02'
+	$CartPos3 = $Cart + '/Pos03'
+	$CartPos4 = $Cart + '/Pos04'
+	$CartPos5 = $Cart + '/Pos05'
+	$CartPos6 = $Cart + '/Pos06'
+	$CartPos7 = $Cart + '/Pos07'
+	$CartPos8 = $Cart + '/Pos08'
+	$CartPos9 = $Cart + '/Pos09'
+	$CartPosSanitizer = $Cart + '/SanitizerPos'
+	$CartNursePos = $Cart + '/NurserPos'
+
+
+	$HandScrubObj = 'handScrub'
+	$HandScrub = 'HandScrub'
+
+	$ContinenceSheetObj = 'UCGAssets/Sachet_CatheterizationSet'
+	$ContinenceSheet = 'ContinenceSheet'
+
+	$InjectionWaterObj = 'UCGAssets/Ampoule'
+	$InjectionWater = 'InjectionWater'
+
+	$AntisepticObj = 'Chlorhexidine_gluconate_sachet'
+	$Antiseptic = 'Antiseptic'
+
+	$LubricantObj = 'SalineBottle'
+	$Lubricant = 'Lubricant'
+
+	$CatheterObj = 'UCGAssets/Sachet_CatheterizationSet'
+	$Catheter = 'Catheter'
+
+	$UrineBagObj = 'EmptyUrinaryBag'
+	$UrineBag = 'UrineBag'
+
+	$GlovesObj = 'UCGAssets/Sachet_Gloves'
+	$Gloves = 'Gloves'
+
+	$SyringeObj = 'UCGAssets/Syringe'
+	$Syringe = 'Syringe'
+
+	$TapeObj = 'UCGAssets/Micropore_tape'
+	$Tape = 'Tape'
+
+	$CottonBallsObj = 'UCGAssets/Swab_Ball_Group'
+	$CottonBalls = 'CottonBalls'
+
+	$UCHolderObj = 'UCHolder'
+	$UCHolder = 'UCSet'
+
+
+	Create $CartCloth $CartCloth
+	Wait 0
+	$CartCloth align $ClothPos 0
+
+
+	Create $UCHolderObj $UCHolder
+	Wait 0
+	$UCHolder align $CartPos2 0
+	Wait 0
+	$UCHolder localrotatey 90 0
+
+	$CatheterPos = $UCHolder + '/CatheterPos'
+
+	$AntisepticSol = $UCHolder + '/AntisepticSolution'
+	$WaterSol = $UCHolder + '/InjectionWaterSolution'
+
+	$AntisepticSol moveY -0.03 0
+	turnOff $AntisepticSol
+	#$WaterSol scale 1,0,1 0
+	$WaterSol moveY -0.03 0
+	turnOff $WaterSol
+
+	Create $HandScrubObj $HandScrub
+	Wait 0
+
+#	$HandScrub align $CartPos7 0
+	$HandScrub align $CartPosSanitizer 0
+	Wait 0
+	$HandScrub localRotateY -90 0
+	Wait 0
+	
+	Create $ContinenceSheetObj $ContinenceSheet
+	Wait 0
+	$ContinenceSheet align $CartPos9 0
+
+	Create $InjectionWaterObj $InjectionWater
+	Wait 0
+	$InjectionWater align $CartPos1 0
+	Wait 0
+	$InjectionWater localmovex .06 0
+
+	Create $AntisepticObj $Antiseptic
+	Wait 0
+	$Antiseptic align $CartPos3 0
+	Wait 0
+	$Antiseptic localrotatez 90 0
+
+	Create $LubricantObj $Lubricant
+	Wait 0
+	$Lubricant align $CartPos4 0
+
+	Create $CatheterObj $Catheter
+	Wait 0
+	$Catheter align $CartPos6 0
+
+	Create $UrineBagObj $UrineBag
+	Wait 0
+	$UrineBag align $CartPos8 0
+
+	Create $GlovesObj $Gloves
+	Wait 0
+	$Gloves align $CartPos5 0
+
+	Create $SyringeObj $Syringe
+	Wait 0
+	$Syringe align $CartPos1 0
+	Wait 0
+	$Syringe localrotatez 90 0
+	Wait 0
+	$Syringe localmovey .01 0
+	Wait 0
+	$Syringe localrotatey 90 0
+	Wait 0
+	$Syringe localrotatez -90 0
+	wait .05
+	$Syringe localmovez .02 0
+	wait .05
+
+	Create $TapeObj $Tape
+	Wait 0
+	$Tape align $CartPos7 0
+	Wait 0
+	$Tape localmovex .04 0
+	Wait 0
+	$Tape localmovez .2 0
+	Wait 0
+
+	Create $CottonBallsObj $CottonBalls
+	Wait 0
+	$CottonBalls align $CartPos3 0
+	Wait 0
+	$CottonBalls localmovex -.05 0
+
+$HandScrub clickable false
+$ContinenceSheet clickable false
+$InjectionWater clickable false
+$Antiseptic clickable false
+$Lubricant clickable false
+$Catheter clickable false
+$UrineBag clickable false
+$Gloves clickable false
+$Syringe clickable false
+$Tape clickable false
+$CottonBalls clickable false
+
+$UCSet = 'UCSet'
+$UCGKidneyDish = $UCSet + '/KidneyDish'
+$UCGKidneyDish clickable false
+
+Endif
+
+If
+	$Stage = 4
+Then
+	$DrapePackageObj = 'UCGAssets/Sachet_CatheterizationSet'
+	$DrapePackage = 'DrapePackage'
+
+	Create $DrapePackageObj $DrapePackage
+	Wait 0
+	$DrapePackage align $CartPos6 0
+
+	$CatheterBalloon clickable false
+
+	$UCGKidneyDish clickable true
+	$CatheterBalloon attachto $UCGKidneyDish
+	$Syringe attachto $UCGKidneyDish
+	$CatheterPos attachto $UCGKidneyDish
+Endif

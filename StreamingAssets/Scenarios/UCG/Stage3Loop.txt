@@ -114,6 +114,7 @@ Label 'LoopN1'
 		Prompt ''
 		$LeftHandButton reset
 		$ActiveHand = 'Left'
+		$OtherHand = 'Right'
 	Endif
 
 	If
@@ -124,6 +125,7 @@ Label 'LoopN1'
 		Prompt ''
 		$RightHandButton reset
 		$ActiveHand = 'Right'
+		$OtherHand = 'Left'
 	Endif
 
 	If
@@ -133,12 +135,17 @@ Label 'LoopN1'
 		Player align $CartLook 1
 		$CartObj outline.off
 		$GlobalVar setglobal 'UsingTool' true
-		$ECGCan on
 		turnOff $SumButton
 		$CartObj clickable false
-		$CartButton off
-		$PatientButton off
-		$ProcedureButton off
+
+		$ECGCan on
+		Wait 1
+		/*
+		$PlayerNurse align $CartNursePos 0
+		Wait 0
+		$PlayerNurse localMoveY -0.1 0
+		Wait 0
+		*/
 
 		Do 'UCG/UCGCartStage3.txt'
 	Endif
@@ -176,7 +183,6 @@ Label 'LoopN1'
 		$CartObj reset
 		$CartObj outline.off
 		$GlobalVar setglobal 'UsingTool' true
-		$ECGCan on
 		Player align $CartLook .5
 		turnOff $SumButton
 		$CartObj clickable false

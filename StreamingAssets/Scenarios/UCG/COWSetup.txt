@@ -56,7 +56,7 @@ Then
 	$CartPos8 = $Cart + '/Pos08'
 	$CartPos9 = $Cart + '/Pos09'
 	$CartPosSanitizer = $Cart + '/SanitizerPos'
-
+	$CartNursePos = $Cart + '/NursePos'
 
 	$HandScrubObj = 'handScrub'
 	$HandScrub = 'HandScrub'
@@ -84,6 +84,8 @@ Then
 
 	$SyringeObj = 'UCGAssets/Syringe'
 	$Syringe = 'Syringe'
+	$Plunger = $Syringe + '/Plunger'
+	$SyringeWater = $Syringe + '/Water'
 
 	$TapeObj = 'UCGAssets/Micropore_tape'
 	$Tape = 'Tape'
@@ -112,9 +114,12 @@ Then
 	$WaterSol = $UCHolder + '/InjectionWaterSolution'
 
 	$AntisepticSol moveY -0.03 0
-	turnOff $AntisepticSol
+#	turnOff $AntisepticSol
+	$AntisepticSol off
+
 	#$WaterSol scale 1,0,1 0
 	$WaterSol moveY -0.03 0
+	#$WaterSol off
 	turnOff $WaterSol
 
 	Create $HandScrubObj $HandScrub
@@ -140,7 +145,7 @@ Then
 	Wait 0
 	$Antiseptic align $CartPos3 0
 	Wait 0
-	$Antiseptic localrotatez 90 0
+	$Antiseptic localrotatey 180 0
 
 	Create $LubricantObj $Lubricant
 	Wait 0
@@ -172,6 +177,7 @@ Then
 	wait .05
 	$Syringe localmovez .02 0
 	wait .05
+	turnOff $SyringeWater
 
 	Create $TapeObj $Tape
 	Wait 0

@@ -17,7 +17,6 @@ Else
     $numberOfSquirts = 3
 Endif 
 
-Player lookat $handScrub #0 .25 0.25
 
 $HandSanitizerPos = HandScrub + '/HandPos'
 $HandSanitizerPumpPos = HandScrub + '/PumpHandPos'
@@ -27,7 +26,10 @@ $HandSanitizerNursePos = HandScrub + '/NursePos'
 
 NursePlayer localMoveX 1 0.5
 Wait 0.5
-NursePlayer align $HandSanitizerNursePos
+NursePlayer align $HandSanitizerNursePos 1
+Player lookat $handScrub #0 .25 0.25
+NursePlayer align $HandSanitizerNursePos 1
+Wait 1.5
 
 #Prompt 'AlignChild nurse'
 #Wait 2
@@ -48,10 +50,11 @@ Do 'HandWash/RubHands' $whichHand $HandSanitizerPos 'palm' 'palmup' $motionType 
 
 
 #Move nurse back
+NursePlayer localMoveZ -1 0.3
 NursePlayer localMoveX -1 0.3
+Player align $CartLook 1
 Wait 0.5
 NursePlayer align NursePlayerPos 0.5
 Wait 0.5
 
-Player align $CartLook 1
 Wait 1

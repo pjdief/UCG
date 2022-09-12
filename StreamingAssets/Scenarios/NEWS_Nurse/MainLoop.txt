@@ -318,17 +318,17 @@ Label 'LoopN1'
 	Endif
 
 	If
-		$Pat_Back pressed
-	Then
-		$Pat_Back reset
-		PatInfoCanvas off
-	Endif
-
-	If
 		$Vitalsmonitor pressed
 	Then
 		$Vitalsmonitor reset
 		Do 'ToolTxt/AssessECG.txt'
+	Endif
+
+	If
+		$Pat_Back pressed
+	Then
+		$Pat_Back reset
+		PatInfoCanvas off
 	Endif
 
 	If

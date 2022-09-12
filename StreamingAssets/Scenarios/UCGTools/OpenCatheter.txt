@@ -9,15 +9,86 @@ WaitFor
 	ZoomSpot Menu.Done
 Wait .1
 If
-	ZoomSpot menu.result 'Yes'
+	ZoomSpot menu.result 'No'
 Then
-	
+	Return
+Endif	
+
+
+
 	$CatheterBalloonObj = 'CatheterBalloonCurled'
 	$CatheterBalloon = 'CatheterBalloonCurled'
 	
 	Create $CatheterBalloonObj $CatheterBalloon
 	wait .1
-	$CatheterBalloon align $CatheterPos 0
+#	$CatheterBalloon align $CatheterPos 0
 	$CatheterBalloon outline.on
-	Destroy $Catheter
-Endif
+#	Destroy $Catheter
+
+#	turnOff $CatheterBalloonObj
+
+
+$Item = $Catheter
+$ItemHoldSpot = Catheter + '/' + ActiveHand + 'Rotator'
+$ItemTearSpot = Catheter + '/' + OtherHand + 'Rotator'
+$ItemTearSpot align $ItemHoldSpot 0
+Wait 0
+
+#$ItemTearSpot localRotateY -120 0
+#Wait 0
+
+#Grab item
+$Grab = 'grab' + ActiveHand + '.elbowout'
+$PlayerNurse $Grab $Item 1 'dip' 'default' 
+Wait 1
+
+#Move closer
+$Item moveto ZoomSpot 1
+Wait 1
+$Item localrotatex -90 0.5
+wait .5
+
+#Grab with other hand
+$Grab = 'grab' + OtherHand + '.elbowout'
+
+#	Prompt 'grab otherhand ' + ItemTearSpot
+$PlayerNurse $Grab $ItemTearSpot 1 'dip' 'default' 
+Wait 1
+
+#Tear open
+$ItemTearSpot localRotateY 90 0.3
+$ItemTearSpot localMoveZ .1 0.3
+Wait .4
+$Release = 'release' + OtherHand
+$PlayerNurse $Release 1 'dip'
+Wait 1
+
+#Move over container
+$Item moveTo $CatheterPos 1
+Wait .6
+$Item movey 0.1 0.4
+wait 1
+
+#Pour
+$Item localrotateX 45 1
+wait 0.5
+
+$CatheterBalloon align $Item 0  #move to pouch
+Wait 0
+
+$CatheterBalloon align $CatheterPos 0.4   #have it fall out
+Wait 2
+
+
+#Stop pour
+$Item localrotateX -45 .5
+wait .7
+
+#Take item away
+$Item localmovez .2 .5
+Wait 0.5
+$Release = 'release' + ActiveHand
+$PlayerNurse $Release 1 'dip'
+Wait 1
+Destroy $Item
+

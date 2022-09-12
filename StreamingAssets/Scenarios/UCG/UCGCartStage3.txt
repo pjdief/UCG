@@ -2,6 +2,12 @@
 #  UCG Cart - Stage 3
 #########################################
 
+$CartButton off
+$PatientButton off
+$ProcedureButton off
+
+$ECGCan on
+
 $ContinenceSheet outline.on
 $InjectionWater outline.on
 $Antiseptic outline.on
@@ -120,18 +126,23 @@ label 'CartLoop'
 
 				$TempCatheter localmovey .2 1
 				wait 1
-				$TempCatheter localmovez .1 1
+				$TempCatheter localmovez .08 1
+				wait 1
+				$TempCatheter localmovex .06 1
 				wait 1
 				$Syringe align $CatheterPort 1
 				wait 1
 				$Syringe localrotatex -90 .1
 				wait .2
-				$Syringe localmovey .12 .1
+				$Syringe localmovey .06 .1
 				wait .2
 				$Plunger localmovey -.06 2
+				turnOff $SyringeWater
 				$TempCatheter play Grow true
 				wait 4
 				$Plunger localmovey .06 2
+				wait 2
+				turnOn $SyringeWater
 				$TempCatheter play Grow false
 				wait 2
 				$TempCatheter moveto $CatheterPos 1
