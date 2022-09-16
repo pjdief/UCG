@@ -1,0 +1,17 @@
+#'GrabAndOpenPackage' $Item - grab and open the item
+# $Package = param[0] 
+# - Requires ActiveHand, OtherHand
+
+
+If
+    $param[0] > 0
+Then
+    $Package = param[1]
+Endif
+
+Prompt 'GrabAndOpenPackage' + Package
+wait 2.51
+Prompt ''
+
+Do 'UCGActions/GrabPackage' $Package
+Do 'UCGActions/OpenPackage' $Package

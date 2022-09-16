@@ -1,0 +1,104 @@
+#CleanGenitalia.txt
+#Do 'CleanGenitalia' ['right'|'left']
+
+Prompt 'CleanGenitalia'
+Wait 2
+
+If
+    $param[0] > 0
+Then
+    $whichHand = param[1]
+    $SideDistance = param[2]
+    $numberOfWipes = param[3]
+Else
+    Prompt 'CleanGenitalia: No params:' + param[1]
+Endif 
+
+
+####################
+# Create Forcepts and cottonball
+####################
+
+$Forceps = 'Forceps_Straight_IK'
+$ForcepsHandle = $Forceps + '/IKGrab'
+
+Create $Forceps $Forceps
+
+$SingleCottonBall = 'Swab_Ball_Pinched'
+Create $SingleCottonBall $SingleCottonBall
+$SingleCottonBall setMaterial AntisepticBallMat
+wait 0 #.1
+$SingleCottonBall align $Forceps 0
+wait 0 #.1
+$SingleCottonBall localmovez .02 0
+wait 0
+$SingleCottonBall localmovex .02 0
+$SingleCottonBall attachto $Forceps
+
+####################
+# Grab forceps
+####################
+
+#Prompt 'Grab forceps with ' + whichHand
+#Wait 1
+If
+    $ ( whichHand == 'right' )
+Then
+    $PlayerNurse grabRight.elbowout $ForcepsHandle .1 'R_grip' 'horizontal' 
+    $otherHand = 'left'
+Else
+    $PlayerNurse grabLeft.elbowout $ForcepsHandle .1  'L_grip' 'horizontal'
+    $otherHand = 'right'
+Endif
+Wait .1
+
+####################
+# Align forceps
+####################
+
+#$PatientGenitals = Patient + '/Genitals'
+
+
+
+#######################
+# Spread Labia or Grab Penis
+#######################
+
+If
+    $PatientGender = 'Female'
+Then
+    Do 'UCGActions/SpreadLabia' $otherHand
+    $CleanGenitals = 'UCGActions/CleanLabia'
+Else
+    Do 'UCGActions/GrabPenis' $otherHand
+    $CleanGenitals = 'UCGActions/CleanPenis'
+Endif
+
+
+$count= 0
+label 'wipesloop'
+    Do $CleanGenitals $SideDistance
+
+    $count = count + 1
+    If  
+        $count < numberOfWipes
+    Then
+        Goto 'wipesloop'
+    Endif
+#endlabel
+
+#######################
+# Release hands and destroy forceps
+#######################
+
+
+#right hand
+$PlayerNurse release 1 'R_grip'
+$PlayerNurse release 1 'L_tweeze'
+#left hand
+$PlayerNurse release 1 'L_grip'
+$PlayerNurse release 1 'R_tweeze'
+
+Prompt ''
+wait 2
+Destroy $Forceps

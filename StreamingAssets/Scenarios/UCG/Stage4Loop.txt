@@ -6,7 +6,7 @@ $Vitalsmonitor outline.on
 #Prompt 'Playerstart = ' + PlayerStart
 $PatientLocator = $Patient + '/Locator'
 Do 'UCG/COWSetup.txt'
-Wait .51
+#Wait .51
 
 If
 	$PatientInPosition = 'true'
@@ -19,7 +19,7 @@ Do 'SummaryCheck.txt'
 If
 	$PatientInPosition = 'false'
 Then
-	Do 'UCGTools/PositionPatient.txt'
+	Do 'UCGActions/PositionPatient.txt'
 Endif
 
 $GlobalVar setglobal 'UsingTool' false
@@ -34,7 +34,7 @@ Label 'LoopN1'
 		$HandScrub pressed
 	Then
 		$HandScrub reset
-		Do 'UCGTools/HandScrub.txt'
+		Do 'UCGActions/HandScrub.txt'
 	Endif
 
 	If
@@ -204,9 +204,9 @@ Label 'LoopN1'
 		If
 			$PatientGender = 'Male'
 		Then
-			Do 'UCGTools/InsertMaleCatheter.txt'
+			Do 'UCGActions/InsertMaleCatheter.txt'
 		Else
-			Do 'UCGTools/InsertFemaleCatheter.txt'
+			Do 'UCGActions/InsertFemaleCatheter.txt'
 		Endif
 	Endif
 
@@ -214,7 +214,7 @@ Label 'LoopN1'
 		$UrineBag pressed
 	Then
 		$UrineBag reset
-		Do 'UCGTools/AttachUrineBagCatheter.txt'
+		Do 'UCGActions/AttachUrineBagCatheter.txt'
 	Endif
 
 	If

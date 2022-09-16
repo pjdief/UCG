@@ -1,6 +1,6 @@
 #StandardHandHygiene.txt - standard 7-step hand hygiene
 Prompt 'StandardHandHygiene'
-Do 'Setup/NursePlayer'
+#Do 'Setup/NursePlayer'
 
 
 Do 'HandWash/H0SquirtHandrubInPalm.txt'

@@ -1,0 +1,26 @@
+Prompt 'Drape'
+wait 1
+Prompt ''
+
+ZoomSpot Menu.Question 'Drape sheet over patient?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result 'Yes'
+Then
+
+$DrapePos = $Bed + '/DrapePos'
+
+Destroy $DrapePackage
+
+$DrapeObj = 'drape_exam'
+$Drape = 'Drape'
+
+Create $DrapeObj $Drape
+wait .1
+$Drape align $DrapePos 0
+
+Endif

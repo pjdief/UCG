@@ -34,6 +34,7 @@ label 'CartLoop'
 		Prompt ''
 		$LeftHandButton reset
 		$ActiveHand = 'Left'
+		$OtherHand = 'Right'
 	Endif
 
 	If
@@ -44,6 +45,7 @@ label 'CartLoop'
 		Prompt ''
 		$RightHandButton reset
 		$ActiveHand = 'Right'
+		$OtherHand = 'Left'
 	Endif
 
 	If
@@ -58,14 +60,14 @@ label 'CartLoop'
 		$HandScrub pressed
 	Then
 		$HandScrub reset
-		Do 'UCGTools/HandScrub.txt'
+		Do 'UCGActions/HandScrub.txt'
 	Endif
 
 	If
 		$DrapePackage pressed
 	Then
 		$DrapePackage reset
-		Do 'UCGTools/Drape.txt'
+		Do 'UCGActions/Drape.txt'
 	Endif
 
 	If
@@ -96,14 +98,21 @@ label 'CartLoop'
 		$UrineBag pressed
 	Then
 		$UrineBag reset
-		Do 'UCGTools/AttachUrineBagBed.txt'
+		Do 'UCGActions/AttachUrineBagBed.txt'
 	Endif
 
 	If
 		$Tape pressed
 	Then
 		$Tape reset
-		Do 'UCGTools/Tape.txt'
+		Do 'UCGActions/DetachTape.txt'
+	Endif
+
+	If
+		$DetachedTape pressed
+	Then
+		$Tape reset
+		Do 'UCGActions/TapeCatheter.txt'
 	Endif
 
 	If
@@ -130,7 +139,7 @@ Then
 #			Wait 1
 
 
-			Do 'UCGTools/CleanGenitalia' $whichHand 0.03 1
+			Do 'UCGActions/CleanGenitalia' $whichHand 0.03 1
 
 			Player align $CartLook 1
 		Endif
@@ -145,7 +154,7 @@ Then
 #			Wait 1
 
 			#$whichHand = 'right' 
-			Do 'UCGTools/CleanGenitalia' $whichHand 0.01 3
+			Do 'UCGActions/CleanGenitalia' $whichHand 0.01 3
 
 			Player align $CartLook 1
 		Endif
@@ -163,7 +172,7 @@ Else
 #	Player lookAt $PatientGenitals -0.05 0.2 .05 1
 #	Wait 1
 
-	Do 'UCGTools/CleanGenitalia' $whichHand 0.05 3
+	Do 'UCGActions/CleanGenitalia' $whichHand 0.05 3
 Endif
 
 
@@ -174,7 +183,7 @@ Endif
 		$BackECG pressed
 	Then
 		$BackECG reset
-		Do 'UCGTools/ExitCart.txt'
+		Do 'UCGActions/ExitCart.txt'
 		Return
 	Endif
 

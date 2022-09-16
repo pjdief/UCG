@@ -1,0 +1,40 @@
+# 'ThrowAwayPackage' $Package
+#Prompt 'ThrowAwayPackage '
+#Wait 1
+
+If
+	$param[0] > 0
+Then
+	$Package = param[1]
+Endif
+
+
+#Take package away
+$Package localmovey .05 .5
+Wait 0.5
+
+#have Package move with player
+
+$PlayerHandName = 'Nurse' + ActiveHand + 'Hand'
+$PlayerHand =$ PlayerHandName
+
+#Prompt 'PlayerHand1 = ' + PlayerHand
+#Wait 3
+
+$Package constrainTo $PlayerHand
+Wait 0
+
+#back player up
+$Player localMoveZ -0.1 0.5
+
+$Release = 'release' + ActiveHand
+$PlayerNurse $Release 1 'dip'
+
+Wait 0.8
+
+#have Package move freely (with hand attached)
+$Package releaseConstraint 
+
+Wait 0.5
+Destroy $Package
+

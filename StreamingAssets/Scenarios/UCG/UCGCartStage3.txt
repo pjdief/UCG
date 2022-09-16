@@ -2,15 +2,17 @@
 #  UCG Cart - Stage 3
 #########################################
 
-$CartButton off
-$PatientButton off
+#$CartButton off
+#$PatientButton off
 $ProcedureButton off
+$Cart2Button on
 
-$ECGCan on
+#$ECGCan on
 
 $ContinenceSheet outline.on
 $InjectionWater outline.on
 $Antiseptic outline.on
+$LubricantPackage outline.on
 $Lubricant outline.on
 $Catheter outline.on
 $UrineBag outline.on
@@ -23,6 +25,7 @@ $ContinenceSheet clickable true
 $InjectionWater clickable true
 $Antiseptic clickable true
 $Lubricant clickable true
+$LubricantPackage clickable true
 $Catheter clickable true
 $UrineBag clickable true
 $Gloves clickable true
@@ -36,6 +39,34 @@ $Patient outline.off
 label 'CartLoop'
 
 	If
+		$Cart pressed
+	Then
+		$Cart reset
+		Player align $CartLook 0.5
+	Endif
+
+	If
+		$CartButton pressed
+	Then
+		$CartButton reset
+		Player align $CartLook 0.5
+	Endif
+
+	If
+		$Cart2 pressed
+	Then
+		$Cart2 reset
+		Player align $CartLook1 0.5
+	Endif
+
+	If
+		$Cart2Button pressed
+	Then
+		$Cart2Button reset
+		Player align $CartLook1 0.5
+	Endif
+
+	If
 		$LeftHandButton pressed
 	Then
 		Prompt 'Left Hand is Active'
@@ -43,6 +74,7 @@ label 'CartLoop'
 		Prompt ''
 		$LeftHandButton reset
 		$ActiveHand = 'Left'
+		$OtherHand = 'Right'
 	Endif
 
 	If
@@ -53,48 +85,56 @@ label 'CartLoop'
 		Prompt ''
 		$RightHandButton reset
 		$ActiveHand = 'Right'
+		$OtherHand = 'Left'
 	Endif
 
 	If
 		$HandScrub pressed
 	Then
 		$HandScrub reset
-		Do 'UCGTools/HandScrub.txt'
+		Do 'UCGActions/HandScrub.txt'
 	Endif
 
 	If
 		$ContinenceSheet pressed
 	Then
 		$ContinenceSheet reset
-		Do 'UCGTools/ContinenceSheet.txt'
+		Do 'UCGActions/ContinenceSheet.txt'
 	Endif
 
 	If
 		$InjectionWater pressed
 	Then
 		$InjectionWater reset
-		Do 'UCGTools/InjectionWater.txt'
+		Do 'UCGActions/InjectionWater.txt'
 	Endif
 
 	If
 		$Antiseptic pressed
 	Then
 		$Antiseptic reset
-		Do 'UCGTools/Antiseptic.txt'
+		Do 'UCGActions/Antiseptic.txt'
 	Endif
 
 	If
 		$Lubricant pressed
 	Then
 		$Lubricant reset
-		Do 'UCGTools/Lubricant.txt'
+		Do 'UCGActions/Lubricant.txt'
+	Endif
+
+	If
+		$LubricantPackage pressed
+	Then
+		$LubricantPackage reset
+		Do 'UCGActions/OpenLubricant.txt'
 	Endif
 
 	If
 		$Catheter pressed
 	Then
 		$Catheter reset
-		Do 'UCGTools/OpenCatheter.txt'
+		Do 'UCGActions/OpenCatheter.txt'
 	Endif
 
 	If
@@ -166,42 +206,50 @@ label 'CartLoop'
 		$UrineBag pressed
 	Then
 		$UrineBag reset
-		Do 'UCGTools/AttachUrineBagBed.txt'
+		Do 'UCGActions/AttachUrineBagBed.txt'
 	Endif
 
 	If
 		$Gloves pressed
 	Then
 		$Gloves reset
-		Do 'UCGTools/Gloves.txt'
+		Do 'UCGActions/Gloves.txt'
 	Endif
 
 	If
 		$Syringe pressed
 	Then
 		$Syringe reset
-		Do 'UCGTools/Syringe.txt'
+		Do 'UCGActions/Syringe.txt'
 	Endif
 
 	If
 		$Tape pressed
 	Then
 		$Tape reset
-		Do 'UCGTools/Tape.txt'
+		Do 'UCGActions/DetachTape.txt'
 	Endif
+
+	If
+		$DetachedTape pressed
+	Then
+		$DetachedTape reset
+		Do 'UCGActions/TapeCatheter.txt'
+	Endif
+
 
 	If
 		$CottonBalls pressed
 	Then
 		$CottonBalls reset
-		Do 'UCGTools/CottonBalls.txt'
+		Do 'UCGActions/CottonBalls.txt'
 	Endif
 
 	If
-		$BackECG pressed
+		$PatientButton pressed
 	Then
-		$BackECG reset
-		Do 'UCGTools/ExitCart.txt'
+		$PatientButton reset
+		Do 'UCGActions/ExitCart.txt'
 		Return
 	Endif
 

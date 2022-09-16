@@ -1,0 +1,41 @@
+# 'OpenLubricant'
+Prompt 'OpenLubricant'
+wait .51
+Prompt ''
+
+If
+	Do 'AnswerIs' 'Open Lubricant?' 'No'
+Then
+	Return
+Endif
+
+$LubricantObj = 'LubricantBottle'
+$Lubricant = 'Lubricant'
+
+
+
+#setup variables for function calls
+$Item = LubricantPackage
+$ItemObj = $LubricantBottle
+$ItemPos = CartPos4
+$Lubricant = ItemObj + 'Instance'  #DropFromPackage adds Instance to name
+
+
+
+#Grab item, and tear package open.
+Do 'UCGActions/GrabAndOpenPackage' $Item
+
+#pour package
+Do 'UCGActions/PourPackage' $Item $ItemPos 0.15
+
+#drop object from package
+Do 'UCGActions/DropFromPackage' $Item $ItemObj $ItemPos
+
+Wait 2
+
+#Stop pour
+Do 'UCGActions/StopPackagePour' $Item 
+
+#Throw away package
+Do 'UCGActions/ThrowAwayPackage' $Item 
+

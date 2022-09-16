@@ -1,0 +1,36 @@
+Prompt 'Urine Bag'
+wait .5
+Prompt ''
+If
+	$CatheterInserted = 'true'
+Then
+	ZoomSpot Menu.Question 'Connect Catheter to Urine Bag?'
+	ZoomSpot Menu.Choices 'Yes','No'
+	ZoomSpot Menu.on ZoomSpot
+	WaitFor
+		ZoomSpot Menu.Done
+	Wait .1
+	If
+		ZoomSpot menu.result 'Yes'
+	Then
+		$UrineBag clickable false
+		$UrineBag outline.off
+
+		$UCGKidneyDish align $CartPos6 1
+		wait 1
+
+		$IVLine = 'UCIVLine'
+		Create $IVLine $IVLine
+		$IVLine moveto $UrineBagPos 0
+		wait 0
+		Destroy $PouringLiquid
+
+		turnOn $EndGameButton
+		$Patient clickable true
+		$Patient outline.on
+
+		$Urine = $UrineBag + '/Urine
+		
+		turnOn $Urine
+	Endif
+Endif

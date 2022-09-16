@@ -1,0 +1,56 @@
+Prompt 'Syringe'
+wait 1
+Prompt ''
+
+If
+	$SyringeFull = true
+Then
+	Return
+Endif
+
+ZoomSpot Menu.Question 'Fill Syringe with water?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result 'Yes'
+Then
+	If
+		$WaterSol isOn
+	Then
+		ZoomSpot Menu.Question 'How many mls would you like to draw?'
+		ZoomSpot Menu.Choices '5ml','10ml','20ml'
+		ZoomSpot Menu.on ZoomSpot
+		WaitFor
+			ZoomSpot Menu.Done
+		Wait .1
+			$Syringe localmovez .03 .5
+			wait .5
+			$Syringe localmovey .01 .5
+			wait .5
+			$Syringe localmovex -.04 .5
+			wait .5
+			$Syringe localrotatez -35 .5
+			wait .5
+			$Syringe localrotatex 35 .5
+			wait .5
+			$Plunger localmovey .06 2.5
+			wait 3
+			turnOn $SyringeWater
+			turnOff $WaterSol
+
+			$Syringe localrotatex -35 .3
+			wait .4
+			$Syringe localrotatez 125 .3
+			wait .4
+			$Syringe moveto $CatheterPos 1
+			wait 1
+			$SyringeFull = true
+	Else
+		Prompt 'Needs injection water'
+		wait 2
+		Prompt ''
+	Endif
+Endif

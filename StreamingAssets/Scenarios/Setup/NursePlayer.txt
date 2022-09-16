@@ -41,7 +41,7 @@ $NurseLeftHandDorsum attachTo $NurseLeftHand
 Wait 0
 $NurseLeftHandDorsum localMoveY 0.03 0
 Wait 0
-$NurseLeftHandDorsum localMoveZ 0.08 0
+$NurseLeftHandDorsum localMoveZ 0.05 0
 Wait 0
 
 $NurseLeftHandPalm = 'NurseLeftHandPalm'
@@ -65,7 +65,7 @@ $NurseLeftForearmP1 moveforward -0.15 0
 Wait 0
 $NurseLeftForearmP1 localRotateZ 180 0
 Wait 0
-$NurseLeftForearmP1 moveup 0.06 0
+$NurseLeftForearmP1 moveup 0.08 0
 Wait 0
 $NurseLeftForearmP1 attachTo $NurseLeftForearm
 
@@ -146,7 +146,7 @@ $NurseRightHandDorsum attachTo $NurseRightHand
 Wait 0
 $NurseRightHandDorsum localMoveY 0.03 0
 Wait 0
-$NurseRightHandDorsum localMoveZ 0.08 0
+$NurseRightHandDorsum localMoveZ 0.05 0
 Wait 0
 
 $NurseRightHandPalm = 'NurseRightHandPalm'
@@ -170,7 +170,7 @@ $NurseRightForearmP1 moveforward -0.1 0
 Wait 0
 $NurseRightForearmP1 localRotateZ 180 0
 Wait 0
-$NurseRightForearmP1 moveup 0.06 0  #other side of arm
+$NurseRightForearmP1 moveup 0.08 0  #other side of arm
 Wait 0
 $NurseRightForearmP1 attachTo $NurseRightForearm
 

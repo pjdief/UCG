@@ -37,11 +37,11 @@ If
 Then
     Prompt 'About to SpreadLabia' 
     Wait 2
-    Do 'UCGTools/SpreadLabia' 'left'
+    Do 'UCGActions/SpreadLabia' 'left'
 Else
     Prompt 'About to GrabPenis' 
     Wait 2
-    Do 'UCGTools/GrabPenis' 'left'
+    Do 'UCGActions/GrabPenis' 'left'
 Endif
 
 /*

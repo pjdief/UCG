@@ -1,0 +1,41 @@
+#CleanPenis.txt
+#Do 'CleanPenis'  [SideDistance]
+
+
+If
+    $param[0] > 0
+Then
+    $SideDistance = param[1]        #Distance from center (inner vs. outer)
+    Prompt 'Has Param:' + param[1]
+Else
+    Prompt 'No param:' + param[1]
+Endif 
+
+Prompt 'CleanPenis ' + SideDistance
+#Wait 2
+
+#Prompt 'Rotate forceps with ' + PatientGenitals
+#Wait 2
+#Prompt 'Aligning forceps with ' + PatientGenitals
+
+$Forceps align $PatientGenitals 0.5
+Wait 0.5
+#Prompt 'Rotating forceps with ' + PatientGenitals
+$Forceps localRotateX 70 0.5
+Wait 0.5
+#$Forceps localRotateY 20 0.1
+
+
+#Clean the genitals by wiping each side up-to-down
+#clean penis
+#Prompt 'Circle penis'
+#wait 1
+$Forceps movecirclez $SideDistance 2
+wait 2
+
+Prompt ''
+#Wait 1
+
+$Forceps moveY 0.5 0.5
+Wait 0.5
+

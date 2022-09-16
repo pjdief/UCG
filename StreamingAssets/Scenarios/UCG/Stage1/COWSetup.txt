@@ -40,8 +40,10 @@ Then
 
 	wait .3
 
+
 	$CartLook = $Cart + '/close'
 	$ClothPos = $Cart + '/ClothPos'
+
 
 	$CartCloth = 'cart_cloth'
 

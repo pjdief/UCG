@@ -4,6 +4,7 @@
 # Setup Stage Number
 ###########################################
 
+
 $Stage = '3'
 $GlobalVar setglobal 'Stage' $Stage
 $StageFolderPrefix = 'UCG/Stage' + Stage + '/'
@@ -42,12 +43,14 @@ $OtherHand = 'Left'
 
 $PatientButton = 'ProcedureCanvas/Choices/PatientButton'
 $CartButton = 'ProcedureCanvas/Choices/CartButton'
+$Cart2Button = 'ProcedureCanvas/Choices/Cart2Button'
 $LeftHandButton = 'ProcedureCanvas/Choices/LeftHandButton'
 $RightHandButton = 'ProcedureCanvas/Choices/RightHandButton'
 $ProcedureButton = 'ProcedureCanvas/Choices/ProcedureButton'
 $Stage4Button = 'ProcedureCanvas/Choices/Stage4Button'
 $EndGameButton = 'ProcedureCanvas/Choices/EndGame'
 turnOff $EndGameButton
+$Cart2Button off
 
 #Turn on when not testing
 #turnoff $Stage4Button
@@ -208,5 +211,6 @@ $Patient outline.on
 
 $SceneStart = 'UCG/Stage3Loop.txt'
 
+Do 'Setup/NursePlayer'
 
 Do $SceneStart

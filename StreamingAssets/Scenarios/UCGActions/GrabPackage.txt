@@ -1,0 +1,45 @@
+#'GrabPackage' $Package - grab and open the Package
+# $Package = param[0] 
+# - Requires ActiveHand, OtherHand
+
+#Prompt 'GrabPackage' $Package
+#wait .51
+#Prompt ''
+
+If
+    $param[0] > 0
+Then
+    $Package = param[1]
+Endif
+
+#move player closer for grab
+$Player localMoveZ 0.15 0.5
+
+$ItemHoldSpot = Package + '/' + ActiveHand + 'Rotator'
+#$ItemTearSpot = Package + '/' + OtherHand + 'Rotator'
+#$ItemTearSpot align $ItemHoldSpot 0
+Wait 0
+
+#Grab Package
+$Grab = 'grab' + ActiveHand + '.elbowout'
+$PlayerNurse $Grab $ItemHoldSpot 0.5 'dip' 'default' 
+Wait 0.6
+
+#Move Package closer
+$Package moveto ZoomSpot 1
+Wait 1
+$Package localrotatex -70 0.5
+wait .3
+
+#have Package move with player
+$Package constrainTo $Player
+Wait 0
+
+#Move player a bit closer for pouring
+$Player align $CartLook 1
+Wait 1.1
+$Player localMoveZ 0.1 0.6  
+Wait 0.5
+
+#have Package move freely (with hand attached)
+$Package releaseConstraint  #$Player

@@ -24,23 +24,38 @@ Then
 	$COWMonitorLook = $COWMonitor + '/MonitorLook'
 	$COWMonitorExit = $COWMonitor + '/Canvas/Exit'
 	turnOff $COWMonitorExit
+	$ActiveCart = 0
 Endif
 
 
 If
 	$Stage = 3
 Then
-	$CartObj = 'Cart'
+	$CartObj = 'CartBackward'
+	$Cart1Obj = 'Cart'
 	$Cart = 'Cart'
+	$Cart1 = 'Cart1'
 	$CartPos = Bed + '/COWPos'
+
 	Create $CartObj $Cart
 	$Cart align $CartPos 0
+
+	Create $Cart1Obj $Cart1
+	$Cart1 align $CartPos 0
 	Wait 0
-	$Cart localrotatey -90 0
+	$Cart localrotatey 90 0
+	$Cart1 localrotatey 180 0
+	Wait 0
+	$Cart1 localmovex 0.6 0
+	Wait 0
+	$Cart1 localmovez 0.6 0
 
 	wait .3
 
 	$CartLook = $Cart + '/close'
+	$CartLook1 = $Cart1 + '/close'
+	$Cart2Look = $Cart1 + '/close'
+
 	$ClothPos = $Cart + '/ClothPos'
 
 	$CartCloth = 'cart_cloth'
@@ -58,6 +73,16 @@ Then
 	$CartPosSanitizer = $Cart + '/SanitizerPos'
 	$CartNursePos = $Cart + '/NursePos'
 
+	$Cart1Pos1 = $Cart1 + '/Pos01'
+	$Cart1Pos2 = $Cart1 + '/Pos02'
+	$Cart1Pos3 = $Cart1 + '/Pos03'
+	$Cart1Pos4 = $Cart1 + '/Pos04'
+	$Cart1Pos5 = $Cart1 + '/Pos05'
+	$Cart1Pos6 = $Cart1 + '/Pos06'
+	$Cart1Pos7 = $Cart1 + '/Pos07'
+	$Cart1Pos8 = $Cart1 + '/Pos08'
+	$Cart1Pos9 = $Cart1 + '/Pos09'
+
 	$HandScrubObj = 'handScrub'
 	$HandScrub = 'HandScrub'
 
@@ -70,8 +95,10 @@ Then
 	$AntisepticObj = 'Chlorhexidine_gluconate_sachet'
 	$Antiseptic = 'Antiseptic'
 
-	$LubricantObj = 'SalineBottle'
+	$LubricantObj = 'LubricantBottle'
 	$Lubricant = 'Lubricant'
+	$LubricantPackageObj = 'LubricantPackage'
+	$LubricantPackage = 'LubricantPackage'
 
 	$CatheterObj = 'UCGAssets/Sachet_CatheterizationSet'
 	$Catheter = 'Catheter'
@@ -99,12 +126,23 @@ Then
 
 
 	Create $CartCloth $CartCloth
+	Create $UCHolderObj $UCHolder
+	Create $HandScrubObj $HandScrub
+	Create $ContinenceSheetObj $ContinenceSheet
+	Create $InjectionWaterObj $InjectionWater
+	Create $AntisepticObj $Antiseptic
+	Create $CatheterObj $Catheter
+	Create $UrineBagObj $UrineBag
+	Create $GlovesObj $Gloves
+	Create $SyringeObj $Syringe
+	Create $TapeObj $Tape
+	Create $CottonBallsObj $CottonBalls
+
 	Wait 0
 	$CartCloth align $ClothPos 0
 
 
-	Create $UCHolderObj $UCHolder
-	Wait 0
+#	Wait 0
 	$UCHolder align $CartPos2 0
 	Wait 0
 	$UCHolder localrotatey 90 0
@@ -123,49 +161,59 @@ Then
 	#$WaterSol off
 	turnOff $WaterSol
 
-	Create $HandScrubObj $HandScrub
-	Wait 0
+#	Wait 0
 
 #	$HandScrub align $CartPos7 0
 	$HandScrub align $CartPosSanitizer 0
 	Wait 0
 	$HandScrub localRotateY -90 0
-	Wait 0
+#	Wait 0
 	
-	Create $ContinenceSheetObj $ContinenceSheet
-	Wait 0
+#	Wait 0
 	$ContinenceSheet align $CartPos9 0
 
-	Create $InjectionWaterObj $InjectionWater
 	Wait 0
 	$InjectionWater align $CartPos1 0
 	Wait 0
 	$InjectionWater localmovex .06 0
 
-	Create $AntisepticObj $Antiseptic
 	Wait 0
-	$Antiseptic align $CartPos3 0
+	$Antiseptic align $Cart1Pos3 0
 	Wait 0
-	$Antiseptic localrotatey 180 0
+#	$Antiseptic localrotatey 180 0
+#	Wait 0
+#	$Antiseptic localrotatex 180 0
 
+
+	Create $LubricantPackageObj $LubricantPackage
+	Wait 0
+	$LubricantPackage align $Cart1Pos1 0
+	Wait 0
+/*
 	Create $LubricantObj $Lubricant
 	Wait 0
 	$Lubricant align $CartPos4 0
-
-	Create $CatheterObj $Catheter
 	Wait 0
-	$Catheter align $CartPos6 0
-
-	Create $UrineBagObj $UrineBag
+*/
+	$Catheter align $Cart1Pos5 0
 	Wait 0
+#	$Catheter localRotateY 180 0	
+#	Wait 0
+#	$Catheter localrotatex 180 0
+#	Wait 0
+
+#	Wait 0
 	$UrineBag align $CartPos8 0
-
-	Create $GlovesObj $Gloves
 	Wait 0
+	$UrineBag localmovex -.01 0
+	Wait 0
+	$UrineBag localmovey .03 0
+	Wait 0
+
+#	Wait 0
 	$Gloves align $CartPos5 0
 
-	Create $SyringeObj $Syringe
-	Wait 0
+#	Wait 0
 	$Syringe align $CartPos1 0
 	Wait 0
 	$Syringe localrotatez 90 0
@@ -175,25 +223,20 @@ Then
 	$Syringe localrotatey 90 0
 	Wait 0
 	$Syringe localrotatez -90 0
-	wait .05
+	wait .0
 	$Syringe localmovez .02 0
-	wait .05
+	wait .0
 	turnOff $SyringeWater
 
-	Create $TapeObj $Tape
-	Wait 0
-	$Tape align $CartPos7 0
-	Wait 0
-	$Tape localmovex .04 0
-	Wait 0
-	$Tape localmovez .2 0
+#	Wait 0
+	$Tape align $Cart1Pos2 0
 	Wait 0
 
-	Create $CottonBallsObj $CottonBalls
+
+#	Wait 0
+	$CottonBalls align $UCHolder 0
 	Wait 0
-	$CottonBalls align $CartPos3 0
-	Wait 0
-	$CottonBalls localmovex -.05 0
+	$CottonBalls localmovex .01 0
 
 $HandScrub clickable false
 $ContinenceSheet clickable false
@@ -221,7 +264,7 @@ Then
 
 	Create $DrapePackageObj $DrapePackage
 	Wait 0
-	$DrapePackage align $CartPos6 0
+	$DrapePackage align $Cart1Pos2 0
 
 	$CatheterBalloon clickable false
 

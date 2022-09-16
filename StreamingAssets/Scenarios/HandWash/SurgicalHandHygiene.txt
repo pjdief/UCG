@@ -1,6 +1,6 @@
 #SurgicalHandHygiene.txt - 12 steps of surgical hand hygiene
 Prompt 'SurgicalHandHygiene'
-Do 'Setup/NursePlayer'
+#Do 'Setup/NursePlayer'
 
 Do 'HandWash/S1SquirtHandrubInPalm.txt'
 Do 'HandWash/S2RubPalms.txt'

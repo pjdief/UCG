@@ -4,7 +4,7 @@ $Patient outline.on
 $Cart outline.on
 $Vitalsmonitor outline.on
 #Prompt 'Playerstart = ' + PlayerStart
-Wait .51
+#Wait .51
 
 $BackECG = 'ECGCheckCanvas/Choices/Exit'
 
@@ -40,7 +40,7 @@ Label 'LoopN1'
 		$HandScrub pressed
 	Then
 		$HandScrub reset
-		Do 'UCGTools/HandScrub.txt'
+		Do 'UCGActions/HandScrub.txt'
 	Endif
 
 	If
@@ -136,10 +136,9 @@ Label 'LoopN1'
 		$CartObj outline.off
 		$GlobalVar setglobal 'UsingTool' true
 		turnOff $SumButton
-		$CartObj clickable false
 
-		$ECGCan on
-		Wait 1
+		#$ECGCan on
+		Wait 0
 		/*
 		$PlayerNurse align $CartNursePos 0
 		Wait 0
@@ -157,13 +156,8 @@ Label 'LoopN1'
 		Wait 0
 		Player align $UrinaryProcPos 1
 		Wait 1
-#		Prompt 'lookAt'
 		Player lookAt $PatientGenitals -0.05 0.2 .05 1
 		Wait 1
-#		Prompt ''
-#		Player localMoveX 0.3
-#		Wait 2
-#		Do 'UCG/GrabForceps'
 	Endif
 
 	If
@@ -234,7 +228,7 @@ Label 'LoopN1'
 			$Patient pressed
 		Then
 			$Patient reset
-			Do 'UCGTools/PositionPatient.txt'
+			Do 'UCGActions/PositionPatient.txt'
 		Endif
 	Endif
 
