@@ -15,7 +15,7 @@ Prompt ''
 	Then
 		$DetachedTape = 'DetachedTape'
 		Create $DetachedTape $DetachedTape
-		$DetachedTape align $Cart1Pos3 0
+		$DetachedTape align $Cart1Pos6 0
 		
 		Destroy $Tape
 
