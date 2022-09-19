@@ -186,6 +186,7 @@ Label 'LoopN1'
 		Do 'UCGActions/UnfoldCloth'
 	Endif
 
+	Do 'Patient/LookAround'
 
 	If
 		$PatientSign pressed

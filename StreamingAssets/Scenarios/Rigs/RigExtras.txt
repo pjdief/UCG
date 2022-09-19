@@ -2,6 +2,11 @@
 #  RIG WITH EXTRA LOCATORS
 #########################################
 
+$LookTarget = 'release'
+
+$LookatLocator = 'LookatLocator'+BedNumber 
+Create Locator $LookatLocator
+
 If 
     $RigType == 'metarig'
 Then

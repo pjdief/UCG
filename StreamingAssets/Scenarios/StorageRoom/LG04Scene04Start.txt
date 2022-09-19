@@ -177,13 +177,20 @@ Label 'Scene4_Shelf1Loop'
 		Prompt 'Saline Ampoule'
 		wait 1
 		Prompt ''
-		$Ampoule = 'UCGAssets/Ampoule'
+		$Ampoule = 'Ampoule'
 		$SalineAmpouleName = 'SalineAmpoule'
 		Create $Ampoule $SalineAmpouleName
+		$SalineAmpouleName localrotatey -90 0
+		wait .1
 		$SalineAmpouleName moveto $SalineAmpoule 0
 		$SelectedItem = $SalineAmpouleName
 		$SetOrig = $SetOrig01
 		$SetCOWPosition = $CartPos1
+		turnOn $SalineAmpouleName + '/Canvas'
+		$ExpDateText = $SalineAmpouleName + '/Canvas/ExpDate'
+		turnOn $ExpDateText
+		$ExpDateText setitemdate 80
+		wait .5
 		Do 'StorageRoom/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -193,16 +200,22 @@ Label 'Scene4_Shelf1Loop'
 	Then
 #		$PlayerNurse grabLeft 
 		$WaterAmpoule reset
-		Prompt 'Water Ampoule'
+		Prompt 'Water for injection Ampoule'
 		wait 1
 		Prompt ''
-		$Ampoule = 'UCGAssets/Ampoule'
+		$Ampoule = 'Ampoule'
 		$WaterAmpouleName = 'WaterAmpoule'
 		Create $Ampoule $WaterAmpouleName
+		$WaterAmpouleName localrotatey -90 0
+		wait .1
 		$WaterAmpouleName moveto $WaterAmpoule 0
 		$SelectedItem = $WaterAmpouleName
 		$SetOrig = $SetOrig02
 		$SetCOWPosition = $CartPos2
+		$ExpDateText = $WaterAmpouleName + '/Canvas/ExpDate'
+		turnOn $ExpDateText
+		$ExpDateText setitemdate 80
+		wait .5
 		Do 'StorageRoom/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -234,10 +247,16 @@ Label 'Scene4_Shelf2Loop'
 		$ChlorSachet = 'Chlorhexidine_gluconate_sachet'
 		$ChlorSachetName = 'ChlorSachet'
 		Create $ChlorSachet $ChlorSachetName
+		$ChlorSachetName localrotatez 90 0
+		wait .1
 		$ChlorSachetName moveto $Chlorhexidine 0
 		$SelectedItem = $ChlorSachetName
 		$SetOrig = $SetOrig04
 		$SetCOWPosition = $CartPos3
+		$ExpDateText = $ChlorSachetName + '/Canvas/ExpDate'
+		turnOn $ExpDateText
+		$ExpDateText setitemdate 50
+		wait .5
 		Do 'StorageRoom/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -255,7 +274,11 @@ Label 'Scene4_Shelf2Loop'
 		$SalineBottleName moveto $Saline 0
 		$SelectedItem = $SalineBottleName
 		$SetCOWPosition = $CartPos4
-		$SetOrig = $SetOrig05
+		$SetOrig = $SetOrig06
+		$ExpDateText = $SalineBottleName + '/Canvas/ExpDate'
+		turnOn $ExpDateText
+		$ExpDateText setitemdate 40
+		wait .5
 		Do 'StorageRoom/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -272,8 +295,12 @@ Label 'Scene4_Shelf2Loop'
 		Create $IodineBottle $IodineBottleName
 		$IodineBottleName moveto $Iodine 0
 		$SelectedItem = $IodineBottleName
-		$SetOrig = $SetOrig06
+		$SetOrig = $SetOrig05
 		$SetCOWPosition = $CartPos9
+		$ExpDateText = $IodineBottleName + '/Canvas/ExpDate'
+		turnOn $ExpDateText
+		$ExpDateText setitemdate 2000
+		wait .5
 		Do 'StorageRoom/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -311,6 +338,10 @@ Label 'Scene4_Shelf3Loop'
 		$SelectedItem = $UC12Name
 		$SetOrig = $SetOrig07
 		$SetCOWPosition = $CartPos6
+		$ExpDateText = $UC12Name + '/Canvas/ExpDate'
+		turnOn $ExpDateText
+		$ExpDateText setitemdate 90
+		wait .5
 		Do 'StorageRoom/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -331,6 +362,10 @@ Label 'Scene4_Shelf3Loop'
 		$SelectedItem = $UC14Name
 		$SetOrig = $SetOrig08
 		$SetCOWPosition = $CartPos7
+		$ExpDateText = $UC14Name + '/Canvas/ExpDate'
+		turnOn $ExpDateText
+		$ExpDateText setitemdate 90
+		wait .5
 		Do 'StorageRoom/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif
@@ -351,6 +386,10 @@ Label 'Scene4_Shelf3Loop'
 		$SelectedItem = $UC16Name
 		$SetOrig = $SetOrig09
 		$SetCOWPosition = $CartPos8
+		$ExpDateText = $UC16Name + '/Canvas/ExpDate'
+		turnOn $ExpDateText
+		$ExpDateText setitemdate 90
+		wait .5
 		Do 'StorageRoom/LG04SetPicking.txt'
 		Goto 'Scene4_StartLoop'
 	Endif

@@ -22,11 +22,39 @@ $Grab = 'grab' + ActiveHand
 $PlayerNurse $Grab $Item 1 'tweeze' 'default' 
 Wait 1
 
+$InjectionWater localmovey .1 1
+wait .5
+$InjectionWater localmovex .2 1
+wait 1.1
+
+$ItemTearSpot = $Item + 'TweezeLocator' + '/' + OtherHand + 'Rotator'
+$ItemTearSpot localmovey .03 0
+wait .1
+$ItemTearSpot localmovex .09 0
+wait .1
+
+
+$Grab = 'grab' + OtherHand + '.elbowout'
+
+$PlayerNurse $Grab $ItemTearSpot .5 'tweeze' 'default' 
+Wait 1.5
+
+#Tear open
+$ItemTearSpot localRotateY 90 0.3
+Wait .4
+$AmpouleCap = $Item + '/AmpouleBottle/Connector'
+turnOff $AmpouleCap
+$ItemTearSpot localMoveY -10 0.3
+Wait .3
+
+$Release = 'release' + OtherHand
+$PlayerNurse $Release 1 'tweeze'
+Wait 1
+
+
+
 /*
-$InjectionWater localmovey .15 1
-wait .5
-$InjectionWater localmovex -.1 1
-wait .5
+
 $InjectionWater localmovez .05 .2
 wait .2
 */
@@ -39,6 +67,7 @@ $InjectionWater moveAbove $WaterSol 0.15 0.5
 Wait 0.5
 $InjectionWater localmovez .06 0.5
 Wait 0.5
+
 
 
 #Pour

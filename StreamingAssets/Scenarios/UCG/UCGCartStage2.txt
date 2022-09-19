@@ -98,6 +98,7 @@ label 'CartLoop'
 		BackButtonCanvas/BackButton pressed
 	Then
 		BackButtonCanvas/BackButton reset
+		BackButtonCanvas off
 		$Player align $PlayerCOWLook
 
 		$WaterAmpouleName outline.off
