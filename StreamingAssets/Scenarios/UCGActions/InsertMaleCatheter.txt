@@ -85,3 +85,5 @@ Then
 		wait .2
 		
 		$CatheterInserted = 'true'
+		$IVLineUrine = IVLine + '/Urine'
+		$IVLineUrine setOpacity 1 4

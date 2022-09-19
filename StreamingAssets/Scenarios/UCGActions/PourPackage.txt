@@ -15,6 +15,6 @@ $Package moveAbove $Target $Height 0.5
 Wait .6
 
 #Pour
-$Package localrotateX 130 1
-wait 1
+$Package localrotateX -90 1
+wait 0.5
 

@@ -3,6 +3,9 @@ Prompt 'StandardHandHygiene'
 #Do 'Setup/NursePlayer'
 
 
+#turn off active outlines
+Player component.off 'OutlineEffect'
+
 Do 'HandWash/H0SquirtHandrubInPalm.txt'
 Do 'HandWash/H1RubPalms.txt' 'left'
 Do 'HandWash/H2RubPalmDorsumFingersInterlaced' 
@@ -11,5 +14,8 @@ Do 'HandWash/H4RubBackOfFingers.txt'
 Do 'HandWash/H5RubThumb.txt'
 Do 'HandWash/H6RubFingersInPalm' 
 Do 'HandWash/H7RubWrappedHandOnForearm.txt'
+
+#turn on active outlines
+Player component.on 'OutlineEffect'
 
 Return

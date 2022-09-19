@@ -59,6 +59,7 @@ Then
 	$ClothPos = $Cart + '/ClothPos'
 
 	$CartCloth = 'cart_cloth'
+	$CartClothFolded = 'cart_cloth_folded'
 
 
 	$CartPos1 = $Cart + '/Pos01'
@@ -89,7 +90,9 @@ Then
 	$ContinenceSheetObj = 'UCGAssets/GeneralSachet'
 	$ContinenceSheet = 'ContinenceSheet'
 
-	$InjectionWaterObj = 'UCGAssets/Ampoule'
+	$InjectionWaterPackageObj = 'UCGAssets/AmpoulePackage'
+	$InjectionWaterPackage = 'AmpoulePackage'
+	$InjectionWaterObj = 'Ampoule'
 	$InjectionWater = 'InjectionWater'
 
 	$AntisepticObj = 'Chlorhexidine_gluconate_sachet'
@@ -110,10 +113,12 @@ Then
 	$GlovesObj = 'UCGAssets/Sachet_Gloves'
 	$Gloves = 'Gloves'
 
-	$SyringeObj = 'UCGAssets/Syringe'
-	$Syringe = 'Syringe'
-	$Plunger = $Syringe + '/Plunger'
-	$SyringeWater = $Syringe + '/Water'
+	$SyringePackageObj = 'UCGAssets/SyringeSmallPackage'
+	$SyringePackage = 'SyringePackage'
+	$SyringeObj = 'UCGAssets/SyringeSmall'
+	$Syringe = 'SyringeSmall'
+	$Plunger = $Syringe + 'Instance/Plunger'
+	$SyringeWater = $Syringe + 'Instance/Water'
 
 	$TapeObj = 'UCGAssets/Micropore_tape'
 	$Tape = 'Tape'
@@ -126,24 +131,28 @@ Then
 
 
 	Create $CartCloth $CartCloth
+	Create $CartClothFolded $CartClothFolded
 	Create $UCHolderObj $UCHolder
 	Create $HandScrubObj $HandScrub
 	Create $ContinenceSheetObj $ContinenceSheet
-	Create $InjectionWaterObj $InjectionWater
+#	Create $InjectionWaterObj $InjectionWater
+	Create $InjectionWaterPackageObj $InjectionWaterPackage
 	Create $AntisepticObj $Antiseptic
 	Create $CatheterObj $Catheter
 	Create $UrineBagObj $UrineBag
 	Create $GlovesObj $Gloves
-	Create $SyringeObj $Syringe
+	Create $SyringePackageObj $SyringePackage
+#	Create $SyringeObj $Syringe
 	Create $TapeObj $Tape
 	Create $CottonBallsObj $CottonBalls
 
+	$CartClothFolded align $ClothPos 0
 	Wait 0
 	$CartCloth align $ClothPos 0
-
+	turnOff $CartCloth
 
 #	Wait 0
-	$UCHolder align $CartPos2 0
+	$UCHolder align $CartPos5 0
 	Wait 0
 	$UCHolder localrotatey 90 0
 
@@ -173,9 +182,13 @@ Then
 	$ContinenceSheet align $CartPos9 0
 
 	Wait 0
-	$InjectionWater align $CartPos1 0
+	$InjectionWaterPackage align $Cart1Pos1 0
 	Wait 0
-	$InjectionWater localmovex .06 0
+	$InjectionWaterPackage localmovex .06 0
+#	Wait 0
+#	$InjectionWater align $CartPos1 0
+#	Wait 0
+#	$InjectionWater localmovex .06 0
 
 	Wait 0
 	$Antiseptic align $Cart1Pos3 0
@@ -203,7 +216,7 @@ Then
 #	Wait 0
 
 #	Wait 0
-	$UrineBag align $CartPos8 0
+	$UrineBag align $Cart1Pos8 0
 	Wait 0
 	$UrineBag localmovex -.01 0
 	Wait 0
@@ -211,9 +224,12 @@ Then
 	Wait 0
 
 #	Wait 0
-	$Gloves align $CartPos5 0
+	$Gloves align $Cart1Pos2 0
 
 #	Wait 0
+	$SyringePackage align $Cart1Pos4 0
+	Wait 0
+	/*
 	$Syringe align $CartPos1 0
 	Wait 0
 	$Syringe localrotatez 90 0
@@ -226,10 +242,11 @@ Then
 	wait .0
 	$Syringe localmovez .02 0
 	wait .0
+	*/
 	turnOff $SyringeWater
 
 #	Wait 0
-	$Tape align $Cart1Pos2 0
+	$Tape align $Cart1Pos6 0
 	Wait 0
 
 
@@ -238,6 +255,7 @@ Then
 	Wait 0
 	$CottonBalls localmovex .01 0
 
+$CartClothFolded clickable true
 $HandScrub clickable false
 $ContinenceSheet clickable false
 $InjectionWater clickable false
@@ -253,6 +271,7 @@ $CottonBalls clickable false
 $UCSet = 'UCSet'
 $UCGKidneyDish = $UCSet + '/KidneyDish'
 $UCGKidneyDish clickable false
+turnOff $UCSet
 
 Endif
 

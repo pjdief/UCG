@@ -203,6 +203,7 @@ $CottonBalls clickable false
 $UCSet = 'UCSet'
 $UCGKidneyDish = $UCSet + '/KidneyDish'
 $UCGKidneyDish clickable false
+turnOff $UCSet
 
 Endif
 

@@ -2,7 +2,9 @@
 Prompt 'SurgicalHandHygiene'
 #Do 'Setup/NursePlayer'
 
+Player component.off 'OutlineEffect'
 Do 'HandWash/S1SquirtHandrubInPalm.txt'
+Player component.on 'OutlineEffect'
 Do 'HandWash/S2RubPalms.txt'
 Do 'HandWash/S3RubPalmDorsumFingersInterlaced.txt'
 Do 'HandWash/S4SquirtHandrubInPalm.txt'

@@ -26,13 +26,13 @@ Then
 	$PlayerNurse $Grab $Item 1 'tweeze' 'default' 
 	Wait 1
 
-	$Lubricant moveto $CatheterPort 1
+	$Lubricant moveAbove $CatheterPort .08 1
 	wait 1
-	$Lubricant localmovey .08 .2
-	wait .3
-	$Lubricant localrotatez -145 1
+#	$Lubricant localmovey .08 .2
+#	wait .3
+	$Lubricant localrotatex -145 1
 	wait 2.5
-	$Lubricant localrotatez 145 1
+	$Lubricant localrotatex 145 1
 	wait 1
 
 	$Release = 'release' + ActiveHand

@@ -9,9 +9,11 @@ $Cart2Button on
 
 #$ECGCan on
 
+$CartClothFolded outline.on
 $ContinenceSheet outline.on
 $InjectionWater outline.on
 $Antiseptic outline.on
+$SyringePackage outline.on
 $LubricantPackage outline.on
 $Lubricant outline.on
 $Catheter outline.on
@@ -21,9 +23,11 @@ $Syringe outline.on
 $Tape outline.on
 $CottonBalls outline.on
 
+$CartClothFolded clickable true
 $ContinenceSheet clickable true
 $InjectionWater clickable true
 $Antiseptic clickable true
+$SyringePackage  clickable true
 $Lubricant clickable true
 $LubricantPackage clickable true
 $Catheter clickable true
@@ -57,6 +61,13 @@ label 'CartLoop'
 	Then
 		$Cart2 reset
 		Player align $CartLook1 0.5
+	Endif
+
+	If
+		$CartClothFolded pressed
+	Then
+		$CartClothFolded reset
+		Do 'UCGActions/UnfoldCloth'
 	Endif
 
 	If
@@ -124,10 +135,24 @@ label 'CartLoop'
 	Endif
 
 	If
+		$SyringePackage pressed
+	Then
+		$SyringePackage reset
+		Do 'UCGActions/OpenSyringe.txt'
+	Endif
+
+	If
 		$LubricantPackage pressed
 	Then
 		$LubricantPackage reset
 		Do 'UCGActions/OpenLubricant.txt'
+	Endif
+
+	If
+		$InjectionWaterPackage pressed
+	Then
+		$InjectionWaterPackage reset
+		Do 'UCGActions/OpenInjectionWater.txt'
 	Endif
 
 	If
@@ -157,6 +182,7 @@ label 'CartLoop'
 				$TempCatheter = 'CatheterBalloon'
 
 				Create $TempCatheter $TempCatheter
+
 				$TempCatheter align $CatheterBalloon 0
 
 				turnOff $CatheterBalloon
@@ -170,16 +196,22 @@ label 'CartLoop'
 				wait 1
 				$TempCatheter localmovex .06 1
 				wait 1
+
 				$Syringe align $CatheterPort 1
 				wait 1
-				$Syringe localrotatex -90 .1
-				wait .2
-				$Syringe localmovey .06 .1
-				wait .2
+
+#				$Syringe localrotatex -90 .1
+#				wait .2
+#				$Syringe localmovey .06 .1
+#				wait .2
+
+				#push in water
 				$Plunger localmovey -.06 2
 				turnOff $SyringeWater
 				$TempCatheter play Grow true
 				wait 4
+
+				#pull out water
 				$Plunger localmovey .06 2
 				wait 2
 				turnOn $SyringeWater
@@ -187,6 +219,8 @@ label 'CartLoop'
 				wait 2
 				$TempCatheter moveto $CatheterPos 1
 				wait .5
+
+				#put back curled version
 				turnOn $CatheterBalloon
 				Destroy $TempCatheter
 				$CatheterBalloon clickable false

@@ -24,6 +24,9 @@ Endif
 
 $GlobalVar setglobal 'UsingTool' false
 
+$UrinePercent = 0
+
+
 Label 'LoopN1'
 
 	$UsingTool =
@@ -173,6 +176,21 @@ Label 'LoopN1'
 		Goto 'signLoop'
 	Endif
 
+	$PatientUrineAmount = 0.75
+
+	If
+		$CatheterInserted = 'true'
+	Then
+		#Prompt 'Urine amount = ' + UrinePercent
+		If
+			$UrinePercent < $PatientUrineAmount
+		Then
+			$UrineBag fillAmount $UrinePercent
+			$UrinePercent = UrinePercent + 0.001
+			Wait .05
+		Endif
+	Endif
+
 
 	If
 		$Patient pressed
@@ -209,6 +227,7 @@ Label 'LoopN1'
 			Do 'UCGActions/InsertFemaleCatheter.txt'
 		Endif
 	Endif
+
 
 	If
 		$UrineBag pressed

@@ -193,6 +193,13 @@ Label 'LoopN1'
 		turnOn $CurtainClosed
 	Endif
 
+	If
+		$CartClothFolded pressed
+	Then
+		$CartClothFolded reset
+		Do 'UCGActions/UnfoldCloth'
+	Endif
+
 
 	If
 		$PatientSign pressed

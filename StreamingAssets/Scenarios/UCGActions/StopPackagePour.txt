@@ -9,6 +9,6 @@ Then
 Endif
 
 #Stop pour
-$Package localrotateX -130 .5
+$Package localrotateX 90 .5
 wait .7
 

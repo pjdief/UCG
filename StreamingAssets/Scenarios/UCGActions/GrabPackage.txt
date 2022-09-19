@@ -13,7 +13,9 @@ Then
 Endif
 
 #move player closer for grab
-$Player localMoveZ 0.15 0.5
+#$Player localMoveZ 0.15 0.5
+$Player lookAt $Package 0.0 0.25 -0.1 1
+Wait 1
 
 $ItemHoldSpot = Package + '/' + ActiveHand + 'Rotator'
 #$ItemTearSpot = Package + '/' + OtherHand + 'Rotator'

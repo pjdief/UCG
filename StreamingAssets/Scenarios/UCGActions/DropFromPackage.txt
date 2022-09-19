@@ -33,3 +33,4 @@ turnOff $PackagedItem
 $ItemObjectName align $FallingSpot 0.5
 Wait 0.5
 $ItemObjectName outline.on
+$ItemObjectName clickable true

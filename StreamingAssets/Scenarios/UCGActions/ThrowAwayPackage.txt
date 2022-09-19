@@ -23,14 +23,17 @@ $PlayerHand =$ PlayerHandName
 
 $Package constrainTo $PlayerHand
 Wait 0
-
 #back player up
-$Player localMoveZ -0.1 0.5
+$Player localMoveZ -0.3 0.5
 
 $Release = 'release' + ActiveHand
 $PlayerNurse $Release 1 'dip'
 
 Wait 0.8
+
+#move player up
+#$Player localMoveZ 0.3 0.5
+$Player align $CartLook 1
 
 #have Package move freely (with hand attached)
 $Package releaseConstraint 

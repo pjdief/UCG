@@ -14,18 +14,35 @@ Then
 	Return
 Endif
 
+#move player closer for grab
+$Player localMoveZ 0.15 0.5
+
 $Item = $InjectionWater
 $Grab = 'grab' + ActiveHand
 $PlayerNurse $Grab $Item 1 'tweeze' 'default' 
 Wait 1
 
+/*
 $InjectionWater localmovey .15 1
 wait .5
 $InjectionWater localmovex -.1 1
 wait .5
 $InjectionWater localmovez .05 .2
 wait .2
-$InjectionWater localrotatez 135 1
+*/
+
+#Move above water
+turnOn $WaterSol
+$WaterSol setOpacity 0 0
+Wait 0
+$InjectionWater moveAbove $WaterSol 0.15 0.5
+Wait 0.5
+$InjectionWater localmovez .06 0.5
+Wait 0.5
+
+
+#Pour
+$InjectionWater localrotatex -135 1
 Wait 1
 
 $PouringLiquid = 'LiquidParticles'
@@ -34,22 +51,15 @@ Wait 0
 $InjectionWaterOpening = InjectionWater + '/Opening'
 $PouringLiquid align $InjectionWaterOpening 0
 
+$WaterSol setOpacity 0.5 2
 
 wait .5
-turnOn $WaterSol
-Wait 0
 $WaterSol moveY 0.03 3
 Wait 3
 
-#stop pour
-$InjectionWater localrotatez -135 .5
+#Stop pour
+Do 'UCGActions/StopPackagePour' $Item 
 Destroy $PouringLiquid
 
-
-$Release = 'release' + ActiveHand
-$PlayerNurse $Release 1 'tweeze'
-wait 1
-
-Destroy $InjectionWater
-
-#Endif
+#Throw away package
+Do 'UCGActions/ThrowAwayPackage' $Item 
