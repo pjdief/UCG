@@ -59,6 +59,7 @@ Label 'LoopN1'
 		Prompt ''
 		$LeftHandButton reset
 		$ActiveHand = 'Left'
+		$OtherHand = 'Right'
 	Endif
 
 	If
@@ -69,6 +70,7 @@ Label 'LoopN1'
 		Prompt ''
 		$RightHandButton reset
 		$ActiveHand = 'Right'
+		$OtherHand = 'Left'
 	Endif
 
 	If
@@ -107,9 +109,7 @@ Label 'LoopN1'
 		Player align $CartLook 1
 		$CartObj outline.off
 		$GlobalVar setglobal 'UsingTool' true
-		Player align $CartLook .5
 		turnOff $SumButton
-		$CartObj clickable false
 
 		Do 'UCG/UCGCartStage4.txt'
 	Endif

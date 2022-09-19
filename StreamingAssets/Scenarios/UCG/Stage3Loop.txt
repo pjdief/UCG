@@ -50,11 +50,6 @@ Label 'LoopN1'
 		$GlobalVar setglobal 'UsingTool' true
 		$CheckCanvas off
 		PatInfoCanvas off
-		If
-			$InterventionsCanvas isOn
-		Then
-			$UIMan closetoolinventory
-		Endif
 		Do 'SummaryCheck.txt'
 		$GlobalVar setglobal 'UsingTool' false
 	Endif
@@ -136,15 +131,6 @@ Label 'LoopN1'
 		$CartObj outline.off
 		$GlobalVar setglobal 'UsingTool' true
 		turnOff $SumButton
-
-		#$ECGCan on
-		Wait 0
-		/*
-		$PlayerNurse align $CartNursePos 0
-		Wait 0
-		$PlayerNurse localMoveY -0.1 0
-		Wait 0
-		*/
 
 		Do 'UCG/UCGCartStage3.txt'
 	Endif

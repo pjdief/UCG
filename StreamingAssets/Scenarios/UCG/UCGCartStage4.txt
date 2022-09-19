@@ -2,11 +2,12 @@
 #  UCG Cart - Stage 4
 #########################################
 
-$CartButton off
-$PatientButton off
+#$CartButton off
+#$PatientButton off
 $ProcedureButton off
+$Cart2Button on
 
-$ECGCan on
+#$ECGCan on
 
 $HandScrub outline.on
 $Catheter outline.on
@@ -25,6 +26,35 @@ $Patient clickable false
 $Patient outline.off
 
 label 'CartLoop'
+
+	If
+		$Cart pressed
+	Then
+		$Cart reset
+		Player align $CartLook 0.5
+	Endif
+
+	If
+		$CartButton pressed
+	Then
+		$CartButton reset
+		Player align $CartLook 0.5
+	Endif
+
+	If
+		$Cart2 pressed
+	Then
+		$Cart2 reset
+		Player align $CartLook1 0.5
+	Endif
+
+	If
+		$Cart2Button pressed
+	Then
+		$Cart2Button reset
+		Player align $CartLook1 0.5
+	Endif
+
 
 	If
 		$LeftHandButton pressed
@@ -180,9 +210,9 @@ Endif
 	Endif
 
 	If
-		$BackECG pressed
+		$PatientButton pressed
 	Then
-		$BackECG reset
+		$PatientButton reset
 		Do 'UCGActions/ExitCart.txt'
 		Return
 	Endif

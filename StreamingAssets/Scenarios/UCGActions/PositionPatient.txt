@@ -1,6 +1,9 @@
 $GlobalVar setglobal 'UsingTool' true
 $Patient outline.off
 JoystickCanvas off
+
+Label 'PositionLoop'
+
 ZoomSpot Menu.Question 'Which position you would like the patient in?'
 ZoomSpot Menu.Choices 'Dorsal recumbent','Knee chest position','Lithotomy','Back'
 ZoomSpot Menu.on ZoomSpot
@@ -29,11 +32,21 @@ Else
 	If
 		ZoomSpot menu.result 'Back'
 	Then
-	 #End
+		If
+			$Stage = 3
+		Then
+			#End
+		Else
+			Prompt 'Patient must be positioned before moving forward'
+			wait 3
+			Prompt ''
+			goto 'PositionLoop'
+		Endif
 	Else
 		Prompt 'Incorrect position chosen'
 		wait 2
 		Prompt ''
+		goto 'PositionLoop'
 	Endif
 Endif
 $Patient outline.on
