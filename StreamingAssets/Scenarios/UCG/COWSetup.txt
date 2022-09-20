@@ -218,6 +218,8 @@ Then
 #	Wait 0
 	$UrineBag align $Cart1Pos8 0
 	Wait 0
+	$UrineBag localrotatey 180 0
+	Wait 0
 	$UrineBag localmovex -.01 0
 	Wait 0
 	$UrineBag localmovey .03 0

@@ -32,5 +32,14 @@ Then
 		$Urine = $UrineBag + '/Urine
 		
 		turnOn $Urine
+		$IVLineUrine = IVLine + '/Urine'
+		
+		Prompt "uring starting to flow'
+		Wait 0.5
+		Prompt ''
+		#Prompt 'IVline ' + IVLineUrine + ' setOpacity' 
+
+		$IVLineUrine setOpacity 1 4
+
 	Endif
 Endif
