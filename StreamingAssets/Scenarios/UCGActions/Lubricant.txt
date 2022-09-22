@@ -28,8 +28,8 @@ Then
 
 	$Lubricant moveAbove $CatheterPort .08 1
 	wait 1
-#	$Lubricant localmovey .08 .2
-#	wait .3
+	$Lubricant localmovex -.08 .2
+	wait .3
 	$Lubricant localrotatex -145 1
 	wait 2.5
 	$Lubricant localrotatex 145 1

@@ -14,11 +14,14 @@ Then
 	Return
 Endif
 
+Player align $CartLook 0.5
+Wait 0.5
 #move player closer for grab
-$Player localMoveZ 0.15 0.5
+$Player localMoveZ 0.17 0.5
 
 $Item = $InjectionWater
 $Grab = 'grab' + ActiveHand
+$PlayerNurse play 'GripSize_R' true 0.2
 $PlayerNurse $Grab $Item 1 'tweeze' 'default' 
 Wait 1
 
@@ -87,8 +90,10 @@ $WaterSol moveY 0.03 3
 Wait 3
 
 #Stop pour
-Do 'UCGActions/StopPackagePour' $Item 
 Destroy $PouringLiquid
+Do 'UCGActions/StopPackagePour' $Item 
+
 
 #Throw away package
 Do 'UCGActions/ThrowAwayPackage' $Item 
+$PlayerNurse play 'GripSize_R' true 0.5

@@ -1,5 +1,3 @@
-$ECGCan off
-
 Prompt 'Hand scrub'
 wait 1
 Prompt ''
@@ -36,5 +34,3 @@ Then
 		Do 'HandWash/SurgicalHandHygiene.txt'
 	Endif
 Endif
-
-$ECGCan on

@@ -9,6 +9,8 @@ $Cart2Button on
 
 #$ECGCan on
 
+$Cart outline.off
+
 $CartClothFolded outline.on
 $ContinenceSheet outline.on
 $InjectionWater outline.on
@@ -179,57 +181,56 @@ label 'CartLoop'
 			If
 				ZoomSpot menu.result 'Yes'
 			Then
-				$TempCatheter = 'CatheterBalloon'
 
-				Create $TempCatheter $TempCatheter
-
-				$TempCatheter align $CatheterBalloon 0
-
-				turnOff $CatheterBalloon
-
-				$CatheterPort = $TempCatheter + '/Handle/Port'
-				wait 1
-
-				$TempCatheter localmovey .2 1
-				wait 1
-				$TempCatheter localmovez .08 1
-				wait 1
-				$TempCatheter localmovex .06 1
+				$CatheterPort = $CatheterBalloon + '/Handle/Port'
 				wait 1
 
 				$Syringe align $CatheterPort 1
 				wait 1
 
-#				$Syringe localrotatex -90 .1
-#				wait .2
-#				$Syringe localmovey .06 .1
-#				wait .2
+				$Syringe localrotatey -10 .1
+				wait .2
+				$Syringe localrotatex 20 .1
+				wait .2
+				$Syringe localmovez -.01 .1
+				wait .2
 
 				#push in water
 				$Plunger localmovey -.06 2
 				turnOff $SyringeWater
-				$TempCatheter play Grow true
-				wait 4
+				$CatheterBalloon play Grow true
+				wait 2
+
+
+				$ItemHoldSpot = $CatheterBalloon + '/' + ActiveHand + 'Rotator'
+				Wait 0
+
+				#Grab Package
+				$Grab = 'grab' + ActiveHand + '.elbowout'
+				$PlayerNurse $Grab $ItemHoldSpot 0.5 'dip' 'default' 
+				Wait 2
+				Prompt 'No leaks found'
+				wait 2
+				Prompt ''
+				$Release = 'release' + ActiveHand
+				$PlayerNurse $Release 1 'dip'
+				wait 1
 
 				#pull out water
 				$Plunger localmovey .06 2
 				wait 2
 				turnOn $SyringeWater
-				$TempCatheter play Grow false
+				$CatheterBalloon play Grow false
 				wait 2
-				$TempCatheter moveto $CatheterPos 1
-				wait .5
 
 				#put back curled version
-				turnOn $CatheterBalloon
-				Destroy $TempCatheter
 				$CatheterBalloon clickable false
 				wait 1
-				$Syringe moveto $CatheterPos
-				wait 1
-				Prompt 'No leaks found'
-				wait 2
-				Prompt ''
+				$Syringe align $CatheterPos 1
+				Wait 1
+				$Syringe localmovez .08 .5
+				wait .5
+
 
 				turnOn $Stage4Button
 			Endif

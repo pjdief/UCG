@@ -53,7 +53,7 @@ Do 'HandWash/RubHands' $whichHand $HandSanitizerPos 'palm' 'palmup' $motionType 
 NursePlayer localMoveZ -1 0.3
 NursePlayer localMoveX -1 0.3
 Player align $CartLook 1
-Wait 0.5
+Wait 1
 NursePlayer align NursePlayerPos 0.5
 Wait 0.5
 

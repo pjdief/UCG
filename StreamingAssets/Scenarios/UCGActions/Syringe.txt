@@ -56,8 +56,8 @@ Then
 */
 			$Syringe align $CatheterPos 1
 			Wait 1
-			$Syringe localrotatez 90 .3
-			wait .4
+			$Syringe localmovez .08 .5
+			wait .5
 
 			$SyringeFull = true
 	Else

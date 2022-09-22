@@ -20,5 +20,6 @@ Else
     $SelectedItem playerreplace
     wait 2
     Destroy $SelectedItem
+    $Player align $PlayerCOWLook
     /JoystickCanvas on
 Endif
