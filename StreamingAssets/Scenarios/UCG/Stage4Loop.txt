@@ -230,6 +230,16 @@ Label 'LoopN1'
 		Endif
 	Endif
 
+	If
+		$Stage2Button pressed
+	Then
+		$Stage2Button reset
+		If
+			Do 'AnswerIs' 'Return to Prep Room?' 'Yes'
+		Then
+			SceneManager switchtoscene Scenes/UCG/Scene02
+		Endif
+	Endif
 
 	If
 		$UrineBag pressed
@@ -254,13 +264,17 @@ Label 'LoopN1'
 		$EndGameButton pressed
 	Then
 		$EndGameButton reset
-		ZoomSpot Menu.Question 'What are the post procedure care?'
-		ZoomSpot Menu.Choices 'Cathter insertion details','Amount of urine in the intake and output chart','Signs of urinary tract infection','All of the above'
-		ZoomSpot Menu.on ZoomSpot
-		WaitFor
-			ZoomSpot Menu.Done
-		Wait .1
-		Do 'EndCheck.txt'
+		If
+			Do 'AnswerIs' 'End the game?' 'Yes'
+		Then
+			ZoomSpot Menu.Question 'What are the post procedure care?'
+			ZoomSpot Menu.Choices 'Cathter insertion details','Amount of urine in the intake and output chart','Signs of urinary tract infection','All of the above'
+			ZoomSpot Menu.on ZoomSpot
+			WaitFor
+				ZoomSpot Menu.Done
+			Wait .1
+			Do 'EndCheck.txt'
+		Endif
 	Endif
 
 

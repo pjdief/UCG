@@ -1,9 +1,0 @@
-Label 'Loop'
-    If
-        DoorSingle pressed
-    Then
-        DoorSingle reset
-        Do 'StorageRoom/Door_Male.txt'
-    Endif
-    Wait .2
-Goto 'Loop'

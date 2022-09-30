@@ -1,4 +1,4 @@
-Prompt 'S1SquirtHandrubInPalm'
+#Prompt 'S1SquirtHandrubInPalm'
 Do 'HandWash/PumpHandrubToPalm' 'right' 2
 Prompt ''
 Return

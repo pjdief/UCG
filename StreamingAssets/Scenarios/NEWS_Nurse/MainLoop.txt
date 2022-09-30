@@ -222,6 +222,7 @@ Label 'LoopN1'
 	Then
 		$ConfirmPatient reset
 		ZoomSpot Menu.Question 'Is this the correct patient?'
+		ZoomSpot Menu.Choices 'Yes','No','Unsure'
 		ZoomSpot Menu.on ZoomSpot
 		WaitFor
 			ZoomSpot Menu.Done
@@ -229,7 +230,6 @@ Label 'LoopN1'
 		If
 			ZoomSpot menu.result $Yes
 		Then
-		######Eventually change so that it can be any patient and/or found by a tag not by name
 			If
 				$NeedsPerformed = 'true'
 			Then
@@ -251,13 +251,7 @@ Label 'LoopN1'
 				$GenericPatientLine = 'Thank you.'
 				Do 'GenericChat.txt'
 				wait .5
-				If
-					$PatientGender = 'Female'
-				Then
-					SceneManager switchtoscene Scenes/UCG/Scene02
-				Else
-					SceneManager switchtoscene Scenes/UCG/Scene02_Male
-				Endif
+				SceneManager switchtoscene Scenes/UCG/Scene02
 				wait 3
 				Return
 			Else
@@ -284,6 +278,7 @@ Label 'LoopN1'
 			$BackECG reset
 			$ECGCan off
 			ZoomSpot Menu.Question 'Is this the correct patient?'
+			ZoomSpot Menu.Choices 'Yes','No','Unsure'
 			ZoomSpot Menu.on ZoomSpot
 			WaitFor
 				ZoomSpot Menu.Done
@@ -308,6 +303,7 @@ Label 'LoopN1'
 		$Patient clickable false
 		Player align $BandView 1
 		ZoomSpot Menu.Question 'Is this the correct patient?'
+		ZoomSpot Menu.Choices 'Yes','No','Unsure'
 		ZoomSpot Menu.on ZoomSpot
 		WaitFor
 			ZoomSpot Menu.Done

@@ -9,9 +9,9 @@ Then
     $Package = param[1]
 Endif
 
-Prompt 'GrabAndOpenPackage' + Package
-wait 2.51
-Prompt ''
+#Prompt 'GrabAndOpenPackage' + Package
+#wait 2.51
+#Prompt ''
 
 Do 'UCGActions/GrabPackage' $Package
 Do 'UCGActions/OpenPackage' $Package

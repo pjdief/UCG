@@ -1,4 +1,4 @@
-Prompt 'Antiseptic grab' + ActiveHand
+Prompt 'Antiseptic'
 wait .51
 Prompt ''
 

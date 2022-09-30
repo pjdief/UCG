@@ -12,15 +12,28 @@ If
 	ZoomSpot menu.result 'Yes'
 Then
 
-$DrapePos = $Bed + '/DrapePos'
+$Item = $DrapePackage	
+	
+#Grab item, and tear package open.
+Do 'UCGActions/GrabAndOpenPackage' $Item
+Player align $PlayerStart 1
+wait 1
 
-Destroy $DrapePackage
+
+$DrapePos = $Bed + '/DrapePos'
 
 $DrapeObj = 'drape_exam'
 $Drape = 'Drape'
 
+$PlayerNurse localMoveY 0.4 0
+wait 0
+$PlayerNurse play LeanIn
+Wait 1
+
 Create $DrapeObj $Drape
 wait .1
 $Drape align $DrapePos 0
+
+Destroy $DrapePackage
 
 Endif

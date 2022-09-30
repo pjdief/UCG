@@ -1,5 +1,5 @@
 # 'OpenLubricant'
-Prompt 'OpenLubricant'
+Prompt 'Lubricant'
 wait .51
 Prompt ''
 
@@ -31,7 +31,7 @@ Do 'UCGActions/PourPackage' $Item $ItemPos 0.15
 #drop object from package
 Do 'UCGActions/DropFromPackage' $Item $ItemObj $ItemPos
 
-Wait 2
+Wait 1
 
 #Stop pour
 Do 'UCGActions/StopPackagePour' $Item 

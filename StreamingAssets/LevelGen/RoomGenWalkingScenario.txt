@@ -24,7 +24,7 @@ $Pat3LookReset = $Patient3 + '/TurnForward'
 
 $Nurse3 = 'Nurse3'
 $Nurse3HomePos = 'BedNursePos03'
-$Nurse3AltPos = 'Cart2'
+$Nurse3AltPos = 'Cart1'
 
 $Patient4 = 'Bed4/Patient1/TEMP_Patient'
 $Pat4Face = $Patient4 + '/metarig/spine/spine.001/spine.002/spine.003/spine.004'

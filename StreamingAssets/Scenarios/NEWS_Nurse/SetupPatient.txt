@@ -13,7 +13,7 @@ $PlayerStart = Bed + '/Medium'
 
 $PatientProf = PatientGender + ', ' + AgeInYears + ' years old'
 
-
+$UCStruggle = 'False'
 
 $AgeInDays = -367 * AgeInYears
 $Birthday = 

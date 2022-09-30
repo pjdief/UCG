@@ -30,10 +30,13 @@ Wait .2
 #Prompt 'Aligned hand with ' + PatientGenitals
 #Wait 2
 
+
 #Start hand above patient
 If
     $whichHand_SL == 'left'
 Then
+    $PlayerNurse play 'GripSize_L' true 0
+
     $PlayerNurse grabLeft.elbowout $PatientGenitalsOtherHand .1  'L_tweeze' 'horizontal'
     Wait .1
 
@@ -42,6 +45,7 @@ Then
     Wait 0
 
 Else
+    $PlayerNurse play 'GripSize_R' true 0
     $PlayerNurse grabRight.elbowout $PatientGenitalsOtherHand .1  'R_tweeze' 'horizontal'
     Wait .1
 

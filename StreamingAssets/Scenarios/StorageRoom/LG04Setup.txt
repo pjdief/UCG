@@ -80,6 +80,15 @@ $DoorButton = 'DoorCanvas/DoorButton'
 
 $SceneStart = 'StorageRoom/LG04Scene04Start.txt'
 
+$GlobalVar = 'GlobalVariableManager'
+wait .1
+
+$ScenarioGender =
+$GlobalVar getglobal 'Gender'
+
+$ScenarioStruggle =
+$GlobalVar getglobal 'PatientStruggle'
+
 $Shelf1 outline.on
 $Shelf2 outline.on
 $Shelf3 outline.on

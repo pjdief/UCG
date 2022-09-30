@@ -5,7 +5,7 @@
 #$CartButton off
 #$PatientButton off
 $ProcedureButton off
-$Cart2Button on
+$Cart1Button on
 
 #$ECGCan on
 
@@ -42,17 +42,17 @@ label 'CartLoop'
 	Endif
 
 	If
-		$Cart2 pressed
+		$Cart1 pressed
 	Then
-		$Cart2 reset
-		Player align $CartLook1 0.5
+		$Cart1 reset
+		Player align $Cart1Look 0.5
 	Endif
 
 	If
-		$Cart2Button pressed
+		$Cart1Button pressed
 	Then
-		$Cart2Button reset
-		Player align $CartLook1 0.5
+		$Cart1Button reset
+		Player align $Cart1Look 0.5
 	Endif
 
 

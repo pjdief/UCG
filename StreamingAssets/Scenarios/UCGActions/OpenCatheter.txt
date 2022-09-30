@@ -1,5 +1,5 @@
 # 'OpenCatheter'
-Prompt 'OpenCatheter'
+Prompt 'Catheter'
 wait .51
 Prompt ''
 
@@ -23,12 +23,18 @@ $CatheterBalloon = ItemObj + 'Instance'  #DropFromPackage adds Instance to name
 Do 'UCGActions/GrabAndOpenPackage' $Item
 
 #pour package
-Do 'UCGActions/PourPackage' $Item $ItemPos 0.15
+#Move 15cm over container over 1/2 second
+$Item moveAbove $ItemPos 0.15 0.5
+Wait .6
+
+#Pour
+$Package localrotateX -90 1
+wait 0.5
 
 #drop object from package
 Do 'UCGActions/DropFromPackage' $Item $ItemObj $ItemPos
 
-Wait 2
+Wait 1
 
 #Stop pour
 Do 'UCGActions/StopPackagePour' $Item 
@@ -36,8 +42,6 @@ Do 'UCGActions/StopPackagePour' $Item
 #Throw away package
 Do 'UCGActions/ThrowAwayPackage' $Item 
 
-#back player up
-$Player localMoveZ -0.1 0.5
 
 
 

@@ -21,6 +21,7 @@ Then
 	Do 'GenericChat.txt'
 	wait .5
 	ZoomSpot Menu.Question 'Is this the correct patient?'
+	ZoomSpot Menu.Choices 'Yes','No','Unsure'
 	ZoomSpot Menu.on ZoomSpot
 	WaitFor
 		ZoomSpot Menu.Done
@@ -48,6 +49,7 @@ Then
 	Do 'GenericChat.txt'
 	wait .5
 	ZoomSpot Menu.Question 'Is this the correct patient?'
+	ZoomSpot Menu.Choices 'Yes','No','Unsure' 
 	ZoomSpot Menu.on ZoomSpot
 	WaitFor
 		ZoomSpot Menu.Done

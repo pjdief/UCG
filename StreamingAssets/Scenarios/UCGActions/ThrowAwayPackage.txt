@@ -14,33 +14,23 @@ $Package localmovey .05 .5
 Wait 0.5
 
 #have Package move with player
-
 $PlayerHandName = 'Nurse' + ActiveHand + 'Hand'
 $PlayerHand =$ PlayerHandName
-
-#Prompt 'PlayerHand1 = ' + PlayerHand
-#Wait 3
-
 $Package constrainTo $PlayerHand
 Wait 0
-#back player up
-#$Player localMoveZ -0.3 0.5
 
-
-#move player up
-#$Player localMoveZ 0.3 0.5
-$Player align $CartLook 1
-
-Wait 0.8
+#Move player back to default position
+$Player align $CartLook 0.5
+Wait 0.5
 
 $Release = 'release' + ActiveHand
-$PlayerNurse $Release 1 'dip'
+$PlayerNurse $Release 0.5 'dip'
 
-Wait 0.8
+Wait 0.5
 
 #have Package move freely (with hand attached)
 $Package releaseConstraint 
 
-Wait 0.5
+Wait 0.1
 Destroy $Package
 

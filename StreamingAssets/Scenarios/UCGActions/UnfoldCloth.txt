@@ -1,7 +1,7 @@
 #UnfoldCloth.txt
 #Do 'UnfoldCloth'  
 
-Prompt 'UnfoldCloth'
+Prompt 'Opening the catheterization set'
 $PlayerNurse localMoveY 0.6 0
 $PlayerNurse play LeanIn
 Wait 1

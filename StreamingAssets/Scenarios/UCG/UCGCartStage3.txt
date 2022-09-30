@@ -5,7 +5,7 @@
 #$CartButton off
 #$PatientButton off
 $ProcedureButton off
-$Cart2Button on
+$Cart1Button on
 
 #$ECGCan on
 
@@ -19,7 +19,6 @@ $SyringePackage outline.on
 $LubricantPackage outline.on
 $Lubricant outline.on
 $Catheter outline.on
-$UrineBag outline.on
 $Gloves outline.on
 $Syringe outline.on
 $Tape outline.on
@@ -33,7 +32,6 @@ $SyringePackage  clickable true
 $Lubricant clickable true
 $LubricantPackage clickable true
 $Catheter clickable true
-$UrineBag clickable true
 $Gloves clickable true
 $Syringe clickable true
 $Tape clickable true
@@ -41,6 +39,29 @@ $CottonBalls clickable true
 
 $Patient clickable false
 $Patient outline.off
+
+/*
+
+###########TESTING START
+
+#$ActiveHand = 'Left'
+#$OtherHand = 'Right'
+wait 1
+
+Do 'UCGActions/UnfoldCloth'
+wait 1
+Do 'UCGActions/OpenInjectionWater.txt'
+Do 'UCGActions/InjectionWater.txt'
+Do 'UCGActions/OpenSyringe.txt'
+Do 'UCGActions/Syringe.txt'
+Do 'UCGActions/OpenCatheter.txt'
+
+Do 'UCGActions/Antiseptic.txt'
+Do 'UCGActions/CottonBalls.txt'
+Do 'UCGActions/AttachUrineBagBed.txt'
+###########TESTING END
+
+*/
 
 label 'CartLoop'
 
@@ -59,10 +80,10 @@ label 'CartLoop'
 	Endif
 
 	If
-		$Cart2 pressed
+		$Cart1 pressed
 	Then
-		$Cart2 reset
-		Player align $CartLook1 0.5
+		$Cart1 reset
+		Player align $Cart1Look 0.5
 	Endif
 
 	If
@@ -73,10 +94,10 @@ label 'CartLoop'
 	Endif
 
 	If
-		$Cart2Button pressed
+		$Cart1Button pressed
 	Then
-		$Cart2Button reset
-		Player align $CartLook1 0.5
+		$Cart1Button reset
+		Player align $Cart1Look 0.5
 	Endif
 
 	If
@@ -185,6 +206,20 @@ label 'CartLoop'
 				$CatheterPort = $CatheterBalloon + '/Handle/Port'
 				wait 1
 
+				Player align $CartLook 0.5
+				Wait 0.5
+				#move player closer for grab
+				$Player localMoveZ 0.25 0.5
+				wait 1
+				$Player localrotatex 30 0.5
+				wait 1
+				$Item = $Syringe
+				$Grab = 'grab' + ActiveHand
+				$PlayerNurse play 'GripSize_R' true 0.2
+				$PlayerNurse $Grab $Item 1 'dip' 'default' 
+				Wait 1
+
+
 				$Syringe align $CatheterPort 1
 				wait 1
 
@@ -204,15 +239,17 @@ label 'CartLoop'
 
 				$ItemHoldSpot = $CatheterBalloon + '/' + ActiveHand + 'Rotator'
 				Wait 0
+				$ItemHoldSpot localmovey .08 0
+				wait 0
 
 				#Grab Package
-				$Grab = 'grab' + ActiveHand + '.elbowout'
+				$Grab = 'grab' + OtherHand + '.elbowout'
 				$PlayerNurse $Grab $ItemHoldSpot 0.5 'dip' 'default' 
 				Wait 2
 				Prompt 'No leaks found'
 				wait 2
 				Prompt ''
-				$Release = 'release' + ActiveHand
+				$Release = 'release' + OtherHand
 				$PlayerNurse $Release 1 'dip'
 				wait 1
 
@@ -231,6 +268,10 @@ label 'CartLoop'
 				$Syringe localmovez .08 .5
 				wait .5
 
+				$Release = 'release' + ActiveHand
+				$PlayerNurse $Release 1 'dip'
+				Wait 1
+				Player align $CartLook 0.5
 
 				turnOn $Stage4Button
 			Endif
@@ -238,9 +279,9 @@ label 'CartLoop'
 	Endif
 
 	If
-		$UrineBag pressed
+		$UrineBagPackage pressed
 	Then
-		$UrineBag reset
+		$UrineBagPackage reset
 		Do 'UCGActions/AttachUrineBagBed.txt'
 	Endif
 
@@ -286,6 +327,17 @@ label 'CartLoop'
 		$PatientButton reset
 		Do 'UCGActions/ExitCart.txt'
 		Return
+	Endif
+
+	If
+		$Stage4Button pressed
+	Then
+		$Stage4Button reset
+		$Stage = 4
+		$GlobalVar setglobal 'Stage' $Stage
+		turnOff $Stage4Button
+		Do 'UCGActions/ExitCart.txt'
+		Do 'UCG/Stage4Loop.txt'
 	Endif
 
 	wait .2

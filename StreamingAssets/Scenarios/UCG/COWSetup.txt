@@ -53,8 +53,8 @@ Then
 	wait .3
 
 	$CartLook = $Cart + '/close'
-	$CartLook1 = $Cart1 + '/close'
-	$Cart2Look = $Cart1 + '/close'
+	$Cart1Look = $Cart1 + '/close'
+	$Cart1LookMedium = $Cart1 + '/medium'
 
 	$ClothPos = $Cart + '/ClothPos'
 
@@ -107,8 +107,10 @@ Then
 	$Catheter = 'Catheter'
 	$CatheterBalloon = 'CatheterBalloonCurled'
 
+	$UrineBagPackageObj = 'UCGAssets/UrineBagPackage'
+	$UrineBagPackage = 'UrineBagPackage'
 	$UrineBagObj = 'EmptyUrinaryBag'
-	$UrineBag = 'UrineBag'
+	$UrineBag = 'EmptyUrineBag'
 
 	$GlovesObj = 'UCGAssets/Sachet_Gloves'
 	$Gloves = 'Gloves'
@@ -140,6 +142,7 @@ Then
 	Create $AntisepticObj $Antiseptic
 	Create $CatheterObj $Catheter
 	Create $UrineBagObj $UrineBag
+	Create $UrineBagPackageObj $UrineBagPackage
 	Create $GlovesObj $Gloves
 	Create $SyringePackageObj $SyringePackage
 #	Create $SyringeObj $Syringe
@@ -154,13 +157,12 @@ Then
 #	Wait 0
 	$UCHolder align $CartPos5 0
 	Wait 0
-	$UCHolder localrotatey 90 0
+	$UCHolder localrotatey 180 0
 
 	$CatheterPos = $UCHolder + '/CatheterPos'
 
 	$AntisepticSol = $UCHolder + '/AntisepticSolution'
 	$WaterSol = $UCHolder + '/InjectionWaterSolution'
-
 	$AntisepticSol moveY -0.03 0
 #	turnOff $AntisepticSol
 	$AntisepticSol off
@@ -179,7 +181,7 @@ Then
 #	Wait 0
 	
 #	Wait 0
-	$ContinenceSheet align $CartPos9 0
+	$ContinenceSheet align $Cart1Pos9 0
 
 	Wait 0
 	$InjectionWaterPackage align $Cart1Pos1 0
@@ -196,6 +198,7 @@ Then
 #	$Antiseptic localrotatey 180 0
 #	Wait 0
 #	$Antiseptic localrotatex 180 0
+
 
 
 	Create $LubricantPackageObj $LubricantPackage
@@ -216,6 +219,7 @@ Then
 #	Wait 0
 
 #	Wait 0
+/*
 	$UrineBag align $Cart1Pos8 0
 	Wait 0
 	$UrineBag localrotatey 180 0
@@ -224,6 +228,16 @@ Then
 	Wait 0
 	$UrineBag localmovey .03 0
 	Wait 0
+*/
+	$UrineBagPackage align $Cart1Pos8 0
+	Wait 0
+#	$UrineBagPackage localrotatey 180 0
+#	Wait 0
+#	$UrineBagPackage localmovex -.01 0
+#	Wait 0
+#	$UrineBagPackage localmovey .03 0
+#	Wait 0
+
 
 #	Wait 0
 	$Gloves align $Cart1Pos2 0
@@ -258,6 +272,7 @@ Then
 	$CottonBalls localmovex .01 0
 
 $CartClothFolded clickable true
+$CartClothFolded reset
 $HandScrub clickable false
 $ContinenceSheet clickable false
 $InjectionWater clickable false
@@ -294,3 +309,4 @@ Then
 	$Syringe attachto $UCGKidneyDish
 	$CatheterPos attachto $UCGKidneyDish
 Endif
+

@@ -1,5 +1,5 @@
 # 'OpenSyringe'
-Prompt 'OpenSyringe'
+Prompt 'Syringe'
 wait .31
 Prompt ''
 
@@ -28,7 +28,7 @@ Do 'UCGActions/PourPackage' $Item $ItemPos 0.15
 #drop object from package
 Do 'UCGActions/DropFromPackage' $Item $ItemObj $ItemPos
 
-Wait 2
+Wait 1
 
 #Stop pour
 Do 'UCGActions/StopPackagePour' $Item 
@@ -36,8 +36,6 @@ Do 'UCGActions/StopPackagePour' $Item
 #Throw away package
 Do 'UCGActions/ThrowAwayPackage' $Item 
 
-#back player up
-$Player localMoveZ -0.1 0.5
 
 
 

@@ -26,7 +26,22 @@ Then
 		WaitFor
 			ZoomSpot Menu.Done
 		Wait .1
-			$Syringe lookAt $WaterSol 0 .01 0 1
+			Player align $CartLook 0.5
+			Wait 0.5
+			#move player closer for grab
+			$Player localMoveZ 0.25 0.5
+			wait 0.5
+
+			$Item = $Syringe
+			$Grab = 'grab' + ActiveHand
+			$PlayerNurse play 'GripSize_R' true 0.2
+			$PlayerNurse $Grab $Item 1 'dip' 'default' 
+			Wait 1
+			$Syringe localmovey .1 .5
+			wait .5
+			$Syringe localrotatex 90 .5
+			wait .5
+			$Syringe moveabove $WaterSol .01 1
 			Wait 1
 
 			/*
@@ -60,6 +75,11 @@ Then
 			wait .5
 
 			$SyringeFull = true
+
+			$Release = 'release' + ActiveHand
+			$PlayerNurse $Release 1 'dip'
+			Wait 1
+			Player align $CartLook 0.5
 	Else
 		Prompt 'Needs injection water'
 		wait 2

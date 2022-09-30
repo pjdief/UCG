@@ -15,13 +15,21 @@ Then
 	$SheetObj = 'ContinenceSheet'
 	$Sheet = 'ContinenceSheetObj'
 	
+	$Item = $ContinenceSheet	
+	
+	#Grab item, and tear package open.
+	Do 'UCGActions/GrabAndOpenPackage' $Item
+	Player align $PlayerStart 1
+	wait 1
 	Create $SheetObj $Sheet
 	wait .1
 	$SheetPos = $Bed + '/Patient02'
 	wait .5
 	$Sheet moveto $SheetPos 0
-	wait .1
-	$Sheet localmovex -.3 0
-	wait .1
+	wait 0
+	$Sheet localmovex -.3 1
+	wait 1
 	Destroy $ContinenceSheet
+	wait 1
+	Player align $CartLook 1
 Endif

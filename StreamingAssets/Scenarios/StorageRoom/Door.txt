@@ -7,7 +7,19 @@ Wait 1
 If
     ZoomSpot menu.result $Yes
 Then
-    SceneManager switchtoscene Scenes/UCG/Scene03_4
+    If
+        $ScenarioGender = 'Female'
+    Then
+        If
+            $ScenarioStruggle = 'True'
+        Then
+            SceneManager switchtoscene Scenes/UCG/Scene03_4_Struggle
+        Else
+            SceneManager switchtoscene Scenes/UCG/Scene03_4
+        Endif
+    Else
+        SceneManager switchtoscene Scenes/UCG/Scene03_4_Male
+    Endif
 Else
     /JoystickCanvas on
 Endif

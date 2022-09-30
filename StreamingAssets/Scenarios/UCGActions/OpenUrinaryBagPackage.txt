@@ -1,0 +1,41 @@
+# 'OpenSyringe'
+Prompt 'Syringe'
+wait .31
+Prompt ''
+
+If
+	Do 'AnswerIs' 'Open syringe?' 'No'
+Then
+	Return
+Endif
+
+
+
+#setup variables for function calls
+$Item = SyringePackage
+$ItemObj = Syringe
+$ItemPos = CartPos6
+$Syringe = ItemObj + 'Instance'  #DropFromPackage adds Instance to name
+
+
+
+#Grab item, and tear package open.
+Do 'UCGActions/GrabAndOpenPackage' $Item
+
+#pour package
+Do 'UCGActions/PourPackage' $Item $ItemPos 0.15
+
+#drop object from package
+Do 'UCGActions/DropFromPackage' $Item $ItemObj $ItemPos
+
+Wait 1
+
+#Stop pour
+Do 'UCGActions/StopPackagePour' $Item 
+
+#Throw away package
+Do 'UCGActions/ThrowAwayPackage' $Item 
+
+
+
+

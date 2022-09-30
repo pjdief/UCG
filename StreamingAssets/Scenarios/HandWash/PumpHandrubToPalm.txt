@@ -27,10 +27,11 @@ $HandSanitizerNursePos = HandScrub + '/NursePos'
 NursePlayer localMoveX 1 0.5
 Wait 0.5
 NursePlayer align $HandSanitizerNursePos 1
-Player lookat $handScrub #0 .25 0.25
-NursePlayer align $HandSanitizerNursePos 1
 Wait 1.5
-
+#Player lookat $handScrub #0 .25 0.25
+#Wait 
+#NursePlayer align $HandSanitizerNursePos 0.3
+#Wait 0.5
 #Prompt 'AlignChild nurse'
 #Wait 2
 

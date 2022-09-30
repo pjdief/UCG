@@ -77,7 +77,7 @@ Then
 	$Catheter = 'Catheter'
 
 	$UrineBagObj = 'EmptyUrinaryBag'
-	$UrineBag = 'UrineBag'
+	$UrineBag = 'EmptyUrineBag'
 
 	$GlovesObj = 'UCGAssets/Sachet_Gloves'
 	$Gloves = 'Gloves'
@@ -102,9 +102,14 @@ Then
 
 	Create $UCHolderObj $UCHolder
 	Wait 0
-	$UCHolder align $CartPos2 0
+	$UCHolder align $CartPos2 10
+
+	Prompt 'Align holder'
+	Wait 10
 	Wait 0
-	$UCHolder localrotatey 90 0
+	$UCHolder localrotatey 180 10
+	Prompt 'rotate holder'
+	Wait 10
 
 	$CatheterPos = $UCHolder + '/CatheterPos'
 
@@ -150,9 +155,13 @@ Then
 	Wait 0
 	$Catheter align $CartPos6 0
 
-	Create $UrineBagObj $UrineBag
+#	Create $UrineBagObj $UrineBag
+#	Wait 0
+#	$UrineBag align $CartPos8 0
+
+	Create $UrineBagPackageObj $UrineBagPackage
 	Wait 0
-	$UrineBag align $CartPos8 0
+	$UrinePackageBag align $CartPos8 0
 
 	Create $GlovesObj $Gloves
 	Wait 0

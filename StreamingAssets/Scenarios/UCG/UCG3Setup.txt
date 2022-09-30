@@ -43,18 +43,19 @@ $OtherHand = 'Left'
 
 $PatientButton = 'ProcedureCanvas/Choices/PatientButton'
 $CartButton = 'ProcedureCanvas/Choices/CartButton'
-$Cart2Button = 'ProcedureCanvas/Choices/Cart2Button'
+$Cart1Button = 'ProcedureCanvas/Choices/Cart2Button'
 $LeftHandButton = 'ProcedureCanvas/Choices/LeftHandButton'
 $RightHandButton = 'ProcedureCanvas/Choices/RightHandButton'
 $ProcedureButton = 'ProcedureCanvas/Choices/ProcedureButton'
 $Stage4Button = 'ProcedureCanvas/Choices/Stage4Button'
+$Stage2Button = 'ProcedureCanvas/Choices/Stage2Button'
 $EndGameButton = 'ProcedureCanvas/Choices/EndGame'
 turnOff $EndGameButton
-$Cart2Button off
+$Cart1Button off
 
 #Turn on when not testing
 #turnoff $Stage4Button
-
+turnoff $Stage2Button
 
 ###########################################
 # Setup Scoring
@@ -80,6 +81,26 @@ If
 Then
    $ScoreTracker SetStage 1
    $ScoreTracker NumItems 8
+Endif
+
+$GlobalVar setglobal 'Gender' $PatientGender
+wait .1
+$ScenarioGender =
+$GlobalVar getglobal 'Gender'
+
+$ScenarioStruggle =
+$GlobalVar getglobal 'PatientStruggle'
+
+#For testing struggle
+If
+    $ScenarioStruggle = 'False'
+Then
+    #Continue
+Else
+    $GlobalVar setglobal 'PatientStruggle' $UCStruggle
+
+    $ScenarioStruggle =
+    $GlobalVar getglobal 'PatientStruggle'
 Endif
 
 $TakenAction = false

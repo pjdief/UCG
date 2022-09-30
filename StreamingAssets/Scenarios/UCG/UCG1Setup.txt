@@ -8,6 +8,20 @@ $Stage = '1'
 $GlobalVar setglobal 'Stage' $Stage
 $StageFolderPrefix = 'UCG/Stage' + Stage + '/'
 
+$GlobalVar setglobal 'Gender' $PatientGender
+wait .1
+$ScenarioGender =
+$GlobalVar getglobal 'Gender'
+
+If 
+    $BedNumber = '4'
+Then
+    $GlobalVar setglobal 'PatientStruggle' $UCStruggle
+
+    $ScenarioStruggle =
+    $GlobalVar getglobal 'PatientStruggle'
+Endif
+
 $DefaultBedNumber = '5'
 
 #Move camera to DefaultBedNumber, which then sets it as the current patient
@@ -19,7 +33,7 @@ Then
     $BathroomSignName = 'BathroomSign' + PatientGender
     $BathroomSignLoc = 'RoomLrgDoubleWard_base2/BathroomSign'
     If
-        $PatientGender = 'Female'
+        $ScenarioGender = 'Female'
     Then
         $BathroomSign = 'women sign'
     Else

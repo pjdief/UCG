@@ -52,6 +52,3 @@ Do 'NEWS_Nurse/PatientCreations/Head/Head3.txt'
 Do 'NEWS_Nurse/PatientCreations/Height/Average.txt'
 #Do 'NEWS_Nurse/PatientCreations/Weight/Average.txt'
 Do 'NEWS_Nurse/PatientCreations/Gender/Male.txt'
-
-
-$Patient outline.off

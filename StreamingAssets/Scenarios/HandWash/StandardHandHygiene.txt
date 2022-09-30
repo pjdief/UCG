@@ -1,5 +1,5 @@
 #StandardHandHygiene.txt - standard 7-step hand hygiene
-Prompt 'StandardHandHygiene'
+#Prompt 'Standard Hand Hygiene'
 #Do 'Setup/NursePlayer'
 
 
@@ -7,13 +7,13 @@ Prompt 'StandardHandHygiene'
 Player component.off 'OutlineEffect'
 
 Do 'HandWash/H0SquirtHandrubInPalm.txt'
-Do 'HandWash/H1RubPalms.txt' 'left'
-Do 'HandWash/H2RubPalmDorsumFingersInterlaced' 
-Do 'HandWash/H3RubPalmPalmFingersInterlaced'
-Do 'HandWash/H4RubBackOfFingers.txt'
-Do 'HandWash/H5RubThumb.txt'
-Do 'HandWash/H6RubFingersInPalm' 
-Do 'HandWash/H7RubWrappedHandOnForearm.txt'
+#Do 'HandWash/H1RubPalms.txt' 'left'
+#Do 'HandWash/H2RubPalmDorsumFingersInterlaced' 
+#Do 'HandWash/H3RubPalmPalmFingersInterlaced'
+#Do 'HandWash/H4RubBackOfFingers.txt'
+#Do 'HandWash/H5RubThumb.txt'
+#Do 'HandWash/H6RubFingersInPalm' 
+#Do 'HandWash/H7RubWrappedHandOnForearm.txt'
 
 #turn on active outlines
 Player component.on 'OutlineEffect'
