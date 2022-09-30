@@ -72,6 +72,19 @@ Then
 	Player align $UrinaryProcPos 0.5
 	wait 0.5
 
+	If
+		ZoomSpot menu.result 'Urethra'
+	Then
+		$PouringLiquid = 'UrineParticles'
+		Create $PouringLiquid $PouringLiquid
+		Wait 0
+		$PouringLiquid align $CatheterPort 0
+		Wait 0
+		$PouringLiquid localmovex .02 0
+		Wait 0
+		$PouringLiquid localrotatey 180 0
+		wait 0
+	Endif
 
 		ZoomSpot Menu.Question 'What should you do next?'
 		ZoomSpot Menu.Choices 'Inflate the balloon with 10 CC water for injection','Insert another 2.5cm and inflate the balloon with 10cc water for injection.'
@@ -84,21 +97,19 @@ Then
 		Then
 			$Syringe align $CatheterPort 1
 			wait 1
-			$Syringe localrotatex -90 .1
+			$Syringe align $CatheterPort 1
+			wait 1
+			$Syringe localmovez -.01 .1
 			wait .2
-			$Syringe localmovey .06 .1
-			wait .2
-			$Plunger localmovey -.06 2
-			wait 2
 			turnOff $SyringeWater
 		Else
 			$TempCatheter localmovez .02 1
 			wait 1
+			$PouringLiquid localmovez -.02 0
+			Wait 0
 			$Syringe align $CatheterPort 1
 			wait 1
-			$Syringe localrotatex -90 .1
-			wait .2
-			$Syringe localmovey .06 .1
+			$Syringe localmovez -.01 .1
 			wait .2
 			$Plunger localmovey -.06 2
 			wait 2
@@ -111,15 +122,7 @@ Then
 		wait .5
 		$Syringe attachto $UCGKidneyDish
 
-		$PouringLiquid = 'UrineParticles'
-		Create $PouringLiquid $PouringLiquid
-		Wait 0
-		$PouringLiquid align $CatheterPort 0
-		Wait 0
-		$PouringLiquid localmovex .02 0
-		Wait 0
-		$PouringLiquid localrotatey 180 0
-		wait 0
+		
 
 		$TempCatheter localmovez -.01 .1
 		wait .2
