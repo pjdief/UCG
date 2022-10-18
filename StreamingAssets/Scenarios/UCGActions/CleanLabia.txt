@@ -11,7 +11,7 @@ Else
     Prompt 'No param:' + param[1]
 Endif 
 
-Prompt 'CleanLabia ' + SideDistance
+#Prompt 'CleanLabia ' + SideDistance
 #Wait 2
 
 $Forceps align $PatientGenitals 0.5

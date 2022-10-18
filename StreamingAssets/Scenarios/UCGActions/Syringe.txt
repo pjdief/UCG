@@ -81,7 +81,7 @@ Then
 			Wait 1
 			Player align $CartLook 0.5
 	Else
-		Prompt 'Needs injection water'
+		Prompt 'Needs Water for injection'
 		wait 2
 		Prompt ''
 	Endif

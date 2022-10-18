@@ -6,118 +6,128 @@ ZoomSpot Menu.Done
 Wait .1
 
 If
-	ZoomSpot menu.result 'Yes'
+	ZoomSpot menu.result 'No'
 Then
-	Prompt 'Inserting catheter in urethra'
-	wait 2
-	Prompt ''
-	#Do 'UCGActions/GrabPenis.txt'
-	$TempCatheter = 'CatheterBalloon'
-	$UCLocator = $Patient + '/UCLocator'
-	$CatheterPort = $TempCatheter + '/Handle/Port'
+	Return
+Endif
 
-	Create $TempCatheter $TempCatheter
-	$TempCatheter align $CatheterBalloon 0
+Prompt 'Inserting catheter in urethra'
+wait 2
+Prompt ''
+Do 'UCGActions/GrabPenis.txt'
+$TempCatheter = 'CatheterBalloon'
+$UCLocator = $Patient + '/UCLocator'
+$CatheterPort = $TempCatheter + '/Handle/Port'
 
-	turnOff $CatheterBalloon
-	wait .1
-	$TempCatheter localmovey .01 0
+Create $TempCatheter $TempCatheter
+$TempCatheter align $CatheterBalloon 0
+
+turnOff $CatheterBalloon
+wait .1
+$TempCatheter localmovey .01 0
+wait 1
+
+$TempCatheter align $UCLocator 1
+wait 2
+$TempCatheter attachto $UCLocator
+
+/*
+##########INSERT PATIENT STRUGGLE###########
+$ScenarioStruggle =
+$GlobalVar getglobal 'PatientStruggle'
+If
+	$ScenarioStruggle = 'True'
+Then
+	$Patient play Struggle
 	wait 1
+	Prompt 'Patient is struggling!'
+	wait 1
+	Prompt''
 
-	$TempCatheter align $UCLocator 1
-	wait 2
-
-	/*
-	##########INSERT PATIENT STRUGGLE###########
-	$ScenarioStruggle =
-	$GlobalVar getglobal 'PatientStruggle'
-	If
-		$ScenarioStruggle = 'True'
-	Then
-		$Patient play Struggle
-		wait 1
-		Prompt 'Patient is struggling!'
-		wait 1
-		Prompt''
-
-		$TempCatheter localmovez -.15 .5
-		wait .5
-		$TempCatheter localmovey -.13 .5
-		wait .5
-
-		$PlayerNurse release 1 'R_grip'
-		$PlayerNurse release 1 'L_tweeze'
-		wait 2
-		Prompt 'Catheter has fallen out of patient.'
-		wait 1
-		Prompt''
-		wait .1
-		Player align $UrinaryProcPos 0.5
-		wait 0.5
-
-		$GlobalVar setglobal 'PatientStruggle' 'False'
-		wait .1
-
-		turnOn $Stage2Button
-		Return
-	Endif
-	*/
+	$TempCatheter localmovez -.15 .5
+	wait .5
+	$TempCatheter localmovey -.13 .5
+	wait .5
 
 	$PlayerNurse release 1 'R_grip'
 	$PlayerNurse release 1 'L_tweeze'
 	wait 2
+	Prompt 'Catheter has fallen out of patient.'
+	wait 1
+	Prompt''
+	wait .1
 	Player align $UrinaryProcPos 0.5
 	wait 0.5
-	$PouringLiquid = 'UrineParticles'
-	Create $PouringLiquid $PouringLiquid
+
+	$GlobalVar setglobal 'PatientStruggle' 'False'
+	wait .1
+
+	turnOn $Stage2Button
+	Return
+Endif
+*/
+
+$PlayerNurse release 1 'R_grip'
+$PlayerNurse release 1 'L_tweeze'
+wait 2
+Player align $UrinaryProcPos 0.5
+wait 0.5
+$PouringLiquid = 'UrineParticles'
+Create $PouringLiquid $PouringLiquid
+Wait 0
+$PouringLiquid align $CatheterPort 0
+Wait 0
+$PouringLiquid localmovex .02 0
+Wait 0
+$PouringLiquid localrotatey 180 0
+wait 0
+$PouringLiquid localmovez .01 0
+Wait 0
+$PouringLiquid attachto $CatheterPort
+
+########### INFLATION #################
+
+ZoomSpot Menu.Question 'What should you do next?'
+ZoomSpot Menu.Choices 'Inflate the balloon with 10 CC water for injection','Insert another 2.5cm and inflate the balloon with 10cc water for injection.'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+If
+	ZoomSpot menu.result 'Inflate the balloon with 10 CC water for injection'
+Then
+	$Syringe align $CatheterPort 1
+	wait 1
+	$Syringe localmovez -.01 .1
+	wait .2
+	$Plunger localmovey -.06 2
+	wait 2
+	turnOff $SyringeWater
+Else
+	$TempCatheter localmovez .02 1
+	wait 1
+	$PouringLiquid localmovez -.02 0
 	Wait 0
-	$PouringLiquid align $CatheterPort 0
-	Wait 0
-	$PouringLiquid localmovex .02 0
-	Wait 0
-	$PouringLiquid localrotatey 180 0
-	wait 0
+	$Syringe align $CatheterPort 1
+	wait 1
+	$Syringe localmovez -.01 .1
+	wait .2
+	$Plunger localmovey -.06 2
+	wait 2
+	turnOff $SyringeWater
+Endif
 
-		ZoomSpot Menu.Question 'What should you do next?'
-		ZoomSpot Menu.Choices 'Inflate the balloon with 10 CC water for injection','Insert another 2.5cm and inflate the balloon with 10cc water for injection.'
-		ZoomSpot Menu.on ZoomSpot
-		WaitFor
-			ZoomSpot Menu.Done
-		Wait .1
-		If
-			ZoomSpot menu.result 'Inflate the balloon with 10 CC water for injection'
-		Then
-			$Syringe align $CatheterPort 1
-			wait 1
-			$Syringe localmovez -.01 .1
-			wait .2
-			$Plunger localmovey -.06 2
-			wait 2
-			turnOff $SyringeWater
-		Else
-			$TempCatheter localmovez .02 1
-			wait 1
-			$PouringLiquid localmovez -.02 0
-			Wait 0
-			$Syringe align $CatheterPort 1
-			wait 1
-			$Syringe localmovez -.01 .1
-			wait .2
-			$Plunger localmovey -.06 2
-			wait 2
-			turnOff $SyringeWater
-		Endif
-
-		$Syringe moveto $CatheterPos .2
-		wait .3
-		$Syringe attachto $UCGKidneyDish
+$Syringe align $CatheterPos .2
+wait .3
+$Syringe attachto $UCGKidneyDish
 
 
 
-		$TempCatheter localmovez -.01 .1
-		wait .2
-		$TempCatheter localmovez .01 .1
-		wait .2
-		
-		$CatheterInserted = 'true'
+$TempCatheter localmovez -.01 .1
+wait .2
+$TempCatheter localmovez .01 .1
+wait .2
 
+$CatheterInserted = 'true'
+
+Do 'UCGActions/ReleasePenis.txt'

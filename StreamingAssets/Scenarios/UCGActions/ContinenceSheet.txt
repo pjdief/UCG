@@ -18,9 +18,19 @@ Then
 	$Item = $ContinenceSheet	
 	
 	#Grab item, and tear package open.
-	Do 'UCGActions/GrabAndOpenPackage' $Item
-	Player align $PlayerStart 1
-	wait 1
+	Do 'UCGActions/GrabAndOpenPackage' $Item $PlayerStart
+
+	#Player align $PlayerStart 1
+
+	$PlayerHandName = 'Nurse' + ActiveHand + 'Hand'
+	$PlayerHand =$ PlayerHandName
+	$Item constrainTo $PlayerHand
+	Wait 0
+	$Release = 'release' + ActiveHand
+	$PlayerNurse $Release 1 'dip'
+	Wait 1
+	$Item releaseConstraint
+
 	Create $SheetObj $Sheet
 	wait .1
 	$SheetPos = $Bed + '/Patient02'
@@ -34,5 +44,7 @@ Then
 	wait 0
 	Destroy $ContinenceSheet
 	wait 3
+	$PlayerNurse localMoveY -0.45 0
+	wait .1
 	Player align $CartLook 1
 Endif

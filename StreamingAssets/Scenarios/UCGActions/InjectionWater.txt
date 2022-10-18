@@ -1,8 +1,8 @@
-Prompt 'Injection Water'
+Prompt 'Water for injection'
 wait 1
 Prompt ''
 
-ZoomSpot Menu.Question 'Pour Injection Water?'
+ZoomSpot Menu.Question 'Pour Water for injection?'
 ZoomSpot Menu.Choices 'Yes','No'
 ZoomSpot Menu.on ZoomSpot
 WaitFor
@@ -14,10 +14,7 @@ Then
 	Return
 Endif
 
-Player align $CartLook 0.5
-Wait 0.5
-#move player closer for grab
-$Player localMoveZ 0.17 0.5
+
 
 
 $Item = $InjectionWater
@@ -25,7 +22,16 @@ $AmpouleCap = $Item + '/AmpouleBottle/Connector'
 $Grab = 'grab' + ActiveHand
 $PlayerNurse play 'GripSize_R' true 0.2
 $PlayerNurse $Grab $Item 1 'tweeze' 'default' 
-Wait 1
+Wait 2
+
+Player align $CartLook 0.5
+Wait 0.5
+$Item align $CartPos1 .5
+wait .5
+#move player closer for grab
+$Player localMoveZ 0.17 0.5
+
+
 
 $InjectionWater localmovey .1 1
 wait .5
@@ -95,3 +101,8 @@ Do 'UCGActions/StopPackagePour' $Item
 #Throw away package
 Do 'UCGActions/ThrowAwayPackage' $Item 
 $PlayerNurse play 'GripSize_R' true 0.5
+Wait 0.5
+#Set hand shape back 
+$Release = 'release'  + ActiveHand
+$PlayerNurse $Release 0 'tweeze'
+

@@ -13,10 +13,11 @@ Wait .1
 If
 	ZoomSpot menu.result 'Dorsal recumbent'
 Then
+	$Player align $PlayerStart
 	Prompt 'Positioning Patient'
 	wait 1
 	$Pillow = $Bed + '/pillow sofa'
-	turnOff $Pillow
+#	turnOff $Pillow
 	If
 		$PatientGender = 'Male'
 	Then

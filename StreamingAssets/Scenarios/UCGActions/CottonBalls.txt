@@ -17,7 +17,8 @@ Wait .1
 If
 	ZoomSpot menu.result 'Yes'
 Then
-
+$Player align $CartLook
+wait 1
 If
 	$AntisepticSol isOn
 Then

@@ -16,7 +16,7 @@ $Item = $Antiseptic
 $ItemPos = AntisepticSol
 
 #Grab item, and tear package open.
-Do 'UCGActions/GrabAndOpenPackage' $Item
+Do 'UCGActions/GrabAndOpenPackage' $Item $CartLook
 
 Do 'UCGActions/PourPackage' $Item $ItemPos 0.15
 

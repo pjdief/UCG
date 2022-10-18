@@ -42,6 +42,7 @@ Wait .5
 $Package moveto ZoomSpot 0.5
 Wait .5
 
+/*
 #have Package move with player
 $Package attachTo $Player
 #$Package constrainTo $Player
@@ -59,3 +60,4 @@ Wait 0.5
 #have Package move freely (with hand attached)
 #$Package releaseConstraint  #$Player
 $Package detach  #$Player
+*/

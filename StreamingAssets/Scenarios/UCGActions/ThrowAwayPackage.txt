@@ -6,10 +6,17 @@ If
 	$param[0] > 0
 Then
 	$Package = param[1]
+	$MoveBackSpot = param[2]
+Endif
+If
+	$param[0] > 1
+Then
+	$MoveBackSpot = param[2]
+Else
+	$MoveBackSpot = CartLook
 Endif
 
-
-#Take package away
+#Lift package up
 $Package localmovey .05 .5
 Wait 0.5
 
@@ -20,7 +27,7 @@ $Package constrainTo $PlayerHand
 Wait 0
 
 #Move player back to default position
-$Player align $CartLook 0.5
+$Player align $MoveBackSpot 0.5
 Wait 0.5
 
 $Release = 'release' + ActiveHand

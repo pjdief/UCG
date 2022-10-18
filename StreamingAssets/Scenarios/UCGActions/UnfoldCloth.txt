@@ -1,8 +1,11 @@
 #UnfoldCloth.txt
 #Do 'UnfoldCloth'  
 
+$Player align $CartLook 1
+wait .5
+
 Prompt 'Opening the catheterization set'
-$PlayerNurse localMoveY 0.6 0
+$PlayerNurse localMoveY 0.45 0
 $PlayerNurse play LeanIn
 Wait 1
 
@@ -11,5 +14,7 @@ turnOn $CartCloth
 turnOn $UCSet
 Wait 3
 
-$PlayerNurse localMoveY -0.6 0
+$PlayerNurse localMoveY -0.45 0
 Prompt ''
+
+$ClothUnfolded = 'true'

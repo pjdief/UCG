@@ -2,47 +2,10 @@
 #  UCG Cart - Stage 3
 #########################################
 
-#$CartButton off
-#$PatientButton off
-$ProcedureButton off
-$Cart1Button on
-
-#$ECGCan on
-
-$Cart outline.off
-
-$CartClothFolded outline.on
-$ContinenceSheet outline.on
-$InjectionWater outline.on
-$Antiseptic outline.on
-$SyringePackage outline.on
-$LubricantPackage outline.on
-$Lubricant outline.on
-$Catheter outline.on
-$Gloves outline.on
-$Syringe outline.on
-$Tape outline.on
-$CottonBalls outline.on
-
-$CartClothFolded clickable true
-$ContinenceSheet clickable true
-$InjectionWater clickable true
-$Antiseptic clickable true
-$SyringePackage  clickable true
-$Lubricant clickable true
-$LubricantPackage clickable true
-$Catheter clickable true
-$Gloves clickable true
-$Syringe clickable true
-$Tape clickable true
-$CottonBalls clickable true
-
-$Patient clickable false
-$Patient outline.off
-
 /*
 
 ###########TESTING START
+wait 2
 
 #$ActiveHand = 'Left'
 #$OtherHand = 'Right'
@@ -50,41 +13,18 @@ wait 1
 
 Do 'UCGActions/UnfoldCloth'
 wait 1
-Do 'UCGActions/OpenInjectionWater.txt'
 Do 'UCGActions/InjectionWater.txt'
 Do 'UCGActions/OpenSyringe.txt'
 Do 'UCGActions/Syringe.txt'
 Do 'UCGActions/OpenCatheter.txt'
 
-Do 'UCGActions/Antiseptic.txt'
-Do 'UCGActions/CottonBalls.txt'
-Do 'UCGActions/AttachUrineBagBed.txt'
+#Do 'UCGActions/Antiseptic.txt'
+#Do 'UCGActions/CottonBalls.txt'
+#Do 'UCGActions/AttachUrineBagBed.txt'
 ###########TESTING END
 
 */
 
-label 'CartLoop'
-
-	If
-		$Cart pressed
-	Then
-		$Cart reset
-		Player align $CartLook 0.5
-	Endif
-
-	If
-		$CartButton pressed
-	Then
-		$CartButton reset
-		Player align $CartLook 0.5
-	Endif
-
-	If
-		$Cart1 pressed
-	Then
-		$Cart1 reset
-		Player align $Cart1Look 0.5
-	Endif
 
 	If
 		$CartClothFolded pressed
@@ -94,40 +34,88 @@ label 'CartLoop'
 	Endif
 
 	If
-		$Cart1Button pressed
-	Then
-		$Cart1Button reset
-		Player align $Cart1Look 0.5
-	Endif
-
-	If
-		$LeftHandButton pressed
-	Then
-		Prompt 'Left Hand is Active'
-		Wait 1
-		Prompt ''
-		$LeftHandButton reset
-		$ActiveHand = 'Left'
-		$OtherHand = 'Right'
-	Endif
-
-	If
-		$RightHandButton pressed
-	Then
-		Prompt 'Right Hand is Active'
-		Wait 1
-		Prompt ''
-		$RightHandButton reset
-		$ActiveHand = 'Right'
-		$OtherHand = 'Left'
-	Endif
-
-	If
 		$HandScrub pressed
 	Then
 		$HandScrub reset
 		Do 'UCGActions/HandScrub.txt'
 	Endif
+
+
+	If
+		$ClothUnfolded = 'true'
+	Then
+		
+		If
+			$InjectionWater pressed
+		Then
+			$InjectionWater reset
+			Do 'UCGActions/InjectionWater.txt'
+		Endif
+
+		If
+			$Antiseptic pressed
+		Then
+			$Antiseptic reset
+			Do 'UCGActions/Antiseptic.txt'
+		Endif
+
+		If
+			$Lubricant pressed
+		Then
+			$Lubricant reset
+			Do 'UCGActions/Lubricant.txt'
+		Endif
+
+		If
+			$SyringePackage pressed
+		Then
+			$SyringePackage reset
+			Do 'UCGActions/OpenSyringe.txt'
+		Endif
+
+		If
+			$LubricantPackage pressed
+		Then
+			$LubricantPackage reset
+			Do 'UCGActions/OpenLubricant.txt'
+		Endif
+
+		If
+			$InjectionWaterPackage pressed
+		Then
+			$InjectionWaterPackage reset
+			Do 'UCGActions/OpenInjectionWater.txt'
+		Endif
+
+		If
+			$Catheter pressed
+		Then
+			$Catheter reset
+			Do 'UCGActions/OpenCatheter.txt'
+		Endif
+
+		If
+			$CatheterBalloon pressed
+		Then
+			$CatheterBalloon reset		
+			Do 'UCGActions/TestCatheter.txt'
+		Endif
+
+		If
+			$Syringe pressed
+		Then
+			$Syringe reset
+			Do 'UCGActions/Syringe.txt'
+		Endif
+
+		If
+			$CottonBalls pressed
+		Then
+			$CottonBalls reset
+			Do 'UCGActions/CottonBalls.txt'
+		Endif
+	Endif
+
 
 	If
 		$ContinenceSheet pressed
@@ -136,147 +124,6 @@ label 'CartLoop'
 		Do 'UCGActions/ContinenceSheet.txt'
 	Endif
 
-	If
-		$InjectionWater pressed
-	Then
-		$InjectionWater reset
-		Do 'UCGActions/InjectionWater.txt'
-	Endif
-
-	If
-		$Antiseptic pressed
-	Then
-		$Antiseptic reset
-		Do 'UCGActions/Antiseptic.txt'
-	Endif
-
-	If
-		$Lubricant pressed
-	Then
-		$Lubricant reset
-		Do 'UCGActions/Lubricant.txt'
-	Endif
-
-	If
-		$SyringePackage pressed
-	Then
-		$SyringePackage reset
-		Do 'UCGActions/OpenSyringe.txt'
-	Endif
-
-	If
-		$LubricantPackage pressed
-	Then
-		$LubricantPackage reset
-		Do 'UCGActions/OpenLubricant.txt'
-	Endif
-
-	If
-		$InjectionWaterPackage pressed
-	Then
-		$InjectionWaterPackage reset
-		Do 'UCGActions/OpenInjectionWater.txt'
-	Endif
-
-	If
-		$Catheter pressed
-	Then
-		$Catheter reset
-		Do 'UCGActions/OpenCatheter.txt'
-	Endif
-
-	If
-		$CatheterBalloon pressed
-	Then
-		$CatheterBalloon reset		
-		If
-			$SyringeFull = true
-		Then
-
-			ZoomSpot Menu.Question 'Test Catheter balloon for leaks?'
-			ZoomSpot Menu.Choices 'Yes','No'
-			ZoomSpot Menu.on ZoomSpot
-			WaitFor
-				ZoomSpot Menu.Done
-			Wait .1
-			If
-				ZoomSpot menu.result 'Yes'
-			Then
-
-				$CatheterPort = $CatheterBalloon + '/Handle/Port'
-				wait 1
-
-				Player align $CartLook 0.5
-				Wait 0.5
-				#move player closer for grab
-				$Player localMoveZ 0.25 0.5
-				wait 1
-				$Player localrotatex 30 0.5
-				wait 1
-				$Item = $Syringe
-				$Grab = 'grab' + ActiveHand
-				$PlayerNurse play 'GripSize_R' true 0.2
-				$PlayerNurse $Grab $Item 1 'dip' 'default' 
-				Wait 1
-
-
-				$Syringe align $CatheterPort 1
-				wait 1
-
-				$Syringe localrotatey -10 .1
-				wait .2
-				$Syringe localrotatex 20 .1
-				wait .2
-				$Syringe localmovez -.01 .1
-				wait .2
-
-				#push in water
-				$Plunger localmovey -.06 2
-				turnOff $SyringeWater
-				$CatheterBalloon play Grow true
-				wait 2
-
-
-				$ItemHoldSpot = $CatheterBalloon + '/' + ActiveHand + 'Rotator'
-				Wait 0
-				$ItemHoldSpot localmovey .08 0
-				wait 0
-
-				#Grab Package
-				$Grab = 'grab' + OtherHand + '.elbowout'
-				$PlayerNurse $Grab $ItemHoldSpot 0.5 'dip' 'default' 
-				Wait 2
-				Prompt 'No leaks found'
-				wait 2
-				Prompt ''
-				$Release = 'release' + OtherHand
-				$PlayerNurse $Release 1 'dip'
-				wait 1
-
-				#pull out water
-				$Plunger localmovey .06 2
-				wait 2
-				turnOn $SyringeWater
-				$CatheterBalloon play Grow false
-				wait 2
-
-				#put back curled version
-				$CatheterBalloon clickable false
-				wait 1
-				$Syringe align $CatheterPos 1
-				Wait 1
-				$Syringe localmovez .08 .5
-				wait .5
-
-				$Release = 'release' + ActiveHand
-				$PlayerNurse $Release 1 'dip'
-				Wait 1
-				Player align $CartLook 0.5
-
-				turnOn $Stage4Button
-			Endif
-		Endif
-	Endif
 
 	If
 		$UrineBagPackage pressed
@@ -285,6 +132,7 @@ label 'CartLoop'
 		Do 'UCGActions/AttachUrineBagBed.txt'
 	Endif
 
+
 	If
 		$Gloves pressed
 	Then
@@ -292,12 +140,6 @@ label 'CartLoop'
 		Do 'UCGActions/Gloves.txt'
 	Endif
 
-	If
-		$Syringe pressed
-	Then
-		$Syringe reset
-		Do 'UCGActions/Syringe.txt'
-	Endif
 
 	If
 		$Tape pressed
@@ -306,39 +148,10 @@ label 'CartLoop'
 		Do 'UCGActions/DetachTape.txt'
 	Endif
 
+
 	If
 		$DetachedTape pressed
 	Then
 		$DetachedTape reset
 		Do 'UCGActions/TapeCatheter.txt'
 	Endif
-
-
-	If
-		$CottonBalls pressed
-	Then
-		$CottonBalls reset
-		Do 'UCGActions/CottonBalls.txt'
-	Endif
-
-	If
-		$PatientButton pressed
-	Then
-		$PatientButton reset
-		Do 'UCGActions/ExitCart.txt'
-		Return
-	Endif
-
-	If
-		$Stage4Button pressed
-	Then
-		$Stage4Button reset
-		$Stage = 4
-		$GlobalVar setglobal 'Stage' $Stage
-		turnOff $Stage4Button
-		Do 'UCGActions/ExitCart.txt'
-		Do 'UCG/Stage4Loop.txt'
-	Endif
-
-	wait .2
-Goto 'CartLoop'

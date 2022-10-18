@@ -26,7 +26,7 @@ label 'CartLoop'
 		$WaterAmpouleName pressed
 	Then
 		$WaterAmpouleName reset
-		$ToolName = 'Injection Water'
+		$ToolName = 'Water for injection'
 		$ToolToDestroy = $WaterAmpouleName
 		Do 'UCGActions/ReturnTool.txt'
 	Endif

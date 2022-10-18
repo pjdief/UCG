@@ -20,7 +20,7 @@ $CatheterBalloon = ItemObj + 'Instance'  #DropFromPackage adds Instance to name
 
 
 #Grab item, and tear package open.
-Do 'UCGActions/GrabAndOpenPackage' $Item
+Do 'UCGActions/GrabAndOpenPackage' $Item $CartLook
 
 #pour package
 #Move 15cm over container over 1/2 second

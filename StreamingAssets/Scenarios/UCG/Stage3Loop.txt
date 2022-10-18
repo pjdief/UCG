@@ -1,17 +1,11 @@
-#/PatientCanvas off
 JoystickCanvas on
 $Patient outline.on
 $Cart outline.on
 $Vitalsmonitor outline.on
-#Prompt 'Playerstart = ' + PlayerStart
-#Wait .51
 
 $BackECG = 'ECGCheckCanvas/Choices/Exit'
 
-WipeCanvas off
-/SyringeCanvas off
-/IVCanvas off
-/DripCanvas off
+$ClothUnfolded = 'false'
 
 $RightRail = $Bed + '/RightRail'
 $RightRail outline.on
@@ -26,15 +20,9 @@ Do 'SummaryCheck.txt'
 
 $PatientInPosition = 'false'
 
-$GlobalVar setglobal 'UsingTool' false
+Label 'Stage3Loop'
 
-#Do 'HandWash/SurgicalHandHygiene.txt'
-
-
-Label 'LoopN1'
-
-	$UsingTool =
-	  $GlobalVar getGlobal 'UsingTool'
+	Do 'UCG/UCGCartStage3.txt'
 
 	If
 		$HandScrub pressed
@@ -47,11 +35,9 @@ Label 'LoopN1'
 		$SumButton pressed
 	Then
 		$SumButton reset
-		$GlobalVar setglobal 'UsingTool' true
 		$CheckCanvas off
 		PatInfoCanvas off
 		Do 'SummaryCheck.txt'
-		$GlobalVar setglobal 'UsingTool' false
 	Endif
 
 	If
@@ -83,12 +69,6 @@ Label 'LoopN1'
         SceneManager switchtoscene Scenes/MainMenu
 	Endif
 
-	If
-		$PatientButton pressed
-	Then
-		$PatientButton reset
-		Player align $PlayerStart 1
-	Endif
 
 	If
 		$RightRail pressed
@@ -108,6 +88,9 @@ Label 'LoopN1'
 		Wait 1
 		Prompt ''
 		$LeftHandButton reset
+
+		$RightHandImage setimagecolor alpha .2
+		$LeftHandImage setimagecolor alpha 1
 		$ActiveHand = 'Left'
 		$OtherHand = 'Right'
 	Endif
@@ -119,8 +102,18 @@ Label 'LoopN1'
 		Wait 1
 		Prompt ''
 		$RightHandButton reset
+
+		$RightHandImage setimagecolor alpha 1
+		$LeftHandImage setimagecolor alpha .2
 		$ActiveHand = 'Right'
 		$OtherHand = 'Left'
+	Endif
+
+	If
+		$PatientButton pressed
+	Then
+		$PatientButton reset
+		Player align $PlayerStart 1
 	Endif
 
 	If
@@ -128,11 +121,27 @@ Label 'LoopN1'
 	Then
 		$CartButton reset
 		Player align $CartLook 1
-		$CartObj outline.off
-		$GlobalVar setglobal 'UsingTool' true
-		turnOff $SumButton
+	Endif
 
-		Do 'UCG/UCGCartStage3.txt'
+	If
+		$Cart1Button pressed
+	Then
+		$Cart1Button reset
+		Player align $Cart1Look 0.5
+	Endif
+
+	If
+		$Cart pressed
+	Then
+		$Cart reset
+		Player align $CartLook 0.5
+	Endif
+
+	If
+		$Cart1 pressed
+	Then
+		$Cart1 reset
+		Player align $Cart1Look 0.5
 	Endif
 
 	If
@@ -156,21 +165,6 @@ Label 'LoopN1'
 		Do 'UCG/Stage4Loop.txt'
 	Endif
 
-
-	If
-		$CartObj pressed
-	Then
-		$CartObj reset
-		$CartObj outline.off
-		$GlobalVar setglobal 'UsingTool' true
-		Player align $CartLook .5
-		turnOff $SumButton
-		$CartObj clickable false
-
-		Do 'UCG/UCGCartStage3.txt'
-	Endif
-
-
 	If
 		$Curtain pressed
 	Then
@@ -180,24 +174,9 @@ Label 'LoopN1'
 	Endif
 
 	If
-		$CartClothFolded pressed
-	Then
-		$CartClothFolded reset
-		Do 'UCGActions/UnfoldCloth'
-	Endif
-
-	Do 'Patient/LookAround'
-
-	If
 		$PatientSign pressed
 	Then
 		$PatientSign reset
-		$GlobalVar setglobal 'UsingTool' true
-		If
-			$InterventionsCanvas isOn
-		Then
-			$UIMan closetoolinventory
-		Endif
 		Player align $LookAtPatientSign 1
 		$ECGCan on
 		label 'signLoop'
@@ -209,7 +188,6 @@ Label 'LoopN1'
 			Player align $PlayerStart 1
 			Wait .5
 			$UseToolButton reset
-			$GlobalVar setglobal 'UsingTool' false
 			Goto 'LoopN1'
 		Endif
 		Goto 'signLoop'
@@ -248,5 +226,7 @@ Label 'LoopN1'
 		$CheckCanvas off
 	Endif
 
+	Do 'Patient/LookAround'
+
 	Wait .2
-Goto 'LoopN1'
+Goto 'Stage3Loop'

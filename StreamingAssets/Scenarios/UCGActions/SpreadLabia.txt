@@ -33,7 +33,7 @@ Wait .2
 
 #Start hand above patient
 If
-    $whichHand_SL == 'left'
+    $whichHand_SL == 'Left'
 Then
     $PlayerNurse play 'GripSize_L' true 0
 

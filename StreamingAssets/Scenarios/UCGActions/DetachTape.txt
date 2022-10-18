@@ -14,6 +14,15 @@ Prompt ''
 		ZoomSpot menu.result 'Yes'
 	Then
 		$DetachedTape = 'DetachedTape'
+		$Item = $Tape
+		Do 'UCGActions/GrabAndOpenPackage' $Item $Cart1LookMedium
+		wait .5
+		Do 'UCGActions/ThrowAwayPackage' $Item $Cart1LookMedium
+		wait .5
+		$PlayerNurse localMoveY 0.4 0
+		wait 0
+		$PlayerNurse play LeanIn
+		Wait 1
 		Create $DetachedTape $DetachedTape
 		$DetachedTape align $Cart1Pos6 0
 		
@@ -22,4 +31,8 @@ Prompt ''
 		Prompt 'Tape is prepped.'
 		wait 1
 		Prompt ''
+		wait 1
+		$PlayerNurse localMoveY -0.4 0
+		wait 1
+		$Player align $Cart1Look
 	Endif

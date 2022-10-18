@@ -18,11 +18,27 @@ Then
 		If
 			$CatheterInserted = 'true'
 		Then
+			$Item = $DetachedTape
+
+			Do 'UCGActions/GrabPackage' $Item
+			Do 'UCGActions/MoveWithPackage' $PlayerStart
+			wait .5
+			Do 'UCGActions/ThrowAwayPackage' $Item $PlayerStart
+			wait .5
+			$PlayerNurse localMoveY 0.4 0
+			wait 0
+			$PlayerNurse play LeanIn
+			Wait 1
+
+			
 			Destroy $DetachedTape
 		
 			Prompt 'Catheter is anchored.'
 			wait 1
 			Prompt ''
+			wait 2
+			$PlayerNurse localMoveY -0.4 0
+			$Player align $PlayerStart
 		Else
 			Prompt 'Catheter not inserted yet.'
 			wait 1

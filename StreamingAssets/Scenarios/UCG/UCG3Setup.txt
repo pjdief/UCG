@@ -46,14 +46,18 @@ $CartButton = 'ProcedureCanvas/Choices/CartButton'
 $Cart1Button = 'ProcedureCanvas/Choices/Cart2Button'
 $LeftHandButton = 'ProcedureCanvas/Choices/LeftHandButton'
 $RightHandButton = 'ProcedureCanvas/Choices/RightHandButton'
+$LeftHandImage = 'ProcedureCanvas/Choices/LeftHandButton/Button'
+$RightHandImage = 'ProcedureCanvas/Choices/RightHandButton/Button'
 $ProcedureButton = 'ProcedureCanvas/Choices/ProcedureButton'
 $Stage4Button = 'ProcedureCanvas/Choices/Stage4Button'
 $Stage2Button = 'ProcedureCanvas/Choices/Stage2Button'
 $EndGameButton = 'ProcedureCanvas/Choices/EndGame'
 turnOff $EndGameButton
-$Cart1Button off
 
-#Turn on when not testing
+$RightHandImage setimagecolor alpha 1
+$LeftHandImage setimagecolor alpha .2
+
+########Turn on when not testing
 #turnoff $Stage4Button
 turnoff $Stage2Button
 
@@ -226,6 +230,32 @@ $NurseBodyNoGloves = PlayerNurse + '/BodyNoGloves'
 turnOff $NurseBodyGloves 
 turnOn $NurseBodyNoGloves 
 
+
+$CartClothFolded outline.on
+$ContinenceSheet outline.on
+$InjectionWater outline.on
+$Antiseptic outline.on
+$SyringePackage outline.on
+$LubricantPackage outline.on
+$Lubricant outline.on
+$Catheter outline.on
+$Gloves outline.on
+$Syringe outline.on
+$Tape outline.on
+$CottonBalls outline.on
+
+$CartClothFolded clickable true
+$ContinenceSheet clickable true
+$InjectionWater clickable true
+$Antiseptic clickable true
+$SyringePackage  clickable true
+$Lubricant clickable true
+$LubricantPackage clickable true
+$Catheter clickable true
+$Gloves clickable true
+$Syringe clickable true
+$Tape clickable true
+$CottonBalls clickable true
 
 $Patient speaker.color .5 .5 1
 $Patient outline.on

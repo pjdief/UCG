@@ -2,22 +2,12 @@ Prompt 'Open Urine Bag Packaging'
 wait 1
 Prompt ''
 
-ZoomSpot Menu.Question 'Attach urine bag to bedside?'
-ZoomSpot Menu.Choices 'Yes','No'
-ZoomSpot Menu.on ZoomSpot
-WaitFor
-	ZoomSpot Menu.Done
-Wait .1
-If
-	ZoomSpot menu.result 'Yes'
-Then
-
 $UrineBagPos = $Bed + '/UrinaryPos'
 
 #Grab item, and tear package open.  Move ZoomSpot so not too close to camera
 $Item = 'UrineBagPackage'
 ZoomSpot localMoveZ 0.12 0   #move so not tooo close to camera
-Do 'UCGActions/GrabAndOpenPackage' $Item
+Do 'UCGActions/GrabAndOpenPackage' $Item $PlayerStart
 ZoomSpot localMoveZ -0.12 0  #move back to where it was
 
 #Swap created urine bag with one in package
@@ -25,7 +15,7 @@ $PackageUrineBag = Item + '/EmptyUrinaryBag'
 Prompt 'Align ' + UrineBag + ' to ' + PackageUrineBag
 $UrineBag align $PackageUrineBag 0
 Wait 0
-turnOff $PackageUrineBag 
+turnOff $PackageUrineBag
 Wait 0
 
 Prompt 'Attach urine bag to bed'
@@ -36,12 +26,15 @@ $Grab = 'grab' + OtherHand
 
 $PlayerNurse $Grab $Item 1 'grip' 'default' 
 Wait 2
-$Player localMoveZ -0.3
-Wait 0.5
+#$Player localMoveZ -0.3
+#Wait 0.5
 
 Prompt ''
 
 $UrineBag align $UrineBagPos 1
+wait 1
+$Release = 'release' + OtherHand
+$PlayerNurse $Release 0.5 'dip'
 
 $UrineBag outline.off
 
@@ -51,10 +44,9 @@ ZoomSpot Menu.on ZoomSpot
 WaitFor
 	ZoomSpot Menu.Done
 Wait .1
-
 #Throw away package
 $Item = 'UrineBagPackage'
-Do 'UCGActions/ThrowAwayPackage' $Item 
+Do 'UCGActions/ThrowAwayPackage' $Item $PlayerStart
 
-
-Endif
+wait .1
+$Player align $CartLook

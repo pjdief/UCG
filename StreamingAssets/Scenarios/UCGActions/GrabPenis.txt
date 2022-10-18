@@ -3,6 +3,8 @@
 
 Player align $UrinaryProcPos 0.5
 Wait 0.5
+$Player localMoveZ 0.1 0.5
+wait 1
 #Player lookAt $PatientGenitals -0.05 0.2 .05 0.5
 Wait 0.5
 
@@ -15,8 +17,9 @@ Else
     #Prompt 'No param:' + param[1]
 Endif
 
-Prompt 'GrabPenis with ' + whichHand_GP
-Wait 1
+#Prompt 'Grab Penis with ' + whichHand_GP
+#Wait 1
+#Prompt ''
 
 /*
 $PatientGenitalsGrabHand = 'PenisHandPosition'
@@ -27,19 +30,19 @@ Wait 0
 */
 #Start hand above patient
 If
-    $whichHand_GP == 'left'
+    $whichHand_GP == 'Left'
 Then
     $PlayerNurse grabLeft.elbowout $PatientGenitals .1  'L_grip' 'default'
     Wait .1
 
-    Prompt 'Grab Genitals = ' + PatientGenitals + ' with left'
-    Wait 3
+#    Prompt 'Grab Genitals = ' + PatientGenitals + ' with left'
+#    Wait 3
 Else
     $PlayerNurse grabRight.elbowout $PatientGenitals .1  'R_grip' 'default'
     Wait .1
 
-    Prompt 'Grab Genitals = ' + PatientGenitals + ' with right'
-    Wait 3
+#    Prompt 'Grab Genitals = ' + PatientGenitals + ' with right'
+#    Wait 3
 Endif
 
 #Raise penis

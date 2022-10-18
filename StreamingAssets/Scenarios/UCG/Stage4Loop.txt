@@ -22,16 +22,26 @@ Then
 	Do 'UCGActions/PositionPatient.txt'
 Endif
 
-$GlobalVar setglobal 'UsingTool' false
-
 $UrinePercent = 0
+$PatientGenitals reset
+$GenitalsGrabbed = false
 
+$HandScrub outline.on
+$Catheter outline.on
+$UrineBag outline.on
+$Tape outline.on
+$CottonBalls outline.on
+$DrapePackage outline.on
+
+$HandScrub clickable true
+$UrineBag clickable true
+$Tape clickable true
+$CottonBalls clickable true
+$DrapePackage clickable true
 
 Label 'LoopN1'
 
-	$UsingTool =
-	  $GlobalVar getGlobal 'UsingTool'
-
+	Do 'UCG/UCGCartStage4.txt'
 
 	If
 		$HandScrub pressed
@@ -41,14 +51,43 @@ Label 'LoopN1'
 	Endif
 
 	If
+		$PatientGenitals pressed
+	Then	
+		$PatientGenitals reset
+		#######################
+		# Spread Labia or Grab Penis
+		#######################
+		If
+			$GenitalsGrabbed = false
+		Then
+			$GenitalsGrabbed = true
+			If
+				$PatientGender = 'Female'
+			Then
+				Do 'UCGActions/SpreadLabia' $ActiveHand
+			Else
+				Do 'UCGActions/GrabPenis' $ActiveHand
+			Endif
+		Else
+			$GenitalsGrabbed = false
+			If
+				$PatientGender = 'Female'
+			Then
+				Do 'UCGActions/ReleaseLabia' $ActiveHand
+			Else
+				Do 'UCGActions/ReleasePenis' $ActiveHand
+			Endif
+		Endif
+
+	Endif
+
+	If
 		$SumButton pressed
 	Then
 		$SumButton reset
-		$GlobalVar setglobal 'UsingTool' true
 		$CheckCanvas off
 		PatInfoCanvas off
 		Do 'SummaryCheck.txt'
-		$GlobalVar setglobal 'UsingTool' false
 	Endif
 
 	If
@@ -58,6 +97,9 @@ Label 'LoopN1'
 		Wait 1
 		Prompt ''
 		$LeftHandButton reset
+
+		$RightHandImage setimagecolor alpha .2
+		$LeftHandImage setimagecolor alpha 1
 		$ActiveHand = 'Left'
 		$OtherHand = 'Right'
 	Endif
@@ -69,6 +111,9 @@ Label 'LoopN1'
 		Wait 1
 		Prompt ''
 		$RightHandButton reset
+
+		$RightHandImage setimagecolor alpha 1
+		$LeftHandImage setimagecolor alpha .2
 		$ActiveHand = 'Right'
 		$OtherHand = 'Left'
 	Endif
@@ -99,25 +144,113 @@ Label 'LoopN1'
 		$PatientButton pressed
 	Then
 		$PatientButton reset
+		If
+			$GenitalsGrabbed = true
+		Then
+			$GenitalsGrabbed = false
+			If
+				$PatientGender = 'Female'
+			Then
+				Do 'UCGActions/ReleaseLabia' $ActiveHand
+			Else
+				Do 'UCGActions/ReleasePenis' $ActiveHand
+			Endif
+		Endif
 		Player align $PlayerStart 1
+	Endif
+
+	If
+		$Cart pressed
+	Then
+		$Cart reset
+		If
+			$GenitalsGrabbed = true
+		Then
+			$GenitalsGrabbed = false
+			If
+				$PatientGender = 'Female'
+			Then
+				Do 'UCGActions/ReleaseLabia' $ActiveHand
+			Else
+				Do 'UCGActions/ReleasePenis' $ActiveHand
+			Endif
+		Endif
+		Player align $CartLook 0.5
 	Endif
 
 	If
 		$CartButton pressed
 	Then
 		$CartButton reset
+		If
+			$GenitalsGrabbed = true
+		Then
+			$GenitalsGrabbed = false
+			If
+				$PatientGender = 'Female'
+			Then
+				Do 'UCGActions/ReleaseLabia' $ActiveHand
+			Else
+				Do 'UCGActions/ReleasePenis' $ActiveHand
+			Endif
+		Endif
 		Player align $CartLook 1
-		$CartObj outline.off
-		$GlobalVar setglobal 'UsingTool' true
-		turnOff $SumButton
+	Endif
 
-		Do 'UCG/UCGCartStage4.txt'
+	If
+		$Cart1 pressed
+	Then
+		$Cart1 reset
+		If
+			$GenitalsGrabbed = true
+		Then
+			$GenitalsGrabbed = false
+			If
+				$PatientGender = 'Female'
+			Then
+				Do 'UCGActions/ReleaseLabia' $ActiveHand
+			Else
+				Do 'UCGActions/ReleasePenis' $ActiveHand
+			Endif
+		Endif
+		Player align $Cart1Look 0.5
+	Endif
+
+	If
+		$Cart1Button pressed
+	Then
+		$Cart1Button reset
+		If
+			$GenitalsGrabbed = true
+		Then
+			$GenitalsGrabbed = false
+			If
+				$PatientGender = 'Female'
+			Then
+				Do 'UCGActions/ReleaseLabia' $ActiveHand
+			Else
+				Do 'UCGActions/ReleasePenis' $ActiveHand
+			Endif
+		Endif
+		Player align $Cart1Look 0.5
 	Endif
 
 	If
 		$ProcedureButton pressed
 	Then
 		$ProcedureButton reset
+		If
+			$GenitalsGrabbed = true
+		Then
+			$GenitalsGrabbed = false
+			If
+				$PatientGender = 'Female'
+			Then
+				Do 'UCGActions/ReleaseLabia' $ActiveHand
+			Else
+				Do 'UCGActions/ReleasePenis' $ActiveHand
+			Endif
+		Endif
 		Player align $UrinaryProcPos 1
 	Endif
 	
@@ -141,24 +274,9 @@ Label 'LoopN1'
 	Endif
 
 	If
-		$CartObj pressed
-	Then
-		$CartObj reset
-		$CartObj outline.off
-		$GlobalVar setglobal 'UsingTool' true
-		Player align $CartLook .5
-		turnOff $SumButton
-		$CartObj clickable false
-
-		Do 'UCG/UCGCartStage4.txt'
-	Endif
-
-
-	If
 		$PatientSign pressed
 	Then
 		$PatientSign reset
-		$GlobalVar setglobal 'UsingTool' true
 		Player align $LookAtPatientSign 1
 		$ECGCan on
 		label 'signLoop'
@@ -210,9 +328,20 @@ Label 'LoopN1'
 			If
 				ZoomSpot menu.result 'Yes'
 			Then
+				$PlayerNurse localMoveY 0.6 0
+				$PlayerNurse play LeanIn
+				Wait 1
 				Destroy $Drape
-				turnOn $Pillow
+				#turnOn $Pillow
 				$Patient play ExamPos false
+				If
+					$PatientGender = 'Male'
+				Then
+					turnOn $Pants
+				Endif
+				Wait 3
+				$PlayerNurse localMoveY -0.6 0
+				Prompt ''
 			Endif
 		Endif
 	Endif 

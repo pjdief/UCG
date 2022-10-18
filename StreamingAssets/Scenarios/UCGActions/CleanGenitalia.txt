@@ -2,7 +2,7 @@
 #Do 'CleanGenitalia' ['right'|'left']
 
 Prompt 'CleanGenitalia'
-Wait 2
+#Wait 2
 
 If
     $param[0] > 0
@@ -36,6 +36,14 @@ $SingleCottonBall localmovex .02 0
 $SingleCottonBall attachto $Forceps
 
 ####################
+# Align forceps 
+# - needs to be close enough to Nurse so nurse (camera) doesn't move by the grab command
+####################
+
+$Forceps align $MiddleHandSpot 1
+Wait 1
+
+####################
 # Grab forceps
 ####################
 
@@ -52,13 +60,7 @@ Else
 Endif
 Wait .1
 
-####################
-# Align forceps
-####################
-
 #$PatientGenitals = Patient + '/Genitals'
-
-
 
 #######################
 # Spread Labia or Grab Penis

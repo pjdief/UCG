@@ -28,18 +28,21 @@ Then
 		turnOn $EndGameButton
 		$Patient clickable true
 		$Patient outline.on
+		If
+			$InsertedVagina = 'false'
+		Then
+			$Urine = $UrineBag + '/Urine
+			
+			turnOn $Urine
+			$IVLineUrine = IVLine + '/Urine'
+			
+			Prompt "uring starting to flow'
+			Wait 0.5
+			Prompt ''
+			#Prompt 'IVline ' + IVLineUrine + ' setOpacity' 
 
-		$Urine = $UrineBag + '/Urine
-		
-		turnOn $Urine
-		$IVLineUrine = IVLine + '/Urine'
-		
-		Prompt "uring starting to flow'
-		Wait 0.5
-		Prompt ''
-		#Prompt 'IVline ' + IVLineUrine + ' setOpacity' 
-
-		$IVLineUrine setOpacity 1 4
+			$IVLineUrine setOpacity 1 4
+		Endif
 
 	Endif
 Endif
