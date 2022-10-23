@@ -1,7 +1,7 @@
 #UnfoldCloth.txt
 #Do 'UnfoldCloth'  
 
-$Player align $CartLook 1
+$Player align $CartLook .5
 wait .5
 
 Prompt 'Opening the catheterization set'

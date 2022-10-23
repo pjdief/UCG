@@ -14,17 +14,12 @@ Endif
 Prompt 'CleanPenis ' + SideDistance
 #Wait 2
 
-#Prompt 'Rotate forceps with ' + PatientGenitals
-#Wait 2
-#Prompt 'Aligning forceps with ' + PatientGenitals
-
-$Forceps align $PatientGenitals 0.5
-Wait 0.5
-#Prompt 'Rotating forceps with ' + PatientGenitals
-$Forceps localRotateX 70 0.5
-Wait 0.5
-#$Forceps localRotateY 20 0.1
-
+$Forceps align $PatientGenitals 0
+Wait 0
+$Forceps localmovey -.1 0
+Wait 0
+$Forceps localRotateX -110 0
+Wait 0
 
 #Clean the genitals by wiping each side up-to-down
 #clean penis
@@ -34,8 +29,4 @@ $Forceps movecirclez $SideDistance 2
 wait 2
 
 Prompt ''
-#Wait 1
-
-$Forceps moveY 0.5 0.5
-Wait 0.5
 

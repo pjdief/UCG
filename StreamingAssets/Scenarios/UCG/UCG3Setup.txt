@@ -1,5 +1,5 @@
 # UCG3Setup.txt - Main UCG setup file.  Sets up variables for scene objects, etc.
-
+#Wait 10000
 ###########################################
 # Setup Stage Number
 ###########################################

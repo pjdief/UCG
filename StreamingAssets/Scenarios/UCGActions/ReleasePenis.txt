@@ -15,9 +15,9 @@ Else
     #Prompt 'No param:' + param[1]
 Endif
 
-Prompt 'Release Penis with ' + whichHand_GP
-Wait 1
-Prompt ''
+#Prompt 'Release Penis with ' + whichHand_GP
+#Wait 1
+#Prompt ''
 
 
 #Start hand above patient

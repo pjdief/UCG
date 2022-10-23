@@ -31,7 +31,7 @@ Wait 0.5
 #Grab Package
 $Grab = 'grab' + ActiveHand + '.elbowout'
 $PlayerNurse $Grab $ItemHoldSpot 0.5 'dip' 'default' 
-Wait 0.7
+Wait 10000.7
 
 #Wait 2
 #Move Package closer

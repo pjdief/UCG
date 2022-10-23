@@ -18,8 +18,14 @@ Then
 
 		$UCGKidneyDish align $CartPos6 1
 		wait 1
+		If
+			$PatientGender = 'Male'
+		Then
+			$IVLine = 'UCIVLineMale'
+		Else
+			$IVLine = 'UCIVLine'
+		Endif
 
-		$IVLine = 'UCIVLine'
 		Create $IVLine $IVLine
 		$IVLine moveto $UrineBagPos 0
 		wait 0
@@ -43,6 +49,6 @@ Then
 
 			$IVLineUrine setOpacity 1 4
 		Endif
-
+		$UrineBagAttached = 'true'
 	Endif
 Endif

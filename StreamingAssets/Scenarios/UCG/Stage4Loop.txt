@@ -297,7 +297,7 @@ Label 'LoopN1'
 	$PatientUrineAmount = 0.75
 
 	If
-		$CatheterInserted = 'true'
+		$UrineBagAttached = 'true'
 	Then
 		#Prompt 'Urine amount = ' + UrinePercent
 		If
@@ -353,6 +353,7 @@ Label 'LoopN1'
 		If
 			$PatientGender = 'Male'
 		Then
+			Do 'UCGActions/InsertLignocaineInPenis.txt'
 			Do 'UCGActions/InsertMaleCatheter.txt'
 		Else
 			Do 'UCGActions/InsertFemaleCatheter.txt'

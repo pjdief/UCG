@@ -15,9 +15,11 @@ Prompt 'Inserting catheter in urethra'
 wait 2
 Prompt ''
 Do 'UCGActions/GrabPenis.txt'
-$TempCatheter = 'CatheterBalloon'
+$TempCatheter = 'CatheterBalloonInsert'
+$FinalCatheter = 'CatheterBalloon'
 $UCLocator = $Patient + '/UCLocator'
 $CatheterPort = $TempCatheter + '/Handle/Port'
+$FinalCatheterPort = $FinalCatheter + '/Handle/Port'
 
 Create $TempCatheter $TempCatheter
 $TempCatheter align $CatheterBalloon 0
@@ -28,6 +30,8 @@ $TempCatheter localmovey .01 0
 wait 1
 
 $TempCatheter align $UCLocator 1
+wait 2
+$TempCatheter localmovez .1 2
 wait 2
 $TempCatheter attachto $UCLocator
 
@@ -129,5 +133,27 @@ $TempCatheter localmovez .01 .1
 wait .2
 
 $CatheterInserted = 'true'
+
+Create $FinalCatheter $FinalCatheter
+wait 0
+$FinalCatheter align $TempCatheter 0
+wait 0
+
+
+Destroy $TempCatheter
+
+Create $PouringLiquid $PouringLiquid
+Wait 0
+$PouringLiquid align $FinalCatheterPort 0
+Wait 0
+$PouringLiquid localmovex .02 0
+Wait 0
+$PouringLiquid localrotatey 180 0
+wait 0
+$PouringLiquid localmovez .01 0
+Wait 0
+$PouringLiquid attachto $FinalCatheterPort
+
+$FinalCatheter attachto $UCLocator
 
 Do 'UCGActions/ReleasePenis.txt'

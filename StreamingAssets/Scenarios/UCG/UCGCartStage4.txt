@@ -95,7 +95,7 @@ Then
 #			Wait 1
 
 
-			Do 'UCGActions/CleanGenitalia' $whichHand 0.03 1
+			Do 'UCGActions/CleanGenitalia' $whichHand 0.03 3
 
 			Player align $CartLook 1
 		Endif

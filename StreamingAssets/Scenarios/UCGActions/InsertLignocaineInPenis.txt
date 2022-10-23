@@ -1,0 +1,47 @@
+ZoomSpot Menu.Question 'Inject Lignocaine?'
+ZoomSpot Menu.Choices 'Yes','No'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+ZoomSpot Menu.Done
+Wait .1
+
+If
+	ZoomSpot menu.result 'No'
+Then
+	Return
+Endif
+
+Prompt 'Injecting Lignocaine in urethra'
+wait 2
+Prompt ''
+Do 'UCGActions/GrabPenis.txt'
+$TempCatheter = 'Syringe'
+$UCLocator = $Patient + '/UCLocator'
+
+Create $TempCatheter $TempCatheter
+
+
+$TempCatheter align $UCLocator 1
+wait 3
+
+#DO INJECTION STUFF
+
+###################
+
+
+
+#$TempCatheter attachto $UCLocator
+
+#Move it out of the way
+$TempCatheter align ZoomSpot 1
+
+
+$PlayerNurse release 1 'R_grip'
+$PlayerNurse release 1 'L_tweeze'
+wait 2
+
+
+Destroy $TempCatheter
+
+
+Do 'UCGActions/ReleasePenis.txt'

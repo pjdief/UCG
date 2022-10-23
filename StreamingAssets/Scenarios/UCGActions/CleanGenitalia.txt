@@ -1,7 +1,7 @@
 #CleanGenitalia.txt
 #Do 'CleanGenitalia' ['right'|'left']
 
-Prompt 'CleanGenitalia'
+Prompt 'Clean Genitalia'
 #Wait 2
 
 If
@@ -16,7 +16,7 @@ Endif
 
 
 ####################
-# Create Forcepts and cottonball
+# Create Forceps and cottonball
 ####################
 
 $Forceps = 'Forceps_Straight_IK'
@@ -26,8 +26,13 @@ Create $Forceps $Forceps
 
 $SingleCottonBall = 'Swab_Ball_Pinched'
 Create $SingleCottonBall $SingleCottonBall
-$SingleCottonBall setMaterial AntisepticBallMat
-wait 0 #.1
+
+If
+    $AntisepticCotton = 'true'
+Then
+    $SingleCottonBall setMaterial AntisepticBallMat
+    wait 0 #.1
+Endif
 $SingleCottonBall align $Forceps 0
 wait 0 #.1
 $SingleCottonBall localmovez .02 0
@@ -65,15 +70,16 @@ Wait .1
 #######################
 # Spread Labia or Grab Penis
 #######################
-
 If
     $PatientGender = 'Female'
 Then
     Do 'UCGActions/SpreadLabia' $otherHand
     $CleanGenitals = 'UCGActions/CleanLabia'
+    $ReleaseGenitalia = 'UCGActions/ReleaseLabia.txt'
 Else
     Do 'UCGActions/GrabPenis' $otherHand
     $CleanGenitals = 'UCGActions/CleanPenis'
+    $ReleaseGenitalia = 'UCGActions/ReleasePenis.txt'
 Endif
 
 
@@ -92,7 +98,11 @@ label 'wipesloop'
 #######################
 # Release hands and destroy forceps
 #######################
+Prompt ''
+wait 2
+Destroy $Forceps
 
+Do $ReleaseGenitalia
 
 #right hand
 $PlayerNurse release 1 'R_grip'
@@ -101,6 +111,5 @@ $PlayerNurse release 1 'L_tweeze'
 $PlayerNurse release 1 'L_grip'
 $PlayerNurse release 1 'R_tweeze'
 
-Prompt ''
-wait 2
-Destroy $Forceps
+wait .3
+$Player align $PlayerStart

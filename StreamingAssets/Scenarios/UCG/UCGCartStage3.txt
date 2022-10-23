@@ -91,6 +91,7 @@ Do 'UCGActions/OpenCatheter.txt'
 			$Catheter pressed
 		Then
 			$Catheter reset
+			Prompt 'CAtheter pressed'
 			Do 'UCGActions/OpenCatheter.txt'
 		Endif
 
@@ -154,4 +155,120 @@ Do 'UCGActions/OpenCatheter.txt'
 	Then
 		$DetachedTape reset
 		Do 'UCGActions/TapeCatheter.txt'
+	Endif
+
+
+
+
+
+	#############Cloth not unfolded prompt
+
+	If
+		$ClothUnfolded = 'false'
+	Then
+		
+		If
+			$InjectionWater pressed
+		Then
+			$InjectionWater reset
+			Prompt 'Must open the catheterization set first.'
+			wait 1.5
+			Prompt ''
+		Endif
+
+		If
+			$Antiseptic pressed
+		Then
+			$Antiseptic reset
+			Prompt 'Must open the catheterization set first.'
+			wait 1.5
+			Prompt ''
+		Endif
+
+		If
+			$Lubricant pressed
+		Then
+			$Lubricant reset
+			$Antiseptic reset
+			Prompt 'Must open the catheterization set first.'
+			wait 1.5
+			Prompt ''
+		Endif
+
+		If
+			$SyringePackage pressed
+		Then
+			$SyringePackage reset
+			$Lubricant reset
+			$Antiseptic reset
+			Prompt 'Must open the catheterization set first.'
+			wait 1.5
+			Prompt ''
+		Endif
+
+		If
+			$LubricantPackage pressed
+		Then
+			$LubricantPackage reset
+			$Lubricant reset
+			$Antiseptic reset
+			Prompt 'Must open the catheterization set first.'
+			wait 1.5
+			Prompt ''
+		Endif
+
+		If
+			$InjectionWaterPackage pressed
+		Then
+			$InjectionWaterPackage reset
+			$Lubricant reset
+			$Antiseptic reset
+			Prompt 'Must open the catheterization set first.'
+			wait 1.5
+			Prompt ''
+		Endif
+
+		If
+			$Catheter pressed
+		Then
+			$Catheter reset
+			$Lubricant reset
+			$Antiseptic reset
+			Prompt 'Must open the catheterization set first.'
+			wait 1.5
+			Prompt ''
+		Endif
+
+		If
+			$CatheterBalloon pressed
+		Then
+			$CatheterBalloon reset		
+			$Lubricant reset
+			$Antiseptic reset
+			Prompt 'Must open the catheterization set first.'
+			wait 1.5
+			Prompt ''
+		Endif
+
+		If
+			$Syringe pressed
+		Then
+			$Syringe reset
+			$Lubricant reset
+			$Antiseptic reset
+			Prompt 'Must open the catheterization set first.'
+			wait 1.5
+			Prompt ''
+		Endif
+
+		If
+			$CottonBalls pressed
+		Then
+			$CottonBalls reset
+			$Lubricant reset
+			$Antiseptic reset
+			Prompt 'Must open the catheterization set first.'
+			wait 1.5
+			Prompt ''
+		Endif
 	Endif

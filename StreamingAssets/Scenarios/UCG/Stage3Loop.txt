@@ -201,6 +201,19 @@ Label 'Stage3Loop'
 		Then
 			$Patient reset
 			Do 'UCGActions/PositionPatient.txt'
+/*
+####JUST FOR TESTING
+		If
+			$PatientGender = 'Male'
+		Then
+			Do 'UCGActions/InsertLignocaineInPenis.txt'
+			Do 'UCGActions/InsertMaleCatheter.txt'
+		Else
+			Do 'UCGActions/InsertFemaleCatheter.txt'
+		Endif
+###END TESTING
+*/
+
 		Endif
 	Endif
 
