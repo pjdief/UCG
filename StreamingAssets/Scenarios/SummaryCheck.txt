@@ -18,7 +18,6 @@ Then
 	If
 		$Stage = 1
 	Then
-#Prompt 'TURN ON BUTTON'
 		TurnOn $SummaryExit
 		$SummaryExit reset
 		$SummaryText write You are required to look at the patient order provided on the COW computer, identify and carry out the correct procedure to identify the patient.
