@@ -9,7 +9,6 @@
 	Wait .1
 
 
-#Prompt 'TURN ON BUTTON'
 		TurnOn $SummaryExit
 		$SummaryExit reset
 		$SummaryText write You are required to gather all necessary materials to perform a urinary catherterization.

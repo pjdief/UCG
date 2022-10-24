@@ -91,7 +91,6 @@ Do 'UCGActions/OpenCatheter.txt'
 			$Catheter pressed
 		Then
 			$Catheter reset
-			Prompt 'CAtheter pressed'
 			Do 'UCGActions/OpenCatheter.txt'
 		Endif
 
