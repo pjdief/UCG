@@ -1,5 +1,5 @@
 $GlobalVar setglobal 'UsingTool' true
-$Patient outline.off
+
 JoystickCanvas off
 
 Label 'PositionLoop'
@@ -29,6 +29,7 @@ Then
 	wait .1
 	$Patient clickable false
 	wait .1
+	$Patient outline.off
 Else
 	If
 		ZoomSpot menu.result 'Back'
@@ -50,6 +51,6 @@ Else
 		goto 'PositionLoop'
 	Endif
 Endif
-$Patient outline.on
+
 JoystickCanvas on
 $GlobalVar setglobal 'UsingTool' false
