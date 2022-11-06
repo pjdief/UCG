@@ -101,7 +101,7 @@ Then
 	$HandScrubObj = 'handScrub'
 	$HandScrub = 'HandScrub'
 
-	$ContinenceSheetObj = 'UCGAssets/GeneralSachet'
+	$ContinenceSheetObj = 'UCGAssets/ContinenceSheetPackage'
 	$ContinenceSheet = 'ContinenceSheet'
 
 	$InjectionWaterPackageObj = 'UCGAssets/AmpoulePackage'
@@ -151,6 +151,7 @@ Then
 	Create $CartCloth $CartCloth
 	Create $CartClothFolded $CartClothFolded
 	Create $HandScrubObj $HandScrub
+	Wait 0
 	Create $ContinenceSheetObj $ContinenceSheet
 
 	Create $UrineBagObj $UrineBag
@@ -237,9 +238,8 @@ Then
 	$HandScrub align $CartPosSanitizer 0
 	Wait 0
 	$HandScrub localRotateY -90 0
-#	Wait 0
-	
-#	Wait 0
+	Wait 0
+
 	$ContinenceSheet align $Cart1Pos9 0
 
 	$Catheter align $Cart1Pos5 0
@@ -276,6 +276,19 @@ Then
 	$Syringe clickable false
 	$Tape clickable false
 
+	If
+		$Stage = 2
+	Then
+		$HandScrub attachto $Cart
+		$ContinenceSheet attachto $Cart
+		$Catheter attachto $Cart
+		$UrineBagPackage attachto $Cart
+		$Gloves attachto $Cart
+		$Gloves2 attachto $Cart
+		$Syringe attachto $Cart
+		$Tape attachto $Cart
+		$CartClothFolded attachto $Cart
+	Endif
 
 Endif
 

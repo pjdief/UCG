@@ -47,17 +47,9 @@ Endif
 
 #Raise penis
 $PatientGenitals localRotateX -85 1
-Wait .1
-$Patient setbodyblendshape 0 20.0
-Wait .2
-$Patient setbodyblendshape 0 40.0
-Wait .2
-$Patient setbodyblendshape 0 60.0
-Wait .2
-$Patient setbodyblendshape 0 80.0
-Wait .2
-$Patient setbodyblendshape 0 100.0
-#Wait 1
+$Patient setbodyblendshape 0 100.0 1
+Wait 1.1
+
 
 #right hand
 #$PlayerNurse release 1 'R_grip'

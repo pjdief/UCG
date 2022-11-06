@@ -41,10 +41,10 @@ $TempCatheter orient $UCLocator 0
 Wait 0
 $TempCatheter movebehind $UCLocator -0.1 1
 Wait 1
-Prompt 'Moved catheter'
+#Prompt 'Moved catheter'
 
-Wait 5
-Prompt 'Aligning catheter'
+Wait 3
+#Prompt 'Aligning catheter'
 $TempCatheter align $UCLocator 1
 wait 2
 $TempCatheter localmovez .1 2

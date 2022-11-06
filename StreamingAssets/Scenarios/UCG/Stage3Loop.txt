@@ -201,6 +201,7 @@ Label 'Stage3Loop'
 		Then
 			$Patient reset
 			Do 'UCGActions/PositionPatient.txt'
+
 /*
 ####JUST FOR TESTING
 		If
@@ -213,6 +214,7 @@ Label 'Stage3Loop'
 		Endif
 ###END TESTING
 */
+
 
 		Endif
 	Endif

@@ -1,4 +1,5 @@
 # UCG1Setup.txt - Main UCG setup file.  Sets up variables for scene objects, etc.
+Wait 0.5
 
 ###########################################
 # Setup Stage Number
@@ -216,9 +217,18 @@ Label 'N1Loop'
 #Wait 1
 #Goto 'N1Loop'
 $Nurse = 'Nurse_01(Clone)'
-$Nurse speaker.color 1 .5 .5
-$NurseHead = $Nurse + '/metarig/Jaw'
+
+If
+    $PatientGender == 'Male'
+Then
+    $NurseHead = $Nurse + '/metarig/Jaw'
+Else
+    $NurseHead = $Nurse + '/mixamorig8:Head'
+Endif
+
 #$PatientHead = $Patient + '/Jaw'
+$Nurse speaker.color 1 .5 .5
+
 #$Patient speaker.object $PatientHead
 $Nurse speaker.object $NurseHead
 $Patient speaker.color .5 .5 1
@@ -227,4 +237,5 @@ $Patient outline.on
 
 #turnOff $Nurse
 $SceneStart = 'NEWS_Nurse/MainLoop.txt'
+Prompt 'start scene'
 Do $SceneStart

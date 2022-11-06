@@ -14,7 +14,7 @@ Endif
 Prompt 'Inserting catheter in urethra'
 wait 2
 Prompt ''
-Do 'UCGActions/GrabPenis.txt'
+Do 'UCGActions/GrabPenis.txt' $ActiveHand
 $TempCatheter = 'CatheterBalloonInsert'
 $FinalCatheter = 'CatheterBalloon'
 $UCLocator = $Patient + '/UCLocator'
@@ -156,4 +156,4 @@ $PouringLiquid attachto $FinalCatheterPort
 
 $FinalCatheter attachto $UCLocator
 
-Do 'UCGActions/ReleasePenis.txt'
+Do 'UCGActions/ReleasePenis.txt' $ActiveHand

@@ -1,6 +1,6 @@
 $Player align PlayerOrig
 #$Player lookat PlayerLook
-Debug 'LG04Scene04Start.txt'
+#Debug 'LG04Scene04Start.txt'
 #Wait 3
 $Shelf outline.on
 $Cart = 'COW1(Clone)'

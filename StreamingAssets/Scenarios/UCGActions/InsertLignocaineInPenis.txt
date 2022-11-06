@@ -12,36 +12,47 @@ Then
 Endif
 
 Prompt 'Injecting Lignocaine in urethra'
-wait 2
+wait 1
 Prompt ''
-Do 'UCGActions/GrabPenis.txt'
-$TempCatheter = 'Syringe'
+
+#Grab penis
+Do 'UCGActions/GrabPenis.txt' $ActiveHand
+
+#align syringe
+$LigSyringeObj = 'SyringeSmall'
+$LigSyringe  = 'LigSyringe'
 $UCLocator = $Patient + '/UCLocator'
-
-Create $TempCatheter $TempCatheter
-
-
-$TempCatheter align $UCLocator 1
-wait 3
+Create $LigSyringeObj $LigSyringe
+$Plunger = $LigSyringe + '/Plunger'
+$SyringeWater = $LigSyringe + '/Water'
+turnOn $SyringeWater
+$LigSyringe align $UCLocator 1
+wait 1
 
 #DO INJECTION STUFF
+#push in water
+$Plunger localmovey -.06 2
+turnOff $SyringeWater
+Wait 2
 
 ###################
 
 
 
-#$TempCatheter attachto $UCLocator
+#$LigSyringe attachto $UCLocator
+
+Prompt 'throw syringe away'
 
 #Move it out of the way
-$TempCatheter align ZoomSpot 1
+$LigSyringe align 'MiddleHandSpotHigh' 1
 
 
-$PlayerNurse release 1 'R_grip'
-$PlayerNurse release 1 'L_tweeze'
-wait 2
+#$PlayerNurse release 1 'grip'
+#$PlayerNurse release 1 'tweeze'
+#wait 2
 
 
-Destroy $TempCatheter
+Destroy $LigSyringe
 
 
-Do 'UCGActions/ReleasePenis.txt'
+Do 'UCGActions/ReleasePenis.txt' $ActiveHand

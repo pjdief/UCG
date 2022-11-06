@@ -20,6 +20,10 @@ Then
 	WaitFor
 		ZoomSpot Menu.Done
 	Wait .1
+
+	$Player align $CartLook 0.5
+	turnOff JoystickCanvas
+
 	If
 		ZoomSpot menu.result $Standard
 	Then
@@ -33,4 +37,5 @@ Then
 		Prompt ''
 		Do 'HandWash/SurgicalHandHygiene.txt'
 	Endif
+	turnOn JoystickCanvas
 Endif

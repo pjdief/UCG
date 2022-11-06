@@ -1,11 +1,6 @@
 #ReleasePenis.txt
 #Do 'ReleasePenis' ['right'|'left']
 
-#Player align $UrinaryProcPos 0.5
-#Wait 0.5
-#Player lookAt $PatientGenitals -0.05 0.2 .05 0.5
-#Wait 0.5
-
 If
     $param[0] > 0
 Then
@@ -19,30 +14,12 @@ Endif
 #Wait 1
 #Prompt ''
 
-
-#Start hand above patient
-If
-    $whichHand_GP == 'left'
-Then
-    $HandGrip = 'L_grip'
-Else
-    $HandGrip = 'R_grip'
-Endif
-
-
 #Lower penis
 $PatientGenitals localRotateX 85 1
-Wait .1
-$Patient setbodyblendshape 0 80.0
-Wait .09
-$Patient setbodyblendshape 0 60.0
-Wait .09
-$Patient setbodyblendshape 0 40.0
-Wait .08
-$Patient setbodyblendshape 0 20.0
-Wait .08
-$Patient setbodyblendshape 0 0.0
-#Wait 1
+$Patient setbodyblendshape 0 0.0 1
+Wait 1
+
 
 #open hand
-$PlayerNurse release 1 $HandGrip
+$releaseHand = 'release' + $whichHand_GP
+$PlayerNurse $releaseHand 1 'grip'
