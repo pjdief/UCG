@@ -237,5 +237,5 @@ $Patient outline.on
 
 #turnOff $Nurse
 $SceneStart = 'NEWS_Nurse/MainLoop.txt'
-Prompt 'start scene'
+#Prompt 'start scene'
 Do $SceneStart
