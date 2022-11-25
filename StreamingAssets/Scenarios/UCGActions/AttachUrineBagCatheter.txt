@@ -24,14 +24,18 @@ Then
 			$IVLine = 'UCIVLineMale'
 		Else
 			$IVLine = 'UCIVLine'
+			$IVLineEndEffector = IVLine + '/EndEffector'
 		Endif
 
 		Create $IVLine $IVLine
 		$IVLine moveto $UrineBagPos 0
 		wait 0
+
+		$IVLineEndEffector align $CatheterPort
+
 		Destroy $PouringLiquid
 
-		turnOn $EndGameButton
+		#turnOn $EndGameButton
 		$Patient clickable true
 		$Patient outline.on
 		If

@@ -4,7 +4,7 @@ Debug 'LG04Scene04Start.txt'
 #Wait 3
 $Shelf outline.on
 $Cart = 'COW1(Clone)'
-$Cart outline.on
+$Cart outline.off
 $CartLook = $Cart + '/close'
 $CartShelfPos1 = 'Positions/ShelfCOWPos1'
 $CartShelfPos2 = 'Positions/ShelfCOWPos2'

@@ -1,6 +1,6 @@
 JoystickCanvas on
 $Patient outline.on
-$Cart outline.on
+$Cart outline.off
 $Vitalsmonitor outline.on
 
 $BackECG = 'ECGCheckCanvas/Choices/Exit'
@@ -162,6 +162,7 @@ Label 'Stage3Loop'
 		$Stage = 4
 		$GlobalVar setglobal 'Stage' $Stage
 		turnOff $Stage4Button
+		$EndGameButton on
 		Do 'UCG/Stage4Loop.txt'
 	Endif
 

@@ -90,49 +90,7 @@ Wait 0
 $PouringLiquid attachto $CatheterPort
 
 ########### INFLATION #################
-
-ZoomSpot Menu.Question 'What should you do next?'
-ZoomSpot Menu.Choices 'Inflate the balloon with 10 CC water for injection','Insert another 2.5cm and inflate the balloon with 10cc water for injection.'
-ZoomSpot Menu.on ZoomSpot
-WaitFor
-	ZoomSpot Menu.Done
-Wait .1
-If
-	ZoomSpot menu.result 'Inflate the balloon with 10 CC water for injection'
-Then
-	$Syringe align $CatheterPort 1
-	wait 1
-	$Syringe localmovez -.01 .1
-	wait .2
-	$Plunger localmovey -.06 2
-	wait 2
-	turnOff $SyringeWater
-Else
-	$TempCatheter localmovez .02 1
-	wait 1
-	$PouringLiquid localmovez -.02 0
-	Wait 0
-	$Syringe align $CatheterPort 1
-	wait 1
-	$Syringe localmovez -.01 .1
-	wait .2
-	$Plunger localmovey -.06 2
-	wait 2
-	turnOff $SyringeWater
-Endif
-
-$Syringe align $CatheterPos .2
-wait .3
-$Syringe attachto $UCGKidneyDish
-
-
-
-$TempCatheter localmovez -.01 .1
-wait .2
-$TempCatheter localmovez .01 .1
-wait .2
-
-$CatheterInserted = 'true'
+Do 'UCGActions/InflateCatheterBalloon'
 
 Create $FinalCatheter $FinalCatheter
 wait 0

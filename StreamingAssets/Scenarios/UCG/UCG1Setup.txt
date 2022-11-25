@@ -127,7 +127,7 @@ $EWSCorrect off
 PatientPreCanvas off
 $ECGCan off
 $EWSCheck off
-EndGame off
+$EndGame off
 $EWSChoiceCanvas off
 End off
 

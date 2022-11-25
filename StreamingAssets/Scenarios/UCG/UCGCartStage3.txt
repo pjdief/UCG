@@ -24,8 +24,9 @@ Do 'UCGActions/OpenCatheter.txt'
 ###########TESTING END
 
 */
+	$CheckHoverOrPressed = 'UCG/CheckHoverOrPressed'
 
-
+/*
 	If
 		$CartClothFolded pressed
 	Then
@@ -39,12 +40,31 @@ Do 'UCGActions/OpenCatheter.txt'
 		$HandScrub reset
 		Do 'UCGActions/HandScrub.txt'
 	Endif
+*/
+	##########Catheterization Set
+	$CartClothFolded speaker.object $CartClothFolded+'/Sachet_Bag'
+	Do $CheckHoverOrPressed $CartClothFolded 'Catherization Set' 'UCGActions/UnfoldCloth.txt'
+
+	##########Hand Hygene 
+	Do $CheckHoverOrPressed $HandScrub 'Hand Hygene' 'UCGActions/HandScrub.txt'
 
 
 	If
 		$ClothUnfolded = 'true'
 	Then
 		
+		####### Prep Cart Actions
+
+		##########Syringe Package 
+		Do $CheckHoverOrPressed $InjectionWater 'InjectionWater' 'UCGActions/InjectionWater.txt'
+
+		##########Antiseptic Package 
+		Do $CheckHoverOrPressed $Antiseptic 'Antiseptic' 'UCGActions/Antiseptic.txt'
+
+		##########Syringe Package 
+		Do $CheckHoverOrPressed $Lubricant 'Lubricant' 'UCGActions/Lubricant.txt'
+
+		/*
 		If
 			$InjectionWater pressed
 		Then
@@ -65,34 +85,23 @@ Do 'UCGActions/OpenCatheter.txt'
 			$Lubricant reset
 			Do 'UCGActions/Lubricant.txt'
 		Endif
+		*/
 
-		If
-			$SyringePackage pressed
-		Then
-			$SyringePackage reset
-			Do 'UCGActions/OpenSyringe.txt'
-		Endif
+		##########Syringe Package 
+		Do $CheckHoverOrPressed $SyringePackage 'Syringe' 'UCGActions/OpenSyringe.txt'
 
-		If
-			$LubricantPackage pressed
-		Then
-			$LubricantPackage reset
-			Do 'UCGActions/OpenLubricant.txt'
-		Endif
 
-		If
-			$InjectionWaterPackage pressed
-		Then
-			$InjectionWaterPackage reset
-			Do 'UCGActions/OpenInjectionWater.txt'
-		Endif
+		##########Lubricant Package
+		Do $CheckHoverOrPressed $LubricantPackage 'Lubricant' 'UCGActions/OpenLubricant.txt'
 
-		If
-			$Catheter pressed
-		Then
-			$Catheter reset
-			Do 'UCGActions/OpenCatheter.txt'
-		Endif
+
+		##########InjectionWater Package  
+		Do $CheckHoverOrPressed $InjectionWaterPackage 'InjectionWater' 'UCGActions/OpenInjectionWater.txt'
+
+
+		##########Catheter Package  
+		Do $CheckHoverOrPressed $Catheter 'Catheter' 'UCGActions/OpenCatheter.txt'
+
 
 		If
 			$CatheterBalloon pressed
@@ -117,6 +126,23 @@ Do 'UCGActions/OpenCatheter.txt'
 	Endif
 
 
+	##########Syringe Package 
+	Do $CheckHoverOrPressed $ContinenceSheet 'ContinenceSheet' 'UCGActions/ContinenceSheet.txt'
+
+	##########UrineBagPackage Package 
+	Do $CheckHoverOrPressed $UrineBagPackage 'UrineBagPackage' 'UCGActions/AttachUrineBagBed.txt'
+
+	##########Gloves Package 
+	Do $CheckHoverOrPressed $Gloves 'Gloves' 'UCGActions/Gloves.txt'
+
+	##########Tape Package 
+	Do $CheckHoverOrPressed $Tape 'Tape' 'UCGActions/DetachTape.txt'
+
+	##########Tape Package 
+	Do $CheckHoverOrPressed $DetachedTape 'Tape' 'UCGActions/TapeCatheter.txt'
+
+
+	/*
 	If
 		$ContinenceSheet pressed
 	Then
@@ -156,7 +182,7 @@ Do 'UCGActions/OpenCatheter.txt'
 		Do 'UCGActions/TapeCatheter.txt'
 	Endif
 
-
+	*/
 
 
 

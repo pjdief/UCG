@@ -52,7 +52,8 @@ $ProcedureButton = 'ProcedureCanvas/Choices/ProcedureButton'
 $Stage4Button = 'ProcedureCanvas/Choices/Stage4Button'
 $Stage2Button = 'ProcedureCanvas/Choices/Stage2Button'
 $EndGameButton = 'ProcedureCanvas/Choices/EndGame'
-turnOff $EndGameButton
+#turnOff $EndGameButton
+$EndGameButton off
 
 $RightHandImage setimagecolor alpha 1
 $LeftHandImage setimagecolor alpha .2
@@ -64,6 +65,7 @@ turnoff $Stage2Button
 ###########################################
 # Setup Scoring
 ###########################################
+
 
 #Setup Task Numbers for this patient
 Do 'NEWS_Nurse/TaskSetup.txt'    
@@ -153,7 +155,7 @@ PatientPreCanvas off
 $PC_Info on
 $ECGCan off
 $EWSCheck off
-EndGame off
+$EndGame off
 $EWSChoiceCanvas off
 End off
 

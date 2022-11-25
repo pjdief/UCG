@@ -1,7 +1,7 @@
 #/PatientCanvas off
 JoystickCanvas on
 $Patient outline.on
-$Cart outline.on
+$Cart outline.off
 $Vitalsmonitor outline.on
 #Prompt 'Playerstart = ' + PlayerStart
 $PatientLocator = $Patient + '/Locator'
@@ -32,6 +32,9 @@ $UrineBag outline.on
 $Tape outline.on
 $CottonBalls outline.on
 $DrapePackage outline.on
+
+$KidneyDish outline.on
+$KidneyDish clickable true
 
 $HandScrub clickable true
 $UrineBag clickable true
@@ -343,6 +346,15 @@ Label 'LoopN1'
 				$PlayerNurse localMoveY -0.6 0
 				Prompt ''
 			Endif
+
+			ZoomSpot Menu.Question 'What are the post procedure care?'
+			ZoomSpot Menu.Choices 'Cathter insertion details','Amount of urine in the intake and output chart','Signs of urinary tract infection','All of the above'
+			ZoomSpot Menu.on ZoomSpot
+			WaitFor
+				ZoomSpot Menu.Done
+				
+			Wait .1
+			
 		Endif
 	Endif 
 
@@ -394,6 +406,7 @@ Label 'LoopN1'
 		$EndGameButton pressed
 	Then
 		$EndGameButton reset
+/*
 		If
 			Do 'AnswerIs' 'End the game?' 'Yes'
 		Then
@@ -403,6 +416,7 @@ Label 'LoopN1'
 			WaitFor
 				ZoomSpot Menu.Done
 			Wait .1
+*/
 			Do 'EndCheck.txt'
 		Endif
 	Endif

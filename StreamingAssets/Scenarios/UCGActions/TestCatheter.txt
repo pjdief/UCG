@@ -25,6 +25,7 @@ Then
 		$Item = $Syringe
 		$Grab = 'grab' + ActiveHand
 		$PlayerNurse play 'GripSize_R' true 0.2
+#		$Syringe localRotatetoZ -150 0.3 
 		$PlayerNurse $Grab $Item 1 'dip' 'default' 
 		Wait 1
 
@@ -55,7 +56,7 @@ Then
 		$Grab = 'grab' + OtherHand + '.elbowout'
 		$PlayerNurse $Grab $ItemHoldSpot 0.5 'dip' 'default' 
 		Wait 2
-		Prompt 'No leaks found'
+		Prompt 'No leaks found.  Balloon is intact.'
 		wait 2
 		Prompt ''
 		$Release = 'release' + OtherHand

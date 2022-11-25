@@ -39,6 +39,10 @@ Then
 			Wait 1
 			$Syringe localmovey .1 .5
 			wait .5
+
+			$Syringe localrotatey -90 .5
+			wait .5
+
 			$Syringe localrotatex 90 .5
 			wait .5
 			$Syringe moveabove $WaterSol .01 1
