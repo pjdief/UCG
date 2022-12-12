@@ -1,0 +1,25 @@
+#/JoystickCanvas off
+#Wait .5
+ZoomSpot Menu.Question 'Add item to cart?'
+ZoomSpot Menu.on ZoomSpot 600.0 200.0
+WaitFor
+    ZoomSpot Menu.Done
+Wait 1
+If
+    ZoomSpot menu.result $Yes
+Then
+    $SelectedItem reset
+    /JoystickCanvas on
+    Do 'Actions/StorageRoom/SettoCow.txt'
+Else
+    $SelectedItem reset
+#    $SelectedItem selectable false
+    $SelectedItem moveto $SetOrig
+    $Player lookAt $SelectedItem
+    #$SelectedItem matchrotation $SetOrig
+    $SelectedItem playerreplace
+    wait 2
+    Destroy $SelectedItem
+    $Player align $PlayerCOWLook
+    /JoystickCanvas on
+Endif

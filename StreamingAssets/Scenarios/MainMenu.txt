@@ -7,7 +7,7 @@ Label 'GameLoop'
         Stages/Buttons/Scene01 isOnAndPressed
     Then
         Stages/Buttons/Scene01 reset
-        SceneManager switchtoscene Scenes/UCG/Scene01
+        SceneManager switchtoscene Scenes/UCG/Scene01_Female
     Endif
 
     If

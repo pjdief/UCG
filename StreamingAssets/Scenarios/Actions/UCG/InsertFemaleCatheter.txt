@@ -1,0 +1,84 @@
+#InsertFemaleCatheter
+
+If
+	Do 'AnswerIsNo' 'Insert Catheter?'
+Then
+	Return
+Endif
+
+
+ZoomSpot Menu.Question 'Where to insert?'
+ZoomSpot Menu.Choices 'Urethra','Vagina'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+
+If
+	ZoomSpot menu.result 'Urethra'
+Then
+	$InsertedVagina = 'false'
+Endif
+
+Do 'Actions/UCG/SpreadLabia'
+$TempCatheter = 'CatheterBalloon'
+$UCLocator = $Patient + '/UCLocator'
+$CatheterPort = $TempCatheter + '/Handle/Port'
+$CatheterTubeEnd = $TempCatheter + '/Handle'
+
+Create $TempCatheter $TempCatheter
+$TempCatheter align $CatheterBalloon 0
+
+turnOff $CatheterBalloon
+wait .1
+$TempCatheter localmovey .01 0
+wait 1
+#Prompt 'Moving catheter'
+$TempCatheter orient $UCLocator 0
+Wait 0
+$TempCatheter movebehind $UCLocator -0.1 1
+Wait 1
+#Prompt 'Moved catheter'
+
+Wait 3
+#Prompt 'Aligning catheter'
+$TempCatheter align $UCLocator 1
+wait 2
+$TempCatheter localmovez .1 2
+wait 2
+
+##########INSERT PATIENT STRUGGLE###########
+$ScenarioStruggle =
+$GlobalVar getglobal 'PatientStruggle'
+If
+	$ScenarioStruggle = 'True'
+Then
+	Do 'Actins/UCG/PatientStruggle'
+	turnOn $Stage2Button
+	Return
+Endif
+
+
+$PlayerNurse release 1 'R_grip'
+$PlayerNurse release 1 'L_tweeze'
+wait 2
+Player align $UrinaryProcPos 0.5
+wait 0.5
+
+If
+	$InsertedVagina = 'false'
+Then
+	$PouringLiquid = 'UrineParticles'
+	Create $PouringLiquid $PouringLiquid
+	Wait 0
+	$PouringLiquid align $CatheterTubeEnd 0.1
+	Wait 0.1
+	$PouringLiquid localmoveZ -.02 0
+	Wait 0
+	$PouringLiquid attachto $CatheterTubeEnd
+Endif
+
+
+########### INFLATION #################
+Do 'Actions/UCG/InflateCatheterBalloon'
+

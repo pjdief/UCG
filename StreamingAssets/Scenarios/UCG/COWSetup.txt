@@ -1,6 +1,8 @@
 #########################################
 #  COW Setup INIT
 #########################################
+	$DrapePackageObj = 'UCGAssets/GeneralSachet'
+	$DrapePackage = 'DrapePackage'
 
 
 If
@@ -124,7 +126,7 @@ Then
 	$UrineBagPackageObj = 'UCGAssets/UrineBagPackage'
 	$UrineBagPackage = 'UrineBagPackage'
 	$UrineBagObj = 'EmptyUrinaryBag'
-	$UrineBag = 'EmptyUrineBag'
+	$UrineBag = 'EmptyUrinaryBag'
 
 	$GlovesObj = 'UCGAssets/Sachet_Gloves'
 	$Gloves = 'Gloves'
@@ -184,6 +186,7 @@ Then
 		$UCHolder localrotatey 180 0
 
 		$CatheterPos = $UCHolder + '/CatheterPos'
+		$CatheterEndLoc  = $UCHolder + '/CatheterEndLoc'
 
 		$AntisepticSol = $UCHolder + '/AntisepticSolution'
 		$WaterSol = $UCHolder + '/InjectionWaterSolution'
@@ -228,7 +231,7 @@ Then
 
 		$SyringePackage align $Cart1Pos4 0
 		Wait 0
-		turnOff $SyringeWater
+#		turnOff $SyringeWater
 
     Endif
 
@@ -295,8 +298,6 @@ Endif
 If
 	$Stage = 4
 Then
-	$DrapePackageObj = 'UCGAssets/GeneralSachet'
-	$DrapePackage = 'DrapePackage'
 
 	Create $DrapePackageObj $DrapePackage
 	Wait 0

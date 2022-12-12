@@ -1,0 +1,121 @@
+#CleanGenitalia.txt
+#Do 'CleanGenitalia' ['right'|'left']
+
+Prompt 'Clean Genitalia'
+#Wait 2
+
+If
+    $param[0] > 0
+Then
+    $whichHand = param[1]
+    $SideDistance = param[2]
+    $numberOfWipes = param[3]
+Else
+    Prompt 'CleanGenitalia: No params:' + param[1]
+Endif 
+
+
+####################
+# Create Forceps and cottonball
+####################
+
+$Forceps = 'Forceps_Straight_IK'
+$ForcepsHandle = $Forceps + '/IKGrab'
+
+Create $Forceps $Forceps
+
+$SingleCottonBall = 'Swab_Ball_Pinched'
+Create $SingleCottonBall $SingleCottonBall
+
+If
+    $AntisepticCotton = 'true'
+Then
+    $SingleCottonBall setMaterial AntisepticBallMat
+    wait 0 #.1
+Endif
+$SingleCottonBall align $Forceps 0
+wait 0 #.1
+$SingleCottonBall localmovez .02 0
+wait 0
+$SingleCottonBall localmovex .02 0
+$SingleCottonBall attachto $Forceps
+
+####################
+# Align forceps 
+# - needs to be close enough to Nurse so nurse (camera) doesn't move by the grab command
+####################
+
+$Forceps align $MiddleHandSpot 1
+Wait 1
+
+####################
+# Grab forceps
+####################
+
+#Prompt 'Grab forceps with ' + whichHand
+#Wait 1
+If
+    $ ( whichHand == 'right' )
+Then
+    $PlayerNurse grabRight.elbowout $ForcepsHandle .1 'R_grip' 'horizontal' 
+    $otherHand = 'left'
+Else
+    $PlayerNurse grabLeft.elbowout $ForcepsHandle .1  'L_grip' 'horizontal'
+    $otherHand = 'right'
+Endif
+Wait .1
+
+#$PatientGenitals = Patient + '/Genitals'
+
+#######################
+# Spread Labia or Grab Penis
+#######################
+If
+    $PatientGender = 'Female'
+Then
+    Do 'Actions/UCG/SpreadLabia' $otherHand
+    $CleanGenitals = 'Actions/UCG/CleanLabia'
+    $ReleaseGenitalia = 'Actions/UCG/ReleaseLabia.txt'
+Else
+    Do 'Actions/UCG/GrabPenis' $otherHand
+    $CleanGenitals = 'Actions/UCG/CleanPenis'
+    $ReleaseGenitalia = 'Actions/UCG/ReleasePenis.txt'
+Endif
+
+
+$count= 0
+label 'wipesloop'
+    Do $CleanGenitals $SideDistance
+
+    $count = count + 1
+    If  
+        $count < numberOfWipes
+    Then
+        Goto 'wipesloop'
+    Endif
+#endlabel
+
+#######################
+# Release hands and destroy forceps
+#######################
+Prompt ''
+wait 2
+Destroy $Forceps
+
+Do $ReleaseGenitalia
+
+
+If
+    $ ( whichHand == 'right' )
+Then
+    #right hand
+    $PlayerNurse releaseRight 1 'R_grip'
+    $PlayerNurse releaseLeft 1 'L_tweeze'
+Else
+    #left hand
+    $PlayerNurse releaseLeft 1 'L_grip'
+    $PlayerNurse releaseRight 1 'R_tweeze'
+Endif
+
+wait .3
+$Player align $PlayerStart

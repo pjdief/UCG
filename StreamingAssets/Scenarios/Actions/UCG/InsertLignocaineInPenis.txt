@@ -1,0 +1,54 @@
+#InsertLignocaineInPenis
+
+If
+	Do 'AnswerIsNo' 'Inject Lignocaine?'
+Then
+	Return
+Endif
+
+Prompt 'Injecting Lignocaine in urethra'
+wait 1
+Prompt ''
+
+#Grab penis
+#$ActiveHand = 'Right'
+Do 'Actions/UCG/GrabPenis.txt' $ActiveHand
+
+#align syringe
+$LigSyringeObj = 'SyringeSmall'
+$LigSyringe  = 'LigSyringe'
+$UCLocator = $Patient + '/UCLocator'
+Create $LigSyringeObj $LigSyringe
+$Plunger = $LigSyringe + '/Plunger'
+$SyringeWater = $LigSyringe + '/Water'
+turnOn $SyringeWater
+$LigSyringe align $UCLocator 1
+wait 1
+
+#DO INJECTION STUFF
+#push in water
+$Plunger localmovey -.06 2
+turnOff $SyringeWater
+Wait 2
+
+###################
+
+
+
+#$LigSyringe attachto $UCLocator
+
+Prompt 'throw syringe away'
+
+#Move it out of the way
+$LigSyringe align 'MiddleHandSpotHigh' 1
+
+
+#$PlayerNurse release 1 'grip'
+#$PlayerNurse release 1 'tweeze'
+#wait 2
+
+
+Destroy $LigSyringe
+
+
+Do 'Actions/UCG/ReleasePenis.txt' $ActiveHand

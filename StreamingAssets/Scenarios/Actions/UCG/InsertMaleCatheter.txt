@@ -1,0 +1,93 @@
+#InsertMaleCatheter
+
+If
+	Do 'AnswerIsNo' 'Insert Catheter?'
+Then
+	Return
+Endif
+
+Prompt 'Inserting catheter in urethra'
+wait 2
+Prompt ''
+
+######### GRAB PENIS ###########
+Do 'Actions/UCG/GrabPenis.txt' $ActiveHand
+
+######### CREATE AND ALIGN CATHETER
+$TempCatheter = 'CatheterBalloonInsert'
+$UCLocator = $Patient + '/UCLocator'
+$CatheterPort = $TempCatheter + '/Handle/Port'
+$CatheterTubeEnd = $TempCatheter + '/Handle'
+$CatheterEndEffector = $TempCatheter + '/EndEffector'
+
+#$FinalCatheter = 'CatheterBalloon'
+#$FinalCatheterPort = $FinalCatheter + '/Handle/Port'
+#$FinalCatheterTubeEnd = $FinalCatheter + '/Handle'
+
+
+Create $TempCatheter $TempCatheter
+$TempCatheter align $CatheterBalloon 0
+
+turnOff $CatheterBalloon
+wait .1
+$TempCatheter localmovey .01 0
+wait 1
+
+#Align to penis tip
+$TempCatheter align $UCLocator 0.5
+Wait 0.5
+
+
+#Slowly insert catheter
+$TempCatheter localmovez .1 2
+wait 2
+$TempCatheter attachto $UCLocator
+
+
+##########CHECK PATIENT STRUGGLE###########
+$ScenarioStruggle =
+$GlobalVar getglobal 'PatientStruggle'
+If
+	$ScenarioStruggle = 'True'
+Then
+	Do 'Actins/UCG/PatientStruggle'
+	turnOn $Stage2Button
+	Return
+Endif
+
+/*
+$PlayerNurse release 1 'R_grip'
+$PlayerNurse release 1 'L_tweeze'
+wait 2
+*/
+
+$CatheterEndEffector unparent
+Wait 0
+$CatheterEndEffector align $CatheterEndLoc 1
+Wait 1
+
+######## Create urine drips ############
+#Player align $UrinaryProcPos 0.5
+#wait 0.5
+$PouringLiquid = 'UrineParticles'
+Create $PouringLiquid $PouringLiquid
+Wait 1
+#Prompt 'aligning ' + CatheterTubeEnd
+$PouringLiquid align $CatheterTubeEnd 0.1
+Wait 0.1
+$PouringLiquid localmoveZ -.02 0
+Wait 0
+$PouringLiquid attachto $CatheterTubeEnd
+
+Do 'Actions/UCG/ReleasePenis.txt' $ActiveHand
+
+Player align $UrinaryProcPos 1
+Wait 1
+Player localRotateX 30 1
+Wait 1
+
+########### INFLATION #################
+Do 'Actions/UCG/InflateCatheterBalloon'
+
+
+

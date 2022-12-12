@@ -1,13 +1,13 @@
 Player lookat $InfusionClamp
-ZoomSpot Menu.Question 'Open Clamp?'
-ZoomSpot Menu.Choices 'Yes','No'
-ZoomSpot Menu.on ZoomSpot
-WaitFor
-	ZoomSpot Menu.Done
-Wait 1
+
+
 If
-	ZoomSpot menu.result $Yes
+	Do 'AnswerIsNo' 'Open Clamp?'
 Then
+	Return
+Endif
+
+
 	$ClampOpen = true
 	#If
 	#	$TaskNum > -1
@@ -17,6 +17,3 @@ Then
 	Prompt 'The Clamp has been opened.'
 	Wait 1
 	Prompt ''
-Else
-	Return
-Endif

@@ -1,0 +1,31 @@
+#'MoveWithPackage' $NewLookSpot - grab and open the Package
+# $NewLookSpot = param[1] 
+
+
+#Prompt 'GrabPackage' $Package
+#wait .51
+#Prompt ''
+
+If
+    $param[0] > 0
+Then
+    $NewLookSpot = param[1]
+Endif
+
+#have Package move with player
+$Package attachTo $Player
+#$Package constrainTo $Player
+Wait 0
+
+#$Player align $Cart1LookMedium 0.5
+#Wait 0.5
+
+#Move player a bit closer for pouring
+$Player align $NewLookSpot 1
+Wait 1.1
+$Player localMoveZ 0.1 0.6  
+Wait 0.5
+
+#have Package move freely (with hand attached)
+#$Package releaseConstraint  #$Player
+$Package detach  #$Player
