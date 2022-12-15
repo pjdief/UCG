@@ -236,6 +236,8 @@ Then
 		Create $DrapePackageObj $DrapePackage
 		Wait 0
 		$DrapePackage align $CartPos1 0
+		Wait 0
+		turnOff $DrapePackage
 
     Endif
 

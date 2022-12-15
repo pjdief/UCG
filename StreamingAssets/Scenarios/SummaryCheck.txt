@@ -6,6 +6,7 @@ If
 	$Patient isCurrent
 Then
 	$GlobalVar setglobal 'SummaryCanvasOpened' true
+
 	$SumCanvas on
 	#$SummaryInfo off
 	$SumCanvas scale .47 .1
@@ -21,7 +22,7 @@ Then
 		TurnOn $SummaryExit
 		$SummaryExit reset
 		$SummaryText write You are required to look at the patient order provided on the COW computer, identify and carry out the correct procedure to identify the patient.
-Endif
+	Endif
 
 	If
 		$Stage = 3

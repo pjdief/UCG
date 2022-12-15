@@ -3,6 +3,7 @@
 # $PatientCheckTotal - whether all patients have been checked
 
 	$GlobalVar setglobal 'SummaryCanvasOpened' true
+
 	$SumCanvas on
 	#$SummaryInfo off
 	$SumCanvas scale 1 .1
@@ -20,7 +21,7 @@
 			$SummaryExit pressed
 		Then
 			#Need the Wait command so all summary checks have time to exit.
-			Wait .21  #needed to make sure each finishes SumCheckLoop
+			Wait 1.21  #needed to make sure each finishes SumCheckLoop
 			$SummaryExit resetPressed
 			$SumCanvas scale 0 .2
 			TurnOff $SummaryBlack
