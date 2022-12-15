@@ -32,7 +32,7 @@
 
 
 	If
-		$ClothUnfolded = 'true'
+		$ClothUnfolded = true
 	Then
 		
 		####### Prep Cart Actions
@@ -118,13 +118,11 @@
 	Endif
 
 
-	##########Syringe Package 
+	##########ContinenceSheet Package 
 	Do $CheckHoverOrPressed $ContinenceSheet 'ContinenceSheet' 'Actions/UCG/ContinenceSheet.txt'
 
 	##########UrineBagPackage Package 
 	Do $CheckHoverOrPressed $UrineBagPackage 'UrineBagPackage' 'Actions/UCG/OpenUrineBagPackage.txt'
-
-#	Do $CheckHoverOrPressed $UrineBagPackage 'UrineBagPackage' 'Actions/UCG/AttachUrineBagBed.txt'
 
 	##########Gloves Package 
 	Do $CheckHoverOrPressed $Gloves 'Gloves' 'Actions/UCG/Gloves.txt'
@@ -142,7 +140,7 @@
 	#############Cloth not unfolded prompt
 
 	If
-		$ClothUnfolded = 'false'
+		$ClothUnfolded = false
 	Then
 		
 		If

@@ -42,13 +42,13 @@ Label 'EWSLoop'
 		#Checks if you selected an EWS patient or not
 		#If yes, start Stage 3, if no, move to the EWS patient and start Stage 3
 		If
-			$isEWS = 'true'
+			$isEWS = true
 		Then
 			$EWSQuestion off
 			$EWSCorrect on
 			wait 5
 			$EWSChoiceCanvas off
-			$GlobalVar setglobal 'PatientCheckDone' 'true'
+			$GlobalVar setglobal 'PatientCheckDone' true
 			$EWSCheck off
 			Return
 			#Go to Stage 3
@@ -64,7 +64,7 @@ Label 'EWSLoop'
 			Prompt 'Moving to deteriorating patient!'
 			wait 1 
 			Prompt ''
-			$GlobalVar setglobal 'PatientCheckDone' 'true'
+			$GlobalVar setglobal 'PatientCheckDone' true
 			$EWSCheck off
 			Return
 			#Go to Stage 3

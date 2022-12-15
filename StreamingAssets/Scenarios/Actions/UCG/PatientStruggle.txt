@@ -1,4 +1,4 @@
-	#Do 'Actins/UCG/PatientStruggle'
+	#Do 'Actions/UCG/PatientStruggle'
 	$Patient play Struggle
 	wait 1
 	Prompt 'Patient is struggling!'
@@ -15,11 +15,11 @@
 	wait 2
 	Prompt 'Catheter has fallen out of patient.'
 	wait 1
-	Prompt''
+	Prompt ''
 	wait .1
 	Player align $UrinaryProcPos 0.5
 	wait 0.5
 
-	$GlobalVar setglobal 'PatientStruggle' 'False'
+	$GlobalVar setglobal 'PatientStruggle' false
 	wait .1
 

@@ -3,7 +3,7 @@
 #########################################
 
 $PatientName = 'Annie Lim'
-$NeedsPerformed = 'true'
+$NeedsPerformed = true
 $PatientIC = 'S1257567T'
 $BloodType = 'B-'
 $AgeInYears = 75

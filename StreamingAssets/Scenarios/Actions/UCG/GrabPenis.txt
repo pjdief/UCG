@@ -1,13 +1,12 @@
-#GrabPenis.txt
 #Do 'GrabPenis' ['right'|'left']
 
-JoystickCanvas off
+
+
 Player align $UrinaryProcPos 0.5
 Wait 0.5
-$Player localMoveZ 0.1 0.5
-wait 1
-#Player lookAt $PatientGenitals -0.05 0.2 .05 0.5
-Wait 0.5
+$NursePlayer localMoveY 0.3 0
+#wait 0
+
 
 If
     $param[0] > 0
@@ -15,46 +14,23 @@ Then
     $whichHand_GP = param[1]
     #Prompt 'Has Param:' + param[1]
 Else
+    $whichHand_GP = ActiveHand
     #Prompt 'No param:' + param[1]
 Endif
 
-#Prompt 'Grab Penis with ' + whichHand_GP
-#Wait 1
-#Prompt ''
 
-/*
-$PatientGenitalsGrabHand = 'PenisHandPosition'
-Create GripLocator $PatientGenitalsGrabHand
-Wait 0
-$PatientGenitalsGrabHand align $PatientGenitals 0
-Wait 0
-*/
-#Start hand above patient
 If
     $whichHand_GP == 'Left'
 Then
     $PlayerNurse grabLeft.elbowout $PatientGenitals .1  'L_grip' 'default'
-    Wait .1
-
-#    Prompt 'Grab Genitals = ' + PatientGenitals + ' with left'
-#    Wait 3
 Else
     $PlayerNurse grabRight.elbowout $PatientGenitals .1  'R_grip' 'default'
-    Wait .1
-
-#    Prompt 'Grab Genitals = ' + PatientGenitals + ' with right'
-#    Wait 3
 Endif
+Wait .1
+
+$DirtyHand = whichHand_GP
 
 #Raise penis
 $PatientGenitals localRotateX -85 1
 $Patient setbodyblendshape 0 100.0 1
 Wait 1.1
-
-
-#right hand
-#$PlayerNurse release 1 'R_grip'
-#$PlayerNurse release 1 'L_tweeze'
-#left hand
-#$PlayerNurse release 1 'L_grip'
-#$PlayerNurse release 1 'R_tweeze'

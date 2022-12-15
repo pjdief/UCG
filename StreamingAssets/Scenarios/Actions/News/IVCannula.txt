@@ -39,7 +39,7 @@ Then
 		wait 1
 		Prompt ''
 		If
-			$Bleeding = 'true'
+			$Bleeding = true
 		Then
 			Prompt 'Oozing seen at the femoral catheter exit site.'
 			wait 2
@@ -75,7 +75,7 @@ Then
 		wait 1
 		Prompt ''
 		If
-			$Bleeding = 'true'
+			$Bleeding = true
 		Then
 			Prompt 'Oozing seen at the femoral catheter exit site.'
 			wait 2

@@ -256,7 +256,7 @@
 
 		Player align $PlayerStart
 		If
-			$isEWS = 'true'
+			$isEWS = true
 		Then
 			$ToolPrompt = $PhysicalExamResponse
 			Do 'ToolPrompt.txt'
@@ -372,7 +372,7 @@
 		ScoreTracker TaskCompleted $PatientType 'Task_ApplyPressure'
 		$TakenAction = true
 			If
-				$Bleeding = 'true'
+				$Bleeding = true
 			Then
 				If
 					$IVSet == true
@@ -518,7 +518,7 @@
 		Then
 			$UIMan closetoolinventory
 			If
-				$isEWS = 'false'
+				$isEWS = false
 			Then
 				$ToolPrompt = 'MO: Please continue to monitor the patient and call me back for abnormal findings'
 				Do 'ToolPrompt.txt'

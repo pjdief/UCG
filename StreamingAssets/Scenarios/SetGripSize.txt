@@ -4,13 +4,13 @@
 If
     $param[0] > 0
 Then
-    $whichHand_GP = param[1]
+    $whichHand_SG = param[1]
     $gripSize = param[2]
 Endif
 
 
 If
-    $whichHand_GP == 'Left'
+    $whichHand_SG == 'Left'
 Then
     $GripSizeAnim = 'GripSize_L'
 Else

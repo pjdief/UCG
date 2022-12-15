@@ -13,7 +13,7 @@ Then
 Else
     Prompt 'CleanGenitalia: No params:' + param[1]
 Endif 
-
+JoystickCanvas off
 
 ####################
 # Create Forceps and cottonball
@@ -28,7 +28,7 @@ $SingleCottonBall = 'Swab_Ball_Pinched'
 Create $SingleCottonBall $SingleCottonBall
 
 If
-    $AntisepticCotton = 'true'
+    $AntisepticCotton = true
 Then
     $SingleCottonBall setMaterial AntisepticBallMat
     wait 0 #.1
@@ -70,18 +70,21 @@ Wait .1
 #######################
 # Spread Labia or Grab Penis
 #######################
+
+Do 'Actions/UCG/GrabGenitals' $otherHand
+
+
 If
     $PatientGender = 'Female'
 Then
-    Do 'Actions/UCG/SpreadLabia' $otherHand
     $CleanGenitals = 'Actions/UCG/CleanLabia'
-    $ReleaseGenitalia = 'Actions/UCG/ReleaseLabia.txt'
 Else
-    Do 'Actions/UCG/GrabPenis' $otherHand
     $CleanGenitals = 'Actions/UCG/CleanPenis'
-    $ReleaseGenitalia = 'Actions/UCG/ReleasePenis.txt'
 Endif
 
+#######################
+# Clean Labia or Penis
+#######################
 
 $count= 0
 label 'wipesloop'
@@ -102,20 +105,18 @@ Prompt ''
 wait 2
 Destroy $Forceps
 
-Do $ReleaseGenitalia
-
+Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
 
 If
     $ ( whichHand == 'right' )
 Then
     #right hand
     $PlayerNurse releaseRight 1 'R_grip'
-    $PlayerNurse releaseLeft 1 'L_tweeze'
 Else
     #left hand
     $PlayerNurse releaseLeft 1 'L_grip'
-    $PlayerNurse releaseRight 1 'R_tweeze'
 Endif
 
 wait .3
 $Player align $PlayerStart
+JoystickCanvas on

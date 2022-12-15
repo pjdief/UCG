@@ -3,7 +3,7 @@
 #########################################
 
 $PatientName = 'Tan Kee Seng'
-$isEWS = 'false'
+$isEWS = false
 $PatientIC = 'S1257567T'
 $BloodType = 'B-'
 $AgeInYears = 75

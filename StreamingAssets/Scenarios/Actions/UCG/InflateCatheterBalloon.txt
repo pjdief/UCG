@@ -54,4 +54,4 @@ $TempCatheter localmovez .01 .1
 wait .2
 Do 'SetGripSize' $ActiveHand 0.5
 
-$CatheterInserted = 'true'
+$CatheterInserted = true

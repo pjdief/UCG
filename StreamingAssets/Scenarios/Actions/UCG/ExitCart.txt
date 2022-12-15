@@ -8,7 +8,7 @@ turnOn $SumButton
 $Cart clickable true
 $Cart outline.off
 If
-	$PatientInPosition = 'false'
+	$PatientInPosition = false
 Then
 	$Patient clickable true
 	$Patient outline.on

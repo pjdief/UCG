@@ -17,10 +17,15 @@ Wait .1
 If
 	ZoomSpot menu.result 'Urethra'
 Then
-	$InsertedVagina = 'false'
+	$CatheterInsertedCorrectly = true
 Endif
 
-Do 'Actions/UCG/SpreadLabia'
+######### SPREAD LABIA ###########
+#Move close and grab if not grabbed already
+#Do 'Actions/UCG/SpreadLabia' $OtherHand
+
+
+######## Create moveable catheter and put in dish
 $TempCatheter = 'CatheterBalloon'
 $UCLocator = $Patient + '/UCLocator'
 $CatheterPort = $TempCatheter + '/Handle/Port'
@@ -33,6 +38,14 @@ turnOff $CatheterBalloon
 wait .1
 $TempCatheter localmovey .01 0
 wait 1
+
+######### Grab catheter with active hand
+$Grab = 'grab' + ActiveHand
+Do 'SetGripSize' $ActiveHand 0.2
+$PlayerNurse $Grab $TempCatheter 1 'dip' 'default' 
+Wait 1
+
+######### Move catheter into urethra
 #Prompt 'Moving catheter'
 $TempCatheter orient $UCLocator 0
 Wait 0
@@ -51,34 +64,35 @@ wait 2
 $ScenarioStruggle =
 $GlobalVar getglobal 'PatientStruggle'
 If
-	$ScenarioStruggle = 'True'
+	$ScenarioStruggle = true
 Then
-	Do 'Actins/UCG/PatientStruggle'
+	Do 'Actions/UCG/PatientStruggle'
 	turnOn $Stage2Button
 	Return
 Endif
 
+#Release both hands
+Prompt 'About to release dirty ' + DirtyHand
+Wait 4
+Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
+Prompt 'Released dirty ' + DirtyHand
+Wait 4
 
-$PlayerNurse release 1 'R_grip'
-$PlayerNurse release 1 'L_tweeze'
+Prompt 'About to release active ' + ActiveHand
+Wait 4
+$Release = 'release' + ActiveHand
+$PlayerNurse $Release 1 'dip'
 wait 2
+Prompt 'Released active ' + ActiveHand
+Wait 4
+
 Player align $UrinaryProcPos 0.5
 wait 0.5
 
-If
-	$InsertedVagina = 'false'
-Then
-	$PouringLiquid = 'UrineParticles'
-	Create $PouringLiquid $PouringLiquid
-	Wait 0
-	$PouringLiquid align $CatheterTubeEnd 0.1
-	Wait 0.1
-	$PouringLiquid localmoveZ -.02 0
-	Wait 0
-	$PouringLiquid attachto $CatheterTubeEnd
-Endif
+Do 'Actions/UCG/StartUrineDrip'
 
 
 ########### INFLATION #################
 Do 'Actions/UCG/InflateCatheterBalloon'
+Player align $PlayerStart 1
 

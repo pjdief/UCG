@@ -67,7 +67,7 @@ $PhysicalExamResponse = 'Nil abnormality seen.'
 $LimbResponse = 'Normal power'
 $GlucoseResponse = 'Patient looks drowsy, unable to drink glucose drink' #Only for if the patient can't take the glucose and is not oriented
 $Oriented = true
-$Bleeding = 'false'
+$Bleeding = false
 
 $PatientMask = false
 $PatientNasal = false

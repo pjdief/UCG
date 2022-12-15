@@ -233,6 +233,10 @@ Then
 		Wait 0
 #		turnOff $SyringeWater
 
+		Create $DrapePackageObj $DrapePackage
+		Wait 0
+		$DrapePackage align $CartPos1 0
+
     Endif
 
 #	Wait 0
@@ -299,9 +303,6 @@ If
 	$Stage = 4
 Then
 
-	Create $DrapePackageObj $DrapePackage
-	Wait 0
-	$DrapePackage align $Cart1Pos3 0
 
 	$CatheterBalloon clickable false
 

@@ -2,7 +2,7 @@
 
 $TaskOffset = 0
 #If
-#    $isEWS = 'true'
+#    $isEWS = true
 #Then
 #    $TaskOffset = BedNumber * 10
 #Else

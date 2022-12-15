@@ -13,12 +13,12 @@ Then
 	Endif
 
 		If
-			$CatheterInserted = 'true'
+			$CatheterInserted = true
 		Then
 			$Item = $DetachedTape
 
 			Do 'Actions/UCG/GrabPackage' $Item
-			Do 'Actions/UCG/MoveWithPackage' $PlayerStart
+			Do 'Actions/UCG/MoveWithPackage' $Item $PlayerStart
 			wait .5
 			Do 'Actions/UCG/ThrowAwayPackage' $Item $PlayerStart
 			wait .5

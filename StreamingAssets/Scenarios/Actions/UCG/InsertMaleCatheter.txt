@@ -11,7 +11,8 @@ wait 2
 Prompt ''
 
 ######### GRAB PENIS ###########
-Do 'Actions/UCG/GrabPenis.txt' $ActiveHand
+#Move close and grab if not grabbed already
+#Do 'Actions/UCG/GrabPenis.txt' $OtherHand
 
 ######### CREATE AND ALIGN CATHETER
 $TempCatheter = 'CatheterBalloonInsert'
@@ -33,6 +34,12 @@ wait .1
 $TempCatheter localmovey .01 0
 wait 1
 
+######### Grab catheter with active hand
+$Grab = 'grab' + ActiveHand
+Do 'SetGripSize' $ActiveHand 0.2
+$PlayerNurse $Grab $TempCatheter 1 'dip' 'default' 
+Wait 1
+
 #Align to penis tip
 $TempCatheter align $UCLocator 0.5
 Wait 0.5
@@ -48,18 +55,14 @@ $TempCatheter attachto $UCLocator
 $ScenarioStruggle =
 $GlobalVar getglobal 'PatientStruggle'
 If
-	$ScenarioStruggle = 'True'
+	$ScenarioStruggle = true
 Then
-	Do 'Actins/UCG/PatientStruggle'
+	Do 'Actions/UCG/PatientStruggle'
 	turnOn $Stage2Button
+	turnOff $EndGameButton
 	Return
 Endif
 
-/*
-$PlayerNurse release 1 'R_grip'
-$PlayerNurse release 1 'L_tweeze'
-wait 2
-*/
 
 $CatheterEndEffector unparent
 Wait 0
@@ -69,17 +72,18 @@ Wait 1
 ######## Create urine drips ############
 #Player align $UrinaryProcPos 0.5
 #wait 0.5
-$PouringLiquid = 'UrineParticles'
-Create $PouringLiquid $PouringLiquid
-Wait 1
-#Prompt 'aligning ' + CatheterTubeEnd
-$PouringLiquid align $CatheterTubeEnd 0.1
-Wait 0.1
-$PouringLiquid localmoveZ -.02 0
-Wait 0
-$PouringLiquid attachto $CatheterTubeEnd
 
-Do 'Actions/UCG/ReleasePenis.txt' $ActiveHand
+Do 'Actions/UCG/StartUrineDrip'
+
+Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
+
+Prompt 'About to release active ' + ActiveHand
+Wait 4
+$Release = 'release' + ActiveHand
+$PlayerNurse $Release 1 'dip'
+wait 2
+Prompt 'Released active ' + ActiveHand
+Wait 4
 
 Player align $UrinaryProcPos 1
 Wait 1
@@ -89,5 +93,5 @@ Wait 1
 ########### INFLATION #################
 Do 'Actions/UCG/InflateCatheterBalloon'
 
-
+Player align $PlayerStart 1
 

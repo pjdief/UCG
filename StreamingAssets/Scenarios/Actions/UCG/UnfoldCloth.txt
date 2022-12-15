@@ -17,4 +17,4 @@ Wait 3
 $PlayerNurse localMoveY -0.45 0
 Prompt ''
 
-$ClothUnfolded = 'true'
+$ClothUnfolded = true

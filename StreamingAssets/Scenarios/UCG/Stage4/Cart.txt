@@ -25,7 +25,7 @@ Then
 	Do 'SetGripSize' $ActiveHand 0.2
 	$PlayerNurse $Grab $ItemHoldSpot 1 'dip' 'default' 
 	Wait 2
-	Do 'Actions/UCG/MoveWithPackage' $PlayerStart
+	Do 'Actions/UCG/MoveWithPackage' $Item $PlayerStart
 	wait 1
 	$PlayerNurse localMoveY 0.4 0
 	wait 0
@@ -54,10 +54,17 @@ Endif
 
 
 If
-	$UrineBagPackage pressed
+	$UrineBag pressed
 Then
-	$UrineBagPackage reset
-	Do 'Actions/UCG/AttachUrineBagBed.txt'
+	$UrineBag reset
+
+	If
+		UrineBagLocation == 'Bed'
+	Then
+		Do 'Actions/UCG/AttachUrineBagCatheter.txt'
+	Else	
+		Do 'Actions/UCG/AttachUrineBagBed.txt'
+	Endif
 Endif
 
 If

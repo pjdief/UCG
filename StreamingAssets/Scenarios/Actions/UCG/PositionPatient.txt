@@ -25,7 +25,7 @@ Then
 	Endif
 	$Patient play ExamPos true
 	Prompt ''
-	$PatientInPosition = 'true'
+	$PatientInPosition = true
 	wait .1
 	$Patient clickable false
 	wait .1

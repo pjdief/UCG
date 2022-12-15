@@ -24,7 +24,7 @@ $GlobalVar getGlobal 'P5'
 #Then
 	#$NextStage = Stage + 1
 	#Prompt 'Hack to skip to Stage ' + NextStage + ' after patient 1 is checked in StageCheck.txt'
-	#$GlobalVar setglobal 'PatientCheckDone' 'true'
+	#$GlobalVar setglobal 'PatientCheckDone' true
 	#Wait 2
 	#Prompt ''
 #Endif
@@ -44,7 +44,7 @@ Then
 				If
 					$testvalue5 = 1
 				Then
-					$GlobalVar setglobal 'PatientCheckDone' 'true'
+					$GlobalVar setglobal 'PatientCheckDone' true
 					$TimeManager stoptimer
 				Endif
 			Endif

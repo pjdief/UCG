@@ -5,7 +5,7 @@ $Vitalsmonitor outline.on
 
 $BackECG = 'ECGCheckCanvas/Choices/Exit'
 
-$ClothUnfolded = 'false'
+$ClothUnfolded = false
 
 $RightRail = $Bed + '/RightRail'
 $RightRail outline.on
@@ -18,16 +18,17 @@ $Vitalsmonitor on
 
 Do 'SummaryCheck.txt'
 
-$PatientInPosition = 'false'
+$PatientInPosition = false
 
 
 ###########FOR SKIPPING TO STAGE 4 QUICKLY
+
 $SkipToStage4 = false
 If 
 	$SkipToStage4
 Then
-	GameSpeed 50
-	$SkipConfirm = true
+	GameSpeed 20
+	$SkipConfirm = true    #Skip Yes/No questions
 	wait 2
 
 	#$ActiveHand = 'Left'
@@ -37,20 +38,20 @@ Then
 	Do 'Actions/UCG/UnfoldCloth'
 	wait 1
 	
-	Do 'Actions/UCG/InjectionWater.txt'
-	Do 'Actions/UCG/OpenSyringe.txt'
-	Do 'Actions/UCG/Syringe.txt'
-	Do 'Actions/UCG/OpenCatheter.txt'
+	Do 'Actions/UCG/InjectionWater'
+	Do 'Actions/UCG/OpenSyringe'
+	Do 'Actions/UCG/Syringe'
+	Do 'Actions/UCG/OpenCatheter'
 
-	#Do 'Actions/UCG/Antiseptic.txt'
-	#Do 'Actions/UCG/CottonBalls.txt'
-	Do 'Actions/UCG/OpenUrineBagPackage.txt'
-	Do 'Actions/UCG/AttachUrineBagBed.txt'
+	#Do 'Actions/UCG/Antiseptic'
+	#Do 'Actions/UCG/CottonBalls'
+	Do 'Actions/UCG/OpenUrineBagPackage'
+#	Do 'Actions/UCG/AttachUrineBagBed'
 
-	Do 'Actions/UCG/PositionPatient.txt'
+	Do 'Actions/UCG/PositionPatient'
 	Create $DrapePackageObj $DrapePackage
 	Wait 0
-	Do 'Actions/UCG/Drape.txt'
+	Do 'Actions/UCG/Drape'
 
 	$SkipConfirm = false
 	GameSpeed 1
@@ -79,7 +80,18 @@ Label 'Stage3Loop'
 	Endif
 
 	If
-		$PatientCheckTotal = 'True'
+		$Stage2Button pressed
+	Then
+		$Stage2Button reset
+		If
+			Do 'AnswerIs' 'Return to Prep Room?' 'Yes'
+		Then
+			SceneManager switchtoscene Scenes/UCG/Scene02
+		Endif
+	Endif
+
+	If
+		$PatientCheckTotal = true
 	Then
 		wait 1    #wait for all GMs to finish up
 		Do 'NEWS_Nurse/ChangeStage.txt'
@@ -239,7 +251,7 @@ Label 'Stage3Loop'
 	Endif
 
 	If
-		$PatientInPosition = 'false'
+		$PatientInPosition = false
 	Then
 		If
 			$Patient pressed

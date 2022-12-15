@@ -3,7 +3,7 @@
 #########################################
 
 $PatientName = 'Annie Lim'
-$NeedsPerformed = 'true'
+$NeedsPerformed = true
 $PatientIC = 'S1257567T'
 $BloodType = 'B-'
 $AgeInYears = 75
@@ -43,7 +43,7 @@ Do 'Rigs/RigExtras.txt'
 
 Do 'NEWS_Nurse/SetupPatient.txt'
 
-$UCStruggle = 'True'
+$UCStruggle = true
 
 $HeadAmount = 30.0
 $WeightAmount = 75.0

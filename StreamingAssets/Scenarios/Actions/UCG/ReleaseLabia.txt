@@ -9,26 +9,34 @@
 If
     $param[0] > 0
 Then
-    $whichHand_SL = param[1]
-    #Prompt 'Has Param:' + param[1]
+    $whichHand_RL = param[1]
+    Prompt 'ReleaseLabia Has Param:' + param[1]
 Else
-    #Prompt 'No param:' + param[1]
+    $whichHand_RL = DirtyHand
+    Prompt 'ReleaseLabia No param:' + $whichHand_RL
 Endif
+Wait 2
+Prompt ''
 
-#Start hand above patient
+/*
 If
-    $whichHand_GP == 'left'
+    $whichHand_RL == 'left'
 Then
     $HandGrip = 'L_tweeze'
 Else
     $HandGrip = 'R_tweeze'
 Endif
+*/
 
-#$PatientGenitalsOtherHand moveY 0.2 0.5
-#Wait 0.5
 #open hand
-$PlayerNurse release 1 $HandGrip
-Wait 1
-JoystickCanvas on
+$releaseHand = 'release' + $whichHand_RL
+    Prompt 'ReleaseLabia command = ' + releaseHand
+    Wait 2
+    Prompt ''
 
-#Destroy $PatientGenitalsOtherHand
+
+$PlayerNurse $releaseHand 1 'tweeze'       #$HandGrip
+Wait 1
+
+$NursePlayer localMoveY -0.3 0
+$LabiaSpread = false

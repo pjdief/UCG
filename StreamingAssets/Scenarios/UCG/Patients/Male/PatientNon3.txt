@@ -3,7 +3,7 @@
 #########################################
 
 $PatientName = 'John Tan'
-$NeedsPerformed = 'true'
+$NeedsPerformed = true
 $PatientIC = 'S107978B'
 $BloodType = 'B-'
 $AgeInYears = 82

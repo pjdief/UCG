@@ -3,7 +3,7 @@
 #########################################
 
 $PatientName = 'Anne Ling'
-$isEWS = 'false'
+$isEWS = false
 $PatientIC = 'S2023330P'
 $BloodType = 'B-'
 $AgeInYears = 69

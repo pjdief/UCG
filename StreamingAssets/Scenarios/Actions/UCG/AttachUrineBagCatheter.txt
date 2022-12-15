@@ -1,8 +1,10 @@
-Prompt 'Urine Bag'
-wait .5
+
+$UrineBagPos = $Bed + '/UrinaryPos'
+Prompt 'Attach UrineBag to Catheter'
+wait 1.5
 Prompt ''
 If
-	$CatheterInserted = 'false'
+	$CatheterInserted = false
 Then
 	Return
 Endif
@@ -14,10 +16,14 @@ Then
 Endif
  
 
+$PlayerNurse localMoveY 0.5 0
+$PlayerNurse play LeanIn
+
+
 $UrineBag clickable false
 $UrineBag outline.off
 
-$UCGKidneyDish align $CartPos6 1
+$UCGKidneyDish align $CartPos2 1
 wait 1
 If
 	$PatientGender = 'Male'
@@ -41,14 +47,20 @@ Wait 0.5
 $IVLineEndEffector align $CatheterTubeEnd 0.5
 Wait 0.5
 
-Destroy $PouringLiquid
+Do 'Actions/UCG/StopUrineDrip'
+
+Wait 2
+$PlayerNurse localMoveY -0.5 0
+
+
+
 
 #turnOn $EndGameButton
 $Patient clickable true
 $Patient outline.on
-$UrineBagAttached = 'true'
+$UrineBagAttached = true
 If
-	$InsertedVagina = 'true'
+	$CatheterInsertedCorrectly = false
 Then
 	Return
 Endif

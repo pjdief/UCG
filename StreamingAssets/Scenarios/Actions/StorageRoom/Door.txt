@@ -11,11 +11,11 @@ Then
         $ScenarioGender = 'Female'
     Then
         If
-            $ScenarioStruggle = 'True'
+            $ScenarioStruggle = true
         Then
             SceneManager switchtoscene Scenes/UCG/Scene03_4_Struggle
         Else
-            SceneManager switchtoscene Scenes/UCG/Scene03_4
+            SceneManager switchtoscene Scenes/UCG/Scene03_4_Female
         Endif
     Else
         SceneManager switchtoscene Scenes/UCG/Scene03_4_Male

@@ -13,7 +13,7 @@
 # $LimbResponse = ''
 # $GlucoseResponse = 'Patient looks drowsy, unable to drink glucose drink' #Only for if the patient can't take the glucose and is not oriented
 # $Oriented = true/false
-# $Bleeding = 'true'/'false'
+# $Bleeding = true/false
 # $PatientMask = true/false
 # $PatientNasal = true/false
 # $OxygenSupplement = 'Yes'/'No'
@@ -21,7 +21,7 @@
 
 
 $PatientName = ''
-$isEWS = 'false'
+$isEWS = false
 $PatientIC = '' ###Patient number (ex. S1112223A)
 $BloodType = ''
 $AgeInYears = xx

@@ -1,5 +1,6 @@
-#'MoveWithPackage' $NewLookSpot - grab and open the Package
-# $NewLookSpot = param[1] 
+#'MoveWithPackage' $Package $NewLookSpot - grab and open the Package
+# $Package = param[1] 
+# $NewLookSpot = param[2] 
 
 
 #Prompt 'GrabPackage' $Package
@@ -9,7 +10,8 @@
 If
     $param[0] > 0
 Then
-    $NewLookSpot = param[1]
+    $Package = param[1]
+    $NewLookSpot = param[2]
 Endif
 
 #have Package move with player

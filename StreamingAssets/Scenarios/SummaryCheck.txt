@@ -56,7 +56,7 @@ Endif
 			$SumCanvas off
 			$SummaryInfo on
 
-			$GlobalVar setglobal 'PatientCheckDone' 'false'
+			$GlobalVar setglobal 'PatientCheckDone' false
 			
 			$GlobalVar setglobal 'Stage' $Stage
 			$ChecklistButton reset
@@ -76,7 +76,7 @@ Else
 			$GlobalVar getGlobal 'SummaryCanvasOpened'
 
 		If
-			$SummaryCanvasOpened = 'False'
+			$SummaryCanvasOpened = false
 		Then
 			Return
 		Endif

@@ -112,7 +112,7 @@ Label 'LoopN1'
 	Endif
 
 	If
-		$PatientCheckTotal = 'True'
+		$PatientCheckTotal = true
 	Then
 		wait 1    #wait for all GMs to finish up
 		Do 'NEWS_Nurse/ChangeStage.txt'
@@ -231,7 +231,7 @@ Label 'LoopN1'
 			ZoomSpot menu.result $Yes
 		Then
 			If
-				$NeedsPerformed = 'true'
+				$NeedsPerformed = true
 			Then
 				Prompt 'This is the correct patient.'
 				$ConfirmPatient reset

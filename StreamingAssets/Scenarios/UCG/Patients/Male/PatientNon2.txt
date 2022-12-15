@@ -3,7 +3,7 @@
 #########################################
 
 $PatientName = 'Atan Bin Abu'
-$isEWS = 'false'
+$isEWS = false
 $PatientIC = 'S7600553E'
 $BloodType = 'B-'
 $AgeInYears = 45

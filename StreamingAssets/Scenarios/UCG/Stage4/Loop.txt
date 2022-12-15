@@ -8,18 +8,20 @@ $PatientLocator = $Patient + '/Locator'
 Do 'UCG/COWSetup.txt'
 #Wait .51
 
-If
-	$PatientInPosition = 'true'
-Then
-	$Patient clickable false
-Endif
-$CatheterInserted = 'false'
+$CatheterInserted = false
 Do 'SummaryCheck.txt'
 
 If
-	$PatientInPosition = 'false'
+	$PatientInPosition = false
 Then
 	Do 'Actions/UCG/PositionPatient.txt'
+Endif
+
+If
+	$PatientInPosition = true
+Then
+	$Patient clickable false
+	$Patient outline.off
 Endif
 
 $UrinePercent = 0
@@ -32,6 +34,7 @@ $UrineBag outline.on
 $Tape outline.on
 $CottonBalls outline.on
 $DrapePackage outline.on
+$PatientGenitals outline.on
 
 $KidneyDish outline.on
 $KidneyDish clickable true
@@ -57,29 +60,16 @@ Label 'LoopN1'
 		$PatientGenitals pressed
 	Then	
 		$PatientGenitals reset
+		$PatientGenitals outline.off
 		#######################
 		# Spread Labia or Grab Penis
 		#######################
 		If
 			$GenitalsGrabbed = false
 		Then
-			$GenitalsGrabbed = true
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/SpreadLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/GrabPenis' $ActiveHand
-			Endif
+			Do 'Actions/UCG/GrabGenitals' $ActiveHand
 		Else
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
+			Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
 		Endif
 
 	Endif
@@ -153,18 +143,8 @@ Label 'LoopN1'
 		$PatientButton pressed
 	Then
 		$PatientButton reset
-		If
-			$GenitalsGrabbed = true
-		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
-		Endif
+		Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
+
 		Player align $PlayerStart 1
 	Endif
 
@@ -172,18 +152,7 @@ Label 'LoopN1'
 		$Cart pressed
 	Then
 		$Cart reset
-		If
-			$GenitalsGrabbed = true
-		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
-		Endif
+		Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
 		Player align $CartLook 0.5
 	Endif
 
@@ -191,18 +160,7 @@ Label 'LoopN1'
 		$CartButton pressed
 	Then
 		$CartButton reset
-		If
-			$GenitalsGrabbed = true
-		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
-		Endif
+		Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
 		Player align $CartLook 1
 	Endif
 
@@ -210,18 +168,7 @@ Label 'LoopN1'
 		$Cart1 pressed
 	Then
 		$Cart1 reset
-		If
-			$GenitalsGrabbed = true
-		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
-		Endif
+		Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
 		Player align $Cart1Look 0.5
 	Endif
 
@@ -229,18 +176,7 @@ Label 'LoopN1'
 		$Cart1Button pressed
 	Then
 		$Cart1Button reset
-		If
-			$GenitalsGrabbed = true
-		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
-		Endif
+		Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
 		Player align $Cart1Look 0.5
 	Endif
 
@@ -248,18 +184,7 @@ Label 'LoopN1'
 		$ProcedureButton pressed
 	Then
 		$ProcedureButton reset
-		If
-			$GenitalsGrabbed = true
-		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
-		Endif
+#		Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
 		Player align $UrinaryProcPos 1
 	Endif
 	
@@ -306,7 +231,7 @@ Label 'LoopN1'
 	$PatientUrineAmount = 0.75
 
 	If
-		$UrineBagAttached = 'true'
+		$UrineBagAttached = true
 	Then
 		#Prompt 'Urine amount = ' + UrinePercent
 		If
@@ -326,17 +251,15 @@ Label 'LoopN1'
 	Then
 		$Patient reset
 		If
-			$CatheterInserted = 'true'
+			$CatheterInserted = true
 		Then
-			ZoomSpot Menu.Question 'Remove Drape?'
-			ZoomSpot Menu.Choices 'Yes','No'
-			ZoomSpot Menu.on ZoomSpot
-			WaitFor
-				ZoomSpot Menu.Done
-			Wait .1
+
 			If
-				ZoomSpot menu.result 'Yes'
+				Do 'AnswerIsNo'  'Remove Drape?'
 			Then
+				$Patient reset
+			Else
+				$Patient Outline.off
 				$PlayerNurse localMoveY 0.6 0
 				$PlayerNurse play LeanIn
 				Wait 1
@@ -376,9 +299,8 @@ Label 'LoopN1'
 		Else
 			Do 'Actions/UCG/InsertFemaleCatheter.txt'
 		Endif
-		Player align $PlayerStart 1
 		$UrineBag outline.on
-
+		$KidneyDish outline.off
 	Endif
 
 	If
@@ -392,24 +314,6 @@ Label 'LoopN1'
 		Endif
 	Endif
 
-	If
-		$UrineBag pressed
-	Then
-		$UrineBag reset
-#PJD test: $CatheterInserted = 'true'
-
-
-		Do 'Actions/UCG/AttachUrineBagCatheter.txt'
-/*
-		#PJD test:
-		Prompt 'Setting opacity of urine'
-		Wait 2
-		$CatheterInserted = 'true'
-		$IVLineUrine = IVLine + '/Urine'
-		$IVLineUrine setOpacity 1 4
-		Wait 5
-*/
-	Endif
 
 	If
 		$EndGameButton pressed
