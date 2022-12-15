@@ -2,9 +2,6 @@
 Prompt 'SpreadLabia ' + param[1]
 Wait 4
 
-
-#JoystickCanvas off
-
 Player align $UrinaryProcPos 0.5
 Wait 0.5
 $NursePlayer localMoveY 0.3 0
@@ -32,6 +29,4 @@ Endif
 Wait .1
 
 $DirtyHand = whichHand_SL
-Prompt 'SpreadLabiar: Setting DirtyHand to ' + DirtyHand
-Wait 4
 

@@ -5,15 +5,10 @@ If
     $param[0] > 0
 Then
     $whichHand_RP = param[1]
-    #Prompt 'Has Param:' + param[1]
 Else
     $whichHand_RP = DirtyHand
-    Prompt 'ReleaseLabia No param:' + param[1]
 Endif
 
-#Prompt 'Release Penis with ' + whichHand_RP
-#Wait 1
-#Prompt ''
 
 #Lower penis
 $PatientGenitals localRotateX 85 1
@@ -35,4 +30,4 @@ $releaseHand = 'release' + $whichHand_RP
 $PlayerNurse $releaseHand 1 'grip'
 
 $NursePlayer localMoveY -0.3 0
-$LabiaSpread = false
+$DirtyHand = 'DirtyHand'

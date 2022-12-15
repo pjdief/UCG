@@ -10,13 +10,9 @@ If
     $param[0] > 0
 Then
     $whichHand_RL = param[1]
-    Prompt 'ReleaseLabia Has Param:' + param[1]
 Else
     $whichHand_RL = DirtyHand
-    Prompt 'ReleaseLabia No param:' + $whichHand_RL
 Endif
-Wait 2
-Prompt ''
 
 /*
 If
@@ -30,9 +26,6 @@ Endif
 
 #open hand
 $releaseHand = 'release' + $whichHand_RL
-    Prompt 'ReleaseLabia command = ' + releaseHand
-    Wait 2
-    Prompt ''
 
 
 $PlayerNurse $releaseHand 1 'tweeze'       #$HandGrip
@@ -40,3 +33,4 @@ Wait 1
 
 $NursePlayer localMoveY -0.3 0
 $LabiaSpread = false
+$DirtyHand = 'DirtyHand'

@@ -9,15 +9,15 @@ Do 'UCG/COWSetup.txt'
 #Wait .51
 
 If
-	$PatientInPosition = 'true'
+	$PatientInPosition = true
 Then
 	$Patient clickable false
 Endif
-$CatheterInserted = 'false'
+$CatheterInserted = false
 Do 'SummaryCheck.txt'
 
 If
-	$PatientInPosition = 'false'
+	$PatientInPosition = false
 Then
 	Do 'Actions/UCG/PositionPatient.txt'
 Endif
@@ -97,7 +97,7 @@ Label 'LoopN1'
 		$LeftHandButton pressed
 	Then
 		Prompt 'Left Hand is Active'
-		Wait 1
+		Wait 0.5
 		Prompt ''
 		$LeftHandButton reset
 
@@ -111,7 +111,7 @@ Label 'LoopN1'
 		$RightHandButton pressed
 	Then
 		Prompt 'Right Hand is Active'
-		Wait 1
+		Wait 0.5
 		Prompt ''
 		$RightHandButton reset
 
@@ -124,6 +124,7 @@ Label 'LoopN1'
 	If
 		$EndGame isOnAndPressed
 	Then
+		
 		#Do 'EndCheck.txt'
 		If
 			$BedNumber = 1
@@ -300,7 +301,7 @@ Label 'LoopN1'
 	$PatientUrineAmount = 0.75
 
 	If
-		$UrineBagAttached = 'true'
+		$UrineBagAttached = true
 	Then
 		#Prompt 'Urine amount = ' + UrinePercent
 		If
@@ -320,7 +321,7 @@ Label 'LoopN1'
 	Then
 		$Patient reset
 		If
-			$CatheterInserted = 'true'
+			$CatheterInserted = true
 		Then
 			ZoomSpot Menu.Question 'Remove Drape?'
 			ZoomSpot Menu.Choices 'Yes','No'
@@ -387,7 +388,7 @@ Label 'LoopN1'
 		$UrineBag pressed
 	Then
 		$UrineBag reset
-#PJD test: $CatheterInserted = 'true'
+#PJD test: $CatheterInserted = true
 
 
 		Do 'Actions/UCG/AttachUrineBagCatheter.txt'
@@ -395,7 +396,7 @@ Label 'LoopN1'
 		#PJD test:
 		Prompt 'Setting opacity of urine'
 		Wait 2
-		$CatheterInserted = 'true'
+		$CatheterInserted = true
 		$IVLineUrine = IVLine + '/Urine'
 		$IVLineUrine setOpacity 1 4
 		Wait 5

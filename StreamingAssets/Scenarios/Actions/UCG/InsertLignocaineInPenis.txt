@@ -7,12 +7,14 @@ Then
 Endif
 
 Prompt 'Injecting Lignocaine in urethra'
-wait 1
+Player align $UrinaryProcPos 0.5
+Wait 0.5
+Player localRotateX -20 0.5
 Prompt ''
 
 #Grab penis
 #$ActiveHand = 'Right'
-Do 'Actions/UCG/GrabPenis.txt' $ActiveHand
+#Do 'Actions/UCG/GrabPenis.txt' $OtherHand
 
 #align syringe
 $LigSyringeObj = 'SyringeSmall'
@@ -23,13 +25,28 @@ $Plunger = $LigSyringe + '/Plunger'
 $SyringeWater = $LigSyringe + '/Water'
 turnOn $SyringeWater
 $LigSyringe align $UCLocator 1
-wait 1
+#wait 1
 
-#DO INJECTION STUFF
-#push in water
-$Plunger localmovey -.06 2
-turnOff $SyringeWater
-Wait 2
+$Grab = 'grab' + ActiveHand
+Do 'SetGripSize' $ActiveHand 0.2
+$PlayerNurse $Grab $LigSyringe 0.5 'dip' 'default' 
+Wait 1
+
+If
+	$(DirtyHand == 'DirtyHand')
+Then
+	$Patient play Struggle
+	wait 1
+	Prompt 'Patient is struggling!'
+	wait 1
+	Prompt''
+Else
+	#DO INJECTION STUFF
+	#push in water
+	$Plunger localmovey -.06 2
+	turnOff $SyringeWater
+	Wait 2
+Endif
 
 ###################
 
@@ -37,18 +54,21 @@ Wait 2
 
 #$LigSyringe attachto $UCLocator
 
-Prompt 'throw syringe away'
+#Prompt 'throw syringe away'
 
 #Move it out of the way
 $LigSyringe align 'MiddleHandSpotHigh' 1
 
-
-#$PlayerNurse release 1 'grip'
-#$PlayerNurse release 1 'tweeze'
-#wait 2
+$Release = 'release' + ActiveHand
+$PlayerNurse $Release 1 'dip'
+Do 'SetGripSize' $ActiveHand 0.5
+wait 1
 
 
 Destroy $LigSyringe
 
+Player align $UrinaryProcPos 0.5
+Wait 0.5
 
-Do 'Actions/UCG/ReleasePenis.txt' $ActiveHand
+
+#Do 'Actions/UCG/ReleasePenis.txt' $Other	Hand

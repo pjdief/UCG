@@ -185,10 +185,13 @@ Then
 		Wait 0
 		$UCHolder localrotatey 180 0
 
-		$CatheterPos = $UCHolder + '/CatheterPos'
-		$CatheterEndLoc  = $UCHolder + '/CatheterEndLoc'
+		$UCSet = 'UCSet'
+		$UCGKidneyDish = 'KidneyDish'
 
-		$AntisepticSol = $UCHolder + '/AntisepticSolution'
+		$CatheterPos = UCGKidneyDish + '/CatheterPos'
+		$CatheterEndLoc  = UCGKidneyDish + '/CatheterEndLoc'
+
+		$AntisepticSol = UCHolder + '/AntisepticSolution'
 		$WaterSol = $UCHolder + '/InjectionWaterSolution'
 		$AntisepticSol moveY -0.03 0
 	#	turnOff $AntisepticSol
@@ -224,8 +227,6 @@ Then
 		$Lubricant clickable false
 		$CottonBalls clickable false
 
-		$UCSet = 'UCSet'
-		$UCGKidneyDish = $UCSet + '/KidneyDish'
 		$UCGKidneyDish clickable false
 		turnOff $UCSet
 

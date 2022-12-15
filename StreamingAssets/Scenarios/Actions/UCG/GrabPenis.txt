@@ -12,10 +12,8 @@ If
     $param[0] > 0
 Then
     $whichHand_GP = param[1]
-    #Prompt 'Has Param:' + param[1]
 Else
     $whichHand_GP = ActiveHand
-    #Prompt 'No param:' + param[1]
 Endif
 
 

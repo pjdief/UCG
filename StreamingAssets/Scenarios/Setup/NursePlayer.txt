@@ -1,4 +1,5 @@
 
+$DirtyHand = 'DirtyHand'
 
 $LeftHandSpot = 'LeftHandSpot'
 $RightHandSpot = 'RightHandSpot'

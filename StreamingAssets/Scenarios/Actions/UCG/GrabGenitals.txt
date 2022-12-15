@@ -8,9 +8,6 @@ Else
     $CurrentHand = ActiveHand
 Endif
 
-Prompt 'GrabGenitals ' + GenitalsGrabbed + ' with ' + CurrentHand
-Wait 2
-Prompt ''
 
 		If
 			$GenitalsGrabbed = false

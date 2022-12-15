@@ -210,7 +210,8 @@ $Tape clickable false
 $CottonBalls clickable false
 
 $UCSet = 'UCSet'
-$UCGKidneyDish = $UCSet + '/KidneyDish'
+
+$UCGKidneyDish = 'KidneyDish'  #can't add UCSet because it gets uparented
 $UCGKidneyDish clickable false
 turnOff $UCSet
 

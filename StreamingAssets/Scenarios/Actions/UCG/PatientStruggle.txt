@@ -7,12 +7,15 @@
 
 	$TempCatheter localmovez -.15 .5
 	wait .5
-	$TempCatheter localmovey -.13 .5
+	$TempCatheter localmovey -.08 .5
 	wait .5
 
-	$PlayerNurse release 1 'R_grip'
-	$PlayerNurse release 1 'L_tweeze'
-	wait 2
+	Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
+
+	$Release = 'release' + ActiveHand
+	$PlayerNurse $Release 1 'dip'
+	wait 1.5
+
 	Prompt 'Catheter has fallen out of patient.'
 	wait 1
 	Prompt ''

@@ -9,9 +9,6 @@ Else
     $CurrentHand = DirtyHand
 Endif
 
-Prompt 'ReleaseGenitals: ' + GenitalsGrabbed + ' with ' + CurrentHand
-Wait 2
-Prompt ''
 
 If
     $GenitalsGrabbed = true
