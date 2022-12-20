@@ -13,12 +13,12 @@ Then
         If
             $ScenarioStruggle = true
         Then
-            SceneManager switchtoscene Scenes/UCG/Scene03_4_Struggle
+            SceneManager switchtoscene Scenes/UCG/UCG03_4_Struggle
         Else
-            SceneManager switchtoscene Scenes/UCG/Scene03_4_Female
+            SceneManager switchtoscene Scenes/UCG/UCG03_4_Female
         Endif
     Else
-        SceneManager switchtoscene Scenes/UCG/Scene03_4_Male
+        SceneManager switchtoscene Scenes/UCG/UCG03_4_Male
     Endif
 Else
     /JoystickCanvas on

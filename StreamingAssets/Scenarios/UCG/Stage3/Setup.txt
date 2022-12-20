@@ -9,7 +9,7 @@ $Stage = '3'
 $GlobalVar setglobal 'Stage' $Stage
 $StageFolderPrefix = 'UCG/Stage' + Stage + '/'
 
-$DefaultBedNumber = '4'
+$DefaultBedNumber = 4
 $PlayerStart = Bed + '/MediumLeft'
 $UrinaryProcPos = Bed + '/UrinaryProcPos'
 #Move camera to DefaultBedNumber, which then sets it as the current patient
@@ -101,10 +101,10 @@ $ScenarioStruggle = UCStruggle
 If
     $(ScenarioStruggle == false)
 Then
-    Prompt 'FALSE:ScenarioStruggle = ' + ScenarioStruggle
+    #Prompt 'FALSE:ScenarioStruggle = ' + ScenarioStruggle
     #Continue
 Else
-    Prompt 'TRUE:ScenarioStruggle = ' + ScenarioStruggle
+    #Prompt 'TRUE:ScenarioStruggle = ' + ScenarioStruggle
     $GlobalVar setglobal 'PatientStruggle' $UCStruggle
 
     $ScenarioStruggle = UCStruggle

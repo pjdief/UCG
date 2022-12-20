@@ -380,7 +380,7 @@ Label 'LoopN1'
 		If
 			Do 'AnswerIs' 'Return to Prep Room?' 'Yes'
 		Then
-			SceneManager switchtoscene Scenes/UCG/Scene02
+			SceneManager switchtoscene Scenes/UCG/UCG02
 		Endif
 	Endif
 

@@ -91,9 +91,9 @@
 		If 
 			$BedNumber < 3
 		Then
-			Player lookAt $PatientFace 0.125 0.3 0.1225
+			Player lookAtLegacy $PatientFace -0.25 0.3 0.1225
 		Else
-			Player lookAt $PatientFace -0.125 0.3 -0.1225
+			Player lookAtLegacy $PatientFace -0.125 0.3 -0.1225
 		EndIf
 		$EyeLight = 'EyeLight'
 		Create $EyeLight $EyeLight
@@ -102,7 +102,8 @@
 		Wait .05
 		$Patient headturn Player
 		wait 1.2
-		$EyeLight lookAt $PatientLeftEye duration 1
+		$EyeLight lookAt $PatientLeftEye 1
+
 		#$EyeLight localRotateX -20 .5
 		#$EyeLight localRotateY 20 .5
 		
@@ -117,8 +118,9 @@
 			$PupilReacts = false
 		Endif
 
-#		$isEyesOpen = false
+		$isEyesOpen = false
 
+		#Do left eye
 		If
 			$isEyesOpen = false
 		Then
@@ -128,22 +130,29 @@
 			Create Locator $RightHandReach
 			$RightHandReach align $PatientRightEye 0
 			Wait 0
-			#Prompt 'LZ'
-			$RightHandReach localMoveZ 0.08  #right
-			Wait 0
-			#Prompt 'LX'
-			$RightHandReach localMoveX -0.04  #forward
-			Wait 0
-			#Prompt 'LY'
-			$RightHandReach localMoveY -.14
 			#Prompt 'RZ'
-			$RightHandReach localRotateX 100 0
+			$RightHandReach localRotateX 80 0
 			Wait 0
 			$RightHandReach localRotateY 162 0
 			Wait 0
 			$RightHandReach localRotateZ -64 0
+#			Prompt 'rhr rotated'
+#			Wait 5
 			Wait 0
-			#Endif
+
+			$PlayerNurse grabRight $RightHandReach
+
+#			$RightHandReach ilocalmoveZ -0.1  #right
+			Wait 0
+
+#			$RightHandReach ilocalmoveY .1
+			Wait 0
+
+#			$RightHandReach ilocalmoveX 0.08  
+			Wait 0
+#			Prompt 'rhr moved'
+#			Wait 5
+
 			$PlayerNurse grabRight $RightHandReach
 			Wait 1
 			$Patient play OpenLeft true
@@ -153,16 +162,17 @@
 		Endif
 		$Patient play Pupil_Left_Shrink $PupilReacts
 		wait 4
-		$EyeLight lookAt $PatientRightEye duration 1
+		$EyeLight lookAt $PatientRightEye  1
 		#$EyeLight localRotateY -18 1
 		$Patient play Pupil_Left_Shrink false
 		Wait 1
+
+		#Do right eye
 		If
 			$isEyesOpen = false
 		Then
-			$RightHandReach localMoveZ -0.6 0.5  #left
-			Wait 0.5
-			$RightHandReach localMoveY -0.3 0.5  #left
+			#Prompt 'Move hand to right eye'
+			$RightHandReach ilocalmoveY -0.2 0.5  
 			Wait 0.5
 			$Patient play OpenLeft false
 			wait 1
@@ -177,6 +187,8 @@
 		If
 			$isEyesOpen = false
 		Then
+			$RightHandReach ilocalmoveY 0.4 0.5  
+			Wait 0.5
 			$PlayerNurse release
 			Destroy $RightHandReach
 			$Patient play OpenRight false
@@ -217,9 +229,9 @@
 			If 
 				$BedNumber < 3
 			Then
-				Player lookAt $CannulaIVPos 0 .25 0.25
+				Player lookAtLegacy $CannulaIVPos 0 .25 0.25
 			Else
-				Player lookAt $CannulaIVPos 0 .25 -0.25
+				Player lookAtLegacy $CannulaIVPos 0 .25 -0.25
 			Endif
 	
 			wait 1
@@ -239,9 +251,9 @@
 		If 
 			$BedNumber < 3
 		Then
-			Player lookAt $PatientFace 0.125 0.28 0.1225
+			Player lookAtLegacy $PatientFace 0.125 0.28 0.1225
 		Else
-			Player lookAt $PatientFace -0.125 0.28 -0.1225
+			Player lookAtLegacy $PatientFace -0.125 0.28 -0.1225
 		EndIf
 
 		$Patient headturn Player

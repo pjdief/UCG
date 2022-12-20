@@ -18,8 +18,8 @@ $PhysicalExamResponse = 'Patient breathing heavily.'
 
 $Patient play BreathingSpeed true 2
 
-$FreqHourlyResponse = 'Patient is showing the signs and symptoms of stroke, you should step up monitoring frequency and alert the medical attention immediately.'
-$FreqShiftResponse = 'Patient is showing the signs and symptoms of stroke, you should step up monitoring frequency and alert the medical attention immediately.'
+$FreqHourlyResponse = 'Patient is showing the signs and symptoms of pulmonary embolism, you should step up monitoring frequency and alert the medical team immediately.'
+$FreqShiftResponse = 'Patient is showing the signs and symptoms of pulmonary embolism, you should step up monitoring frequency and alert the medical team immediately.'
 
 $PatientSpeak = 'I am feeling breathless now and my chest is pain.'
 

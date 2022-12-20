@@ -251,7 +251,7 @@ Label 'LoopN1'
 				$GenericPatientLine = 'Thank you.'
 				Do 'GenericChat.txt'
 				wait .5
-				SceneManager switchtoscene Scenes/UCG/Scene02
+				SceneManager switchtoscene Scenes/UCG/UCG02
 				wait 3
 				Return
 			Else

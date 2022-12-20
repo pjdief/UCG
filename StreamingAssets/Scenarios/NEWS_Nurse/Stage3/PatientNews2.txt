@@ -15,6 +15,8 @@ Else
 	$SpO2 = 90
 Endif
 
+$PupilReaction = $PupilReactionResponse4
+
 $Oriented = false
 $isEyesOpen = false
 $LevelOfConscious = $LOCResponse4
@@ -22,14 +24,9 @@ $GlucoseResponse = 'Patient is unresponsive'
 $PatientSpeak = 'Patient is unresponsive!'
 $PainScore = 'Unable to assess'
 
-$FreqHourlyResponse = 'Patient is showing the signs and symptoms of stroke, you should step up monitoring frequency and alert the medical attention immediately.'
-$FreqShiftResponse = 'Patient is showing the signs and symptoms of stroke, you should step up monitoring frequency and alert the medical attention immediately.'
-
 $Vitals setVitals $HR $SPO2 $BP $Respiration
 
 $Eyes   =    $EyeResponse1
 $Verbal = $VerbalResponse1
 $Body   =  $MotorResponse1
-$PupilReaction = $PupilReactionResponse4
-$PupilSize = '5'
-$Patient play Pupil_Left_Grow true
+

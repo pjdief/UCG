@@ -37,7 +37,7 @@ $Patient = PatientObjName
 $RigType = 'uAvatar'
 Do 'Rigs/RigExtras.txt'
 
-Do 'NEWS_Nurse/SetupPatient.txt'
+Do 'UCG/SetupPatient.txt'
 
 $HeadAmount = 90.0
 #$WeightAmount = 75.0

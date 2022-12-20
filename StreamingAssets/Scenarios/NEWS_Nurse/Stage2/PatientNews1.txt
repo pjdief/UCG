@@ -3,7 +3,13 @@
 #########################################
 #Speaker1 'in Pat1Stage2'
 
-$Patient droop true 60 0
+$Patient droop true 65 0
+$Patient setblend face 20 100
+$Patient setblend face 23 100
+$Patient setblend face 26 50
+$Patient setblend face 33 40
+$Patient setblend face 36 100
+$Patient setblend face 6 50
 
 $Temperature = 36.3
 $BP = '170/71' #mmHg
@@ -11,8 +17,8 @@ $BPSys = 170
 
 $PhysicalExamResponse = 'Facial droop seen.'
 
-$FreqHourlyResponse = 'Patient is showing the signs and symptoms of stroke, you should step up monitoring frequency and alert the medical attention immediately.'
-$FreqShiftResponse = 'Patient is showing the signs and symptoms of stroke, you should step up monitoring frequency and alert the medical attention immediately
+$FreqHourlyResponse = 'Patient is showing the signs and symptoms of stroke, you should step up monitoring frequency and alert the medical team immediately.'
+$FreqShiftResponse = 'Patient is showing the signs and symptoms of stroke, you should step up monitoring frequency and alert the medical team immediately.'
 
 If
 	$BloodGlucoseLevel < 8.0

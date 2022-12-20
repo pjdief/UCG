@@ -54,4 +54,4 @@ $Patient = PatientObjName
 
 Do 'Rigs/MetarigExtras.txt'
 
-Do 'NEWS_Nurse/SetupPatient.txt'
+Do 'UCG/SetupPatient.txt'

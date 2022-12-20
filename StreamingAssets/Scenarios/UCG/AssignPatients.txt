@@ -1,5 +1,5 @@
 Do 'Setup.txt'
-$BedNumber = '6'
+$BedNumber = 6
 
 $GlobalVar = 'GlobalVariableManager'
 
