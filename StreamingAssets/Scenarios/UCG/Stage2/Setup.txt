@@ -86,8 +86,8 @@ wait .1
 $ScenarioGender =
 $GlobalVar getglobal 'Gender'
 
-$ScenarioStruggle =
-$GlobalVar getglobal 'PatientStruggle'
+#$ScenarioStruggle =
+#$GlobalVar getglobal 'PatientStruggle'
 
 $Shelf1 outline.on
 $Shelf2 outline.on

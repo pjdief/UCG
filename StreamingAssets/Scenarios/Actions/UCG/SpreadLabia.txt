@@ -1,6 +1,5 @@
 #Do 'SpreadLabia' ['right'|'left']
-Prompt 'SpreadLabia ' + param[1]
-Wait 4
+
 
 Player align $UrinaryProcPos 0.5
 Wait 0.5

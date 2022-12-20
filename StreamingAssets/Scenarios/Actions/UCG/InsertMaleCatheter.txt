@@ -66,8 +66,8 @@ wait 1
 #Wait 1
 
 ##########CHECK PATIENT STRUGGLE###########
-$ScenarioStruggle =
-$GlobalVar getglobal 'PatientStruggle'
+$ScenarioStruggle = UCStruggle
+#$GlobalVar getglobal 'PatientStruggle'
 
 $IsStruggling =	(DirtyHand == 'DirtyHand')
 $IsStruggling =	$(IsStruggling || ScenarioStruggle)
@@ -84,6 +84,8 @@ Else
 	$TempCatheter localmovez .1 2
 	wait 2
 	$TempCatheter attachto $UCLocator
+
+	$CatheterInsertedCorrectly = true
 
 	######## Create urine drips ############
 	Do 'Actions/UCG/StartUrineDrip'

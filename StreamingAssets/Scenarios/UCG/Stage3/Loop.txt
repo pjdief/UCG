@@ -27,6 +27,8 @@ $SkipToStage4 = false
 If 
 	$SkipToStage4
 Then
+$ScenarioStruggle = UCStruggle
+#	$GlobalVar getglobal 'PatientStruggle'
 	GameSpeed 20
 	$SkipConfirm = true    #Skip Yes/No questions
 	wait 2
@@ -55,6 +57,9 @@ Then
 
 	$SkipConfirm = false
 	GameSpeed 1
+	$DirtyHand = 'Left'
+$ScenarioStruggle = UCStruggle
+
 
 Endif
 ########### END OF SKIP FOR STAGE 4

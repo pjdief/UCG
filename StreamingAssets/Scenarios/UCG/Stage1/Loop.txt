@@ -5,7 +5,7 @@ $Vitalsmonitor outline.on
 #Prompt 'Playerstart = ' + PlayerStart
 Wait .51
 
-$Smile = 'NEWS_Nurse/PatientCreations/Expressions/Smile.txt'
+$Smile = 'PatientCreations/Expressions/Smile.txt'
 #Prompt 'Smile'
 #Do 'Smile'
 #Prompt 'Smile 5'
@@ -155,7 +155,7 @@ Label 'LoopN1'
 			$Patient outline.off
 			turnOff $ConfirmPatient
 			$Patient headturn Player
-			Do 'NEWS_Nurse/EngagePatient.txt'
+			Do 'UCG/EngagePatient.txt'
 			$Patient outline.on
 			JoystickCanvas on
 			turnOn $ConfirmPatient

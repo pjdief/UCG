@@ -3,7 +3,7 @@
 	wait 1
 	Prompt 'Patient is struggling!'
 	wait 1
-	Prompt''
+	Prompt ''
 
 	$TempCatheter localmovez -.15 .5
 	wait .5
@@ -23,6 +23,7 @@
 	Player align $UrinaryProcPos 0.5
 	wait 0.5
 
-	$GlobalVar setglobal 'PatientStruggle' false
+	UCStruggle = false
+#	$GlobalVar setglobal 'PatientStruggle' false
 	wait .1
 

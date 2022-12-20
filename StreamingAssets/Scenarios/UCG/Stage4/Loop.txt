@@ -87,7 +87,7 @@ Label 'LoopN1'
 		$LeftHandButton pressed
 	Then
 		Prompt 'Left Hand is Active'
-		Wait 1
+		Wait 0.5
 		Prompt ''
 		$LeftHandButton reset
 
@@ -101,7 +101,7 @@ Label 'LoopN1'
 		$RightHandButton pressed
 	Then
 		Prompt 'Right Hand is Active'
-		Wait 1
+		Wait 0.5
 		Prompt ''
 		$RightHandButton reset
 

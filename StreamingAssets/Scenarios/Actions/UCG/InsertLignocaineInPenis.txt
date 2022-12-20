@@ -39,7 +39,7 @@ Then
 	wait 1
 	Prompt 'Patient is struggling!'
 	wait 1
-	Prompt''
+	Prompt ''
 Else
 	#DO INJECTION STUFF
 	#push in water

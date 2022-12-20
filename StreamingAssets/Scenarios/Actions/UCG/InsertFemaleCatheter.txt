@@ -50,20 +50,20 @@ $PlayerNurse $Grab $TempCatheter 1 'dip' 'default'
 Wait 1
 
 ######### Move catheter into urethra
-$TempCatheter orient $UCLocator 0
-Wait 0
+$TempCatheter orient $UCLocator 0.1
+Wait 0.1
 $TempCatheter movebehind $UCLocator -0.1 1
 Wait 1
 
 #Align to urethra opening
 $TempCatheter align $UCLocator 0.5
 wait 1
-$TempCatheter localmovez .01 1
-Wait 1
+#$TempCatheter localmovez .01 1
+#Wait 1
 
 ##########INSERT PATIENT STRUGGLE###########
-$ScenarioStruggle =
-$GlobalVar getglobal 'PatientStruggle'
+$ScenarioStruggle = UCStruggle
+#	$GlobalVar getglobal 'PatientStruggle'
 
 $IsStruggling =	(DirtyHand == 'DirtyHand')
 $IsStruggling =	$(IsStruggling || ScenarioStruggle)

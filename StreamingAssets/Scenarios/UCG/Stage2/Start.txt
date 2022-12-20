@@ -19,7 +19,7 @@ $CartPos7 = $Cart + '/Pos07'
 $CartPos8 = $Cart + '/Pos08'
 $CartPos9 = $Cart + '/Pos09'
 
-Do 'SummaryCheckNoPatient.txt'
+Do 'UCG/SummaryCheckNoPatient.txt'
 
 $UC12 correctset
 $UC14 correctset

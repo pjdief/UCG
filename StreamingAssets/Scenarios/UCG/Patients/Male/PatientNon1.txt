@@ -46,8 +46,8 @@ Do 'NEWS_Nurse/SetupPatient.txt'
 $HeadAmount = 30.0
 $WeightAmount = 75.0
 
-Do 'NEWS_Nurse/PatientCreations/Age/75.txt'
-Do 'NEWS_Nurse/PatientCreations/Head/Head0.txt'
-Do 'NEWS_Nurse/PatientCreations/Height/Average.txt'
-#Do 'NEWS_Nurse/PatientCreations/Weight/Average.txt'
-#Do 'NEWS_Nurse/PatientCreations/Gender/Male.txt'
+Do 'PatientCreations/Age/75.txt'
+Do 'PatientCreations/Head/Head0.txt'
+Do 'PatientCreations/Height/Average.txt'
+#Do 'PatientCreations/Weight/Average.txt'
+#Do 'PatientCreations/Gender/Male.txt'

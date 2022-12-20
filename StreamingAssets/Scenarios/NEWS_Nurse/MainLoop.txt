@@ -5,7 +5,7 @@ $Vitalsmonitor outline.on
 #Prompt 'Playerstart = ' + PlayerStart
 Wait .51
 
-$Smile = 'NEWS_Nurse/PatientCreations/Expressions/Smile.txt'
+$Smile = 'PatientCreations/Expressions/Smile.txt'
 #Prompt 'Smile'
 #Do 'Smile'
 #Prompt 'Smile 5'
