@@ -119,6 +119,11 @@ Then
 	$LubricantPackageObj = 'LubricantPackage'
 	$LubricantPackage = 'LubricantPackage'
 
+	$LignocaineObj = 'LubricantBottle'
+	$Lignocaine = 'Lignocaine'
+	$LignocainePackageObj = 'UCGAssets/LignocainePackage'
+	$LignocainePackage = 'LignocainePackage'
+
 	$CatheterObj = 'UCGAssets/Sachet_CatheterizationSet'
 	$Catheter = 'Catheter'
 	$CatheterBalloon = 'CatheterBalloonCurled'
@@ -211,12 +216,25 @@ Then
 		$Antiseptic align $Cart1Pos3 0
 		Wait 0
 
-		Create $LubricantPackageObj $LubricantPackage
-		Wait 0
-		$LubricantPackage align $Cart1Pos1 0
-		Wait 0
-		$LubricantPackage localmovez -.07 0
-		Wait 0
+		If
+			$PatientGender = 'Male'
+		Then
+			Create $LignocainePackageObj $LignocainePackage
+			Wait 0
+			$LignocainePackage align $Cart1Pos1 0
+			Wait 0
+			$LignocainePackage localmovez -.07 0
+			Wait 0
+			$Lignocaine clickable false
+		Else
+			Create $LubricantPackageObj $LubricantPackage
+			Wait 0
+			$LubricantPackage align $Cart1Pos1 0
+			Wait 0
+			$LubricantPackage localmovez -.07 0
+			Wait 0
+			$Lubricant clickable false
+		Endif
 
 		$CottonBalls align $UCHolder 0
 		Wait 0
@@ -224,7 +242,6 @@ Then
 
 		$InjectionWater clickable false
 		$Antiseptic clickable false
-		$Lubricant clickable false
 		$CottonBalls clickable false
 
 		$UCGKidneyDish clickable false
@@ -313,5 +330,11 @@ Then
 	$CatheterBalloon attachto $UCGKidneyDish
 	$Syringe attachto $UCGKidneyDish
 	$CatheterPos attachto $UCGKidneyDish
+	If
+		$PatientGender = 'Male'
+	Then
+		$Lignocaine attachto $UCGKidneyDish
+	Endif
+
 Endif
 

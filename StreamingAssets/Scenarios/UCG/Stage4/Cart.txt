@@ -48,6 +48,11 @@ Then
 
 	$CatheterBalloon detach
 	$Syringe detach
+	If
+		$PatientGender = 'Male'
+	Then
+		$Lignocaine detach 
+	Endif
 
 	$CatheterBalloon clickable true
 Endif

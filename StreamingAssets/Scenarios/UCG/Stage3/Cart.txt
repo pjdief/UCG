@@ -37,14 +37,12 @@
 		
 		####### Prep Cart Actions
 
-		##########Syringe Package 
+		##########InjectionWater Package 
 		Do $CheckHoverOrPressed $InjectionWater 'InjectionWater' 'Actions/UCG/InjectionWater.txt'
 
 		##########Antiseptic Package 
 		Do $CheckHoverOrPressed $Antiseptic 'Antiseptic' 'Actions/UCG/Antiseptic.txt'
 
-		##########Syringe Package 
-		Do $CheckHoverOrPressed $Lubricant 'Lubricant' 'Actions/UCG/Lubricant.txt'
 
 		/*
 		If
@@ -65,7 +63,7 @@
 			$Lubricant pressed
 		Then
 			$Lubricant reset
-			Do 'Actions/UCG/Lubricant.txt'
+			Do 'Actions/UCG/LubricateCatheter.txt'
 		Endif
 		*/
 
@@ -73,9 +71,23 @@
 		Do $CheckHoverOrPressed $SyringePackage 'Syringe' 'Actions/UCG/OpenSyringe.txt'
 
 
-		##########Lubricant Package
-		Do $CheckHoverOrPressed $LubricantPackage 'Lubricant' 'Actions/UCG/OpenLubricant.txt'
+		If
+			$PatientGender = 'Male'
+		Then
+			##########Lignocaine Package
+			Do $CheckHoverOrPressed $LignocainePackage 'Lignocaine' 'Actions/UCG/OpenLignocaine.txt'
 
+			########## Lignocaine Package 
+			Do $CheckHoverOrPressed $Lignocaine 'Lignocaine' 'Actions/UCG/LignocaineCatheter.txt'
+
+		Else
+			##########Lubricant Package
+			Do $CheckHoverOrPressed $LubricantPackage 'Lubricant' 'Actions/UCG/OpenLubricant.txt'
+
+			##########Lubricant Package 
+			Do $CheckHoverOrPressed $Lubricant 'Lubricant' 'Actions/UCG/LubricateCatheter.txt'
+
+		Endif
 
 		##########InjectionWater Package  
 		Do $CheckHoverOrPressed $InjectionWaterPackage 'InjectionWater' 'Actions/UCG/OpenInjectionWater.txt'
@@ -183,15 +195,33 @@
 		Endif
 
 		If
-			$LubricantPackage pressed
+			$PatientGender = 'male'
 		Then
-			$LubricantPackage reset
-			$Lubricant reset
-			$Antiseptic reset
-			Prompt 'Must open the catheterization set first.'
-			wait 1.5
-			Prompt ''
+			If
+				$LignocainePackage pressed
+			Then
+				$LignocainePackage reset
+				$Lignocaine reset
+				$Antiseptic reset
+				Prompt 'Must open the catheterization set first.'
+				wait 1.5
+				Prompt ''
+			Endif
+		Else
+			If
+				$LubricantPackage pressed
+			Then
+				$LubricantPackage reset
+				$Lubricant reset
+				$Antiseptic reset
+				Prompt 'Must open the catheterization set first.'
+				wait 1.5
+				Prompt ''
+			Endif
 		Endif
+
+
+
 
 		If
 			$InjectionWaterPackage pressed

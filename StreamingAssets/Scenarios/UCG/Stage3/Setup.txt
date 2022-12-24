@@ -5,6 +5,36 @@
 ###########################################
 
 
+/*
+$SkipConfirm = false
+Prompt 'SkipConfirm = ' + SkipConfirm 
+Wait 3
+Prompt ' true = ' + true
+Wait 4
+If
+	$ SkipConfirm == true
+Then
+	Prompt 'Equal'
+Else
+	Prompt 'not Equal' 
+Endif
+	Wait 300
+*/
+/*
+Testing string equals
+$DirtyHand = 'Left'
+$ActiveHand = 'Left'
+
+If
+	$DirtyHand == ActiveHand
+Then
+	Prompt 'Equal'
+Else
+	Prompt 'not Equal' 
+Endif
+	Wait 300
+*/
+
 $Stage = '3'
 $GlobalVar setglobal 'Stage' $Stage
 $StageFolderPrefix = 'UCG/Stage' + Stage + '/'
@@ -240,6 +270,7 @@ $ContinenceSheet outline.on
 $InjectionWater outline.on
 $Antiseptic outline.on
 $SyringePackage outline.on
+$LignocainePackage outline.on
 $LubricantPackage outline.on
 $Lubricant outline.on
 $Catheter outline.on
@@ -254,6 +285,7 @@ $InjectionWater clickable true
 $Antiseptic clickable true
 $SyringePackage  clickable true
 $Lubricant clickable true
+$LignocainePackage clickable true
 $LubricantPackage clickable true
 $Catheter clickable true
 $Gloves clickable true

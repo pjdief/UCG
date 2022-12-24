@@ -60,26 +60,13 @@ Label 'LoopN1'
 		#######################
 		# Spread Labia or Grab Penis
 		#######################
+
 		If
 			$GenitalsGrabbed = false
 		Then
-			$GenitalsGrabbed = true
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/SpreadLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/GrabPenis' $ActiveHand
-			Endif
+			Do 'Actions/UCG/GrabGenitals' $ActiveHand
 		Else
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
+			Do 'Actions/UCG/ReleaseGenitals' $ActiveHand
 		Endif
 
 	Endif
@@ -151,14 +138,7 @@ Label 'LoopN1'
 		If
 			$GenitalsGrabbed = true
 		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
+			Do 'Actions/UCG/ReleaseGenitals' $ActiveHand
 		Endif
 		Player align $PlayerStart 1
 	Endif
@@ -170,14 +150,7 @@ Label 'LoopN1'
 		If
 			$GenitalsGrabbed = true
 		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
+			Do 'Actions/UCG/ReleaseGenitals' $ActiveHand
 		Endif
 		Player align $CartLook 0.5
 	Endif
@@ -189,14 +162,7 @@ Label 'LoopN1'
 		If
 			$GenitalsGrabbed = true
 		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
+			Do 'Actions/UCG/ReleaseGenitals' $ActiveHand
 		Endif
 		Player align $CartLook 1
 	Endif
@@ -208,14 +174,7 @@ Label 'LoopN1'
 		If
 			$GenitalsGrabbed = true
 		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
+			Do 'Actions/UCG/ReleaseGenitals' $ActiveHand
 		Endif
 		Player align $Cart1Look 0.5
 	Endif
@@ -227,14 +186,7 @@ Label 'LoopN1'
 		If
 			$GenitalsGrabbed = true
 		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
+			Do 'Actions/UCG/ReleaseGenitals' $ActiveHand
 		Endif
 		Player align $Cart1Look 0.5
 	Endif
@@ -246,14 +198,7 @@ Label 'LoopN1'
 		If
 			$GenitalsGrabbed = true
 		Then
-			$GenitalsGrabbed = false
-			If
-				$PatientGender = 'Female'
-			Then
-				Do 'Actions/UCG/ReleaseLabia' $ActiveHand
-			Else
-				Do 'Actions/UCG/ReleasePenis' $ActiveHand
-			Endif
+			Do 'Actions/UCG/ReleaseGenitals' $ActiveHand
 		Endif
 		Player align $UrinaryProcPos 1
 	Endif

@@ -50,6 +50,15 @@ $ScenarioStruggle = UCStruggle
 	Do 'Actions/UCG/OpenUrineBagPackage'
 #	Do 'Actions/UCG/AttachUrineBagBed'
 
+	If
+		$PatientGender = 'Male'
+	Then
+		Do 'Actions/UCG/OpenLignocaine'
+		Do 'Actions/UCG/LignocaineCatheter'
+	Else
+		Do 'Actions/UCG/OpenLubricant'
+		Do 'Actions/UCG/LubricateCatheter'
+	Endif
 	Do 'Actions/UCG/PositionPatient'
 	Create $DrapePackageObj $DrapePackage
 	Wait 0
@@ -57,7 +66,7 @@ $ScenarioStruggle = UCStruggle
 
 	$SkipConfirm = false
 	GameSpeed 1
-	$DirtyHand = 'Left'
+#	$DirtyHand = 'Left'
 $ScenarioStruggle = UCStruggle
 
 

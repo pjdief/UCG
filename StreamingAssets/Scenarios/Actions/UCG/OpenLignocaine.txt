@@ -1,0 +1,41 @@
+# 'OpenLignocaine'
+Prompt 'Lignocaine'
+wait 3.31
+Prompt ''
+
+If
+	Do 'AnswerIsNo' 'Open lignocaine?'
+Then
+	Return
+Endif
+
+
+
+#setup variables for function calls
+$Item = LignocainePackage
+$ItemObj = Lignocaine
+$ItemPos = CartPos4
+$Lignocaine = ItemObj + 'Instance'  #DropFromPackage adds Instance to name
+$LigSyringe = Lignocaine
+
+
+#Grab item, and tear package open.
+Do 'Actions/UCG/GrabAndOpenPackage' $Item $CartLook
+
+#pour package
+Do 'Actions/UCG/PourPackage' $Item $ItemPos 0.15
+
+#drop object from package
+Do 'Actions/UCG/DropFromPackage' $Item $ItemObj $ItemPos
+
+Wait 1
+
+#Stop pour
+Do 'Actions/UCG/StopPackagePour' $Item 
+
+#Throw away package
+Do 'Actions/UCG/ThrowAwayPackage' $Item 
+$Lubricant = Lignocaine
+
+
+

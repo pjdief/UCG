@@ -1,6 +1,14 @@
 #InsertLignocaineInPenis
 
 If
+	Player exists $LigSyringe
+Then
+
+Else
+	return
+Endif
+
+If
 	Do 'AnswerIsNo' 'Inject Lignocaine?'
 Then
 	Return
@@ -12,26 +20,44 @@ Wait 0.5
 Player localRotateX -20 0.5
 Prompt ''
 
-#Grab penis
-#$ActiveHand = 'Right'
-#Do 'Actions/UCG/GrabPenis.txt' $OtherHand
+$Release = 'release' + ActiveHand
+
 
 #align syringe
-$LigSyringeObj = 'SyringeSmall'
-$LigSyringe  = 'LigSyringe'
+
+
 $UCLocator = $Patient + '/UCLocator'
-Create $LigSyringeObj $LigSyringe
+
 $Plunger = $LigSyringe + '/Plunger'
 $SyringeWater = $LigSyringe + '/Water'
 turnOn $SyringeWater
-$LigSyringe align $UCLocator 1
+#$LigSyringe align $UCLocator 1
 #wait 1
+
+#trying to grab with active hand, so mark it as dirty
+
+#Prompt 'DirtyHand = ' + DirtyHand + ' , ActiveHand = ' + ActiveHand
+#Wait 3
+
+If
+	$DirtyHand == ActiveHand
+Then
+	$DirtyHand = 'DirtyHand'
+	Do 'Actions/UCG/ReleaseGenitals' $ActiveHand
+#	$PlayerNurse $Release 1 'dip'
+	Wait 1
+Endif
 
 $Grab = 'grab' + ActiveHand
 Do 'SetGripSize' $ActiveHand 0.2
 $PlayerNurse $Grab $LigSyringe 0.5 'dip' 'default' 
 Wait 1
 
+$LigSyringe align $UCLocator 1
+wait 1
+
+#Prompt 'DirtyHand = ' + DirtyHand
+#Wait 3
 If
 	$(DirtyHand == 'DirtyHand')
 Then
@@ -57,9 +83,9 @@ Endif
 #Prompt 'throw syringe away'
 
 #Move it out of the way
-$LigSyringe align 'MiddleHandSpotHigh' 1
+$LigSyringe align 'MiddleHandSpotLow' 1
+Wait 1
 
-$Release = 'release' + ActiveHand
 $PlayerNurse $Release 1 'dip'
 Do 'SetGripSize' $ActiveHand 0.5
 wait 1

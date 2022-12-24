@@ -106,7 +106,7 @@ wait 2
 Destroy $Forceps
 
 Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
-
+/*
 If
     $ ( whichHand == 'right' )
 Then
@@ -116,7 +116,7 @@ Else
     #left hand
     $PlayerNurse releaseLeft 1 'L_grip'
 Endif
-
+*/
 wait .3
 $Player align $PlayerStart
 JoystickCanvas on
