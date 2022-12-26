@@ -9,7 +9,7 @@ If
 Then
 
 	If
-		Do 'AnswerIsNo' 'Lignocaine Catheter?'
+		Do 'AnswerIsNo' 'Lubricate Catheter?'
 	Then
 		Return
 	Endif

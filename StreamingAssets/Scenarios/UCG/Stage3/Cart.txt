@@ -75,10 +75,10 @@
 			$PatientGender = 'Male'
 		Then
 			##########Lignocaine Package
-			Do $CheckHoverOrPressed $LignocainePackage 'Lignocaine' 'Actions/UCG/OpenLignocaine.txt'
+			Do $CheckHoverOrPressed $LignocainePackage 'Lignocaine Gel' 'Actions/UCG/OpenLignocaine.txt'
 
-			########## Lignocaine Package 
-			Do $CheckHoverOrPressed $Lignocaine 'Lignocaine' 'Actions/UCG/LignocaineCatheter.txt'
+			########## Lignocaine
+			Do $CheckHoverOrPressed $Lignocaine 'Lubricate Catheter' 'Actions/UCG/LignocaineCatheter.txt'
 
 		Else
 			##########Lubricant Package
